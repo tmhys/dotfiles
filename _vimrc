@@ -1,10 +1,11 @@
+"
 " ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
 " ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
 " ██║   ██║██║██╔████╔██║██████╔╝██║
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 04-Sep-2018.
+" Last Change: 20-Sep-2018.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -15,7 +16,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 set encoding=utf8
 
 ""dein{{{
-if has('win64')
+if executable('git')
 	if &compatible
 		set nocompatible
 	endif
@@ -82,7 +83,7 @@ if has('win64')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
-	  call dein#add('vim-scripts/YankRing.vim')
+	  "call dein#add('vim-scripts/YankRing.vim')
 	  call dein#add('yuratomo/dotnet-complete')
 
 	  "ColorScheme
@@ -98,7 +99,9 @@ if has('win64')
 	  call dein#add('vim-scripts/Wombat')
 	  call dein#add('gosukiwi/vim-atom-dark')
 	  call dein#add('vim-scripts/newspaper.vim')
+	  call dein#add('tyrannicaltoucan/vim-quantum')
 	  call dein#add('w0ng/vim-hybrid')
+	  call dein#add('tpope/vim-fugitive')
 
 "{{{
 	  "call dein#add('Shougo/vimproc.vim')
@@ -113,7 +116,6 @@ if has('win64')
 	  "call dein#add('othree/html5.vim')
 	  "call dein#add('rcmdnk/vim-markdown')
 	  "call dein#add('scrooloose/syntastic')
-	  "call dein#add('tpope/vim-fugitive')
 	  "call dein#add('ujihisa/unite-colorscheme')
 "}}}
 	  call dein#end()
