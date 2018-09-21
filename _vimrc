@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 20-Sep-2018.
+" Last Change: 22-Sep-2018.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -80,6 +80,7 @@ if executable('git')
 	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 	  call dein#add('tpope/vim-surround')
+	  call dein#add('w0rp/ale')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
@@ -135,12 +136,32 @@ endif
 "}}}
 
 ""Lightline{{{
+"カラースキームを自動で変更
+augroup LightlineColorscheme
+		  autocmd!
+		  autocmd ColorScheme * call s:lightline_update()
+		augroup END
+		function! s:lightline_update()
+		  if !exists('g:loaded_lightline')
+		    return
+		  endif
+		  try
+		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|seoul256\|Tomorrow\|molokai'
+		      let g:lightline.colorscheme =
+		            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
+		      call lightline#init()
+		      call lightline#colorscheme()
+		      call lightline#update()
+		    endif
+		  catch
+		  endtry
+		endfunction
+
 ""常時ステータスライン表示
 set laststatus=2
 			"\ 'colorscheme': 'solarized',
 
 		let g:lightline = {
-            \ 'colorscheme': 'molokai',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive','dir', 'filename' ],
