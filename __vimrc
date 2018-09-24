@@ -9,12 +9,19 @@
 " Last Change: 24-Sep-2018.
 " Maintainer: TH
 
+"Chrosh上で256カラーに必要らしい
+set termguicolors
+
 let g:vimproc#download_windows_dll = 1
 "indentguide　消すな
 let g:indent_guides_enable_on_vim_startup = 1
 
 "startifyでのアイコン画像が崩れる 消すな
 set encoding=utf8
+
+"ChromeOSではないとき
+"if hostname()!=?'localhost'
+"endif
 
 ""dein{{{
 if executable('git')
@@ -1111,6 +1118,8 @@ nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
 "}}}
 
 "{{{外部ソフト
+if hostname()!=?'localhost'
 "WinMerge
 nnoremap WM :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+endif
 "}}}
