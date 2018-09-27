@@ -6,7 +6,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 24-Sep-2018.
+" Last Change: 27-Sep-2018.
 " Maintainer: TH
 
 "Chrosh上で256カラーに必要らしい
@@ -78,7 +78,6 @@ if executable('git')
 	  call dein#add('nathanaelkane/vim-indent-guides')
 	  call dein#add('qpkorr/vim-renamer')
 	  call dein#add('rhysd/accelerated-jK')
-	  call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
 	  call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
@@ -92,7 +91,6 @@ if executable('git')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
-	  "call dein#add('vim-scripts/YankRing.vim')
 	  call dein#add('yuratomo/dotnet-complete')
 
 	  "ColorScheme
@@ -112,7 +110,11 @@ if executable('git')
 	  call dein#add('w0ng/vim-hybrid')
 	  call dein#add('tpope/vim-fugitive')
 
+	if hostname()!=?'localhost'
+	  call dein#add('ryanoasis/vim-devicons')
+	endif
 "{{{
+	  "call dein#add('vim-scripts/YankRing.vim')
 	  "call dein#add('Shougo/vimproc.vim')
 	  "call dein#add('osyo-manga/vim-brightest')
 	  "call dein#add('easymotion/vim-easymotion')
@@ -169,6 +171,7 @@ augroup LightlineColorscheme
 set laststatus=2
 			"\ 'colorscheme': 'solarized',
 
+	if hostname()!=?'localhost'
 		let g:lightline = {
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
@@ -304,6 +307,69 @@ endfunction
 function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+
+"Chrosh環境などNERDfontがないとき
+	elseif
+		let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+        \ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    return fugitive#head()
+  else
+    return ''
+  endif
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+	endif
 "}}}
 
 "}}}
@@ -955,6 +1021,7 @@ command! Taskpaper :edit $VIM/task.taskpaper
 "}}}
 
 "devicon{{{
+if hostname()!=?'localhost'
 " adding the custom source to unite
 let g:webdevicons_enable_unite = 1
 " adding the column to vimfiler
@@ -993,6 +1060,7 @@ endif
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
+endif
 endif
 "}}}
 
