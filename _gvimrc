@@ -5,20 +5,20 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 16-Sep-2018.
+" Last Change: 23-Dec-2018.
 " Maintainer:  TH
 
 runtime! userautoload/*.vim
 
 """基本設定{{{
 "カラー設定{{{
-set background=light "light dark
-colorscheme molokai "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape
+set background=dark "light dark
+colorscheme solarized "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape
 "}}}
 
 "フォント設定{{{
 if has('win32')
-  	set guifont=Cica:h11
+  	set guifont=Cica:h12
 	set printfont=Cica:h8
 	set renderoptions=type:directx,renmode:5
 	set ambiwidth=double
@@ -47,7 +47,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 "set cursorline
-"set cursorcolumn
+set cursorcolumn
 set number
 
 filetype plugin on
@@ -566,7 +566,7 @@ let g:startify_list_order = [
         \ ]
 
 " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
-let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
+let g:startify_custom_indices = ['d', 'f', 'h', 'r', 'i', 'o', 'b']
 " よく使うファイルをブックマークとして登録しておく
 let g:startify_bookmarks = [
   \ '$VIM/_vimrc',
