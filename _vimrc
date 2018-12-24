@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 22-Sep-2018.
+" Last Change: 23-Dec-2018.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -49,6 +49,7 @@ if executable('git')
 
 	  "call dein#add('')
 	  call dein#add(s:dein_repo_dir)
+	  call dein#add('LeafCage/foldCC')
 	  call dein#add('Shougo/neocomplcache')
 	  call dein#add('Shougo/neocomplete.vim')
 	  call dein#add('Shougo/neomru.vim')
@@ -58,13 +59,17 @@ if executable('git')
 	  call dein#add('Shougo/vimfiler.vim')
 	  call dein#add('cespare/vim-toml')
 	  call dein#add('davidhalter/jedi-vim')
+	  call dein#add('deris/vim-shot-f')
 	  call dein#add('haya14busa/incsearch-fuzzy.vim')
 	  call dein#add('haya14busa/incsearch.vim')
 	  call dein#add('itchyny/lightline.vim')
-	  call dein#add('kevinw/pyflakes-vim')
 	  call dein#add('junegunn/vim-easy-align')
+	  call dein#add('reireias/vim-cheatsheet')
+	  call dein#add('kevinw/pyflakes-vim')
 	  call dein#add('majutsushi/tagbar')
 	  call dein#add('mattn/benchvimrc-vim')
+	  call dein#add('mattn/sonictemplate-vim')
+	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('mhinz/vim-startify')
 	  call dein#add('miura/ImageJMacro_Highlighter')
 	  call dein#add('nathanaelkane/vim-indent-guides')
@@ -73,19 +78,18 @@ if executable('git')
 	  call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
-	  call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
 	  call dein#add('thinca/vim-qfreplace')
 	  call dein#add('thinca/vim-quickrun')
 	  call dein#add('thinca/vim-singleton')
 	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 	  call dein#add('tpope/vim-surround')
-	  call dein#add('w0rp/ale')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
-	  "call dein#add('vim-scripts/YankRing.vim')
+	  call dein#add('w0rp/ale')
 	  call dein#add('yuratomo/dotnet-complete')
+	  call dein#add('tpope/vim-fugitive')
 
 	  "ColorScheme
 	  call dein#add('altercation/vim-colors-solarized')
@@ -102,9 +106,10 @@ if executable('git')
 	  call dein#add('vim-scripts/newspaper.vim')
 	  call dein#add('tyrannicaltoucan/vim-quantum')
 	  call dein#add('w0ng/vim-hybrid')
-	  call dein#add('tpope/vim-fugitive')
 
 "{{{
+	  "call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
+	  "call dein#add('vim-scripts/YankRing.vim')
 	  "call dein#add('Shougo/vimproc.vim')
 	  "call dein#add('osyo-manga/vim-brightest')
 	  "call dein#add('easymotion/vim-easymotion')
@@ -177,12 +182,18 @@ set laststatus=2
             \   'fileformat': 'LightLineFileformat',
 			\	'currentfuncname': 'LightLineCfi',
             \ },
-		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+		    \ 'separator': { 'left': "\ue0c4", 'right': "\ue0c6" },
+      		\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
             \ }
 
+			"\ 'separator': { 'left': "\ue0b4", 'right': "\ue0b6" },
+			"\ 'subseparator': { 'left': "\ue0b5", 'right': "\ue0b7" }
 		    "\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		"\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+		    "\ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba" },
+      		"\ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb" }
+		    "\ 'separator': { 'left': "\ue0c4", 'right': "\ue0c6" },
+      		"\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
             "\ 'separator': { 'left': '', 'right': '' },
             "\ 'subseparator': { 'left': '', 'right': '' }
 

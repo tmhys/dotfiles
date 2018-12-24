@@ -6,7 +6,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 27-Sep-2018.
+" Last Change: 30-Sep-2018.
 " Maintainer: TH
 
 "Chrosh上で256カラーに必要らしい
@@ -457,11 +457,6 @@ au VimLeave	* mks! ~/.vim/session/$DATE.vim
 
 "Alignを日本語環境で使用するための設定 未使用{{{
 :let g:Align_xstrlen = 3
-"}}}
-
-"最大化で起動{{{
-au GUIEnter * simalt ~x
-:SM 5
 "}}}
 
 "対になる括弧点滅{{{

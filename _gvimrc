@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 23-Dec-2018.
+" Last Change: 24-Dec-2018.
 " Maintainer:  TH
 
 runtime! userautoload/*.vim
@@ -13,7 +13,7 @@ runtime! userautoload/*.vim
 """基本設定{{{
 "カラー設定{{{
 set background=dark "light dark
-colorscheme solarized "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape
+colorscheme badwolf "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape
 "}}}
 
 "フォント設定{{{
