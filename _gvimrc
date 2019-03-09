@@ -85,7 +85,6 @@ au VimLeave	* mks! ~/.vim/session/$DATE.vim
 "}}}
 
 "透過{{{
-gui
 set transparency=230
 "}}}
 
