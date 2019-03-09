@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 23-Dec-2018.
+" Last Change: 09-Mar-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -49,6 +49,7 @@ if executable('git')
 
 	  "call dein#add('')
 	  call dein#add(s:dein_repo_dir)
+	  call dein#add('AndrewRadev/switch.vim')
 	  call dein#add('LeafCage/foldCC')
 	  call dein#add('Shougo/neocomplcache')
 	  call dein#add('Shougo/neocomplete.vim')
@@ -62,18 +63,19 @@ if executable('git')
 	  call dein#add('deris/vim-shot-f')
 	  call dein#add('haya14busa/incsearch-fuzzy.vim')
 	  call dein#add('haya14busa/incsearch.vim')
+	  call dein#add('h1mesuke/unite-outline')
 	  call dein#add('itchyny/lightline.vim')
 	  call dein#add('junegunn/vim-easy-align')
-	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('kevinw/pyflakes-vim')
+	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('majutsushi/tagbar')
 	  call dein#add('mattn/benchvimrc-vim')
 	  call dein#add('mattn/sonictemplate-vim')
-	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('mhinz/vim-startify')
 	  call dein#add('miura/ImageJMacro_Highlighter')
-	  call dein#add('nathanaelkane/vim-indent-guides')
 	  call dein#add('qpkorr/vim-renamer')
+	  call dein#add('reireias/vim-cheatsheet')
+	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
 	  call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('scrooloose/nerdtree')
@@ -83,35 +85,45 @@ if executable('git')
 	  call dein#add('thinca/vim-singleton')
 	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+	  call dein#add('tpope/vim-fugitive')
 	  call dein#add('tpope/vim-surround')
+	  call dein#add('travisjeffery/vim-auto-mkdir')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
 	  call dein#add('w0rp/ale')
 	  call dein#add('yuratomo/dotnet-complete')
-	  call dein#add('tpope/vim-fugitive')
+	  call dein#add('Yggdroot/indentLine')
 
 	  "ColorScheme
+	  "call dein#add('raphamorim/lucario')
+	  call dein#add('NLKNguyen/papercolor-theme')
 	  call dein#add('altercation/vim-colors-solarized')
 	  call dein#add('arcticicestudio/nord-vim')
+	  call dein#add('chriskempson/vim-tomorrow-theme')
 	  call dein#add('cocopon/iceberg.vim')
+	  call dein#add('gosukiwi/vim-atom-dark')
 	  call dein#add('itchyny/landscape.vim')
+	  call dein#add('jacoborus/tender.vim')
+	  call dein#add('jdkanani/vim-material-theme')
 	  call dein#add('joshdick/onedark.vim')
+	  call dein#add('junegunn/seoul256.vim')
+	  call dein#add('nanotech/jellybeans.vim')
 	  call dein#add('nerdpad/dracula-vim')
 	  call dein#add('nightsense/nemo')
+	  call dein#add('rakr/vim-one')
 	  call dein#add('sjl/badwolf')
 	  call dein#add('tomasr/molokai')
-	  call dein#add('vim-scripts/Wombat')
-	  call dein#add('gosukiwi/vim-atom-dark')
-	  call dein#add('vim-scripts/newspaper.vim')
 	  call dein#add('tyrannicaltoucan/vim-quantum')
+	  call dein#add('vim-scripts/Wombat')
+	  call dein#add('vim-scripts/newspaper.vim')
 	  call dein#add('w0ng/vim-hybrid')
 
+	  call dein#add('shinchu/lightline-seoul256.vim')
 "{{{
-	  "call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
-	  "call dein#add('vim-scripts/YankRing.vim')
+	  "call dein#add('terryma/vim-multiple-cursors')
 	  "call dein#add('Shougo/vimproc.vim')
-	  "call dein#add('osyo-manga/vim-brightest')
+	  "call dein#add('nathanaelkane/vim-indent-guides')
 	  "call dein#add('easymotion/vim-easymotion')
 	  "call dein#add('hail2u/vim-css3-syntax')
 	  "call dein#add('haya14busa/incsearch-easymotion.vim')
@@ -119,10 +131,14 @@ if executable('git')
 	  "call dein#add('junegunn/goyo.vim')
 	  "call dein#add('kana/vim-tabpagecd')
 	  "call dein#add('mattn/emmet-vim')
+	  "call dein#add('osyo-manga/vim-brightest')
 	  "call dein#add('othree/html5.vim')
 	  "call dein#add('rcmdnk/vim-markdown')
 	  "call dein#add('scrooloose/syntastic')
+	  "call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
 	  "call dein#add('ujihisa/unite-colorscheme')
+	  "call dein#add('vim-scripts/YankRing.vim')
+	  "call dein#add('yuttie/comfortable-motion.vim')
 "}}}
 	  call dein#end()
 	  call dein#save_state()
@@ -151,7 +167,7 @@ augroup LightlineColorscheme
 		    return
 		  endif
 		  try
-		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|seoul256\|Tomorrow\|molokai'
+		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one'"seoul256
 		      let g:lightline.colorscheme =
 		            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
 		      call lightline#init()
@@ -181,9 +197,11 @@ set laststatus=2
             \   'filetype': 'LightLineFiletype',
             \   'fileformat': 'LightLineFileformat',
 			\	'currentfuncname': 'LightLineCfi',
+  			\ 'percent': 'MyLightLinePercent',
+  			\ 'lineinfo': 'MyLightLineLineInfo'
             \ },
-		    \ 'separator': { 'left': "\ue0c4", 'right': "\ue0c6" },
-      		\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
+		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
 
 			"\ 'separator': { 'left': "\ue0b4", 'right': "\ue0b6" },
@@ -308,5 +326,21 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 "}}}
+
+function! MyLightLinePercent()
+  if &ft !=? 'nerdtree'
+    return line('.') * 100 / line('$') . '%'
+  else
+    return ''
+  endif
+endfunction
+
+function! MyLightLineLineInfo()
+  if &ft !=? 'nerdtree'
+    return line('.').':'. col('.')
+  else
+    return ''
+  endif
+endfunction
 
 "}}}

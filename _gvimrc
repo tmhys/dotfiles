@@ -5,15 +5,13 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 24-Dec-2018.
+" Last Change: 09-Mar-2019.
 " Maintainer:  TH
-
-runtime! userautoload/*.vim
 
 """基本設定{{{
 "カラー設定{{{
 set background=dark "light dark
-colorscheme badwolf "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape
+colorscheme one "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "}}}
 
 "フォント設定{{{
@@ -46,9 +44,10 @@ set autoindent
 "set expandtab
 set tabstop=4
 set shiftwidth=4
-"set cursorline
+set cursorline
 set cursorcolumn
 set number
+set signcolumn=yes
 
 filetype plugin on
 "}}}
@@ -58,16 +57,16 @@ autocmd QuickFixCmdPost *grep* cwindow
 "}}}
 
 "バックアップファイルの保存先変更{{{
-augroup vimrc-auto-mkdir  " {{{
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
-  function! s:auto_mkdir(dir, force)  " {{{
-    if !isdirectory(a:dir) && (a:force ||
-    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-  endfunction  " }}}
-augroup END  " }}}
+"augroup vimrc-auto-mkdir  " {{{
+"  autocmd!
+"  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+"  function! s:auto_mkdir(dir, force)  " {{{
+"    if !isdirectory(a:dir) && (a:force ||
+"    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+"      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+"    endif
+"  endfunction  " }}}
+"augroup END  " }}}
 
 let $DATE = strftime("%Y%m%d_%H%M%S")
 
@@ -80,6 +79,7 @@ set undofile
 set noswapfile
 
 "自動的にセッション保存{{{
+au VimLeave * cclose
 au VimLeave * NERDTreeClose
 au VimLeave	* mks! ~/.vim/session/$DATE.vim
 "}}}
@@ -229,7 +229,7 @@ nnoremap <C-Down> "zdd"zp
 vnoremap <C-Up> "zx<Up>"zP`[V`]
 vnoremap <C-Down> "zx"zp`[V`]
 "新規タブ
-nnoremap <Space>tn :<C-u>tabnew<CR>
+nnoremap <Space>tn :<C-u>tabnew<CR>:Startify<CR>
 nnoremap <C-Tab> gt
 nnoremap <S-C-Tab> gT
 
@@ -293,7 +293,7 @@ nnoremap <M-l> <C-w>hdp
 ""vimrcの編集再読み込み{{{
 "編集
 command! Evimrc :e $MYVIMRC
-command! Esysseq :e $VIM/vim80/userautoload/SysSeq.vim
+command! Esysseq :e $VIM/vim81/userautoload/SysSeq.vim
 command! Egvimrc :e $MYGVIMRC
 "保存したら再読み込み
 augroup reload_vimrc
@@ -315,6 +315,9 @@ function! s:toggle_quickfix_window()
 endfunction
 "}}}
 nnoremap <M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
+
+"QuickFix 横画面分割で結果を表示
+au FileType qf nnoremap <S-CR> <C-w><CR><C-w>L
 
 " マーク設定 : {{{
 " 基本マップ
@@ -369,15 +372,20 @@ au BufRead,BufNewFile *.ijm set filetype=ijmacro
 ""NERDTree{{{
 """bookmark初期表示
 let g:NERDTreeShowBookmarks=1
+"lag対策
+let g:NERDTreeLimitedSyntax = 1
 
-let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$']
+let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+
 ""NERDTree矢印変更{{{
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable  = '▶'
 let g:NERDTreeDirArrowCollapsible = '▼'
+"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['seq'] = '\uf9cd'
 "}}}
 
 " NERDTreeでルートを変更したらchdirする
@@ -411,19 +419,23 @@ call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
 let g:neocomplcache_enable_at_startup = 1
 "}}}
 
-"" indent guide{{{
-" デフォルト設定はvimrcのほうに記入しないと反映されない
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree','startify','taskpaper','unite']
-let g:indent_guides_auto_colors = 0
-" ガイドをスタートするインデントの量
-let g:indent_guides_start_level=2
+""" indent guide{{{
+"" デフォルト設定はvimrcのほうに記入しないと反映されない
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_exclude_filetypes = ['help', 'nerdtree','startify','taskpaper','unite']
+"let g:indent_guides_auto_colors = 0
+"" ガイドをスタートするインデントの量
+"let g:indent_guides_start_level=2
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=3
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray   ctermbg=4
-" ハイライト色の変化の幅
-let g:indent_guides_color_change_percent = 30
-let g:indent_guides_guide_size = 1
-""}}}
+"" ハイライト色の変化の幅
+"let g:indent_guides_color_change_percent = 30
+"let g:indent_guides_guide_size = 1
+"""}}}
+
+"indentLine{{{
+set list listchars=tab:\¦\ "spaceが必要
+"}}}
 
 ""C#用の設定{{{
 au BufNewFile,BufRead *.cs imap <buffer>
@@ -499,6 +511,8 @@ nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 "uniteを開いている間のキーマッピング
 autocmd FileType unite call s:unite_my_settings()
+"関数検索
+nnoremap <silent> [unite]u :<C-u>Unite outline<CR>
 function! s:unite_my_settings() "{{{
 	"ESCでuniteを終了
 	nmap <buffer> <ESC> <Plug>(unite_exit)
@@ -571,6 +585,8 @@ let g:startify_custom_indices = ['d', 'f', 'h', 'r', 'i', 'o', 'b']
 let g:startify_bookmarks = [
   \ '$VIM/_vimrc',
   \ '$VIM/_gvimrc',
+  \ '$VIM/vim80/userautoload/SysSeq.vim',
+  \ '$VIM/task.taskpaper',
 \ ]
 
 if has('win64')
@@ -815,9 +831,47 @@ let g:quickrun_no_default_key_mappings = 1
 nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
 "}}}
 
+"vim-muliple-cursole{{{
+"let g:multi_cursor_start_word_key      = '<C-c>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
+"}}}
+
+"switch{{{
+let g:switch_mapping = "-"
+let g:switch_custom_definitions =
+    \ [
+    \   ['on', 'off']
+    \ ]
+"}}}
+
+"tagbar{{{
+nmap <F8> :TagbarToggle<CR>
+"}}}
+
+"fugitive{{{
+nnoremap [fugitive]  <Nop>
+nmap <space>g [fugitive]
+nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+nnoremap <silent> [fugitive]a :Gwrite<CR>
+nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+nnoremap <silent> [fugitive]b :Gblame<CR>
+nnoremap <silent> [fugitive]d :Gdiff<CR>
+nnoremap <silent> [fugitive]m :Gmerge<CR>
+"}}}
 "}}}
 
 "{{{外部ソフト
 "WinMerge
-nnoremap WM :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+command! WinMerge :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+"ImageJ マクロ実行
+"command! ImageJ :
 "}}}
+
+runtime! userautoload/*.vim
+
