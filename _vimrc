@@ -12,6 +12,9 @@ let g:vimproc#download_windows_dll = 1
 "indentguide　消すな
 let g:indent_guides_enable_on_vim_startup = 1
 
+"Chrosh上で256カラーに必要
+	set termguicolors
+
 "startifyでのアイコン画像が崩れる 消すな
 set encoding=utf8
 
@@ -77,12 +80,12 @@ if executable('git')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
-	  call dein#add('ryanoasis/vim-devicons')
+	  "call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
 	  call dein#add('thinca/vim-qfreplace')
 	  call dein#add('thinca/vim-quickrun')
-	  call dein#add('thinca/vim-singleton')
+	  "call dein#add('thinca/vim-singleton')
 	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 	  call dein#add('tpope/vim-fugitive')
@@ -140,6 +143,11 @@ if executable('git')
 	  "call dein#add('vim-scripts/YankRing.vim')
 	  "call dein#add('yuttie/comfortable-motion.vim')
 "}}}
+	if hostname()!=?'localhost'
+	  call dein#add('ryanoasis/vim-devicons')
+	  call dein#add('thinca/vim-singleton')
+	endif
+
 	  call dein#end()
 	  call dein#save_state()
 	endif
