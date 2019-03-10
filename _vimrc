@@ -190,6 +190,7 @@ augroup LightlineColorscheme
 set laststatus=2
 			"\ 'colorscheme': 'solarized',
 
+if hostname()!=?'localhost'
 		let g:lightline = {
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
@@ -222,6 +223,7 @@ set laststatus=2
       		"\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
             "\ 'separator': { 'left': '', 'right': '' },
             "\ 'subseparator': { 'left': '', 'right': '' }
+endif
 
 function! LightLineModified()
     if &filetype == "help"
