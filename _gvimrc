@@ -85,7 +85,9 @@ au VimLeave	* mks! ~/.vim/session/$DATE.vim
 "}}}
 
 "透過{{{
+if hostname()!=?'localhost'
 set transparency=230
+endif
 "}}}
 
 "Alignを日本語環境で使用するための設定 未使用{{{
