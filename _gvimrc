@@ -93,8 +93,10 @@ set transparency=230
 "}}}
 
 "最大化で起動{{{
+if hostname()!=?'localhost'
 au GUIEnter * simalt ~x
 :SM 5
+endif
 "}}}
 
 "対になる括弧点滅{{{
@@ -457,7 +459,9 @@ vmap <Leader>b <Plug>(openbrowser-smart-search)
 "}}}
 
 ""vim常駐{{{
+if hostname()!=?'localhost'
 call singleton#enable()
+endif
 
 "" If starting gvim && arguments were given
 " (assuming double-click on file explorer)
@@ -670,45 +674,43 @@ command! Taskpaper :edit $VIM/task.taskpaper
 "}}}
 
 "devicon{{{
-" adding the custom source to unite
-let g:webdevicons_enable_unite = 1
-" adding the column to vimfiler
-let g:webdevicons_enable_vimfiler = 1
+if hostname()!=?'localhost'
+	" adding the custom source to unite
+	let g:webdevicons_enable_unite = 1
+	" adding the column to vimfiler
+	let g:webdevicons_enable_vimfiler = 1
 
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-" adding the flags to NERDTree
-let g:webdevicons_enable_nerdtree = 1
-" whether or not to show the nerdtree brackets around flags
-let g:webdevicons_conceal_nerdtree_brackets = 1
-" Force extra padding in NERDTree so that the filetype icons line up vertically
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+	let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+	" adding the flags to NERDTree
+	let g:webdevicons_enable_nerdtree = 1
+	" whether or not to show the nerdtree brackets around flags
+	let g:webdevicons_conceal_nerdtree_brackets = 1
+	" Force extra padding in NERDTree so that the filetype icons line up vertically
+	let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
-" change the default character when no match found
-"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '?'
+	" change the default character when no match found
+	"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '?'
 
-" set a byte character marker (BOM) utf-8 symbol when retrieving file encoding
-" disabled by default with no value
-let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
+	" set a byte character marker (BOM) utf-8 symbol when retrieving file encoding
+	" disabled by default with no value
+	let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
 
-" enable folder/directory glyph flag (disabled by default with 0)
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+	" enable folder/directory glyph flag (disabled by default with 0)
+	let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
-" enable open and close folder/directory glyph flags (disabled by default with 0)
-let g:DevIconsEnableFoldersOpenClose = 1
+	" enable open and close folder/directory glyph flags (disabled by default with 0)
+	let g:DevIconsEnableFoldersOpenClose = 1
 
-" enable pattern matching glyphs on folder/directory (enabled by default with 1)
-let g:DevIconsEnableFolderPatternMatching = 1
+	" enable pattern matching glyphs on folder/directory (enabled by default with 1)
+	let g:DevIconsEnableFolderPatternMatching = 1
 
-" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
-let g:DevIconsEnableFolderExtensionPatternMatching = 0
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
+	" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
+	let g:DevIconsEnableFolderExtensionPatternMatching = 0
+	if exists("g:loaded_webdevicons")
+	  call webdevicons#refresh()
+	endif
 endif
 
-" after a re-source, fix syntax matching issues (concealing brackets):
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
 "}}}
 
 "" vim-easymotion の設定{{{
@@ -866,10 +868,12 @@ nnoremap <silent> [fugitive]m :Gmerge<CR>
 "}}}
 
 "{{{外部ソフト
-"WinMerge
-command! WinMerge :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
-"ImageJ マクロ実行
-"command! ImageJ :
+if hostname()!=?'localhost'
+	"WinMerge
+	command! WinMerge :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+	"ImageJ マクロ実行
+	"command! ImageJ :
+endif
 "}}}
 
 runtime! userautoload/*.vim
