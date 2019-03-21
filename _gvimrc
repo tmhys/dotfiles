@@ -5,13 +5,13 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 09-Mar-2019.
+" Last Change: 17-Mar-2019.
 " Maintainer:  TH
 
 """基本設定{{{
 "カラー設定{{{
 set background=dark "light dark
-colorscheme one "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
+colorscheme desert "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "}}}
 
 "フォント設定{{{

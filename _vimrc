@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 09-Mar-2019.
+" Last Change: 21-Mar-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -53,6 +53,7 @@ if executable('git')
 	  "call dein#add('')
 	  call dein#add(s:dein_repo_dir)
 	  call dein#add('AndrewRadev/switch.vim')
+	  call dein#add('airblade/vim-gitgutter')
 	  call dein#add('LeafCage/foldCC')
 	  call dein#add('Shougo/neocomplcache')
 	  call dein#add('Shougo/neocomplete.vim')
@@ -70,6 +71,7 @@ if executable('git')
 	  call dein#add('itchyny/lightline.vim')
 	  call dein#add('junegunn/vim-easy-align')
 	  call dein#add('kevinw/pyflakes-vim')
+	  call dein#add('kmnk/vim-unite-giti')
 	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('majutsushi/tagbar')
 	  call dein#add('mattn/benchvimrc-vim')
@@ -80,12 +82,10 @@ if executable('git')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
-	  "call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
 	  call dein#add('thinca/vim-qfreplace')
 	  call dein#add('thinca/vim-quickrun')
-	  "call dein#add('thinca/vim-singleton')
 	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 	  call dein#add('tpope/vim-fugitive')
@@ -94,7 +94,9 @@ if executable('git')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
+	  call dein#add('ujihisa/unite-colorscheme')
 	  call dein#add('w0rp/ale')
+	  call dein#add('vim-scripts/errormarker.vim')
 	  call dein#add('yuratomo/dotnet-complete')
 	  call dein#add('Yggdroot/indentLine')
 
@@ -119,7 +121,11 @@ if executable('git')
 	  call dein#add('tomasr/molokai')
 	  call dein#add('tyrannicaltoucan/vim-quantum')
 	  call dein#add('vim-scripts/Wombat')
+	  call dein#add('vim-scripts/sonoma.vim')
 	  call dein#add('vim-scripts/newspaper.vim')
+	  call dein#add('jnurmine/Zenburn')
+	  call dein#add('vim-scripts/dw_colors')
+	  call dein#add('vim-scripts/pyte')
 	  call dein#add('w0ng/vim-hybrid')
 
 	  call dein#add('shinchu/lightline-seoul256.vim')
@@ -139,10 +145,10 @@ if executable('git')
 	  "call dein#add('rcmdnk/vim-markdown')
 	  "call dein#add('scrooloose/syntastic')
 	  "call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
-	  "call dein#add('ujihisa/unite-colorscheme')
 	  "call dein#add('vim-scripts/YankRing.vim')
 	  "call dein#add('yuttie/comfortable-motion.vim')
 "}}}
+"chromebookでは無効
 	if hostname()!=?'localhost'
 	  call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('thinca/vim-singleton')
