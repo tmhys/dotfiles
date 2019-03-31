@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 21-Mar-2019.
+" Last Change: 30-Mar-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -55,12 +55,11 @@ if executable('git')
 	  call dein#add('AndrewRadev/switch.vim')
 	  call dein#add('airblade/vim-gitgutter')
 	  call dein#add('LeafCage/foldCC')
-	  call dein#add('Shougo/neocomplcache')
-	  call dein#add('Shougo/neocomplete.vim')
+	  "call dein#add('Shougo/deoplete.nvim')
 	  call dein#add('Shougo/neomru.vim')
 	  call dein#add('Shougo/neosnippet-snippets')
 	  call dein#add('Shougo/neosnippet.vim')
-	  call dein#add('Shougo/unite.vim')
+	  call dein#add('Shougo/denite.nvim')
 	  call dein#add('Shougo/vimfiler.vim')
 	  call dein#add('cespare/vim-toml')
 	  call dein#add('davidhalter/jedi-vim')
@@ -82,6 +81,8 @@ if executable('git')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
+	  call dein#add('roxma/nvim-yarp')
+	  call dein#add('roxma/vim-hug-neovim-rpc')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
 	  call dein#add('thinca/vim-qfreplace')
@@ -99,6 +100,10 @@ if executable('git')
 	  call dein#add('vim-scripts/errormarker.vim')
 	  call dein#add('yuratomo/dotnet-complete')
 	  call dein#add('Yggdroot/indentLine')
+
+if has('nvim')
+	  call dein#add('equalsraf/neovim-gui-shim')
+endif
 
 	  "ColorScheme
 	  "call dein#add('raphamorim/lucario')
@@ -131,6 +136,7 @@ if executable('git')
 	  call dein#add('shinchu/lightline-seoul256.vim')
 "{{{
 	  "call dein#add('terryma/vim-multiple-cursors')
+	  "call dein#add('Shougo/unite.vim')
 	  "call dein#add('Shougo/vimproc.vim')
 	  "call dein#add('nathanaelkane/vim-indent-guides')
 	  "call dein#add('easymotion/vim-easymotion')
@@ -147,6 +153,8 @@ if executable('git')
 	  "call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
 	  "call dein#add('vim-scripts/YankRing.vim')
 	  "call dein#add('yuttie/comfortable-motion.vim')
+	  "call dein#add('Shougo/neocomplcache')
+	  "call dein#add('Shougo/neocomplete.vim')
 "}}}
 "chromebookでは無効
 	if hostname()!=?'localhost'
