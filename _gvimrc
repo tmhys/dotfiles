@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 31-Mar-2019.
+" Last Change: 01-Apr-2019.
 " Maintainer:  TH
 
 """基本設定{{{
@@ -13,6 +13,7 @@
 "if has('nvim')
 "endif
 "}}}
+
 "カラー設定{{{
 set background=dark "light dark
 colorscheme wombat "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
@@ -206,6 +207,15 @@ endif
 "}}}
 
 """キーマップ{{{
+"command line window
+nnoremap : q:a
+nnoremap / q/a
+
+" for masui special.
+noremap g<CR> g;
+nnoremap <CR> :<C-u>w<CR>
+
+"行末までヤンク
 nnoremap Y y$
 
 "---<F6>タイムスタンプを挿入{{{
