@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 01-Apr-2019.
+" Last Change: 07-Apr-2019.
 " Maintainer:  TH
 
 """基本設定{{{
@@ -16,15 +16,16 @@
 
 "カラー設定{{{
 set background=dark "light dark
-colorscheme wombat "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
+colorscheme badwolf "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "}}}
 
 "フォント設定{{{
-if has('win32')
-	set guifont=Cica:h12
+if has('win32') || has ('win64')
 	if has('nvim')
-		Guifont! Ricty Diminished:h9
+		Guifont! Ricty_Diminished:h12
 		call GuiWindowMaximized(1)
+	else
+	set guifont=Cica:h12
 	endif
 	set printfont=Cica:h8
 	set renderoptions=type:directx,renmode:5
@@ -112,7 +113,7 @@ au VimLeave	* mks! ~/.vim/session/$DATE.vim
 
 "透過{{{
 if hostname()!=?'localhost'
-set transparency=230
+set transparency=220
 endif
 "}}}
 
@@ -208,12 +209,13 @@ endif
 
 """キーマップ{{{
 "command line window
-nnoremap : q:a
-nnoremap / q/a
+"nnoremap : q:a
+"nnoremap / q/a
 
 " for masui special.
 noremap g<CR> g;
-nnoremap <CR> :<C-u>w<CR>
+"Quickfixウインドウと干渉する
+"nnoremap <CR> :<C-u>w<CR>
 
 "行末までヤンク
 nnoremap Y y$
@@ -591,6 +593,31 @@ endif
 "}}}
 
 "Denite{{{
+" Add custom menus
+  let s:menus = {}
+  let s:menus.file = {'description': 'File search (buffer, file, file_rec, file_mru'}
+  let s:menus.line = {'description': 'Line search (change, grep, line, tag'}
+  let s:menus.others = {'description': 'Others (command, command_history, help)'}
+  let s:menus.file.command_candidates = [
+        \ ['buffer', 'Denite buffer'],
+        \ ['file: Files in the current directory', 'Denite file'],
+        \ ['file_rec: Files, recursive list under the current directory', 'Denite file_rec'],
+        \ ['file_mru: Most recently used files', 'Denite file_mru']
+        \ ]
+  let s:menus.line.command_candidates = [
+        \ ['change', 'Denite change'],
+        \ ['grep :grep', 'Denite grep'],
+        \ ['line', 'Denite line'],
+        \ ['tag', 'Denite tag']
+        \ ]
+  let s:menus.others.command_candidates = [
+        \ ['command', 'Denite command'],
+        \ ['command_history', 'Denite command_history'],
+        \ ['help', 'Denite help']
+        \ ]
+
+  call denite#custom#var('menu', 'menus', s:menus)
+
 call denite#custom#option('default', 'prompt', '>')
 
 " denite/insert モードのときは，C- で移動できるようにする
@@ -599,8 +626,6 @@ call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
 
 " tabopen や vsplit のキーバインドを割り当て
 call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
 
 " jj で denite/insert を抜けるようにする
 call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
@@ -608,6 +633,7 @@ call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
 " The prefix key.
 nnoremap    [denite]   <Nop>
 nmap    <Space>f [denite]
+nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
 "現在開いているファイルのディレクトリ下のファイル一覧。
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir
       \ -direction=topleft -cursor-wrap=true file file:new<CR>
@@ -617,10 +643,16 @@ nnoremap <silent> [denite]b :<C-u>Denite -direction=topleft -cursor-wrap=true bu
 nnoremap <silent> [denite]r :<C-u>Denite -direction=topleft -cursor-wrap=true -buffer-name=register register<CR>
 "最近使用したファイル一覧
 nnoremap <silent> [denite]m :<C-u>Denite -direction=topleft -cursor-wrap=true file_mru<CR>
-"ブックマーク一覧
-nnoremap <silent> [denite]c :<C-u>Denite -direction=topleft -cursor-wrap=true bookmark<CR>
-"ブックマークに追加
-nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
+
+nmap <silent> [denite]c    <SID>(dirmark)
+nmap <silent> [denite]a    <SID>(dirmark-add)
+
+nnoremap <silent> <SID>(dirmark) :<C-u>Denite -default-action=cd dirmark<CR>
+nnoremap <silent><expr> <SID>(dirmark-add) ':<C-u>Denite dirmark/add::"' . expand('%:p:h') .  '"<CR>'
+""ブックマーク一覧
+"nnoremap <silent> [denite]c :<C-u>Denite -direction=topleft -cursor-wrap=true bookmark<CR>
+""ブックマークに追加
+"nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
 
 ".git以下のディレクトリ検索
 nnoremap <silent> [denite]k :<C-u>Denite -direction=topleft -cursor-wrap=true
@@ -972,6 +1004,7 @@ nmap <space>g [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
 nnoremap <silent> [fugitive]a :Gwrite<CR>
 nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+nnoremap <silent> [fugitive]p :Gpush origin master
 nnoremap <silent> [fugitive]b :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
