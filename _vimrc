@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 30-Mar-2019.
+" Last Change: 06-Apr-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -71,6 +71,7 @@ if executable('git')
 	  call dein#add('junegunn/vim-easy-align')
 	  call dein#add('kevinw/pyflakes-vim')
 	  call dein#add('kmnk/vim-unite-giti')
+	  call dein#add('kmnk/denite-dirmark')
 	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('majutsushi/tagbar')
 	  call dein#add('mattn/benchvimrc-vim')
