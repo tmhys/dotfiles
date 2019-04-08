@@ -6,22 +6,18 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 30-Sep-2018.
+" Last Change: 09-Mar-2019.
 " Maintainer: TH
-
-"Chrosh上で256カラーに必要らしい
-set termguicolors
 
 let g:vimproc#download_windows_dll = 1
 "indentguide　消すな
 let g:indent_guides_enable_on_vim_startup = 1
 
+"Chrosh上で256カラーに必要
+	set termguicolors
+
 "startifyでのアイコン画像が崩れる 消すな
 set encoding=utf8
-
-"ChromeOSではないとき
-"if hostname()!=?'localhost'
-"endif
 
 ""dein{{{
 if executable('git')
@@ -57,6 +53,8 @@ if executable('git')
 
 	  "call dein#add('')
 	  call dein#add(s:dein_repo_dir)
+	  call dein#add('AndrewRadev/switch.vim')
+	  call dein#add('LeafCage/foldCC')
 	  call dein#add('Shougo/neocomplcache')
 	  call dein#add('Shougo/neocomplete.vim')
 	  call dein#add('Shougo/neomru.vim')
@@ -66,57 +64,70 @@ if executable('git')
 	  call dein#add('Shougo/vimfiler.vim')
 	  call dein#add('cespare/vim-toml')
 	  call dein#add('davidhalter/jedi-vim')
+	  call dein#add('deris/vim-shot-f')
 	  call dein#add('haya14busa/incsearch-fuzzy.vim')
 	  call dein#add('haya14busa/incsearch.vim')
+	  call dein#add('h1mesuke/unite-outline')
 	  call dein#add('itchyny/lightline.vim')
-	  call dein#add('kevinw/pyflakes-vim')
 	  call dein#add('junegunn/vim-easy-align')
+	  call dein#add('kevinw/pyflakes-vim')
+	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('majutsushi/tagbar')
 	  call dein#add('mattn/benchvimrc-vim')
+	  call dein#add('mattn/sonictemplate-vim')
 	  call dein#add('mhinz/vim-startify')
 	  call dein#add('miura/ImageJMacro_Highlighter')
-	  call dein#add('nathanaelkane/vim-indent-guides')
 	  call dein#add('qpkorr/vim-renamer')
+	  call dein#add('reireias/vim-cheatsheet')
+	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
+	  "call dein#add('ryanoasis/vim-devicons')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
-	  call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
 	  call dein#add('thinca/vim-qfreplace')
 	  call dein#add('thinca/vim-quickrun')
-	  call dein#add('thinca/vim-singleton')
+	  "call dein#add('thinca/vim-singleton')
 	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+	  call dein#add('tpope/vim-fugitive')
 	  call dein#add('tpope/vim-surround')
-	  call dein#add('w0rp/ale')
+	  call dein#add('travisjeffery/vim-auto-mkdir')
 	  call dein#add('tyru/current-func-info.vim')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
+	  call dein#add('w0rp/ale')
 	  call dein#add('yuratomo/dotnet-complete')
+	  call dein#add('Yggdroot/indentLine')
 
 	  "ColorScheme
+	  "call dein#add('raphamorim/lucario')
+	  call dein#add('NLKNguyen/papercolor-theme')
 	  call dein#add('altercation/vim-colors-solarized')
 	  call dein#add('arcticicestudio/nord-vim')
+	  call dein#add('chriskempson/vim-tomorrow-theme')
 	  call dein#add('cocopon/iceberg.vim')
+	  call dein#add('gosukiwi/vim-atom-dark')
 	  call dein#add('itchyny/landscape.vim')
+	  call dein#add('jacoborus/tender.vim')
+	  call dein#add('jdkanani/vim-material-theme')
 	  call dein#add('joshdick/onedark.vim')
+	  call dein#add('junegunn/seoul256.vim')
+	  call dein#add('nanotech/jellybeans.vim')
 	  call dein#add('nerdpad/dracula-vim')
 	  call dein#add('nightsense/nemo')
+	  call dein#add('rakr/vim-one')
 	  call dein#add('sjl/badwolf')
 	  call dein#add('tomasr/molokai')
-	  call dein#add('vim-scripts/Wombat')
-	  call dein#add('gosukiwi/vim-atom-dark')
-	  call dein#add('vim-scripts/newspaper.vim')
 	  call dein#add('tyrannicaltoucan/vim-quantum')
+	  call dein#add('vim-scripts/Wombat')
+	  call dein#add('vim-scripts/newspaper.vim')
 	  call dein#add('w0ng/vim-hybrid')
-	  call dein#add('tpope/vim-fugitive')
 
-	if hostname()!=?'localhost'
-	  call dein#add('ryanoasis/vim-devicons')
-	endif
+	  call dein#add('shinchu/lightline-seoul256.vim')
 "{{{
-	  "call dein#add('vim-scripts/YankRing.vim')
+	  "call dein#add('terryma/vim-multiple-cursors')
 	  "call dein#add('Shougo/vimproc.vim')
-	  "call dein#add('osyo-manga/vim-brightest')
+	  "call dein#add('nathanaelkane/vim-indent-guides')
 	  "call dein#add('easymotion/vim-easymotion')
 	  "call dein#add('hail2u/vim-css3-syntax')
 	  "call dein#add('haya14busa/incsearch-easymotion.vim')
@@ -124,11 +135,20 @@ if executable('git')
 	  "call dein#add('junegunn/goyo.vim')
 	  "call dein#add('kana/vim-tabpagecd')
 	  "call dein#add('mattn/emmet-vim')
+	  "call dein#add('osyo-manga/vim-brightest')
 	  "call dein#add('othree/html5.vim')
 	  "call dein#add('rcmdnk/vim-markdown')
 	  "call dein#add('scrooloose/syntastic')
+	  "call dein#add('sunuslee/vim-plugin-random-colorscheme-picker')
 	  "call dein#add('ujihisa/unite-colorscheme')
+	  "call dein#add('vim-scripts/YankRing.vim')
+	  "call dein#add('yuttie/comfortable-motion.vim')
 "}}}
+	if hostname()!=?'localhost'
+	  call dein#add('ryanoasis/vim-devicons')
+	  call dein#add('thinca/vim-singleton')
+	endif
+
 	  call dein#end()
 	  call dein#save_state()
 	endif
@@ -156,7 +176,7 @@ augroup LightlineColorscheme
 		    return
 		  endif
 		  try
-		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|seoul256\|Tomorrow\|molokai'
+		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one'"seoul256
 		      let g:lightline.colorscheme =
 		            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
 		      call lightline#init()
@@ -171,7 +191,7 @@ augroup LightlineColorscheme
 set laststatus=2
 			"\ 'colorscheme': 'solarized',
 
-	if hostname()!=?'localhost'
+if hostname()!=?'localhost'
 		let g:lightline = {
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
@@ -187,15 +207,24 @@ set laststatus=2
             \   'filetype': 'LightLineFiletype',
             \   'fileformat': 'LightLineFileformat',
 			\	'currentfuncname': 'LightLineCfi',
+  			\ 'percent': 'MyLightLinePercent',
+  			\ 'lineinfo': 'MyLightLineLineInfo'
             \ },
 		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
 
+			"\ 'separator': { 'left': "\ue0b4", 'right': "\ue0b6" },
+			"\ 'subseparator': { 'left': "\ue0b5", 'right': "\ue0b7" }
 		    "\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		"\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+		    "\ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba" },
+      		"\ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb" }
+		    "\ 'separator': { 'left': "\ue0c4", 'right': "\ue0c6" },
+      		"\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
             "\ 'separator': { 'left': '', 'right': '' },
             "\ 'subseparator': { 'left': '', 'right': '' }
+endif
 
 function! LightLineModified()
     if &filetype == "help"
@@ -255,16 +284,20 @@ function! LightLineCfi()
   return ''
 endfunction
 
-let g:lightline.tab = {
-      \ 'active': [ 'tabnum', 'filename', 'modified' ],
-      \ 'inactive': [ 'tabnum', 'filename', 'modified' ]
-      \ }
+if hostname()!=?'localhost'
+	let g:lightline.tab = {
+	      \ 'active': [ 'tabnum', 'filename', 'modified' ],
+	      \ 'inactive': [ 'tabnum', 'filename', 'modified' ]
+	      \ }
+endif
 
-let g:lightline.tab_component_function = {
-      \ 'filename': 'LightlineTabFilename',
-      \ 'modified': 'lightline#tab#modified',
-      \ 'readonly': 'lightline#tab#readonly',
-      \ 'tabnum': 'lightline#tab#tabnum' }
+if hostname()!=?'localhost'
+	let g:lightline.tab_component_function = {
+	      \ 'filename': 'LightlineTabFilename',
+	      \ 'modified': 'lightline#tab#modified',
+	      \ 'readonly': 'lightline#tab#readonly',
+	      \ 'tabnum': 'lightline#tab#tabnum' }
+endif
 
 function! LightlineTabFilename(n) abort
   let buflist = tabpagebuflist(a:n)
@@ -307,82 +340,45 @@ endfunction
 function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+"}}}
 
-"Chrosh環境などNERDfontがないとき
-	elseif
-		let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ 'mode_map': {'c': 'NORMAL'},
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-        \ },
-        \ 'component_function': {
-        \   'modified': 'LightlineModified',
-        \   'readonly': 'LightlineReadonly',
-        \   'fugitive': 'LightlineFugitive',
-        \   'filename': 'LightlineFilename',
-        \   'fileformat': 'LightlineFileformat',
-        \   'filetype': 'LightlineFiletype',
-        \   'fileencoding': 'LightlineFileencoding',
-        \   'mode': 'LightlineMode'
-        \ }
-        \ }
-
-function! LightlineModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightlineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-endfunction
-
-function! LightlineFilename()
-  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-endfunction
-
-function! LightlineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-    return fugitive#head()
+function! MyLightLinePercent()
+  if &ft !=? 'nerdtree'
+    return line('.') * 100 / line('$') . '%'
   else
     return ''
   endif
 endfunction
 
-function! LightlineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+function! MyLightLineLineInfo()
+  if &ft !=? 'nerdtree'
+    return line('.').':'. col('.')
+  else
+    return ''
+  endif
 endfunction
 
-function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightlineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightlineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-
-	endif
 "}}}
 
-"}}}
+"
+"  ██████╗ ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+" ██╔════╝ ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+" ██║  ███╗██║   ██║██║██╔████╔██║██████╔╝██║
+" ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+" ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+" Last Change: 09-Mar-2019.
+" Maintainer:  TH
 
 """基本設定{{{
 "カラー設定{{{
-set background=light "light dark
-colorscheme molokai "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape
+set background=dark "light dark
+colorscheme molokai "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "}}}
 
 "フォント設定{{{
 if has('win32')
-  	set guifont=Cica:h11
+  	set guifont=Cica:h12
 	set printfont=Cica:h8
 	set renderoptions=type:directx,renmode:5
 	set ambiwidth=double
@@ -392,10 +388,9 @@ if has('win32')
 	source $VIMRUNTIME/menu.vim
 	set antialias
   	set linespace=1
-"chrosh用
-"  if has('kaoriya')
-"    set ambiwidth=auto
-"  endif
+  if has('kaoriya')
+    set ambiwidth=auto
+  endif
 elseif has('mac')
   set guifont=Osaka－等幅:h14
 elseif has('xfontset')
@@ -411,9 +406,10 @@ set autoindent
 "set expandtab
 set tabstop=4
 set shiftwidth=4
-"set cursorline
-"set cursorcolumn
+set cursorline
+set cursorcolumn
 set number
+set signcolumn=yes
 
 filetype plugin on
 "}}}
@@ -423,16 +419,16 @@ autocmd QuickFixCmdPost *grep* cwindow
 "}}}
 
 "バックアップファイルの保存先変更{{{
-augroup vimrc-auto-mkdir  " {{{
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
-  function! s:auto_mkdir(dir, force)  " {{{
-    if !isdirectory(a:dir) && (a:force ||
-    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-  endfunction  " }}}
-augroup END  " }}}
+"augroup vimrc-auto-mkdir  " {{{
+"  autocmd!
+"  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+"  function! s:auto_mkdir(dir, force)  " {{{
+"    if !isdirectory(a:dir) && (a:force ||
+"    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+"      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+"    endif
+"  endfunction  " }}}
+"augroup END  " }}}
 
 let $DATE = strftime("%Y%m%d_%H%M%S")
 
@@ -445,18 +441,26 @@ set undofile
 set noswapfile
 
 "自動的にセッション保存{{{
+au VimLeave * cclose
 au VimLeave * NERDTreeClose
 au VimLeave	* mks! ~/.vim/session/$DATE.vim
 "}}}
 
-"chrosh用
 "透過{{{
-"gui
-"set transparency=230
+if hostname()!=?'localhost'
+set transparency=230
+endif
 "}}}
 
 "Alignを日本語環境で使用するための設定 未使用{{{
 :let g:Align_xstrlen = 3
+"}}}
+
+"最大化で起動{{{
+if hostname()!=?'localhost'
+au GUIEnter * simalt ~x
+:SM 5
+endif
 "}}}
 
 "対になる括弧点滅{{{
@@ -590,7 +594,7 @@ nnoremap <C-Down> "zdd"zp
 vnoremap <C-Up> "zx<Up>"zP`[V`]
 vnoremap <C-Down> "zx"zp`[V`]
 "新規タブ
-nnoremap <Space>tn :<C-u>tabnew<CR>
+nnoremap <Space>tn :<C-u>tabnew<CR>:Startify<CR>
 nnoremap <C-Tab> gt
 nnoremap <S-C-Tab> gT
 
@@ -654,7 +658,7 @@ nnoremap <M-l> <C-w>hdp
 ""vimrcの編集再読み込み{{{
 "編集
 command! Evimrc :e $MYVIMRC
-command! Esysseq :e $VIM/vim80/userautoload/SysSeq.vim
+command! Esysseq :e $VIM/vim81/userautoload/SysSeq.vim
 command! Egvimrc :e $MYGVIMRC
 "保存したら再読み込み
 augroup reload_vimrc
@@ -676,6 +680,9 @@ function! s:toggle_quickfix_window()
 endfunction
 "}}}
 nnoremap <M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
+
+"QuickFix 横画面分割で結果を表示
+au FileType qf nnoremap <S-CR> <C-w><CR><C-w>L
 
 " マーク設定 : {{{
 " 基本マップ
@@ -730,15 +737,20 @@ au BufRead,BufNewFile *.ijm set filetype=ijmacro
 ""NERDTree{{{
 """bookmark初期表示
 let g:NERDTreeShowBookmarks=1
+"lag対策
+let g:NERDTreeLimitedSyntax = 1
 
-let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$']
+let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+
 ""NERDTree矢印変更{{{
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable  = '▶'
 let g:NERDTreeDirArrowCollapsible = '▼'
+"let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['seq'] = '\uf9cd'
 "}}}
 
 " NERDTreeでルートを変更したらchdirする
@@ -772,19 +784,23 @@ call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
 let g:neocomplcache_enable_at_startup = 1
 "}}}
 
-"" indent guide{{{
-" デフォルト設定はvimrcのほうに記入しないと反映されない
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree','startify','taskpaper','unite']
-let g:indent_guides_auto_colors = 0
-" ガイドをスタートするインデントの量
-let g:indent_guides_start_level=2
+""" indent guide{{{
+"" デフォルト設定はvimrcのほうに記入しないと反映されない
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_exclude_filetypes = ['help', 'nerdtree','startify','taskpaper','unite']
+"let g:indent_guides_auto_colors = 0
+"" ガイドをスタートするインデントの量
+"let g:indent_guides_start_level=2
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=3
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray   ctermbg=4
-" ハイライト色の変化の幅
-let g:indent_guides_color_change_percent = 30
-let g:indent_guides_guide_size = 1
-""}}}
+"" ハイライト色の変化の幅
+"let g:indent_guides_color_change_percent = 30
+"let g:indent_guides_guide_size = 1
+"""}}}
+
+"indentLine{{{
+set list listchars=tab:\¦\ "spaceが必要
+"}}}
 
 ""C#用の設定{{{
 au BufNewFile,BufRead *.cs imap <buffer>
@@ -807,7 +823,9 @@ vmap <Leader>b <Plug>(openbrowser-smart-search)
 "}}}
 
 ""vim常駐{{{
+if hostname()!=?'localhost'
 call singleton#enable()
+endif
 
 "" If starting gvim && arguments were given
 " (assuming double-click on file explorer)
@@ -860,6 +878,8 @@ nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 "uniteを開いている間のキーマッピング
 autocmd FileType unite call s:unite_my_settings()
+"関数検索
+nnoremap <silent> [unite]u :<C-u>Unite outline<CR>
 function! s:unite_my_settings() "{{{
 	"ESCでuniteを終了
 	nmap <buffer> <ESC> <Plug>(unite_exit)
@@ -927,11 +947,13 @@ let g:startify_list_order = [
         \ ]
 
 " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
-let g:startify_custom_indices = ['f', 'g', 'h', 'r', 'i', 'o', 'b']
+let g:startify_custom_indices = ['d', 'f', 'h', 'r', 'i', 'o', 'b']
 " よく使うファイルをブックマークとして登録しておく
 let g:startify_bookmarks = [
   \ '$VIM/_vimrc',
   \ '$VIM/_gvimrc',
+  \ '$VIM/vim80/userautoload/SysSeq.vim',
+  \ '$VIM/task.taskpaper',
 \ ]
 
 if has('win64')
@@ -1017,46 +1039,42 @@ command! Taskpaper :edit $VIM/task.taskpaper
 
 "devicon{{{
 if hostname()!=?'localhost'
-" adding the custom source to unite
-let g:webdevicons_enable_unite = 1
-" adding the column to vimfiler
-let g:webdevicons_enable_vimfiler = 1
+	" adding the custom source to unite
+	let g:webdevicons_enable_unite = 1
+	" adding the column to vimfiler
+	let g:webdevicons_enable_vimfiler = 1
 
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-" adding the flags to NERDTree
-let g:webdevicons_enable_nerdtree = 1
-" whether or not to show the nerdtree brackets around flags
-let g:webdevicons_conceal_nerdtree_brackets = 1
-" Force extra padding in NERDTree so that the filetype icons line up vertically
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+	let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+	" adding the flags to NERDTree
+	let g:webdevicons_enable_nerdtree = 1
+	" whether or not to show the nerdtree brackets around flags
+	let g:webdevicons_conceal_nerdtree_brackets = 1
+	" Force extra padding in NERDTree so that the filetype icons line up vertically
+	let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
-" change the default character when no match found
-"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '?'
+	" change the default character when no match found
+	"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '?'
 
-" set a byte character marker (BOM) utf-8 symbol when retrieving file encoding
-" disabled by default with no value
-let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
+	" set a byte character marker (BOM) utf-8 symbol when retrieving file encoding
+	" disabled by default with no value
+	let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
 
-" enable folder/directory glyph flag (disabled by default with 0)
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+	" enable folder/directory glyph flag (disabled by default with 0)
+	let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
-" enable open and close folder/directory glyph flags (disabled by default with 0)
-let g:DevIconsEnableFoldersOpenClose = 1
+	" enable open and close folder/directory glyph flags (disabled by default with 0)
+	let g:DevIconsEnableFoldersOpenClose = 1
 
-" enable pattern matching glyphs on folder/directory (enabled by default with 1)
-let g:DevIconsEnableFolderPatternMatching = 1
+	" enable pattern matching glyphs on folder/directory (enabled by default with 1)
+	let g:DevIconsEnableFolderPatternMatching = 1
 
-" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
-let g:DevIconsEnableFolderExtensionPatternMatching = 0
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
+	" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
+	let g:DevIconsEnableFolderExtensionPatternMatching = 0
+	if exists("g:loaded_webdevicons")
+	  call webdevicons#refresh()
+	endif
 endif
 
-" after a re-source, fix syntax matching issues (concealing brackets):
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
-endif
 "}}}
 
 "" vim-easymotion の設定{{{
@@ -1152,7 +1170,7 @@ endif
 
 ""スクリプト実行{{{
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!py -3 %<CR>
+autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python -3 %<CR>
 autocmd BufNewFile,BufRead *.pl nnoremap <C-e> :!perl %<CR>
 autocmd BufNewFile,BufRead *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
@@ -1178,11 +1196,60 @@ let g:quickrun_no_default_key_mappings = 1
 nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
 "}}}
 
+"vim-muliple-cursole{{{
+"let g:multi_cursor_start_word_key      = '<C-c>'
+"let g:multi_cursor_select_all_word_key = '<A-n>'
+"let g:multi_cursor_start_key           = 'g<C-n>'
+"let g:multi_cursor_select_all_key      = 'g<A-n>'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
+"}}}
+
+"switch{{{
+let g:switch_mapping = "-"
+let g:switch_custom_definitions =
+    \ [
+    \   ['on', 'off']
+    \ ]
+"}}}
+
+"tagbar{{{
+nmap <F8> :TagbarToggle<CR>
+"}}}
+
+"fugitive{{{
+nnoremap [fugitive]  <Nop>
+nmap <space>g [fugitive]
+nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+nnoremap <silent> [fugitive]a :Gwrite<CR>
+nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+nnoremap <silent> [fugitive]b :Gblame<CR>
+nnoremap <silent> [fugitive]d :Gdiff<CR>
+nnoremap <silent> [fugitive]m :Gmerge<CR>
+"}}}
 "}}}
 
 "{{{外部ソフト
 if hostname()!=?'localhost'
-"WinMerge
-nnoremap WM :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+	"WinMerge
+	command! WinMerge :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+	"ImageJ マクロ実行
+	"command! ImageJ :
 endif
+"}}}
+
+runtime! userautoload/*.vim
+
+"fugitive{{{
+nnoremap [fugitive]  <Nop>
+nmap <space>g [fugitive]
+nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+nnoremap <silent> [fugitive]a :Gwrite<CR>
+nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+nnoremap <silent> [fugitive]p :Gpush origin master
+nnoremap <silent> [fugitive]b :Gblame<CR>
+nnoremap <silent> [fugitive]d :Gdiff<CR>
+nnoremap <silent> [fugitive]m :Gmerge<CR>
 "}}}
