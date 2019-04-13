@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 07-Apr-2019.
+" Last Change: 13-Apr-2019.
 " Maintainer:  TH
 
 """基本設定{{{
@@ -15,8 +15,9 @@
 "}}}
 
 "カラー設定{{{
-set background=dark "light dark
-colorscheme badwolf "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
+set background=light "light dark
+let ayucolor="mirage"  "mirage dark
+colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "}}}
 
 "フォント設定{{{
@@ -113,7 +114,7 @@ au VimLeave	* mks! ~/.vim/session/$DATE.vim
 
 "透過{{{
 if hostname()!=?'localhost'
-set transparency=220
+"set transparency=220
 endif
 "}}}
 
@@ -744,12 +745,12 @@ if has('nvim')
             \ startify#fortune#cowsay('═','║','╔','╗','╝','╚')
  endif
 
- autocmd VimEnter *
-                \   if !argc()
-                \ |   Startify
-                "\ |   NERDTree
-                \ |   wincmd w
-                \ | endif
+" autocmd VimEnter *
+"                \   if !argc()
+"                \ |   Startify
+"                "\ |   NERDTree
+"                \ |   wincmd w
+"                \ | endif
 ""}}}
 
 "" Start interactive EasyAlign in visual mode (e.g. vipga){{{
