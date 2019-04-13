@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 06-Apr-2019.
+" Last Change: 13-Apr-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -55,12 +55,12 @@ if executable('git')
 	  call dein#add('AndrewRadev/switch.vim')
 	  call dein#add('airblade/vim-gitgutter')
 	  call dein#add('LeafCage/foldCC')
-	  "call dein#add('Shougo/deoplete.nvim')
 	  call dein#add('Shougo/neomru.vim')
 	  call dein#add('Shougo/neosnippet-snippets')
 	  call dein#add('Shougo/neosnippet.vim')
 	  call dein#add('Shougo/denite.nvim')
 	  call dein#add('Shougo/vimfiler.vim')
+	  call dein#add('Shougo/unite-session')
 	  call dein#add('cespare/vim-toml')
 	  call dein#add('davidhalter/jedi-vim')
 	  call dein#add('deris/vim-shot-f')
@@ -102,6 +102,8 @@ if executable('git')
 	  call dein#add('yuratomo/dotnet-complete')
 	  call dein#add('Yggdroot/indentLine')
 
+	  call dein#add('Shougo/unite.vim')
+
 if has('nvim')
 	  call dein#add('equalsraf/neovim-gui-shim')
 endif
@@ -133,11 +135,11 @@ endif
 	  call dein#add('vim-scripts/dw_colors')
 	  call dein#add('vim-scripts/pyte')
 	  call dein#add('w0ng/vim-hybrid')
-
 	  call dein#add('shinchu/lightline-seoul256.vim')
+	  call dein#add('ayu-theme/ayu-vim')
+	  call dein#add('yarisgutierrez/ayu-lightline')
 "{{{
 	  "call dein#add('terryma/vim-multiple-cursors')
-	  "call dein#add('Shougo/unite.vim')
 	  "call dein#add('Shougo/vimproc.vim')
 	  "call dein#add('nathanaelkane/vim-indent-guides')
 	  "call dein#add('easymotion/vim-easymotion')
@@ -156,6 +158,7 @@ endif
 	  "call dein#add('yuttie/comfortable-motion.vim')
 	  "call dein#add('Shougo/neocomplcache')
 	  "call dein#add('Shougo/neocomplete.vim')
+	  "call dein#add('Shougo/deoplete.nvim')
 "}}}
 "chromebookでは無効
 	if hostname()!=?'localhost'
@@ -190,7 +193,7 @@ augroup LightlineColorscheme
 		    return
 		  endif
 		  try
-		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one'"seoul256
+		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu\'"seoul256
 		      let g:lightline.colorscheme =
 		            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
 		      call lightline#init()
