@@ -5,12 +5,12 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Apr-2019.
+" Last Change: 14-Apr-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
-"indentguide　消すな
-let g:indent_guides_enable_on_vim_startup = 1
+""indentguide　消すな
+"let g:indent_guides_enable_on_vim_startup = 1
 
 "Chrosh上で256カラーに必要
 	set termguicolors
@@ -52,34 +52,35 @@ if executable('git')
 
 	  "call dein#add('')
 	  call dein#add(s:dein_repo_dir)
+
 	  call dein#add('AndrewRadev/switch.vim')
-	  call dein#add('airblade/vim-gitgutter')
 	  call dein#add('LeafCage/foldCC')
+	  call dein#add('Shougo/context_filetype.vim')
+	  call dein#add('Shougo/denite.nvim')
+	  call dein#add('Shougo/deoplete.nvim')
 	  call dein#add('Shougo/neomru.vim')
 	  call dein#add('Shougo/neosnippet-snippets')
 	  call dein#add('Shougo/neosnippet.vim')
-	  call dein#add('Shougo/denite.nvim')
-	  call dein#add('Shougo/vimfiler.vim')
 	  call dein#add('Shougo/unite-session')
+	  call dein#add('Shougo/unite.vim')
+	  call dein#add('Yggdroot/indentLine')
+	  call dein#add('airblade/vim-gitgutter')
 	  call dein#add('cespare/vim-toml')
-	  call dein#add('davidhalter/jedi-vim')
 	  call dein#add('deris/vim-shot-f')
+	  call dein#add('h1mesuke/unite-outline')
 	  call dein#add('haya14busa/incsearch-fuzzy.vim')
 	  call dein#add('haya14busa/incsearch.vim')
-	  call dein#add('h1mesuke/unite-outline')
 	  call dein#add('itchyny/lightline.vim')
 	  call dein#add('junegunn/vim-easy-align')
 	  call dein#add('kevinw/pyflakes-vim')
-	  call dein#add('kmnk/vim-unite-giti')
 	  call dein#add('kmnk/denite-dirmark')
+	  call dein#add('kmnk/vim-unite-giti')
 	  call dein#add('machakann/vim-highlightedyank')
 	  call dein#add('majutsushi/tagbar')
-	  call dein#add('mattn/benchvimrc-vim')
-	  call dein#add('mattn/sonictemplate-vim')
 	  call dein#add('mhinz/vim-startify')
 	  call dein#add('miura/ImageJMacro_Highlighter')
+	  call dein#add('osyo-manga/vim-precious')
 	  call dein#add('qpkorr/vim-renamer')
-	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
 	  call dein#add('roxma/nvim-yarp')
@@ -88,7 +89,6 @@ if executable('git')
 	  call dein#add('simeji/winresizer')
 	  call dein#add('thinca/vim-qfreplace')
 	  call dein#add('thinca/vim-quickrun')
-	  call dein#add('thinca/vim-template')
 	  call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 	  call dein#add('tpope/vim-fugitive')
 	  call dein#add('tpope/vim-surround')
@@ -97,12 +97,9 @@ if executable('git')
 	  call dein#add('tyru/open-browser.vim')
 	  call dein#add('tyru/restart.vim')
 	  call dein#add('ujihisa/unite-colorscheme')
-	  call dein#add('w0rp/ale')
 	  call dein#add('vim-scripts/errormarker.vim')
+	  call dein#add('w0rp/ale')
 	  call dein#add('yuratomo/dotnet-complete')
-	  call dein#add('Yggdroot/indentLine')
-
-	  call dein#add('Shougo/unite.vim')
 
 if has('nvim')
 	  call dein#add('equalsraf/neovim-gui-shim')
@@ -113,12 +110,14 @@ endif
 	  call dein#add('NLKNguyen/papercolor-theme')
 	  call dein#add('altercation/vim-colors-solarized')
 	  call dein#add('arcticicestudio/nord-vim')
+	  call dein#add('ayu-theme/ayu-vim')
 	  call dein#add('chriskempson/vim-tomorrow-theme')
 	  call dein#add('cocopon/iceberg.vim')
 	  call dein#add('gosukiwi/vim-atom-dark')
 	  call dein#add('itchyny/landscape.vim')
 	  call dein#add('jacoborus/tender.vim')
 	  call dein#add('jdkanani/vim-material-theme')
+	  call dein#add('jnurmine/Zenburn')
 	  call dein#add('joshdick/onedark.vim')
 	  call dein#add('junegunn/seoul256.vim')
 	  call dein#add('nanotech/jellybeans.vim')
@@ -129,17 +128,19 @@ endif
 	  call dein#add('tomasr/molokai')
 	  call dein#add('tyrannicaltoucan/vim-quantum')
 	  call dein#add('vim-scripts/Wombat')
-	  call dein#add('vim-scripts/sonoma.vim')
-	  call dein#add('vim-scripts/newspaper.vim')
-	  call dein#add('jnurmine/Zenburn')
 	  call dein#add('vim-scripts/dw_colors')
+	  call dein#add('vim-scripts/newspaper.vim')
 	  call dein#add('vim-scripts/pyte')
+	  call dein#add('vim-scripts/sonoma.vim')
 	  call dein#add('w0ng/vim-hybrid')
-	  call dein#add('shinchu/lightline-seoul256.vim')
-	  call dein#add('ayu-theme/ayu-vim')
-	  call dein#add('yarisgutierrez/ayu-lightline')
-"{{{
+
+	  "lightline theme
+"	  call dein#add('shinchu/lightline-seoul256.vim')
+"	  call dein#add('yarisgutierrez/ayu-lightline')
+"ボツプラグイン{{{
 	  "call dein#add('terryma/vim-multiple-cursors')
+	  "call dein#add('davidhalter/jedi-vim')
+	  "call dein#add('Shougo/vimfiler.vim')
 	  "call dein#add('Shougo/vimproc.vim')
 	  "call dein#add('nathanaelkane/vim-indent-guides')
 	  "call dein#add('easymotion/vim-easymotion')
@@ -148,7 +149,10 @@ endif
 	  "call dein#add('jelera/vim-javascript-syntax')
 	  "call dein#add('junegunn/goyo.vim')
 	  "call dein#add('kana/vim-tabpagecd')
+	  "call dein#add('mattn/benchvimrc-vim')
+	  "call dein#add('mattn/sonictemplate-vim')
 	  "call dein#add('mattn/emmet-vim')
+	  "call dein#add('thinca/vim-template')
 	  "call dein#add('osyo-manga/vim-brightest')
 	  "call dein#add('othree/html5.vim')
 	  "call dein#add('rcmdnk/vim-markdown')
@@ -158,7 +162,6 @@ endif
 	  "call dein#add('yuttie/comfortable-motion.vim')
 	  "call dein#add('Shougo/neocomplcache')
 	  "call dein#add('Shougo/neocomplete.vim')
-	  "call dein#add('Shougo/deoplete.nvim')
 "}}}
 "chromebookでは無効
 	if hostname()!=?'localhost'
@@ -193,9 +196,10 @@ augroup LightlineColorscheme
 		    return
 		  endif
 		  try
-		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu\'"seoul256
+		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
 		      let g:lightline.colorscheme =
 		            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
+		    endif
 		      call lightline#init()
 		      call lightline#colorscheme()
 		      call lightline#update()
