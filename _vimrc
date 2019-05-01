@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 14-Apr-2019.
+" Last Change: 29-Apr-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -40,29 +40,32 @@ if executable('git')
 	  call dein#begin(s:dein_dir)
 
 	  "toml設定{{{
-	  "Plugin list
-	  "let g:rc_dir    = expand('~/.vim/rc')
-	  "let s:toml      = g:rc_dir . '/dein.toml'
-	  "let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+	 " Plugin list
+	 " let g:rc_dir    = expand('~/.vim/rc')
+	 " let s:toml      = g:rc_dir . '/dein.toml'
+	 " let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-	  ""キャッシュしておく
-	  "call dein#load_toml(s:toml,      {'lazy': 0})
-	  "call dein#load_toml(s:lazy_toml, {'lazy': 1})
+	 " "キャッシュしておく
+	 " call dein#load_toml(s:toml,      {'lazy': 0})
+	 " call dein#load_toml(s:lazy_toml, {'lazy': 1})
 	 " }}}
 
+	 "{{{
 	  "call dein#add('')
 	  call dein#add(s:dein_repo_dir)
 
+	  "必須
 	  call dein#add('AndrewRadev/switch.vim')
 	  call dein#add('LeafCage/foldCC')
 	  call dein#add('Shougo/context_filetype.vim')
-	  call dein#add('Shougo/denite.nvim')
 	  call dein#add('Shougo/deoplete.nvim')
-	  call dein#add('Shougo/neomru.vim')
 	  call dein#add('Shougo/neosnippet-snippets')
 	  call dein#add('Shougo/neosnippet.vim')
+	  call dein#add('Shougo/denite.nvim')
+	  call dein#add('Shougo/neomru.vim')
 	  call dein#add('Shougo/unite-session')
 	  call dein#add('Shougo/unite.vim')
+	  call dein#add('deoplete-plugins/deoplete-jedi')
 	  call dein#add('Yggdroot/indentLine')
 	  call dein#add('airblade/vim-gitgutter')
 	  call dein#add('cespare/vim-toml')
@@ -83,8 +86,6 @@ if executable('git')
 	  call dein#add('qpkorr/vim-renamer')
 	  call dein#add('reireias/vim-cheatsheet')
 	  call dein#add('rhysd/accelerated-jK')
-	  call dein#add('roxma/nvim-yarp')
-	  call dein#add('roxma/vim-hug-neovim-rpc')
 	  call dein#add('scrooloose/nerdtree')
 	  call dein#add('simeji/winresizer')
 	  call dein#add('thinca/vim-qfreplace')
@@ -101,6 +102,12 @@ if executable('git')
 	  call dein#add('w0rp/ale')
 	  call dein#add('yuratomo/dotnet-complete')
 
+	  "後ほど設定する
+
+if !has('nvim')
+		call dein#add('roxma/nvim-yarp')
+		call dein#add('roxma/vim-hug-neovim-rpc')
+endif
 if has('nvim')
 	  call dein#add('equalsraf/neovim-gui-shim')
 endif
@@ -163,6 +170,7 @@ endif
 	  "call dein#add('Shougo/neocomplcache')
 	  "call dein#add('Shougo/neocomplete.vim')
 "}}}
+	"}}}
 "chromebookでは無効
 	if hostname()!=?'localhost'
 	  call dein#add('ryanoasis/vim-devicons')
