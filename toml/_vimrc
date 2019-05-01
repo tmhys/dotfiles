@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 29-Apr-2019.
+" Last Change: 01-May-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -15,6 +15,7 @@ set termguicolors
 
 "startifyでのアイコン画像が崩れる 消すな
 set encoding=utf8
+
 
 ""dein{{{
 if executable('git')

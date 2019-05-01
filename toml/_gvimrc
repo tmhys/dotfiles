@@ -58,6 +58,7 @@ set autoindent
 "set expandtab
 set tabstop=4
 set shiftwidth=4
+"カーソルラインはvim-auto-cursorlineに統合
 "set cursorline
 "set cursorcolumn
 set number
@@ -117,12 +118,8 @@ au VimLeave	* mks! ~/.vim/session/$DATE.vim
 
 "透過{{{
 if hostname()!=?'localhost'
-"set transparency=230
+set transparency=240
 endif
-"}}}
-
-"Alignを日本語環境で使用するための設定 未使用{{{
-:let g:Align_xstrlen = 3
 "}}}
 
 "最大化で起動{{{
@@ -146,8 +143,6 @@ set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
-"imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
-"au BufNewFile,BufRead *.cs imap <expr> . pumvisible() ? "\<C-E>.\<C-X>\<C-O>\<C-P>" : ".\<C-X>\<C-O>\<C-P>"
 
 let g:python3_host_prog='C:\Python37\python.exe'
 set pythonthreedll=C:\Python37\python37.dll
@@ -166,8 +161,7 @@ set showtabline=2
 "}}}
 
 "相対行番号表示&トグル
-"set relativenumber
-nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
+"nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
