@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Apr-2019.
+" Last Change: 14-Apr-2019.
 " Maintainer:  TH
 
 """基本設定{{{
@@ -16,7 +16,7 @@
 
 "カラー設定{{{
 set background=light "light dark
-let ayucolor="mirage"  "mirage dark
+let ayucolor="mirage"  "mirage dark light
 colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "}}}
 
@@ -138,18 +138,45 @@ set matchtime=1
 autocmd BufWritePre * :%s/\s\+$//ge
 "}}}
 
-"オムニ補完{{{
-set completeopt=menuone
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap " . k . " " . k . "<C-N><C-P>"
-endfor
-imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
-"au BufNewFile,BufRead *.cs imap <expr> . pumvisible() ? "\<C-E>.\<C-X>\<C-O>\<C-P>" : ".\<C-X>\<C-O>\<C-P>"
-"}}}
+""オムニ補完{{{
+"set completeopt=menuone
+"for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+"  exec "imap " . k . " " . k . "<C-N><C-P>"
+"endfor
+"imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
+""au BufNewFile,BufRead *.cs imap <expr> . pumvisible() ? "\<C-E>.\<C-X>\<C-O>\<C-P>" : ".\<C-X>\<C-O>\<C-P>"
+""}}}
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog='C:\Python37\python.exe'
+
+"Neosnippet{{{
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+imap <expr><CR>
+\ (pumvisible() && neosnippet#expandable()) ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
+
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+"if has('conceal')
+"  set conceallevel=2 concealcursor=niv
+"endif
+"}}}
 
 "メニューバーツールバー消す{{{
 set guioptions-=T
@@ -346,10 +373,12 @@ command! Esysseq :e $VIM/vim81/userautoload/SysSeq.vim
 augroup reload_vimrc
 	autocmd!
 	autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+	autocmd BufWritePost $MYVIMRC nested source $MYGVIMRC
 	autocmd BufWritePost $MYVIMRC nested call lightline#update()
 	autocmd BufWritePost $MYGVIMRC nested source $MYGVIMRC
 	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
 	autocmd BufWritePost $HOME/dotfiles/_vimrc  nested source $MYVIMRC
+	autocmd BufWritePost $HOME/dotfiles/_vimrc  nested source $MYGVIMRC
 	autocmd BufWritePost $HOME/dotfiles/_gvimrc nested source $MYGVIMRC
 	autocmd BufWritePost $MYVIMRC nested call lightline#update()
 	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
@@ -447,23 +476,23 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
-call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',  'NONE')
-call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', 'NONE')
-call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  'NONE')
-call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  'NONE')
-call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  'NONE')
-call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  'NONE')
-call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  'NONE')
-call NERDTreeHighlightFile('h',      'blue',  'none', '#3366FF',  'NONE')
-call NERDTreeHighlightFile('H',      'blue',  'none', '#3366FF',  'NONE')
-call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    'NONE')
-call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    'NONE')
-call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     'NONE')
+"call NERDTreeHighlightFile('py',     'yellow',  'none', 'blue',  'NONE')
+"call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', 'NONE')
+"call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  'NONE')
+"call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  'NONE')
+"call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  'NONE')
+"call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  'NONE')
+"call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  'NONE')
+"call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    'NONE')
+"call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    'NONE')
+"call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     'NONE')
+"call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', 'NONE')
+"call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
 call NERDTreeHighlightFile('seq',    'Red',     'none', 'red',     'NONE')
 call NERDTreeHighlightFile('SEQ',    'Red',     'none', 'red',     'NONE')
 call NERDTreeHighlightFile('s',      'Red',     'none', 'red',     'NONE')
-call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', 'NONE')
-call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
+call NERDTreeHighlightFile('h',      'blue',  'none', '#3366FF',  'NONE')
+call NERDTreeHighlightFile('H',      'blue',  'none', '#3366FF',  'NONE')
 ""}}}
 
 ""NeoComplete{{{
@@ -486,6 +515,7 @@ let g:neocomplcache_enable_at_startup = 1
 
 "indentLine{{{
 set list listchars=tab:\¦\ "spaceが必要
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree','startify','taskpaper','unite']
 "}}}
 
 ""C#用の設定{{{
@@ -504,8 +534,8 @@ set lazyredraw
 "}}}
 
 "" カーソル下のURLや単語をブラウザで開く{{{
-nmap <Leader>b <Plug>(openbrowser-smart-search)
-vmap <Leader>b <Plug>(openbrowser-smart-search)
+nmap <Space>b <Plug>(openbrowser-smart-search)
+vmap <Space>b <Plug>(openbrowser-smart-search)
 "}}}
 
 ""vim常駐{{{
@@ -1018,6 +1048,11 @@ let g:ale_open_list = 1
 let g:ale_linters = {
 \   'python': ['flake8', 'autopep8'],
 \}
+"}}}
+
+"dein{{{
+command! DU :call dein#update()
+command! DR :call dein#recashe_runtimepath()
 "}}}
 
 "}}}
