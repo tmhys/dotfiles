@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 03-May-2019.
+" Last Change: 04-May-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -68,7 +68,7 @@ endif
 "カラー設定{{{
 set background=dark "light dark
 "let ayucolor="light"  "mirage dark
-"colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
+"colorscheme wombat "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "Chrosh上で256カラーに必要
 set termguicolors
 "}}}
@@ -95,6 +95,9 @@ set signcolumn=yes
 
 filetype plugin on
 "}}}
+
+"コマンドラインモードでTABキーによるファイル名補完を有効にする
+set wildmenu wildmode=list:longest,full
 
 "Quickfixウィンドウ開く{{{
 autocmd QuickFixCmdPost *grep* cwindow
@@ -162,7 +165,9 @@ endfor
 
 let g:python3_host_prog='C:\Python37\python.exe'
 let g:python_host_prog='C:\Python27'
-set pythonthreedll=C:\Python37\python37.dll
+if !has('nvim')
+	set pythonthreedll=C:\Python37\python37.dll
+endif
 "}}}
 
 "相対行番号表示&トグル
@@ -208,6 +213,8 @@ if v:version >= 700
 endif
 "}}}
 
+"ビープの代わりにビジュアルベル(画面フラッシュ)を使う
+set visualbell
 "}}}
 
 """キーマップ{{{
@@ -343,6 +350,10 @@ nnoremap <M-l> <C-w>hdp
 "}}}
 
 ""vimrcの編集再読み込み{{{
+if has('nvim')
+	let $MYVIMRC =expand('C:\Users\thtom\AppData\Local\nvim\init.vim')
+	let $MYGVIMRC =expand('C:\Users\thtom\AppData\Local\nvim\ginit.vim')
+endif
 "編集
 command! Evimrc :e $MYVIMRC
 command! Egvimrc :e $MYGVIMRC
@@ -358,10 +369,12 @@ augroup reload_vimrc
 	autocmd BufWritePost $MYVIMRC nested source $MYGVIMRC
 	autocmd BufWritePost $MYVIMRC nested source $MYGVIMRC
 	autocmd BufWritePost $MYVIMRC nested call lightline#update()
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested source $MYVIMRC
 	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested call dein#recache_runtimepath()
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested source $MYVIMRC
+	autocmd BufWritePost C:\Users\thtom\.vim\rc\color.toml nested call dein#recache_runtimepath()
 	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested call dein#recache_runtimepath()
+	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested source $MYVIMRC
+	autocmd BufWritePost C:\Users\thtom\.vim\rc\color.toml nested source $MYVIMRC
+	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested source $MYVIMRC
 	autocmd BufWritePost $MYGVIMRC nested source $MYGVIMRC
 	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
 	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
@@ -429,7 +442,7 @@ autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
 "}}}
 
 nnoremap <C-g> :vim /<C-r><C-w>/jg **<CR>
-noremap <M-g> :vim //jg **<Left><Left><Left><Left><Left><Left>
+nnoremap <M-g> :vim //jg **<Left><Left><Left><Left><Left><Left>
 "}}}
 
 "ctags{{{
