@@ -128,7 +128,7 @@ repo='ayu-theme/ayu-vim'
 hook_add='''
 set background=dark
 augroup MyAutoCmd
-au MyAutoCmd VimEnter * nested let ayucolor="mirage"  "mirage dark
+au MyAutoCmd VimEnter * nested let ayucolor="light"  "mirage dark
 au MyAutoCmd VimEnter * nested colorscheme ayu
 augroup end
 '''
