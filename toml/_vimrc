@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 04-May-2019.
+" Last Change: 06-May-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -97,7 +97,8 @@ filetype plugin on
 "}}}
 
 "コマンドラインモードでTABキーによるファイル名補完を有効にする
-set wildmenu wildmode=list:longest,full
+"set wildmenu wildmode=list:longest,full
+set wildmenu wildmode=full
 
 "Quickfixウィンドウ開く{{{
 autocmd QuickFixCmdPost *grep* cwindow
@@ -193,7 +194,7 @@ au FileType seq setlocal foldmethod=marker
 set scrolloff=10
 set backspace=indent,eol,start
 set matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
-"set virtualedit=all
+set virtualedit=block
 set ignorecase
 set smartcase
 
@@ -441,8 +442,16 @@ autocmd BufNewFile,BufRead *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
 "}}}
 
+"grep
 nnoremap <C-g> :vim /<C-r><C-w>/jg **<CR>
 nnoremap <M-g> :vim //jg **<Left><Left><Left><Left><Left><Left>
+
+onoremap 8 i(
+onoremap 2 i"
+onoremap 7 i'
+onoremap @ i`
+onoremap [ i[
+onoremap { i{
 "}}}
 
 "ctags{{{
