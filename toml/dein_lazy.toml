@@ -1,3 +1,6 @@
+# Last Change: 06-May-2019.
+# Maintainer:  TH
+
 ## インサートモードに入ったら読み込む
 #[[plugins]]
 #repo = 'Shougo/neocomplete.vim'

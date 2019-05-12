@@ -1,3 +1,6 @@
+# Last Change: 11-May-2019.
+# Maintainer:  TH
+
 [[plugins]]
 repo='NLKNguyen/papercolor-theme'
 hook_add='''
@@ -105,6 +108,11 @@ hook_add='''
 
 [[plugins]]
 repo='jnurmine/Zenburn'
+hook_add='''
+'''
+
+[[plugins]]
+repo='morhetz/gruvbox'
 hook_add='''
 '''
 

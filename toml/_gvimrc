@@ -15,7 +15,7 @@ if has('nvim')
 	call GuiWindowMaximized(1)
 	GuiPopupmenu 0
 	GuiTabline 0
-   	"set ambiwidth=double
+   	set ambiwidth=single
 	noremap <S-Insert> <C-R>+
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 endif
