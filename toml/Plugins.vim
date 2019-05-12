@@ -1,37 +1,15 @@
-# Last Change: 12-May-2019.
-# Maintainer:  TH
+" Last Change: 12-May-2019.
+" Maintainer: TH
 
-[[plugins]]
-repo='AndrewRadev/switch.vim'
-hook_add='''
-"switch{{{
+if !executable('git')
+"AndrewRadev/switch.vim{{{
 let g:switch_mapping = "-"
 let g:switch_custom_definitions =
     \ [
     \   ['on', 'off']
     \ ]
 "}}}
-'''
-
-[[plugins]]
-repo='airblade/vim-gitgutter'
-hook_add='''
-'''
-
-[[plugins]]
-repo='LeafCage/foldCC'
-hook_add='''
-'''
-
-[[plugins]]
-repo='Shougo/neomru.vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='scrooloose/nerdtree'
-hook_add='''
-"NERDTree{{{
+"scrooloose/nerdtree{{{
 map <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 """bookmark初期表示
@@ -76,22 +54,7 @@ call NERDTreeHighlightFile('s',      'Red',     'none', 'red',     'NONE')
 call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', 'NONE')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
 "}}}
-'''
-
-[[plugins]]
-repo='tiagofumo/vim-nerdtree-syntax-highlight'
-hook_add='''
-'''
-
-[[plugins]]
-repo='Shougo/neosnippet-snippets'
-hook_add='''
-'''
-
-[[plugins]]
-repo='Shougo/neosnippet.vim'
-hook_add='''
-"neosnippet{{{
+"Shougo/neosnippet.vim{{{
 let g:neosnippet#snippets_directory='~/.vim/my_snippet'
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:deoplete#enable_at_startup = 1
@@ -109,62 +72,17 @@ imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<P
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
-'''
-
-[[plugins]]
-repo='Shougo/unite-session'
-hook_add='''
-'''
-
-[[plugins]]
-repo='Shougo/vimfiler.vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='cespare/vim-toml'
-hook_add='''
-'''
-
-[[plugins]]
-repo='davidhalter/jedi-vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='deris/vim-shot-f'
-hook_add='''
-'''
-
-[[plugins]]
-repo='haya14busa/incsearch-fuzzy.vim'
-hook_add='''
-"incsearch-fuzzy{{{
+"haya14busa/incsearch-fuzzy.vim{{{
 map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 "}}}
-'''
-
-[[plugins]]
-repo='haya14busa/incsearch.vim'
-hook_add='''
-"incsearch{{{
+"haya14busa/incsearch.vim{{{
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 "}}}
-'''
-
-[[plugins]]
-repo='h1mesuke/unite-outline'
-hook_add='''
-'''
-
-[[plugins]]
-repo='itchyny/lightline.vim'
-hook_add='''
-"lightline{{{
+"itchyny/lightline.vim{{{
 "カラースキームを自動で変更
 augroup LightlineColorscheme
 		  autocmd!
@@ -353,43 +271,13 @@ function! MyLightLineLineInfo()
   endif
 endfunction
 "}}}
-'''
-
-[[plugins]]
-repo='junegunn/vim-easy-align'
-hook_add='''
-"{{{EasyAlign
+"junegunn/vim-easy-align{{{
 "" Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 "}}}
-'''
-
-[[plugins]]
-repo='kevinw/pyflakes-vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='kmnk/vim-unite-giti'
-hook_add='''
-'''
-
-[[plugins]]
-repo='kmnk/denite-dirmark'
-hook_add='''
-'''
-
-[[plugins]]
-repo='machakann/vim-highlightedyank'
-hook_add='''
-'''
-
-[[plugins]]
-repo='majutsushi/tagbar'
-hook_add='''
-"tagbar{{{
+"majutsushi/tagbar{{{
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_seq = {
 	\ 'ctagstype' : 'seq',
@@ -399,25 +287,7 @@ let g:tagbar_type_seq = {
 	\ 'sort' : 0
 \ }
 "}}}
-'''
-
-[[plugins]]
-repo='mattn/benchvimrc-vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='mattn/sonictemplate-vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='mhinz/vim-startify'
-#on_event = 'GUIEnter' # ←こうなる（インサートモードに入ったら読み込む）
-#on_cmd =  ['Startify']
-#on_i =1
-hook_add='''
-"" Startify{{{
+"mhinz/vim-startify{{{
 nnoremap <M-s> :Startify<CR>
 "autocmd TabNew * :Startify
 noremap <Space>tn :<C-u>tabnew<CR> :Startify<CR>
@@ -484,69 +354,15 @@ let g:startify_bookmarks = [
                 \ |   wincmd w
                 \ | endif
 "}}}
-'''
-
-[[plugins]]
-repo='miura/ImageJMacro_Highlighter'
-hook_add='''
-au BufRead,BufNewFile *.ijm set filetype=ijmacro
-'''
-
-[[plugins]]
-repo='qpkorr/vim-renamer'
-hook_add='''
-'''
-
-[[plugins]]
-repo='reireias/vim-cheatsheet'
-hook_add='''
-'''
-
-[[plugins]]
-repo='rhysd/accelerated-jK'
-hook_add='''
-"accelerated_jk{{{
+"rhysd/accelerated-jK{{{
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 "}}}
-'''
-
-[[plugins]]
-repo='roxma/nvim-yarp'
-if="! has('nvim')"
-hook_add='''
-'''
-
-[[plugins]]
-repo='roxma/vim-hug-neovim-rpc'
-if="! has('nvim')"
-hook_add='''
-'''
-
-[[plugins]]
-repo='equalsraf/neovim-gui-shim'
-if="has('nvim')"
-hook_add='''
-'''
-
-[[plugins]]
-repo='simeji/winresizer'
-hook_add='''
-""winresizer{{{
+"simeji/winresizer{{{
 "キーマップ変更
 let g:winresizer_start_key = '<M-w>'
-"}}}
-'''
-
-[[plugins]]
-repo='thinca/vim-qfreplace'
-hook_add='''
-'''
-
-[[plugins]]
-repo='thinca/vim-quickrun'
-hook_add='''
-"QuickRun{{{
+""}}}
+"thinca/vim-quickrun{{{
 " vimprocで非同期実行
 " 成功時にバッファ、失敗時にQuickFixで表示
 " 結果表示のサイズ調整など
@@ -565,17 +381,7 @@ let g:quickrun_config = {
 let g:quickrun_no_default_key_mappings = 1
 nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
 "}}}
-'''
-
-[[plugins]]
-repo='thinca/vim-template'
-hook_add='''
-'''
-
-[[plugins]]
-repo='tpope/vim-fugitive'
-hook_add='''
-"fugitive{{{
+"tpope/vim-fugitive{{{
 nnoremap [fugitive]  <Nop>
 nmap <space>g [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
@@ -586,32 +392,7 @@ nnoremap <silent> [fugitive]b :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
 "}}}
-'''
-
-[[plugins]]
-repo='tpope/vim-surround'
-hook_add='''
-'''
-
-[[plugins]]
-repo='travisjeffery/vim-auto-mkdir'
-hook_add='''
-'''
-
-[[plugins]]
-repo='tyru/current-func-info.vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='tyru/open-browser.vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='tyru/restart.vim'
-hook_add='''
-"Restart{{{
+"tyru/restart.vim{{{
 " :Restart 時に変数の定義を行う
 command! MyRestart Restart --cmd "let g:restarted = 1"
 
@@ -620,17 +401,7 @@ if !exists("g:restarted")
     let $PATH = $PATH . ";C:/cpp/boost"
 endif
 "}}}
-'''
-
-[[plugins]]
-repo='ujihisa/unite-colorscheme'
-hook_add='''
-'''
-
-[[plugins]]
-repo='w0rp/ale'
-hook_add='''
-"ale{{{
+"w0rp/ale{{{
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
@@ -638,32 +409,11 @@ let g:ale_linters = {
 \   'python': ['flake8', 'autopep8'],
 \}
 "}}}
-'''
-
-[[plugins]]
-repo='vim-scripts/errormarker.vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='yuratomo/dotnet-complete'
-hook_add='''
-'''
-
-[[plugins]]
-repo='Yggdroot/indentLine'
-hook_add='''
-"indentLine{{{
+"Yggdroot/indentLine{{{
 set list listchars=tab:\¦\ "spaceが必要
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree','startify','taskpaper','unite','tagbar']
 "}}}
-'''
-
-[[plugins]]
-repo='ryanoasis/vim-devicons'
-if="!has('nvim')"
-hook_add='''
-"devicon{{{
+"ryanoasis/vim-devicons{{{
 if hostname()!=?'localhost'
 	" adding the custom source to unite
 	let g:webdevicons_enable_unite = 1
@@ -702,43 +452,12 @@ if hostname()!=?'localhost'
 endif
 
 "}}}
-'''
-
-[[plugins]]
-repo='thinca/vim-singleton'
-if="has('clientserver')"&&"!has('nvim')"
-hook_source='''
-"singleton{{{
+"thinca/vim-singleton{{{
 if hostname()!=?'localhost'
 call singleton#enable()
 endif
 "}}}
-'''
-
-[[plugins]]
-repo='Shougo/context_filetype.vim'
-hook_add='''
-'''
-
-[[plugins]]
-repo='osyo-manga/vim-precious'
-hook_add='''
-'''
-
-[[plugins]]
-repo='delphinus/vim-auto-cursorline'
-hook_add='''
-'''
-
-[[plugins]]
-repo='taku-o/vim-copypath'
-hook_add='''
-'''
-
-[[plugins]]
-repo='Shougo/deoplete.nvim'
-hook_add='''
-"deoplete{{{
+"Shougo/deoplete.nvim{{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#auto_complete_delay = 0
@@ -750,156 +469,135 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 0
 let g:deoplete#max_list = 10000
 "}}}
-'''
-
-#[[plugins]]
-#repo='yuttie/comfortable-motion.vim'
-#hook_add='''
-#"comfortable_motion{{{
-#let g:comfortable_motion_scroll_down_key = "j"
-#let g:comfortable_motion_scroll_up_key = "k"
-#"}}}
-#'''
-
-#[[plugins]]
-#repo='Shougo/unite.vim'
-#hook_add='''
-#" unite.vim{{{
-#" The prefix key.
-#nnoremap    [unite]   <Nop>
-#nmap    <Space>f [unite]
-#
-#" 挿入モードで開始する
-#let g:unite_enable_start_insert=1
-#"最近開いたファイル履歴の保存数
-#let g:unite_source_file_mru_limit = 50
-#" 大文字小文字を区別しない
-#let g:unite_enable_ignore_case = 1
-#let g:unite_enable_smart_case = 1
-#"file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
-#let g:unite_source_file_mru_filename_format = ''
-#
-#" ESCキーを2回押すと終了する
-#au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-#au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-#"現在開いているファイルのディレクトリ下のファイル一覧。
-#"開いていない場合はカレントディレクトリ
-#nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-#"バッファ一覧
-#nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-#"レジスタ一覧
-#nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-#"最近使用したファイル一覧
-#nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
-#"ブックマーク一覧
-#nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
-#"ブックマークに追加
-#nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
-#"uniteを開いている間のキーマッピング
-#autocmd FileType unite call s:unite_my_settings()
-#"関数検索
-#nnoremap <silent> [unite]u :<C-u>Unite outline<CR>
-#function! s:unite_my_settings() "{{{
-#	"ESCでuniteを終了
-#	nmap <buffer> <ESC> <Plug>(unite_exit)
-#	"入力モードのときjjでノーマルモードに移動
-#	imap <buffer> jj <Plug>(unite_insert_leave)
-#	"入力モードのときctrl+wでバックスラッシュも削除
-#	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-#	"ctrl+jで縦に分割して開く
-#	nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-#	inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-#	"ctrl+lで横に分割して開く
-#	nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-#	inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-#	"ctrl+oでその場所に開く
-#	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-#	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-#endfunction "}}}
-#
-#" vinarise
-#let g:vinarise_enable_auto_detect = 1
-#
-#" unite-build map
-#nnoremap <silent> ,vb :Unite build<CR>
-#nnoremap <silent> ,vcb :Unite build:!<CR>
-#nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
-#
-#"{{{start
-#let g:unite_source_alias_aliases = {
-#\ "startup_file_mru" : {
-#\  "source" : "file_mru",
-#\ },
-#\ "startup_directory_mru" : {
-#\  "source" : "directory_mru",
-#\ },
-#\}
-#
-#"\ "startup_session" : {
-#"\  "source" : "session",
-#"\ },
-#
-#" 表示数の制限
-#call unite#custom_max_candidates("startup_file_mru", 10)
-#call unite#custom_max_candidates("startup_directory_mru", 10)
-#
-#if !exists("g:unite_source_menu_menus")
-#  let g:unite_source_menu_menus = {}
-#endif
-#
-#" :Unite menu:startup での出力リスト
-#let g:unite_source_menu_menus.startup = {
-#\ "description" : "startup menu",
-#\ "command_candidates" : [
-#\   [ "edit",  "edit" ],
-#\   [ "vimrc",  "edit " . $VIMHOME . "$MYVIMRC"],
-#\   [ "gvimrc", "edit " . $VIMHOME . "$MYGVIMRC"],
-#\   [ "toml", "edit " .  '~/.vim/rc/dein.toml'],
-#\   [ "toml_lazy", "edit " .  '~/.vim/rc/dein_lazy.toml'],
-#\   [ "unite-file_mru", "Unite file_mru" ],
-#\   [ "unite-directory_mru", "Unite directory_mru" ],
-#\ ]
-#\}
-#
-#"\   [ "vimfiler", "VimFiler" ],
-#"\   [ "unite-howm", "Unite qfixhowm/new qfixhowm:nocache -hide-source-names -no-split" ],
-#"\   [ "unite-update", "Unite -log neobundle/update" ],
-#
-#command! UniteStartup
-#\ Unite
-#\ output:echo:"===:📑::Menu:===":! menu:startup
-#\ output:echo:":":!
-#\ output:echo:"===:♻::MRU:File:===":! startup_file_mru
-#\ output:echo:":":!
-#\ output:echo:"===:♲::MRU:Directory:===":! startup_directory_mru
-#\ -hide-source-names
-#\ -no-split
-#\ -quick-match
-#
-#"\ output:echo:"===:⚑ ::Sessions::===":! startup_session
-#"\ output:echo:":":!
-#
-#augroup startup
-#    autocmd!
-#    autocmd VimEnter * nested :UniteStartup
-#augroup END
-#
-#nnoremap <M-s> :UniteStartup<CR>
-#"}}}
-#"}}}
-#'''
-
-[[plugins]]
-repo='Shougo/denite.nvim'
-hook_add='''
-""Denite{{{
-call denite#custom#option('default', {
-			\'prompt': '>',
-			\'source_name': 'short',
-			\'direction': 'botright',
-			\'cursor_wrap': 'true',
-			\})
-			"\'highlight-mode-insert': 'Search',
+"yuttie/comfortable-motion.vim{{{
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+"}}}
+""Shougo/unite.vim{{{
+"" The prefix key.
+"nnoremap    [unite]   <Nop>
+"nmap    <Space>f [unite]
+"
+"" 挿入モードで開始する
+"let g:unite_enable_start_insert=1
+""最近開いたファイル履歴の保存数
+"let g:unite_source_file_mru_limit = 50
+"" 大文字小文字を区別しない
+"let g:unite_enable_ignore_case = 1
+"let g:unite_enable_smart_case = 1
+""file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
+"let g:unite_source_file_mru_filename_format = ''
+"
+"" ESCキーを2回押すと終了する
+"au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+"au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+""現在開いているファイルのディレクトリ下のファイル一覧。
+""開いていない場合はカレントディレクトリ
+"nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+""バッファ一覧
+"nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+""レジスタ一覧
+"nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+""最近使用したファイル一覧
+"nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+""ブックマーク一覧
+"nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+""ブックマークに追加
+"nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+""uniteを開いている間のキーマッピング
+"autocmd FileType unite call s:unite_my_settings()
+""関数検索
+"nnoremap <silent> [unite]u :<C-u>Unite outline<CR>
+"function! s:unite_my_settings() "{{{
+"	"ESCでuniteを終了
+"	nmap <buffer> <ESC> <Plug>(unite_exit)
+"	"入力モードのときjjでノーマルモードに移動
+"	imap <buffer> jj <Plug>(unite_insert_leave)
+"	"入力モードのときctrl+wでバックスラッシュも削除
+"	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+"	"ctrl+jで縦に分割して開く
+"	nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+"	inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+"	"ctrl+lで横に分割して開く
+"	nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+"	inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+"	"ctrl+oでその場所に開く
+"	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+"	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+"endfunction "}}}
+"
+"" vinarise
+"let g:vinarise_enable_auto_detect = 1
+"
+"" unite-build map
+"nnoremap <silent> ,vb :Unite build<CR>
+"nnoremap <silent> ,vcb :Unite build:!<CR>
+"nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
+"
+""{{{start
+"let g:unite_source_alias_aliases = {
+"\ "startup_file_mru" : {
+"\  "source" : "file_mru",
+"\ },
+"\ "startup_directory_mru" : {
+"\  "source" : "directory_mru",
+"\ },
+"\}
+"
+""\ "startup_session" : {
+""\  "source" : "session",
+""\ },
+"
+"" 表示数の制限
+"call unite#custom_max_candidates("startup_file_mru", 10)
+"call unite#custom_max_candidates("startup_directory_mru", 10)
+"
+"if !exists("g:unite_source_menu_menus")
+"  let g:unite_source_menu_menus = {}
+"endif
+"
+"" :Unite menu:startup での出力リスト
+"let g:unite_source_menu_menus.startup = {
+"\ "description" : "startup menu",
+"\ "command_candidates" : [
+"\   [ "edit",  "edit" ],
+"\   [ "vimrc",  "edit " . $VIMHOME . "$MYVIMRC"],
+"\   [ "gvimrc", "edit " . $VIMHOME . "$MYGVIMRC"],
+"\   [ "toml", "edit " .  '~/.vim/rc/dein.toml'],
+"\   [ "toml_lazy", "edit " .  '~/.vim/rc/dein_lazy.toml'],
+"\   [ "unite-file_mru", "Unite file_mru" ],
+"\   [ "unite-directory_mru", "Unite directory_mru" ],
+"\ ]
+"\}
+"
+""\   [ "vimfiler", "VimFiler" ],
+""\   [ "unite-howm", "Unite qfixhowm/new qfixhowm:nocache -hide-source-names -no-split" ],
+""\   [ "unite-update", "Unite -log neobundle/update" ],
+"
+"command! UniteStartup
+"\ Unite
+"\ output:echo:"===:📑::Menu:===":! menu:startup
+"\ output:echo:":":!
+"\ output:echo:"===:♻::MRU:File:===":! startup_file_mru
+"\ output:echo:":":!
+"\ output:echo:"===:♲::MRU:Directory:===":! startup_directory_mru
+"\ -hide-source-names
+"\ -no-split
+"\ -quick-match
+"
+""\ output:echo:"===:⚑ ::Sessions::===":! startup_session
+""\ output:echo:":":!
+"
+"augroup startup
+"    autocmd!
+"    autocmd VimEnter * nested :UniteStartup
+"augroup END
+"
+"nnoremap <M-s> :UniteStartup<CR>
+""}}}
+""}}}
+"Shougo/denite.nvim{{{
+call denite#custom#option('default', 'prompt', '>')
 
 " denite/insert モードのときは，C- で移動できるようにする
 call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
@@ -916,49 +614,33 @@ call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
 " The prefix key.
 nnoremap    [denite]   <Nop>
 nmap    <Space>f [denite]
-
-"メニュー
-nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
-"プラグイン検索
-nnoremap <silent> [denite]p :<C-u>Denite file_rec:~/.cache/dein/repos -highlight-mode-insert=Search<CR>
-"変更履歴
-nnoremap <silent> [denite]c :<C-u>Denite change -highlight-mode-insert=Search<CR>
-"ヘルプ
-nnoremap <silent> [denite]h :<C-u>Denite help -highlight-mode-insert=Search<CR>
-"カラースキーム変更
-nnoremap <silent> [denite]i :<C-u>Denite colorscheme -auto-preview -highlight-mode-insert=Search<CR>
-"カレントディレクトリファイル一覧。
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new -highlight-mode-insert=Search<CR>
+"現在開いているファイルのディレクトリ下のファイル一覧。
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir -direction=botright -cursor-wrap=true file file:new<CR>
 "バッファ一覧
-nnoremap <silent> [denite]b :<C-u>Denite buffer -highlight-mode-insert=Search<CR>
+nnoremap <silent> [denite]b :<C-u>Denite -direction=botright -cursor-wrap=true buffer<CR>
 "レジスタ一覧
-nnoremap <silent> [denite]r :<C-u>Denite register -highlight-mode-insert=Search<CR>
+nnoremap <silent> [denite]r :<C-u>Denite -direction=botright -cursor-wrap=true -buffer-name=register register<CR>
 "最近使用したファイル一覧
-nnoremap <silent> [denite]m :<C-u>Denite -highlight-mode-insert=Search file_mru<CR>
-"バッファ内検索
-nnoremap <silent> [denite]<Space> :<C-u>Denite line -highlight-mode-insert=Search<CR>
-"nnoremap <silent> <expr><Space>l ":<C-u>DeniteWithCursorWord line<CR>"
-""ブックマーク一覧
-"nnoremap <silent> [denite]c :<C-u>Denite b-cursor-wrap=true -highlight-mode-insert=Search bookmark<CR>
-""ブックマークに追加
-"nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
-" カーソル以下の単語をgrep
-nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search line -highlight-mode-insert=Search<CR><C-R><C-W><CR>
-" 普通にgrep
-nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep -highlight-mode-insert=Search<CR>
-" resume previous buffer
-nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -highlight-mode-insert=Search<CR>
+nnoremap <silent> [denite]m :<C-u>Denite -direction=botright -cursor-wrap=true file_mru<CR>
+"ブックマーク一覧
+nnoremap <silent> [denite]c :<C-u>Denite -direction=botright -cursor-wrap=true bookmark<CR>
+"ブックマークに追加
+nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
+
 ".git以下のディレクトリ検索
-nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
+nnoremap <silent> [denite]k :<C-u>Denite -direction=botright -cursor-wrap=true
       \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
       \ file_rec/git<CR>
 
 call denite#custom#source('file'    , 'matchers', ['matcher_cpsm', 'matcher_fuzzy'])
+
 call denite#custom#source('buffer'  , 'matchers', ['matcher_regexp'])
 call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
+
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
   \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
 call denite#custom#map('insert', '<C-N>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-P>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#map('insert', '<C-W>', '<denite:move_up_path>', 'noremap')
@@ -968,13 +650,17 @@ if executable('rg')
         \ ['rg', '--files', '--glob', '!.git'])
   call denite#custom#var('grep', 'command', ['rg'])
 endif
-"}}}
-'''
 
-[[plugins]]
-repo='kana/vim-smartchr'
-hook_add='''
-"smartchr{{{
+" カーソル以下の単語をgrep
+nnoremap <silent> <Space><C-g> :<C-u>DeniteCursorWord grep -buffer-name=search line<CR><C-R><C-W><CR>
+" 普通にgrep
+nnoremap <silent> <Space><M-g> :<C-u>Denite -buffer-name=search -mode=normal grep<CR>
+" resume previous buffer
+nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal<CR>
+
+"denite startify
+"}}}
+"kana/vim-smartchr{{{
 " 演算子の間に空白を入れる
 inoremap <expr> < search('^#include\%#', 'bcn')? ' <': smartchr#one_of(' < ', ' << ', '<')
 inoremap <expr> > search('^#include <.*\%#', 'bcn')? '>': smartchr#one_of(' > ', ' >> ', '>')
@@ -1008,9 +694,65 @@ inoremap <expr> " search('^#include\%#', 'bcn')? ' "': '"'
 " if文直後の(は自動で間に空白を入れる
 inoremap <expr> ( search('\<\if\%#', 'bcn')? ' (': '('
 "}}}
-'''
+end
 
-#[[plugins]]
-#repo='nerdtree-git-plugin'
-#hook_add='''
-#'''
+"" git clone https://github.com/yuttie/comfortable-motion.vim
+"" git clone https://github.com/Shougo/unite.vim
+" git clone https://github.com/AndrewRadev/switch.vim
+" git clone https://github.com/LeafCage/foldCC
+" git clone https://github.com/Shougo/context_filetype.vim
+" git clone https://github.com/Shougo/denite.nvim
+" git clone https://github.com/Shougo/deoplete.nvim
+" git clone https://github.com/Shougo/neomru.vim
+" git clone https://github.com/Shougo/neosnippet-snippets
+" git clone https://github.com/Shougo/neosnippet.vim
+" git clone https://github.com/Shougo/unite-session
+" git clone https://github.com/Shougo/vimfiler.vim
+" git clone https://github.com/Yggdroot/indentLine
+" git clone https://github.com/airblade/vim-gitgutter
+" git clone https://github.com/cespare/vim-toml
+" git clone https://github.com/davidhalter/jedi-vim
+" git clone https://github.com/delphinus/vim-auto-cursorline
+" git clone https://github.com/deris/vim-shot-f
+" git clone https://github.com/equalsraf/neovim-gui-shim
+" git clone https://github.com/h1mesuke/unite-outline
+" git clone https://github.com/haya14busa/incsearch-fuzzy.vim
+" git clone https://github.com/haya14busa/incsearch.vim
+" git clone https://github.com/itchyny/lightline.vim
+" git clone https://github.com/junegunn/vim-easy-align
+" git clone https://github.com/kana/vim-smartchr
+" git clone https://github.com/kevinw/pyflakes-vim
+" git clone https://github.com/kmnk/denite-dirmark
+" git clone https://github.com/kmnk/vim-unite-giti
+" git clone https://github.com/machakann/vim-highlightedyank
+" git clone https://github.com/majutsushi/tagbar
+" git clone https://github.com/mattn/benchvimrc-vim
+" git clone https://github.com/mattn/sonictemplate-vim
+" git clone https://github.com/mhinz/vim-startify
+" git clone https://github.com/miura/ImageJMacro_Highlighter
+" git clone https://github.com/osyo-manga/vim-precious
+" git clone https://github.com/qpkorr/vim-renamer
+" git clone https://github.com/reireias/vim-cheatsheet
+" git clone https://github.com/rhysd/accelerated-jK
+" git clone https://github.com/roxma/nvim-yarp
+" git clone https://github.com/roxma/vim-hug-neovim-rpc
+" git clone https://github.com/ryanoasis/vim-devicons
+" git clone https://github.com/scrooloose/nerdtree
+" git clone https://github.com/simeji/winresizer
+" git clone https://github.com/taku-o/vim-copypath
+" git clone https://github.com/thinca/vim-qfreplace
+" git clone https://github.com/thinca/vim-quickrun
+" git clone https://github.com/thinca/vim-singleton
+" git clone https://github.com/thinca/vim-template
+" git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+" git clone https://github.com/tpope/vim-fugitive
+" git clone https://github.com/tpope/vim-surround
+" git clone https://github.com/travisjeffery/vim-auto-mkdir
+" git clone https://github.com/tyru/current-func-info.vim
+" git clone https://github.com/tyru/open-browser.vim
+" git clone https://github.com/tyru/restart.vim
+" git clone https://github.com/ujihisa/unite-colorscheme
+" git clone https://github.com/vim-scripts/errormarker.vim
+" git clone https://github.com/w0rp/ale
+" git clone https://github.com/yuratomo/dotnet-complete
+" git clone https://github.com/nerdtree-git-plugin
