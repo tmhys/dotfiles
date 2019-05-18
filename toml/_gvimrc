@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 06-May-2019.
+" Last Change: 18-May-2019.
 " Maintainer:  TH
 
 "Neovim{{{
@@ -16,7 +16,7 @@ if has('nvim')
 	GuiPopupmenu 0
 	GuiTabline 0
    	set ambiwidth=single
-	noremap <S-Insert> <C-R>+
+	noremap <S-Insert> <C-r>+
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 endif
 "}}}
@@ -43,11 +43,12 @@ elseif has('xfontset')
 endif
 
 if !has('nvim')
-"透過
-	set transparency=240
 "最大化で起動
 	au GUIEnter * simalt ~x
 	SM 5
+"透過
+	autocmd FocusGained * set transparency=250
+	autocmd FocusLost * set transparency=20
 endif
 "}}}
 

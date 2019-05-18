@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 11-May-2019.
+" Last Change: 18-May-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -172,7 +172,7 @@ endif
 "}}}
 
 "相対行番号表示&トグル
-"nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
+nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
@@ -218,7 +218,7 @@ endif
 "set visualbell
 "}}}
 
-"""キーマップ{{{
+"キーマップ{{{
 "command line window
 "nnoremap : q:a
 "nnoremap / q/a
@@ -324,6 +324,8 @@ nnoremap <silent> <Space><Space> *N
 
 "カーソル下の単語をハイライトしてから置換する
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
+"ヤンクした部分を置換する
+nmap <M-3> :%s/<C-r>"///g<Left><Left>
 
 "1行挿入する
 nnoremap <Space>o :<C-u>call append(expand('.'), '')<Cr>j
@@ -366,20 +368,17 @@ command! Esysseq :e $VIM/vim81/userautoload/SysSeq.vim
 "保存したら再読み込み
 augroup reload_vimrc
 	autocmd!
-	autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-	autocmd BufWritePost $MYVIMRC nested source $MYGVIMRC
-	autocmd BufWritePost $MYVIMRC nested source $MYGVIMRC
-	autocmd BufWritePost $MYVIMRC nested call lightline#update()
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested call dein#recache_runtimepath()
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\color.toml nested call dein#recache_runtimepath()
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested call dein#recache_runtimepath()
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested source $MYVIMRC
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\color.toml nested source $MYVIMRC
-	autocmd BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested source $MYVIMRC
-	autocmd BufWritePost $MYGVIMRC nested source $MYGVIMRC
-	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
-	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
 augroup END
+	autocmd reload_vimrc BufWritePost $MYVIMRC nested source $MYVIMRC
+	autocmd reload_vimrc BufWritePost $MYGVIMRC if has('gui_running') nested source $MYGVIMRC
+	autocmd reload_vimrc BufWritePost $MYVIMRC nested call lightline#update()
+	autocmd reload_vimrc BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested call dein#recache_runtimepath()
+	autocmd reload_vimrc BufWritePost C:\Users\thtom\.vim\rc\color.toml nested call dein#recache_runtimepath()
+	autocmd reload_vimrc BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested call dein#recache_runtimepath()
+	autocmd reload_vimrc BufWritePost C:\Users\thtom\.vim\rc\dein.toml nested source $MYVIMRC
+	autocmd reload_vimrc BufWritePost C:\Users\thtom\.vim\rc\color.toml nested source $MYVIMRC
+	autocmd reload_vimrc BufWritePost C:\Users\thtom\.vim\rc\dein_lazy.toml nested source $MYVIMRC
+	autocmd reload_vimrc BufWritePost SysSeq.vim nested source $MYGVIMRC
 "}}}
 
 "{{{Quickfix windowトグル

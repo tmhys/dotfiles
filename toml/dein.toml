@@ -1,4 +1,4 @@
-# Last Change: 12-May-2019.
+# Last Change: 19-May-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -661,7 +661,6 @@ let g:indentLine_fileTypeExclude = ['help', 'nerdtree','startify','taskpaper','u
 
 [[plugins]]
 repo='ryanoasis/vim-devicons'
-if="!has('nvim')"
 hook_add='''
 "devicon{{{
 if hostname()!=?'localhost'
@@ -1014,3 +1013,12 @@ inoremap <expr> ( search('\<\if\%#', 'bcn')? ' (': '('
 #repo='nerdtree-git-plugin'
 #hook_add='''
 #'''
+
+[[plugins]]
+repo='terryma/vim-expand-region'
+hook_add='''
+"terryma/vim-expand-region{{{
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+"}}}
+'''

@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 29-Apr-2019.
+" Last Change: 18-May-2019.
 " Maintainer: TH
 
 let g:vimproc#download_windows_dll = 1
@@ -61,7 +61,7 @@ if executable('git')
 	  call dein#add('Shougo/deoplete.nvim')
 	  call dein#add('Shougo/neosnippet-snippets')
 	  call dein#add('Shougo/neosnippet.vim')
-	  call dein#add('Shougo/denite.nvim')
+	  "call dein#add('Shougo/denite.nvim')
 	  call dein#add('Shougo/neomru.vim')
 	  call dein#add('Shougo/unite-session')
 	  call dein#add('Shougo/unite.vim')
