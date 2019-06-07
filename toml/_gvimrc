@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 18-May-2019.
+" Last Change: 30-May-2019.
 " Maintainer:  TH
 
 "Neovim{{{
@@ -82,6 +82,13 @@ set guioptions-=b
 set guioptions-=e
 set showtabline=2
 "}}}
+
+" エラーを赤字の波線で
+"execute "highlight qf_error_ucurl gui=undercurl guisp=Red"
+"let g:hier_highlight_group_qf  = "qf_error_ucurl"
+"" 警告を青字の波線で
+"execute "highlight qf_warning_ucurl gui=undercurl guisp=Blue"
+"let g:hier_highlight_group_qfw = "qf_warning_ucurl"
 
 let g:webdevicons_conceal_nerdtree_brackets = 1
 if exists("g:loaded_webdevicons")

@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 18-May-2019.
+" Last Change: 07-Jun-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -219,6 +219,7 @@ endif
 "}}}
 
 "キーマップ{{{
+nnoremap <M-s> :Startify<CR>
 "command line window
 "nnoremap : q:a
 "nnoremap / q/a
@@ -300,7 +301,7 @@ nnoremap gs :vertical wincmd f<CR>
 vnoremap <Space>p "0p
 
 "ディレクトリ自動で移動
-set autochdir&vim
+"set autochdir&vim
 
 "<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
 command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
@@ -353,6 +354,7 @@ nnoremap <M-l> <C-w>hdp
 "}}}
 
 ""vimrcの編集再読み込み{{{
+	let $MYSEQRC =expand('C:\Users\thtom\AppData\Local\nvim\userautoload\SysSeq.vim')
 if has('nvim')
 	let $MYVIMRC =expand('C:\Users\thtom\AppData\Local\nvim\init.vim')
 	let $MYGVIMRC =expand('C:\Users\thtom\AppData\Local\nvim\ginit.vim')
@@ -364,7 +366,7 @@ command! Etoml :e C:\Users\thtom\.vim\rc\dein.toml
 command! Eltoml :e C:\Users\thtom\.vim\rc\dein_lazy.toml
 "command! Evimrc :e  $HOME/dotfiles/_vimrc
 "command! Egvimrc :e $HOME/dotfiles/_gvimrc
-command! Esysseq :e $VIM/vim81/userautoload/SysSeq.vim
+command! Esysseq :e $MYSEQRC
 "保存したら再読み込み
 augroup reload_vimrc
 	autocmd!
@@ -394,6 +396,9 @@ nnoremap <M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
 
 "QuickFix 横画面分割で結果を表示
 au FileType qf nnoremap <S-CR> <C-w><CR><C-w>L
+"Quickfix次の項目にジャンプ
+nnoremap <M-j> :cn<CR>
+nnoremap <M-k> :cp<CR>
 
 " マーク設定 : {{{
 " 基本マップ
@@ -494,4 +499,3 @@ endif
 
 "その他の設定ファイル読み込み
 runtime! userautoload/*.vim
-
