@@ -1,0 +1,134 @@
+# Last Change: 19-May-2019.
+# Maintainer:  TH
+
+## インサートモードに入ったら読み込む
+#[[plugins]]
+#repo = 'Shougo/neocomplete.vim'
+#on_i = 1
+#
+#[[plugins]]
+#repo = 'Shougo/neocomplcache'
+#on_i = 1
+#
+##[[plugins]]
+##repo   = 'Shougo/unite.vim'
+##depends ='neomru.vim'
+#
+## unite.vim を読み込んだら一緒に読み込む
+##[[plugins]]
+##repo      = 'Shougo/neomru.vim'
+##on_source = ['unite.vim']
+#
+## 特定のコマンドを打ったら読み込む
+##[[plugins]]
+##repo      = 'thinca/vim-prettyprint'
+##on_cmd    = ['PP', 'PrettyPrint']
+#
+#[[plugins]]
+#repo = 'miura/ImageJMacro_Highlighter'
+#on_ft = ['ijmacro']
+#
+#[[plugins]]
+#repo = 'scrooloose/nerdtree'
+#on_cmd    = ['NERDTreeToglle']
+#
+#[[plugins]]
+#repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+#on_cmd    = ['NERDTreeToglle']
+#
+#[[plugins]]
+#repo = 'Shougo/unite.vim'
+#on_cmd    = ['Unite']
+#
+#[[plugins]]
+#repo = 'Shougo/vimfiler.vim'
+#on_cmd    = ['VimFiler']
+#
+#[[plugins]]
+#repo = 'cespare/vim-toml'
+#on_ft = ['toml']
+#
+#[[plugins]]
+#repo = 'osyo-manga/vim-brightest'
+#on_cmd    = ['<Space><Space>']
+#
+#[[plugins]]
+#repo = 'simeji/winresizer'
+#on_cmd    = ['WinResizerStartResize']
+#
+
+[[plugins]]
+repo='mhinz/vim-startify'
+#on_event = 'GUIEnter' # ←こうなる（インサートモードに入ったら読み込む）
+on_cmd =  ['<M-s>', 'Startify']
+##on_i =1
+hook_source='''
+"" Startify{{{
+nnoremap <M-s> :Startify<CR>
+"autocmd TabNew * :Startify
+noremap <Space>tn :<C-u>tabnew<CR> :Startify<CR>
+
+" 起動時の画面の設定
+let g:startify_files_number = 10
+let g:startify_change_to_dir       = 0
+let g:startify_enable_special      = 0
+let g:startify_fortune_use_unicode = 1
+let g:startify_update_oldfiles     = 1
+let g:startify_use_env             = 1
+let g:startify_session_autoload       = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_number = 10
+let g:startify_session_sort = 1
+let g:startify_enable_special = 1
+let g:startify_session_dir = '~/.vim/session'
+let NERDTreeHijackNetrw = 0
+let g:startify_session_before_save = [
+        \ 'echo "Cleaning up before saving.."',
+        \ 'silent! NERDTreeTabsClose'
+        \ ]
+let g:startify_session_savevars = [
+           \ 'g:startify_session_savevars',
+           \ 'g:startify_session_savecmds',
+           \ 'g:random_plugin_use_feature'
+           \ ]
+
+let g:startify_list_order = [
+        \ ['⚑  Sessions:'],
+        \ 'sessions',
+        \ ['♻  MRU:'],
+        \ 'files',
+        \ ['♲  MRU in Current Directory:'],
+        \ 'dir',
+        \ ['☺  Bookmarks:'],
+        \ 'bookmarks',
+        \ ]
+
+" デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
+let g:startify_custom_indices = ['d', 'f', 'h', 'r', 'i', 'o', 'b']
+" よく使うファイルをブックマークとして登録しておく
+let g:startify_bookmarks = [
+  \ '$VIM/_vimrc',
+  \ '$VIM/_gvimrc',
+  \ '$VIM/vim80/userautoload/SysSeq.vim',
+  \ '$VIM/task.taskpaper',
+\ ]
+
+"if has('win64')
+ let g:startify_custom_header =
+            \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+ "endif
+"if has('nvim')
+" let g:startify_custom_header =
+"            \ startify#fortune#cowsay('═','║','╔','╗','╝','╚')
+" endif
+
+ autocmd VimEnter *
+                \   if !argc()
+                \ |   Startify
+                "\ |   NERDTree
+                \ |   wincmd w
+                \ | endif
+"}}}
+'''
+
