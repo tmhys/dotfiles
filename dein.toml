@@ -1,4 +1,4 @@
-# Last Change: 07-Jun-2019.
+# Last Change: 17-Jun-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -550,22 +550,29 @@ hook_add='''
 " vimprocで非同期実行
 " 成功時にバッファ、失敗時にQuickFixで表示
 " 結果表示のサイズ調整など
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config._ = {
-      \ 'outputter' : 'error',
-      \ 'runner'    : 'vimproc',
-      \ 'runner/vimproc/updatetime' : 60,
-      \ 'outputter/error/success' : 'quickfix',
-      \ 'outputter/error/error'   : 'quickfix',
-      \ 'outputter/buffer/split'  : ':rightbelow 8sp',
-      \ 'outputter/buffer/close_on_empty' : 1
-      \ }
-      "\ 'outputter/error/success' : 'buffer',
-"コンパイラexeにパスを通しておくこと
-"コンパイルしたいディレクトリに移動してから実行
-" 実行時に前回の表示内容をクローズ&保存してから実行
-let g:quickrun_no_default_key_mappings = 1
-nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
+"let g:quickrun_config = get(g:, 'quickrun_config', {})
+"let g:quickrun_config._ = {
+"      \ 'outputter' : 'error',
+"      \ 'runner'    : 'vimproc',
+"      \ 'runner/vimproc/updatetime' : 60,
+"      \ 'outputter/error/success' : 'quickfix',
+"      \ 'outputter/error/error'   : 'quickfix',
+"      \ 'outputter/buffer/split'  : ':rightbelow 8sp',
+"      \ 'outputter/buffer/close_on_empty' : 1
+"      \ }
+"      "\ 'outputter/error/success' : 'buffer',
+""コンパイラexeにパスを通しておくこと
+""コンパイルしたいディレクトリに移動してから実行
+""本文中にsequence E177Hと書いてあるファイルがメイン
+"
+"let g:quickrun_config["seq"] = {
+"		\ "exec":"SeqCnv_V340.exe 00_Main -l"
+"	  	\}
+"let &errorformat = '%WWarning: %f (%l):%m,%EError: %f (%l):%m'
+"
+"" 実行時に前回の表示内容をクローズ&保存してから実行
+"let g:quickrun_no_default_key_mappings = 1
+"nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR>
 "}}}
 '''
 
@@ -608,6 +615,12 @@ hook_add='''
 [[plugins]]
 repo='tyru/open-browser.vim'
 hook_add='''
+"{{{
+" open-browser.vim
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-open)
+vmap gx <Plug>(openbrowser-open)
+"}}}
 '''
 
 [[plugins]]
@@ -915,24 +928,26 @@ hook_add='''
   	  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
 	endfunction
 
+	"insertでカーソル移動、非推奨
 	"autocmd FileType denite-fileter call s:denite_fileter_my_settings()
 	"function! s:denite_my_settings() abort
 	"  inoremap <silent><buffer> <C-j>   <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
   	"  inoremap <silent><buffer> <C-k>   <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
 	"endfunction
 
-	" Change file/rec command.
-	call denite#custom#var('file/rec', 'command',
-	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-	" For ripgrep
-	" Note: It is slower than ag
-	call denite#custom#var('file/rec', 'command',
-	\ ['rg', '--files', '--glob', '!.git'])
-"	" For Pt(the platinum searcher)
-"	" NOTE: It also supports windows.
+	call denite#custom#source('grep', 'args', ['', '', '!'])
+"	" Change file/rec command.
 "	call denite#custom#var('file/rec', 'command',
-"	\ ['pt', '--follow', '--nocolor', '--nogroup',
-"	\  (has('win32') ? '-g:' : '-g='), ''])
+"	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+"	" For ripgrep
+"	" Note: It is slower than ag
+"	call denite#custom#var('file/rec', 'command',
+"	\ ['rg', '--files', '--glob', '!.git'])
+	" For Pt(the platinum searcher)
+	" NOTE: It also supports windows.
+	call denite#custom#var('file/rec', 'command',
+	\ ['pt', '--follow', '--nocolor', '--nogroup',
+	\  (has('win32') ? '-g:' : '-g='), ''])
 "	" For python script scantree.py
 "	" Read bellow on this file to learn more about scantree.py
 "	call denite#custom#var('file/rec', 'command', ['scantree.py'])
@@ -988,23 +1003,23 @@ hook_add='''
 "	call denite#custom#var('grep', 'separator', ['--'])
 "	call denite#custom#var('grep', 'final_opts', [])
 "
-	" Ripgrep command on grep source
-	call denite#custom#var('grep', 'command', ['rg'])
-	call denite#custom#var('grep', 'default_opts',
-			\ ['-i', '--vimgrep', '--no-heading'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-"
-"	" Pt command on grep source
-"	call denite#custom#var('grep', 'command', ['pt'])
+"	" Ripgrep command on grep source
+"	call denite#custom#var('grep', 'command', ['rg'])
 "	call denite#custom#var('grep', 'default_opts',
-"			\ ['-i', '--nogroup', '--nocolor', '--smart-case'])
+"			\ ['-i', '--vimgrep', '--no-heading'])
 "	call denite#custom#var('grep', 'recursive_opts', [])
-"	call denite#custom#var('grep', 'pattern_opt', [])
+"	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 "	call denite#custom#var('grep', 'separator', ['--'])
 "	call denite#custom#var('grep', 'final_opts', [])
+"
+	" Pt command on grep source
+	call denite#custom#var('grep', 'command', ['pt'])
+	call denite#custom#var('grep', 'default_opts',
+			\ ['-i', '--nogroup', '--nocolor', '--smart-case'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
 "
 "	" jvgrep command on grep source
 "	call denite#custom#var('grep', 'command', ['jvgrep'])
@@ -1018,14 +1033,14 @@ hook_add='''
 "	"call denite#start([{'name': 'grep',
 "	"      \ 'args': [['a.vim', 'b.vim'], '', 'pattern']}])
 "
-"	" Define alias
-"	call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-"	call denite#custom#var('file/rec/git', 'command',
-"	      \ ['git', 'ls-files', '-co', '--exclude-standard'])
-"
-"	call denite#custom#alias('source', 'file/rec/py', 'file/rec')
-"	call denite#custom#var('file/rec/py', 'command',['scantree.py'])
-"
+	" Define alias
+	call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+	call denite#custom#var('file/rec/git', 'command',
+	      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+	call denite#custom#alias('source', 'file/rec/py', 'file/rec')
+	call denite#custom#var('file/rec/py', 'command',['scantree.py'])
+
 	" Change ignore_globs
 	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 	      \ [ '.git/', '.ropeproject/', '__pycache__/',
@@ -1044,40 +1059,41 @@ nnoremap    [denite]   <Nop>
 nmap    <Space>f [denite]
 
 "メニュー
-nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
+nnoremap <silent> [denite]d :<C-u>Denite  -start-filter menu<CR>
 "プラグイン検索
-nnoremap <silent> [denite]p :<C-u>Denite file_rec:~/.cache/dein/repos<CR>
+nnoremap <silent> [denite]p :<C-u>Denite file/rec:~/.cache/dein/repos -start-filter<CR>
 "変更履歴
-nnoremap <silent> [denite]c :<C-u>Denite change<CR>
+nnoremap <silent> [denite]c :<C-u>Denite change -start-filter<CR>
 "ヘルプ
-nnoremap <silent> [denite]h :<C-u>Denite help<CR>
+nnoremap <silent> [denite]h :<C-u>Denite help -start-filter<CR>
 "カラースキーム変更
-nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme<CR>
+nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme -start-filter<CR>
 "カレントディレクトリファイル一覧。
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new<CR>
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new -start-filter<CR>
 "バッファ一覧
-nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer -start-filter<CR>
 "レジスタ一覧
-nnoremap <silent> [denite]r :<C-u>Denite register<CR>
+nnoremap <silent> [denite]r :<C-u>Denite register -start-filter<CR>
 "最近使用したファイル一覧
-nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR>
+nnoremap <silent> [denite]m :<C-u>Denite file_mru -start-filter<CR>
 "バッファ内検索
-nnoremap <silent> [denite]<Space> :<C-u>Denite line<CR>
+nnoremap <silent> [denite]<Space> :<C-u>Denite line -start-filter<CR>
 "nnoremap <silent> <expr><Space>l ":<C-u>DeniteWithCursorWord line<CR>"
 ""ブックマーク一覧
 "nnoremap <silent> [denite]c :<C-u>Denite b-cursor-wrap=true -highlight-mode-insert=Search bookmark<CR>
 ""ブックマークに追加
 "nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
 " カーソル以下の単語をgrep
-nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search line <CR><C-R><C-W><CR>
+nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search line -start-filter<CR><C-R><C-W><CR>
 " 普通にgrep
-nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep <CR>
+nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep -start-filter<CR>
 " resume previous buffer
-nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal <CR>
+nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -start-filter<CR>
 ".git以下のディレクトリ検索
 nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
       \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
-      \ file_rec/git<CR>
+      \ file_rec/git
+	  \ -start-filter<CR>
 
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 	function! s:denite_filter_my_settings() abort
@@ -1296,6 +1312,14 @@ vmap <C-v> <Plug>(expand_region_shrink)
 [[plugins]]
 repo='cohama/vim-hier'
 hook_add='''
+"let g:hier_highlight_group_qfi  = ''
+" エラーを赤字の波線で
+execute "highlight qf_error_ucurl gui=undercurl guisp=Red"
+let g:hier_highlight_group_qf  = "qf_error_ucurl"
+" 警告を青字の波線で
+execute "highlight qf_warning_ucurl gui=undercurl guisp=Blue"
+let g:hier_highlight_group_qfw = "qf_warning_ucurl"
+let g:hier_highlight_group_qfi = ""
 
 '''
 
@@ -1307,6 +1331,63 @@ hook_add='''
 [[plugins]]
 repo='osyo-manga/vim-watchdogs'
 hook_add='''
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+      "\ 'outputter/error/success' : 'buffer',
+"コンパイラexeにパスを通しておくこと
+"コンパイルしたいディレクトリに移動してから実行
+"本文中にsequence E177Hと書いてあるファイルがメイン
+
+let g:quickrun_config["seq"] = {
+		\ "exec":"SeqCnv_V340.exe 00_Main -l"
+	  	\}
+let &errorformat = '%WWarning: %f (%l):%m,%EError: %f (%l):%m'
+
+let g:quickrun_config = {
+\   "seq/watchdogs_checker" : {
+\       "type" : "watchdogs_checker/SeqCnv_V340",
+\ 		"exec":"SeqCnv_V340.exe 00_Main -l",
+\   },
+\   "watchdogs_checker/_" : {
+\       "hook/close_quickfix/enable_exit" : 1,
+\		"hook/echo/enable" : 1,
+\		"hook/echo/output_success": "> No Errors Found.",
+\		"hook/echo/output_failure": "> Errors Found.",
+\   },
+\}
+
+let s:config = {
+\   "watchdogs_checker/seq" : {
+\ 		"exec":"SeqCnv_V340.exe 00_Main -l",
+\   },
+\}
+
+"let g:watchdogs_check_CursorHold_enable = {
+"	\	"seq" : 1
+"	\}
+"let g:watchdogs_check_BufWritePost_enable= {
+"	\	"seq" : 1
+"	\}
+let g:watchdogs_check_BufWritePost_enable=1
+
+let g:quickrun_config._ = {
+      \ 'outputter' : 'error',
+      \ 'runner'    : 'vimproc',
+      \ 'runner/vimproc/updatetime' : 40,
+	  \ 'outputter/quickfix/open_cmd' : "",
+      \ 'outputter/error/success' : 'quickfix',
+      \ 'outputter/error/error'   : 'quickfix',
+      \ 'outputter/buffer/split'  : ':rightbelow 8sp',
+      \ 'outputter/buffer/close_on_empty' : 1
+      \ }
+unlet s:config
+call watchdogs#setup(g:quickrun_config)
+
+"実行時に前回の表示内容をクローズ&保存してから実行
+"let g:quickrun_no_default_key_mappings = 1
+let g:quickrun_config["seq"] = {
+		\ "exec":"SeqCnv_V340.exe 00_Main -l"
+	  	\}
+nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR><M-q>
 '''
 
 [[plugins]]
@@ -1324,3 +1405,15 @@ repo='Shougo/vimproc.vim'
 if="has('nvim')"
 hook_add='''
 '''
+
+#[[plugins]]
+#repo='liuchengxu/vista.vim'
+#hook_add='''
+#  nmap <silent> <C-f><C-v> :<C-u>Vista coc<CR>
+#  nmap <silent> <C-f><C-s> :<C-u>Vista finder coc<CR>
+#'''
+#
+#[[plugins]]
+#repo='neoclide/coc.nvim'
+#hook_add='''
+#'''

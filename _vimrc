@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 07-Jun-2019.
+" Last Change: 17-Jun-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -104,8 +104,14 @@ set wildmenu wildmode=full
 autocmd QuickFixCmdPost *grep* cwindow
 "}}}
 
-"ripgrep{{{
-if executable('rg')
+"{{{
+if executable('pt')
+	set grepprg=pt\ --nogroup\
+	set grepformat=%f:%l:%c:%m
+elseif executable('ag')
+	set grepprg=ag\ --nogroup\ -iS
+    set grepformat=%f:%l:%m
+elseif executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
@@ -246,7 +252,7 @@ inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
 "}}}
 
 "ESCキー連打
-nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>
+nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>
 nnoremap <silent> <ESC><ESC><ESC><ESC> :Restart<CR>
 
 "jj,kkでEcs
