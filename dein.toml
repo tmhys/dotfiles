@@ -1,4 +1,4 @@
-# Last Change: 17-Jun-2019.
+# Last Change: 22-Jun-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -1075,7 +1075,8 @@ nnoremap <silent> [denite]b :<C-u>Denite buffer -start-filter<CR>
 "レジスタ一覧
 nnoremap <silent> [denite]r :<C-u>Denite register -start-filter<CR>
 "最近使用したファイル一覧
-nnoremap <silent> [denite]m :<C-u>Denite file_mru -start-filter<CR>
+nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
+"nnoremap <silent> [denite]m :<C-u>Denite file_mru -start-filter<CR>
 "バッファ内検索
 nnoremap <silent> [denite]<Space> :<C-u>Denite line -start-filter<CR>
 "nnoremap <silent> <expr><Space>l ":<C-u>DeniteWithCursorWord line<CR>"
@@ -1095,165 +1096,11 @@ nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
       \ file_rec/git
 	  \ -start-filter<CR>
 
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-	function! s:denite_filter_my_settings() abort
-	  imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
-	endfunction
+"autocmd FileType denite-filter call s:denite_filter_my_settings()
+"	function! s:denite_filter_my_settings() abort
+"	  imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
+"	endfunction
 "}}}
-"Denite{{{
-"call denite#custom#option('default', {
-"			\'prompt': '>',
-"			\'source_name': 'short',
-"			\'direction': 'botright',
-"			\'cursor_wrap': 'true',
-"			\})
-"			"\'highlight-mode-insert': 'Search',
-"
-"" denite/insert モードのときは，C- で移動できるようにする
-"call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-"call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
-"
-"" tabopen や vsplit のキーバインドを割り当て
-"call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-"call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-"call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
-"
-"" jj で denite/insert を抜けるようにする
-"call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-"
-"" The prefix key.
-"nnoremap    [denite]   <Nop>
-"nmap    <Space>f [denite]
-"
-""メニュー
-"nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
-""プラグイン検索
-"nnoremap <silent> [denite]p :<C-u>Denite file_rec:~/.cache/dein/repos <CR>
-""変更履歴
-"nnoremap <silent> [denite]c :<C-u>Denite change <CR>
-""ヘルプ
-"nnoremap <silent> [denite]h :<C-u>Denite help <CR>
-""カラースキーム変更
-"nnoremap <silent> [denite]i :<C-u>Denite colorscheme -auto-preview <CR>
-""カレントディレクトリファイル一覧。
-"nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new <CR>
-""バッファ一覧
-"nnoremap <silent> [denite]b :<C-u>Denite buffer <CR>
-""レジスタ一覧
-"nnoremap <silent> [denite]r :<C-u>Denite register <CR>
-""最近使用したファイル一覧
-"nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR>
-""バッファ内検索
-"nnoremap <silent> [denite]<Space> :<C-u>Denite line <CR>
-""nnoremap <silent> <expr><Space>l ":<C-u>DeniteWithCursorWord line<CR>"
-"""ブックマーク一覧
-""nnoremap <silent> [denite]c :<C-u>Denite b-cursor-wrap=true -highlight-mode-insert=Search bookmark<CR>
-"""ブックマークに追加
-""nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
-"" カーソル以下の単語をgrep
-"nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search line <CR><C-R><C-W><CR>
-"" 普通にgrep
-"nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep <CR>
-"" resume previous buffer
-"nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal <CR>
-"".git以下のディレクトリ検索
-"nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
-"      \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
-"      \ file_rec/git<CR>
-"
-"call denite#custom#source('file'    , 'matchers', ['matcher_cpsm', 'matcher_fuzzy'])
-"call denite#custom#source('buffer'  , 'matchers', ['matcher_regexp'])
-"call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
-"call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-"call denite#custom#var('file_rec/git', 'command',
-"  \ ['git', 'ls-files', '-co', '--exclude-standard'])
-"call denite#custom#map('insert', '<C-N>', '<denite:move_to_next_line>', 'noremap')
-"call denite#custom#map('insert', '<C-P>', '<denite:move_to_previous_line>', 'noremap')
-"call denite#custom#map('insert', '<C-W>', '<denite:move_up_path>', 'noremap')
-"
-"if executable('rg')
-"  call denite#custom#var('file_rec', 'command',
-"        \ ['rg', '--files', '--glob', '!.git'])
-"  call denite#custom#var('grep', 'command', ['rg'])
-"endif
-""}}}
-""Denite{{{
-"call denite#custom#option('default', {
-"			\'prompt': '>',
-"			\'source_name': 'short',
-"			\'direction': 'botright',
-"			\'cursor_wrap': 'true',
-"			\})
-"			"\'highlight-mode-insert': 'Search',
-"
-"" denite/insert モードのときは，C- で移動できるようにする
-"call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-"call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
-"
-"" tabopen や vsplit のキーバインドを割り当て
-"call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-"call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-"call denite#custom#map('normal', "v", '<denite:do_action:vsplit>')
-"
-"" jj で denite/insert を抜けるようにする
-"call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>')
-"
-"" The prefix key.
-"nnoremap    [denite]   <Nop>
-"nmap    <Space>f [denite]
-"
-""メニュー
-"nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
-""プラグイン検索
-"nnoremap <silent> [denite]p :<C-u>Denite file_rec:~/.cache/dein/repos -highlight-mode-insert=Search<CR>
-""変更履歴
-"nnoremap <silent> [denite]c :<C-u>Denite change -highlight-mode-insert=Search<CR>
-""ヘルプ
-"nnoremap <silent> [denite]h :<C-u>Denite help -highlight-mode-insert=Search<CR>
-""カラースキーム変更
-"nnoremap <silent> [denite]i :<C-u>Denite colorscheme -auto-preview -highlight-mode-insert=Search<CR>
-""カレントディレクトリファイル一覧。
-"nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new -highlight-mode-insert=Search<CR>
-""バッファ一覧
-"nnoremap <silent> [denite]b :<C-u>Denite buffer -highlight-mode-insert=Search<CR>
-""レジスタ一覧
-"nnoremap <silent> [denite]r :<C-u>Denite register -highlight-mode-insert=Search<CR>
-""最近使用したファイル一覧
-"nnoremap <silent> [denite]m :<C-u>Denite -highlight-mode-insert=Search file_mru<CR>
-""バッファ内検索
-"nnoremap <silent> [denite]<Space> :<C-u>Denite line -highlight-mode-insert=Search<CR>
-""nnoremap <silent> <expr><Space>l ":<C-u>DeniteWithCursorWord line<CR>"
-"""ブックマーク一覧
-""nnoremap <silent> [denite]c :<C-u>Denite b-cursor-wrap=true -highlight-mode-insert=Search bookmark<CR>
-"""ブックマークに追加
-""nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
-"" カーソル以下の単語をgrep
-"nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search line -highlight-mode-insert=Search<CR><C-R><C-W><CR>
-"" 普通にgrep
-"nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep -highlight-mode-insert=Search<CR>
-"" resume previous buffer
-"nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -highlight-mode-insert=Search<CR>
-"".git以下のディレクトリ検索
-"nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
-"      \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
-"      \ file_rec/git<CR>
-"
-"call denite#custom#source('file'    , 'matchers', ['matcher_cpsm', 'matcher_fuzzy'])
-"call denite#custom#source('buffer'  , 'matchers', ['matcher_regexp'])
-"call denite#custom#source('file_mru', 'matchers', ['matcher_regexp'])
-"call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-"call denite#custom#var('file_rec/git', 'command',
-"  \ ['git', 'ls-files', '-co', '--exclude-standard'])
-"call denite#custom#map('insert', '<C-N>', '<denite:move_to_next_line>', 'noremap')
-"call denite#custom#map('insert', '<C-P>', '<denite:move_to_previous_line>', 'noremap')
-"call denite#custom#map('insert', '<C-W>', '<denite:move_up_path>', 'noremap')
-"
-"if executable('rg')
-"  call denite#custom#var('file_rec', 'command',
-"        \ ['rg', '--files', '--glob', '!.git'])
-"  call denite#custom#var('grep', 'command', ['rg'])
-"endif
-""}}}
 '''
 
 [[plugins]]
