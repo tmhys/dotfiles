@@ -1,4 +1,4 @@
-# Last Change: 22-Jun-2019.
+# Last Change: 26-Jun-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -984,25 +984,6 @@ hook_add='''
 
 	call denite#custom#var('menu', 'menus', s:menus)
 "
-"	" Ag command on grep source
-"	call denite#custom#var('grep', 'command', ['ag'])
-"	call denite#custom#var('grep', 'default_opts',
-"			\ ['-i', '--vimgrep'])
-"	call denite#custom#var('grep', 'recursive_opts', [])
-"	call denite#custom#var('grep', 'pattern_opt', [])
-"	call denite#custom#var('grep', 'separator', ['--'])
-"	call denite#custom#var('grep', 'final_opts', [])
-"
-"	" Ack command on grep source
-"	call denite#custom#var('grep', 'command', ['ack'])
-"	call denite#custom#var('grep', 'default_opts',
-"			\ ['--ackrc', $HOME.'/.ackrc', '-H', '-i',
-"			\  '--nopager', '--nocolor', '--nogroup', '--column'])
-"	call denite#custom#var('grep', 'recursive_opts', [])
-"	call denite#custom#var('grep', 'pattern_opt', ['--match'])
-"	call denite#custom#var('grep', 'separator', ['--'])
-"	call denite#custom#var('grep', 'final_opts', [])
-"
 "	" Ripgrep command on grep source
 "	call denite#custom#var('grep', 'command', ['rg'])
 "	call denite#custom#var('grep', 'default_opts',
@@ -1020,15 +1001,7 @@ hook_add='''
 	call denite#custom#var('grep', 'pattern_opt', [])
 	call denite#custom#var('grep', 'separator', ['--'])
 	call denite#custom#var('grep', 'final_opts', [])
-"
-"	" jvgrep command on grep source
-"	call denite#custom#var('grep', 'command', ['jvgrep'])
-"	call denite#custom#var('grep', 'default_opts', ['-i'])
-"	call denite#custom#var('grep', 'recursive_opts', ['-R'])
-"	call denite#custom#var('grep', 'pattern_opt', [])
-"	call denite#custom#var('grep', 'separator', [])
-"	call denite#custom#var('grep', 'final_opts', [])
-"
+
 "	" Specify multiple paths in grep source
 "	"call denite#start([{'name': 'grep',
 "	"      \ 'args': [['a.vim', 'b.vim'], '', 'pattern']}])
@@ -1096,10 +1069,11 @@ nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
       \ file_rec/git
 	  \ -start-filter<CR>
 
-"autocmd FileType denite-filter call s:denite_filter_my_settings()
-"	function! s:denite_filter_my_settings() abort
-"	  imap <silent><buffer> <C-c> <Plug>(denite_filter_quit)
-"	endfunction
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+	function! s:denite_filter_my_settings() abort
+	  call deoplete#custom#buffer_option('auto_complete', v:false)
+	endfunction
+
 "}}}
 '''
 
@@ -1252,6 +1226,11 @@ repo='Shougo/vimproc.vim'
 if="has('nvim')"
 hook_add='''
 '''
+
+#[[plugins]]
+#repo='Shougo/defx.nvim'
+#hook_add='''
+#'''
 
 #[[plugins]]
 #repo='liuchengxu/vista.vim'

@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 23-Jun-2019.
+" Last Change: 26-Jun-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -257,6 +257,7 @@ nnoremap <silent> <ESC><ESC><ESC><ESC> :Restart<CR>
 
 "jj,kkでEcs
 inoremap jj <Esc>
+inoremap qq <Esc>
 inoremap hhh <Esc>
 inoremap lll <Esc>
 inoremap kkk <Esc>
