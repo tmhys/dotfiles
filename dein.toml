@@ -1,4 +1,4 @@
-# Last Change: 26-Jun-2019.
+# Last Change: 13-Jul-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -928,71 +928,21 @@ hook_add='''
   	  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
 	endfunction
 
-	"insertでカーソル移動、非推奨
-	"autocmd FileType denite-fileter call s:denite_fileter_my_settings()
-	"function! s:denite_my_settings() abort
-	"  inoremap <silent><buffer> <C-j>   <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-  	"  inoremap <silent><buffer> <C-k>   <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-	"endfunction
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+	function! s:denite_filter_my_settings() abort
+	  call deoplete#custom#buffer_option('auto_complete', v:false)
+	endfunction
+
 
 	call denite#custom#source('grep', 'args', ['', '', '!'])
-"	" Change file/rec command.
-"	call denite#custom#var('file/rec', 'command',
-"	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-"	" For ripgrep
-"	" Note: It is slower than ag
-"	call denite#custom#var('file/rec', 'command',
-"	\ ['rg', '--files', '--glob', '!.git'])
-	" For Pt(the platinum searcher)
-	" NOTE: It also supports windows.
 	call denite#custom#var('file/rec', 'command',
 	\ ['pt', '--follow', '--nocolor', '--nogroup',
 	\  (has('win32') ? '-g:' : '-g='), ''])
-"	" For python script scantree.py
-"	" Read bellow on this file to learn more about scantree.py
-"	call denite#custom#var('file/rec', 'command', ['scantree.py'])
-"
-"	" Change matchers.
-"	call denite#custom#source(
-"	\ 'file_mru', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
-"	call denite#custom#source(
-"	\ 'file/rec', 'matchers', ['matcher/cpsm'])
 "
 	" Change sorters.
-	call denite#custom#source(
-	\ 'file/rec', 'sorters', ['sorter/sublime'])
+"	call denite#custom#source(
+"	\ 'file/rec', 'sorters', ['sorter/sublime'])
 
-	" Add custom menus
-	let s:menus = {}
-
-	let s:menus.zsh = {
-		\ 'description': 'Edit your import zsh configuration'
-		\ }
-	let s:menus.zsh.file_candidates = [
-		\ ['zshrc', '~/.config/zsh/.zshrc'],
-		\ ['zshenv', '~/.zshenv'],
-		\ ]
-
-	let s:menus.my_commands = {
-		\ 'description': 'Example commands'
-		\ }
-	let s:menus.my_commands.command_candidates = [
-		\ ['Split the window', 'vnew'],
-		\ ['Open zsh menu', 'Denite menu:zsh'],
-		\ ['Format code', 'FormatCode', 'go,python'],
-		\ ]
-
-	call denite#custom#var('menu', 'menus', s:menus)
-"
-"	" Ripgrep command on grep source
-"	call denite#custom#var('grep', 'command', ['rg'])
-"	call denite#custom#var('grep', 'default_opts',
-"			\ ['-i', '--vimgrep', '--no-heading'])
-"	call denite#custom#var('grep', 'recursive_opts', [])
-"	call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-"	call denite#custom#var('grep', 'separator', ['--'])
-"	call denite#custom#var('grep', 'final_opts', [])
-"
 	" Pt command on grep source
 	call denite#custom#var('grep', 'command', ['pt'])
 	call denite#custom#var('grep', 'default_opts',
@@ -1018,15 +968,7 @@ hook_add='''
 	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
 	      \ [ '.git/', '.ropeproject/', '__pycache__/',
 	      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
-"
-"	" Custom action
-"	" Note: lambda function is not supported in Vim8.
-"	call denite#custom#action('file', 'test',
-"	      \ {context -> execute('let g:foo = 1')})
-"	call denite#custom#action('file', 'test2',
-"	      \ {context -> denite#do_action(
-"	      \  context, 'open', context['targets'])})
-"
+
 " The prefix key.
 nnoremap    [denite]   <Nop>
 nmap    <Space>f [denite]
@@ -1064,16 +1006,83 @@ nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep -
 " resume previous buffer
 nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -start-filter<CR>
 ".git以下のディレクトリ検索
-nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
-      \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
-      \ file_rec/git
-	  \ -start-filter<CR>
+"nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
+"      \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
+"      \ file_rec/git
+"	  \ -start-filter<CR>
 
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-	function! s:denite_filter_my_settings() abort
-	  call deoplete#custom#buffer_option('auto_complete', v:false)
-	endfunction
+	" Add custom menus
+	let s:menus = {}
 
+	let s:menus.zsh = {
+		\ 'description': 'Edit your import zsh configuration'
+		\ }
+	let s:menus.zsh.file_candidates = [
+		\ ['zshrc', '~/.config/zsh/.zshrc'],
+		\ ['zshenv', '~/.zshenv'],
+		\ ]
+
+	let s:menus.my_commands = {
+		\ 'description': 'Example commands'
+		\ }
+	let s:menus.my_commands.command_candidates = [
+		\ ['Split the window', 'vnew'],
+		\ ['Open zsh menu', 'Denite menu:zsh'],
+		\ ['Format code', 'FormatCode', 'go,python'],
+		\ ]
+
+	call denite#custom#var('menu', 'menus', s:menus)
+
+"denite-startify
+let g:denite_source_alias_aliases = {
+\ "startup_file_mru" : {
+\  "source" : "file/old",
+\ },
+\ "startup_directory_mru" : {
+\  "source" : "directory_mru",
+\ },
+\ "startup_session" : {
+\  "source" : "session",
+\ },
+\}
+
+" 表示数の制限
+call denite#custom#source('startup_file_mru','max_candidates' , 10)
+call denite#custom#source('startup_directory_mru','max_candidates',  10)
+call denite#custom#source('startup_session','max_candidates',  10)
+
+	call denite#custom#source('grep', 'args', ['', '', '!'])
+if !exists("g:denite_source_menu_menus")
+  let g:denite_source_menu_menus = {}
+endif
+
+" :Denite menu:startup での出力リスト
+let g:denite_source_menu_menus.startup = {
+\ "description" : "startup menu",
+\ "command_candidates" : [
+\   [ "edit",  "edit" ],
+\   [ "vimrc",  "edit " . $VIMHOME . "$MYVIMRC"],
+\   [ "gvimrc", "edit " . $VIMHOME . "$MYGVIMRC"],
+\   [ "toml", "edit " .  '~/.vim/rc/dein.toml'],
+\   [ "toml_lazy", "edit " .  '~/.vim/rc/dein_lazy.toml'],
+\   [ "unite-file_mru", "Unite file_mru" ],
+\   [ "unite-directory_mru", "Unite directory_mru" ],
+\ ]
+\}
+
+command! DeniteStartup
+\ Denite
+\ output:echo:"===:📑::Menu:===":! menu:startup
+\ output:echo:":":!
+\ output:echo:"===:♻::MRU:File:===":! startup_file_mru
+\ output:echo:":":!
+\ output:echo:"===:♲::MRU:Directory:===":! startup_directory_mru
+\ -hide-source-names
+\ -no-split
+\ -quick-match
+
+"\ output:echo:"===:⚑ ::Sessions::===":! startup_session
+"\ output:echo:":":!
 "}}}
 '''
 
@@ -1224,6 +1233,11 @@ hook_add='''
 [[plugins]]
 repo='Shougo/vimproc.vim'
 if="has('nvim')"
+hook_add='''
+'''
+
+[[plugins]]
+repo='mhinz/vim-signify'
 hook_add='''
 '''
 

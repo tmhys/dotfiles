@@ -379,7 +379,7 @@ augroup reload_vimrc
 	autocmd!
 augroup END
 	autocmd reload_vimrc BufWritePost $MYVIMRC nested source $MYVIMRC
-	autocmd reload_vimrc BufWritePost $MYGVIMRC if has('gui_running') nested source $MYGVIMRC
+	autocmd reload_vimrc BufWritePost $MYGVIMRC source $MYGVIMRC
 	autocmd reload_vimrc BufWritePost $MYVIMRC nested call lightline#update()
 	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\dein.toml nested call dein#recache_runtimepath()
 	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\color.toml nested call dein#recache_runtimepath()
