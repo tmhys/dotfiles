@@ -1,4 +1,4 @@
-# Last Change: 13-Jul-2019.
+# Last Change: 29-Jul-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -373,11 +373,6 @@ hook_add='''
 
 [[plugins]]
 repo='kmnk/vim-unite-giti'
-hook_add='''
-'''
-
-[[plugins]]
-repo='kmnk/denite-dirmark'
 hook_add='''
 '''
 
@@ -923,8 +918,8 @@ hook_add='''
   	  nnoremap <silent><buffer><expr> <C-a>   denite#do_map('do_action', 'my_file_rec')
   	  nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
   	  nnoremap <silent><buffer><expr> <C-g>   denite#do_map('do_action', 'grep')
-  	  nnoremap <silent><buffer><expr> <C-n>   denite#do_map('do_action', 'dwm_new')
-  	  nnoremap <silent><buffer><expr> <C-x>   denite#do_map('do_action', 'quick_move')
+  	  nnoremap <silent><buffer><expr> <C-n>   denite#do_map('redraw')
+  	  nnoremap <silent><buffer><expr> <C-x>   denite#do_map('quick_move')
   	  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
 	endfunction
 
@@ -933,6 +928,7 @@ autocmd FileType denite-filter call s:denite_filter_my_settings()
 	  call deoplete#custom#buffer_option('auto_complete', v:false)
 	endfunction
 
+	call denite#custom#var('session', 'path', '~\.vim\session')
 
 	call denite#custom#source('grep', 'args', ['', '', '!'])
 	call denite#custom#var('file/rec', 'command',
@@ -991,10 +987,8 @@ nnoremap <silent> [denite]b :<C-u>Denite buffer -start-filter<CR>
 nnoremap <silent> [denite]r :<C-u>Denite register -start-filter<CR>
 "最近使用したファイル一覧
 nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
-"nnoremap <silent> [denite]m :<C-u>Denite file_mru -start-filter<CR>
 "バッファ内検索
 nnoremap <silent> [denite]<Space> :<C-u>Denite line -start-filter<CR>
-"nnoremap <silent> <expr><Space>l ":<C-u>DeniteWithCursorWord line<CR>"
 ""ブックマーク一覧
 "nnoremap <silent> [denite]c :<C-u>Denite b-cursor-wrap=true -highlight-mode-insert=Search bookmark<CR>
 ""ブックマークに追加
@@ -1006,10 +1000,10 @@ nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep -
 " resume previous buffer
 nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -start-filter<CR>
 ".git以下のディレクトリ検索
-"nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
-"      \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
-"      \ file_rec/git
-"	  \ -start-filter<CR>
+nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
+      \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
+      \ file_rec/git
+	  \ -start-filter<CR>
 
 	" Add custom menus
 	let s:menus = {}
@@ -1033,31 +1027,18 @@ nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -star
 
 	call denite#custom#var('menu', 'menus', s:menus)
 
-"denite-startify
-let g:denite_source_alias_aliases = {
-\ "startup_file_mru" : {
-\  "source" : "file/old",
-\ },
-\ "startup_directory_mru" : {
-\  "source" : "directory_mru",
-\ },
-\ "startup_session" : {
-\  "source" : "session",
-\ },
-\}
+"denite-startify{{{
+	call denite#custom#alias('source', 'startup_file_mru', 'file/old')
+	call denite#custom#source('startup_file_mru','max_candidates' , 10)
+	call denite#custom#alias('source', 'startup_session', 'session')
+	call denite#custom#source('startup_session','max_candidates',  10)
 
-" 表示数の制限
-call denite#custom#source('startup_file_mru','max_candidates' , 10)
-call denite#custom#source('startup_directory_mru','max_candidates',  10)
-call denite#custom#source('startup_session','max_candidates',  10)
-
-	call denite#custom#source('grep', 'args', ['', '', '!'])
 if !exists("g:denite_source_menu_menus")
   let g:denite_source_menu_menus = {}
 endif
 
 " :Denite menu:startup での出力リスト
-let g:denite_source_menu_menus.startup = {
+let s:menus.startup = {
 \ "description" : "startup menu",
 \ "command_candidates" : [
 \   [ "edit",  "edit" ],
@@ -1065,25 +1046,37 @@ let g:denite_source_menu_menus.startup = {
 \   [ "gvimrc", "edit " . $VIMHOME . "$MYGVIMRC"],
 \   [ "toml", "edit " .  '~/.vim/rc/dein.toml'],
 \   [ "toml_lazy", "edit " .  '~/.vim/rc/dein_lazy.toml'],
-\   [ "unite-file_mru", "Unite file_mru" ],
-\   [ "unite-directory_mru", "Unite directory_mru" ],
 \ ]
 \}
 
 command! DeniteStartup
 \ Denite
-\ output:echo:"===:📑::Menu:===":! menu:startup
-\ output:echo:":":!
-\ output:echo:"===:♻::MRU:File:===":! startup_file_mru
-\ output:echo:":":!
-\ output:echo:"===:♲::MRU:Directory:===":! startup_directory_mru
-\ -hide-source-names
-\ -no-split
-\ -quick-match
+\ output:echo"===:⚑ ::Sessions::===":Denite startup_session
+\ output:echo":":!
+\ output:echo"===:📑::Menu:===":Denite menu:startup
+\ output:echo":":!
+\ output:echo"===:♻::MRU:File:===":Denite startup_file_mru
+\ output:echo":":!
+\ -source-names={hide}
+\ -split=no
+\ -quick-move="immediately"
 
-"\ output:echo:"===:⚑ ::Sessions::===":! startup_session
-"\ output:echo:":":!
+nnoremap denitestart :Denite output:echo"===:⚑ ::Sessions::===":Denite startup_session<CR>
+
 "}}}
+"}}}
+'''
+
+[[plugins]]
+repo='kmnk/denite-dirmark'
+depends = ['Shougo/denite.nvim']
+hook_add='''
+'''
+
+[[plugins]]
+repo='rafi/vim-denite-session'
+depends = ['Shougo/denite.nvim']
+hook_add='''
 '''
 
 [[plugins]]
@@ -1112,7 +1105,7 @@ inoremap <expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%
 				\ : smartchr#one_of(' = ', ' == ', '=')
 
 " 下記の文字は連続して現れることがまれなので、二回続けて入力したら改行する
-inoremap <expr> } smartchr#one_of('}', '}<cr>')
+"inoremap <expr> } smartchr#one_of('}', '}<cr>')
 inoremap <expr> ; smartchr#one_of(';', ';<cr>')
 " 「->」は入力しづらいので、..で置換え
 inoremap <expr> . smartchr#loop('.', '->', '...')
