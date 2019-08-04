@@ -1,4 +1,4 @@
-# Last Change: 29-Jul-2019.
+# Last Change: 04-Aug-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -393,6 +393,18 @@ let g:tagbar_type_seq = {
 	\ ],
 	\ 'sort' : 0
 \ }
+let g:tagbar_type_asciidoc = {
+    \ 'ctagstype' : 'asciidoc',
+    \ 'kinds' : [
+        \ 'h:table of contents',
+        \ 'a:anchors:1',
+        \ 't:titles:1',
+        \ 'n:includes:1',
+        \ 'i:images:1',
+        \ 'I:inline images:1'
+    \ ],
+    \ 'sort' : 0
+\ }
 "}}}
 '''
 
@@ -585,7 +597,7 @@ nmap <space>g [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
 nnoremap <silent> [fugitive]a :Gwrite<CR>
 nnoremap <silent> [fugitive]c :Gcommit-v<CR>
-nnoremap <silent> [fugitive]p :Gpush origin master
+nnoremap <silent> [fugitive]p :Gpush origin master<CR>
 nnoremap <silent> [fugitive]b :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
@@ -986,7 +998,8 @@ nnoremap <silent> [denite]b :<C-u>Denite buffer -start-filter<CR>
 "レジスタ一覧
 nnoremap <silent> [denite]r :<C-u>Denite register -start-filter<CR>
 "最近使用したファイル一覧
-nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
+"nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
+nnoremap <silent> [denite]m :<C-u>Denite file/old <CR>
 "バッファ内検索
 nnoremap <silent> [denite]<Space> :<C-u>Denite line -start-filter<CR>
 ""ブックマーク一覧
