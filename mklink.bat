@@ -1,4 +1,4 @@
-REM Last Change: 31-Jul-2019.
+REM Last Change: 02-Aug-2019.
 REM Maintainer:  TH
 
 REM Scoopインストール
@@ -12,8 +12,11 @@ REM Scoopでbucket install
 scoop bucket add iyokan-jp https://github.com/tetradice/scoop-iyokan-jp
 scoop bucket add jp https://github.com/rkbk60/scoop-for-jp
 
+REM gitからvimrcをpull
+REM
+
 REM Scoopで各種インストール
-scoop install emacs-nt vim-kaoriya winmerge-jp 7zip ag bat fd fzf less make pt sudo
+scoop install emacs-nt vim-kaoriya winmerge-jp 7zip ag bat fd fzf less make pt sudo ctags REM 同名のアプリが別bucketにある場合はどうなる
 scoop install main/sudo
 sudo scoop install cica -g
 

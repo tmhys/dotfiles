@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 23-Jun-2019.
+" Last Change: 04-Aug-2019.
 " Maintainer:  TH
 
 "Neovim{{{
@@ -49,7 +49,7 @@ if !has('nvim')
 	SM 5
 "透過
 	autocmd FocusGained * set transparency=250
-	autocmd FocusLost * set transparency=20
+	autocmd FocusLost * set transparency=200
 endif
 "}}}
 
