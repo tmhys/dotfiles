@@ -942,10 +942,19 @@ autocmd FileType denite-filter call s:denite_filter_my_settings()
 
 	call denite#custom#var('session', 'path', '~\.vim\session')
 
-	call denite#custom#source('grep', 'args', ['', '', '!'])
 	call denite#custom#var('file/rec', 'command',
 	\ ['pt', '--follow', '--nocolor', '--nogroup',
 	\  (has('win32') ? '-g:' : '-g='), ''])
+	"call denite#custom#source('grep', 'args', ['', '', '!'])
+	"let s:ignore_globs = ['.git', '.svn', 'node_module']
+	"call denite#custom#var('file/rec', 'command',
+	"\ ['pt', '--follow',]
+	"\+ map(deepcopy(s:ignore_globs),
+	"\{k, v -> '--ignore='.v}) +
+	"\['--nocolor', '--nogroup',
+	"\  (has('win32') ? '-g:' : '-g='), '']
+	"\ )
+	"call denite#custom#source('file/rec', 'max_candidates', '50000')
 "
 	" Change sorters.
 "	call denite#custom#source(
