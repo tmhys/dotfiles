@@ -1,4 +1,4 @@
-# Last Change: 04-Aug-2019.
+# Last Change: 12-Aug-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -16,6 +16,7 @@ let g:switch_custom_definitions =
 [[plugins]]
 repo='airblade/vim-gitgutter'
 hook_add='''
+let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
 '''
 
 [[plugins]]
@@ -32,7 +33,7 @@ hook_add='''
 repo='scrooloose/nerdtree'
 hook_add='''
 "NERDTree{{{
-map <C-n> :NERDTreeToggle<CR>
+"curren directoryに合わせて NERDTreeToggle
 nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 """bookmark初期表示
 let g:NERDTreeShowBookmarks=1
@@ -158,6 +159,56 @@ map g/ <Plug>(incsearch-stay)
 
 [[plugins]]
 repo='h1mesuke/unite-outline'
+hook_add='''
+'''
+
+[[plugins]]
+repo='ryanoasis/vim-devicons'
+hook_add='''
+"devicon{{{
+if hostname()!=?'localhost'
+	" adding the custom source to unite
+	let g:webdevicons_enable_unite = 1
+	" adding the column to vimfiler
+	let g:webdevicons_enable_vimfiler = 1
+	" Adding the custom source to denite
+	let g:webdevicons_enable_denite = 0
+
+	let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+	" adding the flags to NERDTree
+	let g:webdevicons_enable_nerdtree = 1
+	" whether or not to show the nerdtree brackets around flags
+	let g:webdevicons_conceal_nerdtree_brackets = 1
+	" Force extra padding in NERDTree so that the filetype icons line up vertically
+	let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+
+	" change the default character when no match found
+	"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '?'
+
+	" set a byte character marker (BOM) utf-8 symbol when retrieving file encoding
+	" disabled by default with no value
+	let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
+
+	" enable folder/directory glyph flag (disabled by default with 0)
+	let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+	" enable open and close folder/directory glyph flags (disabled by default with 0)
+	let g:DevIconsEnableFoldersOpenClose = 1
+
+	" enable pattern matching glyphs on folder/directory (enabled by default with 1)
+	let g:DevIconsEnableFolderPatternMatching = 1
+
+	" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
+	let g:DevIconsEnableFolderExtensionPatternMatching = 0
+	if exists("g:loaded_webdevicons")
+	  call webdevicons#refresh()
+	endif
+endif
+"}}}
+'''
+
+[[plugins]]
+repo='delphinus/lightline-delphinus'
 hook_add='''
 '''
 
@@ -393,15 +444,10 @@ let g:tagbar_type_seq = {
 	\ ],
 	\ 'sort' : 0
 \ }
-let g:tagbar_type_asciidoc = {
-    \ 'ctagstype' : 'asciidoc',
+let g:tagbar_type_toml = {
+    \ 'ctagstype' : 'toml',
     \ 'kinds' : [
-        \ 'h:table of contents',
-        \ 'a:anchors:1',
-        \ 't:titles:1',
-        \ 'n:includes:1',
-        \ 'i:images:1',
-        \ 'I:inline images:1'
+        \ 'p:plugin'
     \ ],
     \ 'sort' : 0
 \ }
@@ -516,18 +562,6 @@ hook_add='''
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 "}}}
-'''
-
-[[plugins]]
-repo='roxma/nvim-yarp'
-if="! has('nvim')"
-hook_add='''
-'''
-
-[[plugins]]
-repo='roxma/vim-hug-neovim-rpc'
-if="! has('nvim')"
-hook_add='''
 '''
 
 [[plugins]]
@@ -677,51 +711,7 @@ repo='Yggdroot/indentLine'
 hook_add='''
 "indentLine{{{
 set list listchars=tab:\¦\ "spaceが必要
-let g:indentLine_fileTypeExclude = ['help', 'nerdtree','startify','taskpaper','unite','tagbar']
-"}}}
-'''
-
-[[plugins]]
-repo='ryanoasis/vim-devicons'
-hook_add='''
-"devicon{{{
-if hostname()!=?'localhost'
-	" adding the custom source to unite
-	let g:webdevicons_enable_unite = 1
-	" adding the column to vimfiler
-	let g:webdevicons_enable_vimfiler = 1
-
-	let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-	" adding the flags to NERDTree
-	let g:webdevicons_enable_nerdtree = 1
-	" whether or not to show the nerdtree brackets around flags
-	let g:webdevicons_conceal_nerdtree_brackets = 1
-	" Force extra padding in NERDTree so that the filetype icons line up vertically
-	let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
-
-	" change the default character when no match found
-	"let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = '?'
-
-	" set a byte character marker (BOM) utf-8 symbol when retrieving file encoding
-	" disabled by default with no value
-	let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''
-
-	" enable folder/directory glyph flag (disabled by default with 0)
-	let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-	" enable open and close folder/directory glyph flags (disabled by default with 0)
-	let g:DevIconsEnableFoldersOpenClose = 1
-
-	" enable pattern matching glyphs on folder/directory (enabled by default with 1)
-	let g:DevIconsEnableFolderPatternMatching = 1
-
-	" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
-	let g:DevIconsEnableFolderExtensionPatternMatching = 0
-	if exists("g:loaded_webdevicons")
-	  call webdevicons#refresh()
-	endif
-endif
-
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar']
 "}}}
 '''
 
@@ -912,6 +902,8 @@ let g:deoplete#max_list = 10000
 
 [[plugins]]
 repo='Shougo/denite.nvim'
+#depends = ['roxma/nvim-yarp']
+#depends = ['roxma/vim-hug-neovim-rpc']
 hook_add='''
 "Denite{{{
 " Define mappings
@@ -942,10 +934,17 @@ autocmd FileType denite-filter call s:denite_filter_my_settings()
 
 	call denite#custom#var('session', 'path', '~\.vim\session')
 
+	call denite#custom#source('grep', 'args', ['', '', '!'])
+
+	let ignore=&wildignore .
+	\ ',*.pyc,.git,.hg,.svn'
+	call denite#custom#var('file/rec', 'command',
+	\ ['scantree.py', '--ignore', ignore])
+
 	call denite#custom#var('file/rec', 'command',
 	\ ['pt', '--follow', '--nocolor', '--nogroup',
 	\  (has('win32') ? '-g:' : '-g='), ''])
-	"call denite#custom#source('grep', 'args', ['', '', '!'])
+
 	"let s:ignore_globs = ['.git', '.svn', 'node_module']
 	"call denite#custom#var('file/rec', 'command',
 	"\ ['pt', '--follow',]
@@ -994,6 +993,8 @@ nmap    <Space>f [denite]
 nnoremap <silent> [denite]d :<C-u>Denite  -start-filter menu<CR>
 "プラグイン検索
 nnoremap <silent> [denite]p :<C-u>Denite file/rec:~/.cache/dein/repos -start-filter<CR>
+"nnoremap <silent> [denite]p :<C-u>Denite -buffer-name=search file/rec:~/.cache/dein/repos<CR>
+
 "変更履歴
 nnoremap <silent> [denite]c :<C-u>Denite change -start-filter<CR>
 "ヘルプ
@@ -1007,8 +1008,7 @@ nnoremap <silent> [denite]b :<C-u>Denite buffer -start-filter<CR>
 "レジスタ一覧
 nnoremap <silent> [denite]r :<C-u>Denite register -start-filter<CR>
 "最近使用したファイル一覧
-"nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
-nnoremap <silent> [denite]m :<C-u>Denite file/old <CR>
+nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
 "バッファ内検索
 nnoremap <silent> [denite]<Space> :<C-u>Denite line -start-filter<CR>
 ""ブックマーク一覧
@@ -1026,6 +1026,9 @@ nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
       \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
       \ file_rec/git
 	  \ -start-filter<CR>
+"nnoremap <silent> [denite]<C-r> :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
+"nnoremap <silent> [denite]<C-n> :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
+"nnoremap <silent> [denite]<C-p> :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
 
 	" Add custom menus
 	let s:menus = {}
@@ -1087,6 +1090,18 @@ nnoremap denitestart :Denite output:echo"===:⚑ ::Sessions::===":Denite startup
 
 "}}}
 "}}}
+'''
+
+[[plugins]]
+repo='roxma/nvim-yarp'
+if="! has('nvim')"
+hook_add='''
+'''
+
+[[plugins]]
+repo='roxma/vim-hug-neovim-rpc'
+if="! has('nvim')"
+hook_add='''
 '''
 
 [[plugins]]
