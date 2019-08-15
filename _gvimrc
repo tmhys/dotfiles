@@ -5,12 +5,11 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 04-Aug-2019.
+" Last Change: 12-Aug-2019.
 " Maintainer:  TH
 
 "Neovim{{{
 if has('nvim')
-	"Guifont! Ricty Diminished:h12
 	Guifont! Cica:h12
 	call GuiWindowMaximized(1)
 	GuiPopupmenu 0
@@ -48,8 +47,8 @@ if !has('nvim')
 	au GUIEnter * simalt ~x
 	SM 5
 "透過
-	autocmd FocusGained * set transparency=250
-	autocmd FocusLost * set transparency=200
+	autocmd FocusGained * set transparency=240
+	autocmd FocusLost * set transparency=230
 endif
 "}}}
 
@@ -77,4 +76,3 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
-
