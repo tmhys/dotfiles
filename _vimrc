@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 21-Jul-2019.
+" Last Change: 27-Aug-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -66,6 +66,8 @@ endif
 
 "基本設定{{{
 "カラー設定{{{
+"colorscheme自体はtomlファイル内で指定する
+"再読み込みのときのため書いておく
 set background=dark "light dark
 "let ayucolor="light"  "mirage dark
 colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
@@ -91,8 +93,7 @@ set shiftwidth=4
 "set cursorline
 "set cursorcolumn
 set number
-set signcolumn=yes
-
+set signcolumn=yes "カラムのカクカク防止
 filetype plugin on
 "}}}
 
@@ -100,11 +101,12 @@ filetype plugin on
 "set wildmenu wildmode=list:longest,full
 set wildmenu wildmode=full
 
-"Quickfixウィンドウ開く{{{
+"Quickfixウィンドウ開く
 autocmd QuickFixCmdPost *grep* cwindow
-"}}}
+"qfウィンドウを常に最下部で開く
+autocmd FileType qf wincmd J
 
-"{{{
+"grep代替{{{
 if executable('pt')
 	set grepprg=pt\ --nogroup\
 	set grepformat=%f:%l:%c:%m
@@ -169,7 +171,11 @@ set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
+imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"}}}
 
+"python{{{
 let g:python3_host_prog='C:\Python37\python.exe'
 let g:python_host_prog='C:\Python27'
 if !has('nvim')
@@ -222,9 +228,14 @@ endif
 
 "ビープの代わりにビジュアルベル(画面フラッシュ)を使う
 "set visualbell
+
+"その他の設定ファイル読み込み
+runtime! userautoload/*.vim
 "}}}
 
 "キーマップ{{{
+nnoremap ; :
+vnoremap ; :
 nnoremap <M-s> :Startify<CR>
 "command line window
 "nnoremap : q:a
@@ -361,14 +372,18 @@ nnoremap <M-l> <C-w>hdp
 "}}}
 
 ""vimrcの編集再読み込み{{{
-	let $MYSEQRC =expand('$HOME\AppData\Local\nvim\userautoload\SysSeq.vim')
+	let $MYSEQRC =expand('$VIM\vim81\userautoload\SysSeq.vim')
+	let $MYPLUGRC =expand('$VIM\vim81\userautoload\Plugins.vim')
 if has('nvim')
+	let $MYSEQRC =expand('$HOME\AppData\Local\nvim\userautoload\SysSeq.vim')
 	let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.vim')
 	let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
 endif
+
 "編集
 command! Evimrc :e $MYVIMRC
 command! Egvimrc :e $MYGVIMRC
+command! Eplug :e $MYPLUGRC
 command! Etoml :e $HOME\.vim\rc\dein.toml
 command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
 "command! Evimrc :e  $HOME/dotfiles/_vimrc
@@ -378,7 +393,7 @@ command! Esysseq :e $MYSEQRC
 augroup reload_vimrc
 	autocmd!
 augroup END
-	autocmd reload_vimrc BufWritePost $MYVIMRC nested source $MYVIMRC
+	autocmd reload_vimrc BufWritePost $MYVIMRC  source $MYVIMRC
 	autocmd reload_vimrc BufWritePost $MYGVIMRC source $MYGVIMRC
 	autocmd reload_vimrc BufWritePost $MYVIMRC nested call lightline#update()
 	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\dein.toml nested call dein#recache_runtimepath()
@@ -457,6 +472,7 @@ autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
 nnoremap <C-g> :vim /<C-r><C-w>/jg **<CR>
 nnoremap <M-g> :vim //jg **<Left><Left><Left><Left><Left><Left>
 
+"カッコ内操作を便利に(JPキーボード)
 onoremap 8 i(
 onoremap 2 i"
 onoremap 7 i'
@@ -503,6 +519,76 @@ if hostname()!=?'localhost'
 	"command! ImageJ :
 endif
 "}}}
+
+""{{{vim-plug
+"" Specify a directory for plugins
+"call plug#begin('~/.vim/plugged')
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'Yggdroot/indentLine'
+"Plug 'cohama/vim-hier'
+"Plug 'dannyob/quickfixstatus'
+"Plug 'delphinus/lightline-delphinus' |  Plug 'itchyny/lightline.vim'
+"Plug 'delphinus/vim-auto-cursorline'
+"Plug 'deris/vim-shot-f'
+"Plug 'haya14busa/incsearch-fuzzy.vim'
+"Plug 'haya14busa/incsearch.vim'
+"Plug 'junegunn/fzf', has('win32') ? {} : {'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/vim-easy-align'
+"Plug 'kana/vim-smartchr'
+"Plug 'kshenoy/vim-signature'
+"Plug 'machakann/vim-highlightedyank'
+"Plug 'majutsushi/tagbar'
+"Plug 'mhinz/vim-signify'
+"Plug 'miura/ImageJMacro_Highlighter'
+"Plug 'osyo-manga/shabadou.vim'
+"Plug 'osyo-manga/vim-watchdogs'
+"Plug 'qpkorr/vim-renamer'
+"Plug 'rhysd/accelerated-jK'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'scrooloose/nerdtree' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'taku-o/vim-copypath'
+"Plug 'terryma/vim-expand-region'
+"Plug 'thinca/vim-qfreplace'
+"Plug 'thinca/vim-quickrun'
+"Plug 'thinca/vim-singleton'
+"Plug 'travisjeffery/vim-auto-mkdir'
+"Plug 'tyru/open-browser.vim'
+"Plug 'tyru/restart.vim'
+"Plug 'vim-scripts/errormarker.vim'
+"
+""colorscheme
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'lifepillar/vim-solarized8'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'chriskempson/vim-tomorrow-theme'
+"Plug 'cocopon/iceberg.vim'
+"Plug 'gosukiwi/vim-atom-dark'
+"Plug 'itchyny/landscape.vim'
+"Plug 'jacoborus/tender.vim'
+"Plug 'jdkanani/vim-material-theme'
+"Plug 'jnurmine/Zenburn'
+"Plug 'joshdick/onedark.vim'
+"Plug 'junegunn/seoul256.vim'
+"Plug 'morhetz/gruvbox'
+"Plug 'nanotech/jellybeans.vim'
+"Plug 'nerdpad/dracula-vim'
+"Plug 'nightsense/nemo'
+"Plug 'rakr/vim-one'
+"Plug 'sjl/badwolf'
+"Plug 'tomasr/molokai'
+"Plug 'tyrannicaltoucan/vim-quantum'
+"Plug 'vim-scripts/Wombat'
+"Plug 'vim-scripts/dw_colors'
+"Plug 'vim-scripts/newspaper.vim'
+"Plug 'vim-scripts/pyte'
+"Plug 'vim-scripts/sonoma.vim'
+"Plug 'w0ng/vim-hybrid'
+"Plug 'yarisgutierrez/ayu-lightline'
+"
+"" Initialize plugin system
+"call plug#end()
+""}}}
 
 "その他の設定ファイル読み込み
 runtime! userautoload/*.vim
