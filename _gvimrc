@@ -47,8 +47,8 @@ if !has('nvim')
 	au GUIEnter * simalt ~x
 	SM 5
 "透過
-	autocmd FocusGained * set transparency=240
-	autocmd FocusLost * set transparency=230
+	autocmd FocusGained * set transparency=250
+	autocmd FocusLost * set transparency=240
 endif
 "}}}
 
