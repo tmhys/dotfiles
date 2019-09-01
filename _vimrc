@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 27-Aug-2019.
+" Last Change: 01-Sep-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -487,6 +487,7 @@ set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
 
 set tags=.tags;$HOME
+set tags=./tags;,tags;
 
 function! s:execute_ctags() abort
   " 探すタグファイル名
