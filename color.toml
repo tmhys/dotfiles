@@ -1,4 +1,4 @@
-# Last Change: 11-May-2019.
+# Last Change: 24-Aug-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -128,6 +128,11 @@ hook_add='''
 
 [[plugins]]
 repo='w0ng/vim-hybrid'
+hook_add='''
+'''
+
+[[plugins]]
+repo='yarisgutierrez/ayu-lightline'
 hook_add='''
 '''
 

@@ -1,13 +1,11 @@
-# Last Change: 29-Jul-2019.
+# Last Change: 15-Aug-2019.
 # Maintainer:  TH
 
 [[plugins]]
 repo='mhinz/vim-startify'
-#on_event = 'GUIEnter' # ←こうなる（インサートモードに入ったら読み込む）
 on_cmd =  ['<M-s>', 'Startify']
-##on_i =1
 hook_source='''
-"" Startify{{{
+"mhinz/vim-startify{{{
 nnoremap <M-s> :Startify<CR>
 "autocmd TabNew * :Startify
 noremap <Space>tn :<C-u>tabnew<CR> :Startify<CR>

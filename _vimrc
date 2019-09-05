@@ -486,8 +486,7 @@ let g:tagbar_ctags_bin = 'C:\tools\ctags58j2bin\ctags.exe'
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
 
-set tags=.tags;$HOME
-set tags=./tags;,tags;
+set tags=./tags;,tags;$HOME
 
 function! s:execute_ctags() abort
   " 探すタグファイル名
