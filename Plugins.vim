@@ -179,14 +179,18 @@ nnoremap <silent> [unite]c :<C-u>Unite bookmark -direction=belowright <CR>
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd -direction=belowright <CR>
 "Sessions
 nnoremap <silent> [unite]s :<C-u>Unite session -direction=belowright <CR>
-""ColorScheme
-"nnoremap <silent> [unite]i :<C-u>Unite colorscheme  -auto-preview -direction=belowright <CR>
+"Change
+nnoremap <silent> [unite]d :<C-u>Unite change -direction=belowright <CR>
+"ColorScheme
+nnoremap <silent> [unite]i :<C-u>Unite colorscheme  -auto-preview -direction=belowright <CR>
 "help
-nnoremap <silent> [unite]p :<C-u>Unite help -direction=belowright <CR>
+nnoremap <silent> [unite]h :<C-u>Unite help -direction=belowright <CR>
+"plugin
+nnoremap <silent> [unite]p :call unite#start([['file_rec', '$HOME\.vim\plugged']]) <CR>
 "tags
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd -direction=belowright <CR>
+nnoremap <silent> [unite]a :<C-u>Unite tag -direction=belowright <CR>
 "All
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd -direction=belowright <CR>
+nnoremap <silent> [unite]<Space> :<C-u>Unite session buffer file_mru -direction=belowright <CR>
 
 
 "uniteを開いている間のキーマッピング
