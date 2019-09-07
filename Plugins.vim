@@ -1,4 +1,4 @@
-" Last Change: 01-Sep-2019.
+" Last Change: 07-Sep-2019.
 " Maintainer: TH
 
 ""mhinz/vim-startify{{{
@@ -139,6 +139,147 @@ let g:deoplete#max_list = 10000
 "imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<Down>" : "\<TAB>"
 "inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"}}}
+"Shougo/unite.vim{{{
+" Uniteセッション
+" セッションを自動で保存
+let g:unite_source_session_enable_auto_save = 1
+" セッションを自動で読み込み
+"autocmd VimEnter * UniteSessionLoad
+
+" The prefix key.
+nnoremap    [unite]   <Nop>
+nmap    <Space>f [unite]
+
+" 挿入モードで開始する
+let g:unite_enable_start_insert=1
+"最近開いたファイル履歴の保存数
+let g:unite_source_file_mru_limit = 50
+" 大文字小文字を区別しない
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+"file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
+let g:unite_source_file_mru_filename_format = ''
+
+" ESCキーを2回押すと終了する
+"au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+"au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+"現在開いているファイルのディレクトリ下のファイル一覧。
+"開いていない場合はカレントディレクトリ
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files -direction=belowright file<CR>
+"バッファ一覧
+nnoremap <silent> [unite]b :<C-u>Unite -direction=belowright buffer<CR>
+"レジスタ一覧
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register -direction=belowright register<CR>
+"最近使用したファイル一覧
+nnoremap <silent> [unite]m :<C-u>Unite file_mru -direction=belowright <CR>
+"ブックマーク一覧
+nnoremap <silent> [unite]c :<C-u>Unite bookmark -direction=belowright <CR>
+"ブックマークに追加
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd -direction=belowright <CR>
+"Sessions
+nnoremap <silent> [unite]s :<C-u>Unite session -direction=belowright <CR>
+""ColorScheme
+"nnoremap <silent> [unite]i :<C-u>Unite colorscheme  -auto-preview -direction=belowright <CR>
+"help
+nnoremap <silent> [unite]p :<C-u>Unite help -direction=belowright <CR>
+"tags
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd -direction=belowright <CR>
+"All
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd -direction=belowright <CR>
+
+
+"uniteを開いている間のキーマッピング
+autocmd FileType unite call s:unite_my_settings()
+"関数検索
+nnoremap <silent> [unite]u :<C-u>Unite outline<CR>
+
+
+function! s:unite_my_settings() "{{{
+	"ESCでuniteを終了
+	nmap <buffer> <ESC> <Plug>(unite_exit)
+	"入力モードのときjjでノーマルモードに移動
+	imap <buffer> jj <Plug>(unite_insert_leave)
+	"入力モードのときctrl+wでバックスラッシュも削除
+	imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+
+	"inoremap <buffer> <C-j> <Plug>(unite_select_next_line)
+	"inoremap <buffer> <C-k> <Plug>(unite_select_previous_line)
+
+	""ctrl+jで縦に分割して開く
+	"nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+	"inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+	""ctrl+lで横に分割して開く
+	"nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+	"inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+	""ctrl+oでその場所に開く
+	"nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+	"inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+	nnoremap <silent> <buffer> <expr> <S-CR> unite#do_action('vsplit')
+	inoremap <silent> <buffer> <expr> <S-CR> unite#do_action('vsplit')
+endfunction "}}}
+
+""{{{start
+"let g:unite_source_alias_aliases = {
+"\ "startup_file_mru" : {
+"\  "source" : "file_mru",
+"\ },
+"\ "startup_directory_mru" : {
+"\  "source" : "directory_mru",
+"\ },
+"\}
+"
+""\ "startup_session" : {
+""\  "source" : "session",
+""\ },
+"
+"" 表示数の制限
+"call unite#custom_max_candidates("startup_file_mru", 10)
+"call unite#custom_max_candidates("startup_directory_mru", 10)
+"
+"if !exists("g:unite_source_menu_menus")
+"  let g:unite_source_menu_menus = {}
+"endif
+"
+"" :Unite menu:startup での出力リスト
+"let g:unite_source_menu_menus.startup = {
+"\ "description" : "startup menu",
+"\ "command_candidates" : [
+"\   [ "edit",  "edit" ],
+"\   [ "vimrc",  "edit " . $VIMHOME . "$MYVIMRC"],
+"\   [ "gvimrc", "edit " . $VIMHOME . "$MYGVIMRC"],
+"\   [ "toml", "edit " .  '~/.vim/rc/dein.toml'],
+"\   [ "toml_lazy", "edit " .  '~/.vim/rc/dein_lazy.toml'],
+"\   [ "unite-file_mru", "Unite file_mru" ],
+"\   [ "unite-directory_mru", "Unite directory_mru" ],
+"\ ]
+"\}
+"
+""\   [ "vimfiler", "VimFiler" ],
+""\   [ "unite-howm", "Unite qfixhowm/new qfixhowm:nocache -hide-source-names -no-split" ],
+""\   [ "unite-update", "Unite -log neobundle/update" ],
+"
+"command! UniteStartup
+"\ Unite
+"\ output:echo:"===:📑::Menu:===":! menu:startup
+"\ output:echo:":":!
+"\ output:echo:"===:♻::MRU:File:===":! startup_file_mru
+"\ output:echo:":":!
+"\ output:echo:"===:♲::MRU:Directory:===":! startup_directory_mru
+"\ -hide-source-names
+"\ -no-split
+"\ -quick-match
+"
+""\ output:echo:"===:⚑ ::Sessions::===":! startup_session
+""\ output:echo:":":!
+"
+"augroup startup
+"    autocmd!
+"    autocmd VimEnter * nested :UniteStartup
+"augroup END
+"
+"nnoremap <M-s> :UniteStartup<CR>
+""}}}
 "}}}
 "haya14busa/incsearch-fuzzy.vim{{{
 map z/ <Plug>(incsearch-fuzzy-/)
@@ -608,81 +749,89 @@ let g:quickrun_config["seq"] = {
 	  	\}
 nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR><M-q>
 "}}}
-"junegunn/fzf.vim{{{
-"command! -bang -nargs=* Pt
-"  \ call fzf#vim#grep(
-"  \   'pt --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-"  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"  \   <bang>0)
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-nnoremap    [fzf]   <Nop>
-nmap    <Space>f [fzf]
-
-nnoremap [fzf]b :Buffers<CR>
-nnoremap [fzf]x :Commands<CR>
-nnoremap [fzf]f :Files<CR>
-nnoremap [fzf]g :Ag<CR>
-nnoremap [fzf]i :Colors<CR>
-nnoremap [fzf]a :Marks<CR>
-nnoremap [fzf]p :Files ~/.cache/dein/repos<CR>
-nnoremap [fzf]<Space> BLines<CR>
-nnoremap [fzf]m :History<CR>
-nnoremap [fzf]t :Tags<CR>
-
-"Command	List
-"Files [PATH]	Files (similar to :FZF)
-"GFiles [OPTS]	Git files (git ls-files)
-"GFiles?	Git files (git status)
-"Buffers	Open buffers
-"Colors	Color schemes
-"Ag [PATTERN]	ag search result (ALT-A to select all, ALT-D to deselect all)
-"Lines [QUERY]	Lines in loaded buffers
-"BLines [QUERY]	Lines in the current buffer
-"Tags [QUERY]	Tags in the project (ctags -R)
-"BTags [QUERY]	Tags in the current buffer
-"Marks	Marks
-"Windows	Windows
-"Locate PATTERN	locate command output
-"History	v:oldfiles and open buffers
-"History:	Command history
-"History/	Search history
-"Snippets	Snippets (UltiSnips)
-"Commits	Git commits (requires fugitive.vim)
-"BCommits	Git commits for the current buffer
-"Commands	Commands
-"Maps	Normal mode mappings
-"Helptags	Help tags
-"Filetypes	File types
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-"  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-"  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-"  \   <bang>0)
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-"}}}
+""junegunn/fzf.vim{{{
+""command! -bang -nargs=* Pt
+""  \ call fzf#vim#grep(
+""  \   'pt --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+""  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+""  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+""  \   <bang>0)
+"
+""" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+""command! -bang -nargs=* Rg
+""  \ call fzf#vim#grep(
+""  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+""  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+""  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+""  \   <bang>0)
+"
+"command! -bang -nargs=? -complete=dir Files
+"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"
+"nnoremap    [fzf]   <Nop>
+"nmap    <Space>f [fzf]
+"
+"nnoremap [fzf]b :Buffers<CR>
+"nnoremap [fzf]x :Commands<CR>
+"nnoremap [fzf]f :Files<CR>
+"nnoremap [fzf]g :Ag<CR>
+"nnoremap [fzf]i :Colors<CR>
+"nnoremap [fzf]a :Marks<CR>
+"nnoremap [fzf]p :Files ~/.cache/dein/repos<CR>
+"nnoremap [fzf]<Space> BLines<CR>
+"nnoremap [fzf]m :History<CR>
+"nnoremap [fzf]t :Tags<CR>
+"
+""Command	List
+""Files [PATH]	Files (similar to :FZF)
+""GFiles [OPTS]	Git files (git ls-files)
+""GFiles?	Git files (git status)
+""Buffers	Open buffers
+""Colors	Color schemes
+""Ag [PATTERN]	ag search result (ALT-A to select all, ALT-D to deselect all)
+""Lines [QUERY]	Lines in loaded buffers
+""BLines [QUERY]	Lines in the current buffer
+""Tags [QUERY]	Tags in the project (ctags -R)
+""BTags [QUERY]	Tags in the current buffer
+""Marks	Marks
+""Windows	Windows
+""Locate PATTERN	locate command output
+""History	v:oldfiles and open buffers
+""History:	Command history
+""History/	Search history
+""Snippets	Snippets (UltiSnips)
+""Commits	Git commits (requires fugitive.vim)
+""BCommits	Git commits for the current buffer
+""Commands	Commands
+""Maps	Normal mode mappings
+""Helptags	Help tags
+""Filetypes	File types
+"
+"let g:fzf_action = {
+"  \ 'ctrl-t': 'tab split',
+"  \ 'ctrl-x': 'split',
+"  \ 'ctrl-v': 'vsplit' }
+"
+""command! -bang -nargs=* Rg
+""  \ call fzf#vim#grep(
+""  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+""  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+""  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+""  \   <bang>0)
+"
+"" Customize fzf colors to match your color scheme
+"let g:fzf_colors =
+"\ { 'fg':      ['fg', 'Normal'],
+"  \ 'bg':      ['bg', 'Normal'],
+"  \ 'hl':      ['fg', 'Comment'],
+"  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"  \ 'hl+':     ['fg', 'Statement'],
+"  \ 'info':    ['fg', 'PreProc'],
+"  \ 'border':  ['fg', 'Ignore'],
+"  \ 'prompt':  ['fg', 'Conditional'],
+"  \ 'pointer': ['fg', 'Exception'],
+"  \ 'marker':  ['fg', 'Keyword'],
+"  \ 'spinner': ['fg', 'Label'],
+"  \ 'header':  ['fg', 'Comment'] }
+""}}}
