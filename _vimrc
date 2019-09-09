@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 05-Sep-2019.
+" Last Change: 09-Sep-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -244,11 +244,11 @@ nnoremap s "_s
 nnoremap S "_S
 
 "---<F6>タイムスタンプを挿入{{{
-nmap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR><ESC>
+nnoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR><ESC>
 inoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR>
-nmap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by <ESC>
+nnoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by <ESC>
 inoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by
-nmap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by <ESC>
+nnoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by <ESC>
 inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
 "}}}
 
@@ -332,15 +332,21 @@ nnoremap <silent> <Space>cd :<C-u>CD<CR>
 nnoremap <silent> <Space><Space> *N
 
 "カーソル下の単語をハイライトしてから置換する
-nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
+nnoremap # <Space><Space>:%s/<C-r>///g<Left><Left>
 "ヤンクした部分を置換する
-nmap <M-3> :%s/<C-r>"///g<Left><Left>
+nnoremap <M-3> :%s/<C-r>"///g<Left><Left>
+"選択範囲内で置換
+vnoremap # :s///gc<Left><Left><Left><Left>
 
 "1行挿入する
 nnoremap <Space>o :<C-u>call append(expand('.'), '')<Cr>j
 
 "改行する
-nnoremap <M-o> i<CR><ESC>
+"nnoremap <M-o> i<CR><ESC>
+imap <S-CR> <End><CR>
+imap <C-S-CR> <Up><End><CR>
+nnoremap <S-CR> mzo<ESC>`z
+nnoremap <C-S-CR> mzO<ESC>`z
 
 "ESCで確実にIMEオフ
 inoremap <ESC> <ESC>:set iminsert=0<CR>
