@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 15-Sep-2019.
+" Last Change: 16-Sep-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -145,6 +145,7 @@ colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarize
 set termguicolors
 "}}}
 
+"vimprocのwindows dllダウンロード
 let g:vimproc#download_windows_dll = 1
 
 "ステータスライン常時表示
@@ -163,7 +164,8 @@ set shiftwidth=4
 "set cursorline
 "set cursorcolumn
 set number
-set signcolumn=yes "カラムのカクカク防止
+"カラムのカクカク防止
+set signcolumn=yes
 filetype plugin on
 "}}}
 
@@ -291,6 +293,41 @@ endif
 
 "その他の設定ファイル読み込み
 runtime! userautoload/*.vim
+
+""vimrcの編集再読み込み{{{
+	let $MYSEQRC =expand('$VIM\vim81\userautoload\SysSeq.vim')
+	let $MYPLUGRC =expand('$VIM\vim81\userautoload\Plugins.vim')
+if has('nvim')
+	let $MYSEQRC =expand('$HOME\AppData\Local\nvim\userautoload\SysSeq.vim')
+	let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.vim')
+	let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
+endif
+
+"編集
+command! Evimrc :e $MYVIMRC
+command! Egvimrc :e $MYGVIMRC
+command! Eplug :e $MYPLUGRC
+command! Etoml :e $HOME\.vim\rc\dein.toml
+command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
+command! Esysseq :e $MYSEQRC
+"保存したら再読み込み
+augroup reload_vimrc
+	autocmd!
+	autocmd BufWritePost '$HOME/dotfiles/_vimrc'  source $MYVIMRC
+	autocmd BufWritePost $MYVIMRC  source $MYVIMRC
+	autocmd BufWritePost $HOME/dotfiles/_vimrc source $MYGVIMRC
+	autocmd BufWritePost $MYGVIMRC source $MYGVIMRC
+	autocmd BufWritePost $HOME\.vim\rc\dein.toml nested call dein#recache_runtimepath()
+	autocmd BufWritePost $HOME\.vim\rc\color.toml nested call dein#recache_runtimepath()
+	autocmd BufWritePost $HOME\.vim\rc\dein_lazy.toml nested call dein#recache_runtimepath()
+	autocmd BufWritePost $HOME\.vim\rc\dein.toml nested source $MYVIMRC
+	autocmd BufWritePost $HOME\.vim\rc\color.toml nested source $MYVIMRC
+	autocmd BufWritePost $HOME\.vim\rc\dein_lazy.toml nested source $MYVIMRC
+	autocmd BufWritePost SysSeq.vim nested source $MYGVIMRC
+	autocmd WinEnter,BufEnter,SessionLoadPost * call lightline#update()
+	autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
+"}}}
 "}}}
 
 "キーマップ{{{
@@ -417,6 +454,27 @@ nnoremap <Space>o :<C-u>call append(expand('.'), '')<Cr>j
 "ESCで確実にIMEオフ
 inoremap <ESC> <ESC>:set iminsert=0<CR>
 
+"コマンドモード{{{
+" 一文字戻る
+cnoremap <C-h> <Home>
+" カーソルの下の文字を削除
+"cnoremap <C-BS> <Left>
+" 行末へ移動
+cnoremap <C-l> <Del>
+" 一文字進む
+cnoremap <C-l> <End>
+" コマンドライン履歴を一つ進む
+cnoremap <C-j> <Right>
+" コマンドライン履歴を一つ戻る
+cnoremap <C-k> <Down>
+" 前の単語へ移動
+cnoremap <C-b> <S-Left>
+" 次の単語へ移動
+cnoremap <C-b> <S-Right>
+"検索時の / のエスケープを簡単に入力
+cnoremap <C-o> <C-\>e(getcmdtype() == '/' <Bar><Bar> getcmdtype() == '?') ? '\<' . getcmdline() . '\>' : getcmdline()<CR>
+"}}}
+
 "括弧補完{{{
 inoremap { {}<ESC>i
 inoremap [ []<ESC>i
@@ -431,40 +489,6 @@ nnoremap <M-j> ]c
 nnoremap <M-k> [c
 nnoremap <M-h> <C-w>hdo
 nnoremap <M-l> <C-w>hdp
-"}}}
-
-""vimrcの編集再読み込み{{{
-	let $MYSEQRC =expand('$VIM\vim81\userautoload\SysSeq.vim')
-	let $MYPLUGRC =expand('$VIM\vim81\userautoload\Plugins.vim')
-if has('nvim')
-	let $MYSEQRC =expand('$HOME\AppData\Local\nvim\userautoload\SysSeq.vim')
-	let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.vim')
-	let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
-endif
-
-"編集
-command! Evimrc :e $MYVIMRC
-command! Egvimrc :e $MYGVIMRC
-command! Eplug :e $MYPLUGRC
-command! Etoml :e $HOME\.vim\rc\dein.toml
-command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
-"command! Evimrc :e  $HOME/dotfiles/_vimrc
-"command! Egvimrc :e $HOME/dotfiles/_gvimrc
-command! Esysseq :e $MYSEQRC
-"保存したら再読み込み
-augroup reload_vimrc
-	autocmd!
-augroup END
-	autocmd reload_vimrc BufWritePost $MYVIMRC  source $MYVIMRC
-	autocmd reload_vimrc BufWritePost $MYGVIMRC source $MYGVIMRC
-	autocmd reload_vimrc BufWritePost $MYVIMRC nested call lightline#update()
-	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\dein.toml nested call dein#recache_runtimepath()
-	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\color.toml nested call dein#recache_runtimepath()
-	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\dein_lazy.toml nested call dein#recache_runtimepath()
-	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\dein.toml nested source $MYVIMRC
-	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\color.toml nested source $MYVIMRC
-	autocmd reload_vimrc BufWritePost $HOME\.vim\rc\dein_lazy.toml nested source $MYVIMRC
-	autocmd reload_vimrc BufWritePost SysSeq.vim nested source $MYGVIMRC
 "}}}
 
 "{{{Quickfix windowトグル
