@@ -1,4 +1,4 @@
-# Last Change: 15-Sep-2019.
+# Last Change: 21-Sep-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -29,6 +29,13 @@ hook_add='''
 [[plugins]]
 repo='Shougo/neomru.vim'
 hook_add='''
+'''
+
+[[plugins]]
+repo='soramugi/auto-ctags.vim'
+hook_add='''
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.git', '.svn']
 '''
 
 [[plugins]]
@@ -212,6 +219,11 @@ endif
 [[plugins]]
 repo='delphinus/lightline-delphinus'
 hook_add='''
+"let g:lightline_delphinus_use_powerline_glyphs = 1
+"let g:lightline_delphinus_use_nerd_fonts_glyphs = 1
+""let g:lightline_delphinus_colorscheme = 1
+"let g:lightline_delphinus_tagbar_enable = 1
+"let g:lightline_delphinus_gitgutter_enable = 1
 '''
 
 [[plugins]]
@@ -220,29 +232,25 @@ hook_add='''
 "itchyny/lightline.vim{{{
 "カラースキームを自動で変更
 augroup LightlineColorscheme
-		  autocmd!
-		  autocmd ColorScheme * call s:lightline_update()
-		augroup END
-		function! s:lightline_update()
-		  if !exists('g:loaded_lightline')
-		    return
-		  endif
-		  try
-		    if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
-		      let g:lightline.colorscheme =
-		            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
-		      call lightline#init()
-		      call lightline#colorscheme()
-		      call lightline#update()
-		    endif
-		  catch
-		  endtry
-		endfunction
-
-""常時ステータスライン表示
-set laststatus=2
-			"\ 'colorscheme': 'solarized',
-
+	  autocmd!
+	  autocmd ColorScheme * call s:lightline_update()
+augroup END
+function! s:lightline_update()
+  if !exists('g:loaded_lightline')
+	    return
+  endif
+	  try
+   if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
+      let g:lightline.colorscheme =
+            \ substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
+      call lightline#init()
+      call lightline#colorscheme()
+      call lightline#update()
+    endif
+  catch
+  endtry
+endfunction
+"
 if hostname()!=?'localhost'
 		let g:lightline = {
             \ 'active': {
@@ -471,29 +479,12 @@ let g:tagbar_type_toml = {
 '''
 
 [[plugins]]
-repo='houtsnip/vim-emacscommandline'
+repo='mattn/benchvimrc-vim'
 hook_add='''
-"majutsushi/tagbar{{{
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_seq = {
-	\ 'ctagstype' : 'seq',
-	\ 'kinds' : [
-		\ 'u:unit'
-	\ ],
-	\ 'sort' : 0
-\ }
-let g:tagbar_type_toml = {
-    \ 'ctagstype' : 'toml',
-    \ 'kinds' : [
-        \ 'p:plugin'
-    \ ],
-    \ 'sort' : 0
-\ }
-"}}}
 '''
 
 [[plugins]]
-repo='mattn/benchvimrc-vim'
+repo='hrj/vim-DrawIt'
 hook_add='''
 '''
 
@@ -944,21 +935,60 @@ let g:deoplete#max_list = 10000
 repo='Shougo/denite.nvim'
 hook_add='''
 "Shougo/denite.nvim{{{
+let s:denite_win_width_percent = 0.85
+let s:denite_win_height_percent = 0.7
+
+" Change denite default options
+call denite#custom#option('_', {
+    \ 'prompt': '$ ',
+    \ 'cached_filter': v:true,
+    \ 'cursor_shape': v:true,
+    \ 'cursor_wrap': v:true,
+    \ 'statusline': v:false,
+    \ 'highlight_filter_background': 'DeniteFilter',
+    \ 'highlight_matched_char': 'Underlined',
+    \ 'split': 'floating',
+    \ })
+
+augroup DeniteDetectSize
+	    autocmd!
+		autocmd VimResized * call <SID>denite_detect_size()
+augroup END
+
+function! s:denite_detect_size() abort
+	call denite#custom#option('_', {
+        \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+        \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+        \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+        \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+        \ })
+endfunction
+call s:denite_detect_size()
+
+augroup transparent-windows
+	autocmd!
+	autocmd FileType denite set winblend=10  " こちらも 5 〜 30 で試してみてください。
+	autocmd FileType denite-filter set winblend=10
+augroup END
+
 " Define mappings
 	autocmd FileType denite call s:denite_my_settings()
 	function! s:denite_my_settings() abort
 	  nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+	  nnoremap <silent><buffer><expr> <S-CR> denite#do_map('do_action', 'vsplit')
 	  nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
 	  nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
 	  nnoremap <silent><buffer><expr> q denite#do_map('quit')
 	  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
   	  nnoremap <silent><buffer><expr> a denite#do_map('open_filter_buffer')
 	  nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
-	  nnoremap <silent><buffer> <C-j> j
-  	  nnoremap <silent><buffer> <C-k> k
   	  nnoremap <silent><buffer><expr> <BS>    denite#do_map('move_up_path')
   	  nnoremap <silent><buffer><expr> <C-a>   denite#do_map('do_action', 'my_file_rec')
   	  nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
+  	  nnoremap <silent><buffer><expr> <C-k>   denite#do_map('quit')
+  	  nnoremap <silent><buffer><expr> <C-j>   denite#do_map('quit')
+  	  nnoremap <silent><buffer><expr> <C-h>   denite#do_map('quit')
+  	  nnoremap <silent><buffer><expr> <C-h>   denite#do_map('quit')
   	  nnoremap <silent><buffer><expr> <C-g>   denite#do_map('do_action', 'grep')
   	  nnoremap <silent><buffer><expr> <C-n>   denite#do_map('redraw')
   	  nnoremap <silent><buffer><expr> <C-x>   denite#do_map('quick_move')
