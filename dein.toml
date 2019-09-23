@@ -1,4 +1,4 @@
-# Last Change: 21-Sep-2019.
+# Last Change: 23-Sep-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -229,6 +229,8 @@ hook_add='''
 [[plugins]]
 repo='itchyny/lightline.vim'
 hook_add='''
+command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
+
 "itchyny/lightline.vim{{{
 "カラースキームを自動で変更
 augroup LightlineColorscheme
@@ -256,7 +258,7 @@ if hostname()!=?'localhost'
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive','dir', 'filename' ],
-			\			  ['currentfuncname']]
+			\			  ['currenttag', 'anzu']]
             \ },
             \ 'component_function': {
             \   'fugitive': 'LightLineFugitive',
@@ -266,14 +268,17 @@ if hostname()!=?'localhost'
             \   'filename': 'LightLineFilename',
             \   'filetype': 'LightLineFiletype',
             \   'fileformat': 'LightLineFileformat',
-			\	'currentfuncname': 'LightLineCfi',
-  			\ 'percent': 'MyLightLinePercent',
-  			\ 'lineinfo': 'MyLightLineLineInfo'
+			\	'anzu': 'anzu#search_status',
+			\	'currenttag': 'LightLineCurrentTag',
+  			\   'percent': 'MyLightLinePercent',
+  			\   'lineinfo': 'MyLightLineLineInfo'
             \ },
 		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
 
+			"\	'currentfuncname': 'LightLineCfi',
+		"{{{separator candidates
 			"\ 'separator': { 'left': "\ue0b4", 'right': "\ue0b6" },
 			"\ 'subseparator': { 'left': "\ue0b5", 'right': "\ue0b7" }
 		    "\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
@@ -284,6 +289,7 @@ if hostname()!=?'localhost'
       		"\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
             "\ 'separator': { 'left': '', 'right': '' },
             "\ 'subseparator': { 'left': '', 'right': '' }
+		"}}}
 endif
 
 function! LightLineModified()
@@ -325,9 +331,14 @@ endfunction
 
 function! LightLineFilename()
     return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-                \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+	        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        	\  &ft == 'unite' ? unite#get_status_string() :
+        	\  &ft == 'vimshell' ? vimshell#get_status_string() :
+        	\ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        	\ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
+                "\ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                "\ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 
 function! LightLineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -337,70 +348,23 @@ function! LightLineFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
-function! LightLineCfi()
-  if exists('*cfi#format')
-    return cfi#format('%s', '')
-  end
-  return ''
+function! LightLineCurrentTag()
+  return tagbar#currenttag('%s', '')
 endfunction
 
-let g:lightline.tab = {
-      \ 'active': [ 'tabnum', 'filename', 'modified' ],
-      \ 'inactive': [ 'tabnum', 'filename', 'modified' ]
-      \ }
+"function! LightLineCfi()
+"  if exists('*cfi#format')
+"    return cfi#format('%s', '')
+"  end
+"  return ''
+"endfunction
 
-let g:lightline.tab_component_function = {
-      \ 'filename': 'LightlineTabFilename',
-      \ 'modified': 'lightline#tab#modified',
-      \ 'readonly': 'lightline#tab#readonly',
-      \ 'tabnum': 'lightline#tab#tabnum' }
-
-function! LightlineTabFilename(n) abort
-  let buflist = tabpagebuflist(a:n)
-  let winnr = tabpagewinnr(a:n)
-  let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
-  return _ !=# '' ? _ : '[No Name]'
-endfunction
-
-"{{{
-"
-function! LightlineModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightlineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-endfunction
-
-function! LightlineFilename()
-  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-endfunction
-
-function! LightlineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-    return fugitive#head()
-  else
-    return ''
-  endif
-endfunction
-
-function! LightlineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightlineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-"}}}
+let g:lightline.tabline = {'right': [['cd']]}
+let g:lightline.component = {'cd': '%.35(%{fnamemodify(getcwd(), ":~")}%)'}
 
 "NERDTreeで表示省略
 function! MyLightLinePercent()
-  if &ft !=? 'nerdtree'
+  if &ft !=? 'nerdtree' || &ft !=? 'tagbar'
     return line('.') * 100 / line('$') . '%'
   else
     return ''
@@ -408,7 +372,7 @@ function! MyLightLinePercent()
 endfunction
 
 function! MyLightLineLineInfo()
-  if &ft !=? 'nerdtree'
+  if &ft !=? 'nerdtree' || &ft !=? 'tagbar'
     return line('.').':'. col('.')
   else
     return ''
@@ -940,15 +904,15 @@ let s:denite_win_height_percent = 0.7
 
 " Change denite default options
 call denite#custom#option('_', {
-    \ 'prompt': '$ ',
+    \ 'prompt': '>',
     \ 'cached_filter': v:true,
-    \ 'cursor_shape': v:true,
-    \ 'cursor_wrap': v:true,
     \ 'statusline': v:false,
     \ 'highlight_filter_background': 'DeniteFilter',
     \ 'highlight_matched_char': 'Underlined',
     \ 'split': 'floating',
     \ })
+"    \ 'cursor_shape': v:true,
+"    \ 'cursor_wrap': v:true,
 
 augroup DeniteDetectSize
 	    autocmd!
@@ -1263,6 +1227,19 @@ let g:hier_highlight_group_qfi = ""
 [[plugins]]
 repo='osyo-manga/shabadou.vim'
 hook_add='''
+'''
+
+[[plugins]]
+repo='osyo-manga/vim-anzu'
+hook_add='''
+" mapping
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+" clear status
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 '''
 
 [[plugins]]
