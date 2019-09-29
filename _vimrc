@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 21-Sep-2019.
+" Last Change: 26-Sep-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -338,7 +338,7 @@ inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
 "}}}
 
 "ESCキー連打
-nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>
+nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>:AnzuClearSearchStatus<CR>
 nnoremap <silent> <ESC><ESC><ESC><ESC> :Restart<CR>
 
 "jj,kkでEcs
@@ -362,9 +362,9 @@ nnoremap <S-h> ^
 nnoremap <S-l> $
 " vを二回で行末まで選択
 vnoremap v $h
-" 検索後にジャンプした際に検索単語を画面中央に持ってくる
-nnoremap n nzz
-nnoremap N Nzz
+"" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+"nnoremap n nzz
+"nnoremap N Nzz
 "インサートモードでも移動
 inoremap <c-j> <down>
 inoremap <c-k> <up>
