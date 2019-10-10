@@ -1,4 +1,4 @@
-# Last Change: 23-Sep-2019.
+# Last Change: 06-Oct-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -554,8 +554,8 @@ hook_add='''
 repo='rhysd/accelerated-jK'
 hook_add='''
 "rhysd/accelerated-jK{{{
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
+nmap j <Plug>(accelerated_jk_gj_position)
+nmap k <Plug>(accelerated_jk_gk_position)
 "}}}
 '''
 
@@ -1235,11 +1235,11 @@ hook_add='''
 " mapping
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
+"nmap * <Plug>(anzu-star-with-echo)
+"nmap # <Plug>(anzu-sharp-with-echo)
 
 " clear status
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+"nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 '''
 
 [[plugins]]
@@ -1325,5 +1325,23 @@ hook_add='''
 [[plugins]]
 repo='mhinz/vim-signify'
 hook_add='''
+'''
+
+[[plugins]]
+repo='ripxorip/aerojump.nvim'
+if="has('nvim')"
+hook_add='''
+nmap <S-space> <Plug>(AerojumpSpace)
+'''
+
+[[plugins]]
+repo='liuchengxu/vim-clap'
+if="!has('nvim')"
+hook_add='''
+" The prefix key.
+nnoremap    [clap]   <Nop>
+nmap    <Space>c [clap]
+
+nnoremap <silent> [clap]f :<C-u>Clap files<CR>
 '''
 
