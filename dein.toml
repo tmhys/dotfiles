@@ -1,4 +1,4 @@
-# Last Change: 06-Oct-2019.
+# Last Change: 11-Oct-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -1336,12 +1336,21 @@ nmap <S-space> <Plug>(AerojumpSpace)
 
 [[plugins]]
 repo='liuchengxu/vim-clap'
-if="!has('nvim')"
 hook_add='''
 " The prefix key.
 nnoremap    [clap]   <Nop>
 nmap    <Space>c [clap]
 
 nnoremap <silent> [clap]f :<C-u>Clap files<CR>
+
+let g:clap_provider_quick_open = {
+      \ 'source': ['~/.vimrc', '~/.spacevim', '~/.bashrc', '~/.tmux.conf'],
+      \ 'sink': 'e',
+      \ }
+'''
+
+[[plugins]]
+repo='tamago324/vim-clap-help'
+hook_add='''
 '''
 
