@@ -1,4 +1,4 @@
-# Last Change: 11-Oct-2019.
+# Last Change: 12-Oct-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -31,12 +31,12 @@ repo='Shougo/neomru.vim'
 hook_add='''
 '''
 
-[[plugins]]
-repo='soramugi/auto-ctags.vim'
-hook_add='''
-let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['.git', '.svn']
-'''
+#[[plugins]]
+#repo='soramugi/auto-ctags.vim'
+#hook_add='''
+#let g:auto_ctags = 1
+#let g:auto_ctags_directory_list = ['.git', '.svn']
+#'''
 
 [[plugins]]
 repo='scrooloose/nerdtree'
@@ -229,9 +229,8 @@ hook_add='''
 [[plugins]]
 repo='itchyny/lightline.vim'
 hook_add='''
-command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
-
 "itchyny/lightline.vim{{{
+command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
 "カラースキームを自動で変更
 augroup LightlineColorscheme
 	  autocmd!
@@ -254,6 +253,20 @@ function! s:lightline_update()
 endfunction
 "
 if hostname()!=?'localhost'
+		let g:lightline = {
+    \ 'mode_map': {'c': 'NORMAL'},
+    \ 'active': {
+    \   'right': [
+    \     [ 'syntaxcheck' ],
+    \   ]
+    \ },
+    \ 'component_expand': {
+    \   'syntaxcheck': 'qfstatusline#Update',
+    \ },
+    \ 'component_type': {
+    \   'syntaxcheck': 'error',
+    \ },
+    \ }
 		let g:lightline = {
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
@@ -304,7 +317,6 @@ function! LightLineModified()
     endif
 endfunction
 
-                "\ ('' != expand('%:.') ? expand('%:.') : '') .
 function! LightLineDir()
     return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
                 \ ('' != expand('%:p:h:t') ? expand('%:p:h:t') : '') .
@@ -352,13 +364,6 @@ function! LightLineCurrentTag()
   return tagbar#currenttag('%s', '')
 endfunction
 
-"function! LightLineCfi()
-"  if exists('*cfi#format')
-"    return cfi#format('%s', '')
-"  end
-"  return ''
-"endfunction
-
 let g:lightline.tabline = {'right': [['cd']]}
 let g:lightline.component = {'cd': '%.35(%{fnamemodify(getcwd(), ":~")}%)'}
 
@@ -378,18 +383,6 @@ function! MyLightLineLineInfo()
     return ''
   endif
 endfunction
-"function! MyMode()
-"  let fname = expand('%:t')
-"  return fname == '__Tagbar__' ? 'Tagbar' :
-"        \ fname == 'ControlP' ? 'CtrlP' :
-"        \ fname == '__Gundo__' ? 'Gundo' :
-"        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-"        \ fname =~ 'NERD_tree' ?  NERDTreeStatusline():
-"        \ &ft == 'unite' ? 'Unite' :
-"        \ &ft == 'vimfiler' ? 'VimFiler' :
-"        \ &ft == 'vimshell' ? 'VimShell' :
-"        \ winwidth(0) > 60 ? lightline#mode() : ''
-"endfunction
 
 "}}}
 '''
@@ -554,8 +547,8 @@ hook_add='''
 repo='rhysd/accelerated-jK'
 hook_add='''
 "rhysd/accelerated-jK{{{
-nmap j <Plug>(accelerated_jk_gj_position)
-nmap k <Plug>(accelerated_jk_gk_position)
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
 "}}}
 '''
 
@@ -1213,14 +1206,14 @@ vmap <C-v> <Plug>(expand_region_shrink)
 repo='cohama/vim-hier'
 hook_add='''
 "cohama/vim-hier{{{
-"let g:hier_highlight_group_qfi  = ''
-" エラーを赤字の波線で
-execute "highlight qf_error_ucurl gui=undercurl guisp=Red"
-let g:hier_highlight_group_qf  = "qf_error_ucurl"
-" 警告を青字の波線で
-execute "highlight qf_warning_ucurl gui=undercurl guisp=Blue"
-let g:hier_highlight_group_qfw = "qf_warning_ucurl"
-let g:hier_highlight_group_qfi = ""
+"gvimrcに書かないと反映されない
+"" エラーを赤字の波線で
+"execute "highlight qf_error_ucurl gui=undercurl guisp=Red"
+"let g:hier_highlight_group_qf  = "qf_error_ucurl"
+"" 警告を青字の波線で
+"execute "highlight qf_warning_ucurl gui=undercurl guisp=Blue"
+"let g:hier_highlight_group_qfw = "qf_warning_ucurl"
+"let g:hier_highlight_group_qfi = ""
 "}}}
 '''
 
@@ -1246,45 +1239,25 @@ nmap N <Plug>(anzu-N-with-echo)
 repo='osyo-manga/vim-watchdogs'
 hook_add='''
 "osyo-manga/vim-watchdogs{{{
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-      "\ 'outputter/error/success' : 'buffer',
 "コンパイラexeにパスを通しておくこと
 "コンパイルしたいディレクトリに移動してから実行
-"本文中にsequence E177Hと書いてあるファイルがメイン
-
-let g:quickrun_config["seq"] = {
-		\ "exec":"SeqCnv_V340.exe 00_Main -l"
-	  	\}
-let &errorformat = '%WWarning: %f (%l):%m,%EError: %f (%l):%m'
-
+let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config = {
 \   "seq/watchdogs_checker" : {
 \       "type" : "watchdogs_checker/SeqCnv_V340",
 \ 		"exec":"SeqCnv_V340.exe 00_Main -l",
-\   },
-\   "watchdogs_checker/_" : {
-\       "hook/close_quickfix/enable_exit" : 1,
-\		"hook/echo/enable" : 1,
-\		"hook/echo/output_success": "> No Errors Found.",
-\		"hook/echo/output_failure": "> Errors Found.",
+\		"quickfix/errorformat": "%WWarning: %f (%l):%m,%EError: %f (%l):%m",
 \   },
 \}
 
-let s:config = {
-\   "watchdogs_checker/seq" : {
-\ 		"exec":"SeqCnv_V340.exe 00_Main -l",
-\   },
-\}
-
-"let g:watchdogs_check_CursorHold_enable = {
-"	\	"seq" : 1
-"	\}
-"let g:watchdogs_check_BufWritePost_enable= {
-"	\	"seq" : 1
-"	\}
 let g:watchdogs_check_BufWritePost_enable=1
-
 let g:quickrun_config._ = {
+	  \ "hook/close_quickfix/enable_exit" : 1,
+	  \ "hook/qfstatusline_update/enable_exit" : 1,
+      \ "hook/qfstatusline_update/priority_exit" : 3,
+	  \ "hook/echo/enable" : 1,
+	  \ "hook/echo/output_success": "> Success.",
+	  \ "hook/echo/output_failure": "> Errors Found.",
       \ 'outputter' : 'error',
       \ 'runner'    : 'vimproc',
       \ 'runner/vimproc/updatetime' : 40,
@@ -1294,14 +1267,9 @@ let g:quickrun_config._ = {
       \ 'outputter/buffer/split'  : ':rightbelow 8sp',
       \ 'outputter/buffer/close_on_empty' : 1
       \ }
-unlet s:config
-call watchdogs#setup(g:quickrun_config)
 
-"実行時に前回の表示内容をクローズ&保存してから実行
-"let g:quickrun_no_default_key_mappings = 1
-let g:quickrun_config["seq"] = {
-		\ "exec":"SeqCnv_V340.exe 00_Main -l"
-	  	\}
+" :WatchdogsRun後にlightline.vimを更新
+let g:Qfstatusline#UpdateCmd = function('lightline#update')
 nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR><M-q>
 "}}}
 '''
@@ -1354,3 +1322,22 @@ repo='tamago324/vim-clap-help'
 hook_add='''
 '''
 
+[[plugins]]
+repo='tpope/vim-markdown'
+hook_add='''
+'''
+
+[[plugins]]
+repo='kannokanno/previm'
+hook_add='''
+'''
+
+[[plugins]]
+repo='KazuakiM/vim-qfsigns'
+hook_add='''
+'''
+
+[[plugins]]
+repo='KazuakiM/vim-qfstatusline'
+hook_add='''
+'''
