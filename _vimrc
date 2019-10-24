@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 26-Sep-2019.
+" Last Change: 16-Oct-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -138,7 +138,7 @@ endif
 "カラー設定{{{
 "colorscheme自体はtomlファイル内で指定する
 "再読み込みのときのため書いておく
-set background=dark "light dark
+set background=light "light dark
 "let ayucolor="light"  "mirage dark
 colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "Chrosh上で256カラーに必要
@@ -211,8 +211,9 @@ set showmatch
 set matchtime=1
 "}}}
 
-"文末スペース削除{{{
+"文末スペース / 連続改行削除{{{
 autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/\n\{3,}/\r\r/ge
 "}}}
 
 "補完{{{
@@ -355,8 +356,9 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
 " j, k による移動を折り返されたテキストでも自然に振る舞うように変更
-nnoremap j gj
-nnoremap k gk
+" acceleratedと干渉する
+"nnoremap j gj
+"nnoremap k gk
 "S-h,S-lで行頭、行末
 nnoremap <S-h> ^
 nnoremap <S-l> $
