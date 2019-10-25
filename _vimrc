@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 16-Oct-2019.
+" Last Change: 25-Oct-2019.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -221,8 +221,9 @@ set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
-imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"neosnippetの設定で定義する
+"imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "}}}
 
 "python{{{
