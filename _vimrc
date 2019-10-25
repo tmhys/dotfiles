@@ -11,76 +11,6 @@
 "最初に書く必要あり
 set encoding=utf8
 
-""{{{vim-plug
-"" Specify a directory for plugins
-"call plug#begin('~/.vim/plugged')
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"Plug 'Yggdroot/indentLine'
-"Plug 'cohama/vim-hier'
-"Plug 'dannyob/quickfixstatus'
-"Plug 'delphinus/lightline-delphinus' |  Plug 'itchyny/lightline.vim'
-"Plug 'delphinus/vim-auto-cursorline'
-"Plug 'deris/vim-shot-f'
-"Plug 'haya14busa/incsearch-fuzzy.vim'
-"Plug 'haya14busa/incsearch.vim'
-"Plug 'junegunn/fzf', has('win32') ? {} : {'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-"Plug 'junegunn/vim-easy-align'
-"Plug 'kana/vim-smartchr'
-"Plug 'kshenoy/vim-signature'
-"Plug 'machakann/vim-highlightedyank'
-"Plug 'majutsushi/tagbar'
-"Plug 'mhinz/vim-signify'
-"Plug 'miura/ImageJMacro_Highlighter'
-"Plug 'osyo-manga/shabadou.vim'
-"Plug 'osyo-manga/vim-watchdogs'
-"Plug 'qpkorr/vim-renamer'
-"Plug 'rhysd/accelerated-jK'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'scrooloose/nerdtree' | Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-"Plug 'taku-o/vim-copypath'
-"Plug 'terryma/vim-expand-region'
-"Plug 'thinca/vim-qfreplace'
-"Plug 'thinca/vim-quickrun'
-"Plug 'thinca/vim-singleton'
-"Plug 'travisjeffery/vim-auto-mkdir'
-"Plug 'tyru/open-browser.vim'
-"Plug 'tyru/restart.vim'
-"Plug 'vim-scripts/errormarker.vim'
-"
-""colorscheme
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'lifepillar/vim-solarized8'
-"Plug 'arcticicestudio/nord-vim'
-"Plug 'ayu-theme/ayu-vim'
-"Plug 'chriskempson/vim-tomorrow-theme'
-"Plug 'cocopon/iceberg.vim'
-"Plug 'gosukiwi/vim-atom-dark'
-"Plug 'itchyny/landscape.vim'
-"Plug 'jacoborus/tender.vim'
-"Plug 'jdkanani/vim-material-theme'
-"Plug 'jnurmine/Zenburn'
-"Plug 'joshdick/onedark.vim'
-"Plug 'junegunn/seoul256.vim'
-"Plug 'morhetz/gruvbox'
-"Plug 'nanotech/jellybeans.vim'
-"Plug 'nerdpad/dracula-vim'
-"Plug 'nightsense/nemo'
-"Plug 'rakr/vim-one'
-"Plug 'sjl/badwolf'
-"Plug 'tomasr/molokai'
-"Plug 'tyrannicaltoucan/vim-quantum'
-"Plug 'vim-scripts/Wombat'
-"Plug 'vim-scripts/dw_colors'
-"Plug 'vim-scripts/newspaper.vim'
-"Plug 'vim-scripts/pyte'
-"Plug 'vim-scripts/sonoma.vim'
-"Plug 'w0ng/vim-hybrid'
-"Plug 'yarisgutierrez/ayu-lightline'
-"
-"" Initialize plugin system
-"call plug#end()
-""}}}
-
 ""dein{{{
 if executable('git')
 	if &compatible
@@ -121,7 +51,6 @@ if executable('git')
 
 	"Required
 	filetype plugin indent on
-	syntax enable
 
 	" If you want to install not installed plugins on startup.
 	if dein#check_install()
@@ -138,8 +67,9 @@ endif
 "カラー設定{{{
 "colorscheme自体はtomlファイル内で指定する
 "再読み込みのときのため書いておく
+syntax enable
 set background=light "light dark
-"let ayucolor="light"  "mirage dark
+let ayucolor="light"  "mirage dark
 colorscheme ayu "nord atom-dark badwolf hybrid newspaper wombat molokai solarized evening desert morning elford koehler landscape papercolor one seoul256
 "Chrosh上で256カラーに必要
 set termguicolors
@@ -529,7 +459,7 @@ autocmd BufReadPost * delmarks!
 
 ""スクリプト実行{{{
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!py -3 %<CR>
+autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!py -3.7 %<CR>
 autocmd BufNewFile,BufRead *.pl nnoremap <C-e> :!perl %<CR>
 autocmd BufNewFile,BufRead *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
