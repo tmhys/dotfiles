@@ -58,6 +58,8 @@ let g:startify_bookmarks = [
 "if has('win64')
  let g:startify_custom_header =
             \ startify#fortune#cowsay('', '═','║','╔','╗','╝','╚')
+ let g:startify_custom_header =
+             \ 'startify#center(startify#fortune#cowsay())'
  "endif
 "if has('nvim')
 " let g:startify_custom_header =

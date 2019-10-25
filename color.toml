@@ -1,4 +1,4 @@
-# Last Change: 24-Aug-2019.
+# Last Change: 24-Oct-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -135,6 +135,16 @@ hook_add='''
 repo='yarisgutierrez/ayu-lightline'
 hook_add='''
 '''
+
+[[plugins]]
+repo='nightsense/snow'
+hook_add='''
+'''
+
+#[[plugins]]
+#repo='google/vim-colorscheme-primary'
+#hook_add='''
+#'''
 
 [[plugins]]
 repo='ayu-theme/ayu-vim'

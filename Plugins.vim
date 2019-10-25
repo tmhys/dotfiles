@@ -1,4 +1,4 @@
-" Last Change: 07-Sep-2019.
+" Last Change: 12-Oct-2019.
 " Maintainer: TH
 
 ""mhinz/vim-startify{{{
@@ -121,24 +121,6 @@ call NERDTreeHighlightFile('SEQ',    'Red',     'none', 'red',     'NONE')
 call NERDTreeHighlightFile('s',      'Red',     'none', 'red',     'NONE')
 call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', 'NONE')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
-"}}}
-"Shougo/neosnippet.vim{{{
-let g:neosnippet#snippets_directory='~/.vim/my_snippet'
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni_patterns = {}
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#enable_camel_case = 0
-let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 0
-let g:deoplete#max_list = 10000
-"" SuperTab like snippets behavior
-"imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<Down>" : "\<TAB>"
-"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-"smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "}}}
 "Shougo/unite.vim{{{
 " Uniteセッション
@@ -557,8 +539,8 @@ let g:tagbar_type_toml = {
 au BufRead,BufNewFile *.ijm set filetype=ijmacro
 "}}}
 "rhysd/accelerated-jK{{{
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
+nmap j <Plug>(accelerated_jk_gj_position)
+nmap k <Plug>(accelerated_jk_gk_position)
 "}}}
 "simeji/winresizer{{{
 "キーマップ変更
@@ -685,14 +667,14 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 "}}}
 "cohama/vim-hier{{{
-"let g:hier_highlight_group_qfi  = ''
-" エラーを赤字の波線で
-execute "highlight qf_error_ucurl gui=undercurl guisp=Red"
-let g:hier_highlight_group_qf  = "qf_error_ucurl"
-" 警告を青字の波線で
-execute "highlight qf_warning_ucurl gui=undercurl guisp=Blue"
-let g:hier_highlight_group_qfw = "qf_warning_ucurl"
-let g:hier_highlight_group_qfi = ""
+""let g:hier_highlight_group_qfi  = ''
+"" エラーを赤字の波線で
+"execute "highlight qf_error_ucurl gui=undercurl guisp=Red"
+"let g:hier_highlight_group_qf  = "qf_error_ucurl"
+"" 警告を青字の波線で
+"execute "highlight qf_warning_ucurl gui=undercurl guisp=Blue"
+"let g:hier_highlight_group_qfw = "qf_warning_ucurl"
+"let g:hier_highlight_group_qfi = ""
 "}}}
 "osyo-manga/vim-watchdogs{{{
 let g:quickrun_config = get(g:, 'quickrun_config', {})
