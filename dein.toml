@@ -1,4 +1,4 @@
-# Last Change: 12-Oct-2019.
+# Last Change: 25-Oct-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -50,7 +50,6 @@ let g:NERDTreeShowBookmarks=1
 let g:NERDTreeLimitedSyntax = 1
 
 let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
-
 
 ""NERDTree矢印変更{{{
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
@@ -114,10 +113,20 @@ let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 0
 let g:deoplete#max_list = 10000
-" SuperTab like snippets behavior
-imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+inoremap <expr><CR> pumvisible() ? deoplete#close_popup() : "<CR>"
+
+inoremap <expr><S-TAB>
+			\pumvisible() ? "\<C-p>" :
+			\"\<S-TAB>"
+imap <expr><TAB>
+		    \ pumvisible() ? "\<C-n>" :
+		    \ neosnippet#expandable_or_jumpable() ?
+		    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+		    \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
 "}}}
 '''
 
@@ -254,21 +263,8 @@ endfunction
 "
 if hostname()!=?'localhost'
 		let g:lightline = {
-    \ 'mode_map': {'c': 'NORMAL'},
-    \ 'active': {
-    \   'right': [
-    \     [ 'syntaxcheck' ],
-    \   ]
-    \ },
-    \ 'component_expand': {
-    \   'syntaxcheck': 'qfstatusline#Update',
-    \ },
-    \ 'component_type': {
-    \   'syntaxcheck': 'error',
-    \ },
-    \ }
-		let g:lightline = {
             \ 'active': {
+\    'right': [['lineinfo'],['percent'],[ 'fileformat','fileencoding','filetype', 'qfstatusline']],
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive','dir', 'filename' ],
 			\			  ['currenttag', 'anzu']]
@@ -286,10 +282,13 @@ if hostname()!=?'localhost'
   			\   'percent': 'MyLightLinePercent',
   			\   'lineinfo': 'MyLightLineLineInfo'
             \ },
+\    'component_expand': {'qfstatusline': 'qfstatusline#Update'},
+\    'component_type':   {'qfstatusline': 'error'},
 		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
 
+let g:Qfstatusline#UpdateCmd = function('lightline#update')
 			"\	'currentfuncname': 'LightLineCfi',
 		"{{{separator candidates
 			"\ 'separator': { 'left': "\ue0b4", 'right': "\ue0b6" },
@@ -364,6 +363,7 @@ function! LightLineCurrentTag()
   return tagbar#currenttag('%s', '')
 endfunction
 
+"右上にworking directory
 let g:lightline.tabline = {'right': [['cd']]}
 let g:lightline.component = {'cd': '%.35(%{fnamemodify(getcwd(), ":~")}%)'}
 
@@ -897,8 +897,10 @@ let s:denite_win_height_percent = 0.7
 
 " Change denite default options
 call denite#custom#option('_', {
+    \ 'winheight': '40*winheight(0)/100',
     \ 'prompt': '>',
     \ 'cached_filter': v:true,
+    \ 'start_filter': v:true,
     \ 'statusline': v:false,
     \ 'highlight_filter_background': 'DeniteFilter',
     \ 'highlight_matched_char': 'Underlined',
@@ -1015,27 +1017,25 @@ nnoremap    [denite]   <Nop>
 nmap    <Space>f [denite]
 
 "メニュー
-nnoremap <silent> [denite]d :<C-u>Denite  -start-filter menu<CR>
+nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
 "プラグイン検索
-nnoremap <silent> [denite]p :<C-u>Denite file/rec:~/.cache/dein/repos -start-filter<CR>
-"nnoremap <silent> [denite]p :<C-u>Denite -buffer-name=search file/rec:~/.cache/dein/repos<CR>
-
+nnoremap <silent> [denite]p :<C-u>Denite file/rec:~/.cache/dein/repos<CR>
 "変更履歴
-nnoremap <silent> [denite]c :<C-u>Denite change -start-filter<CR>
+nnoremap <silent> [denite]c :<C-u>Denite change <CR>
 "ヘルプ
-nnoremap <silent> [denite]h :<C-u>Denite help -start-filter<CR>
+nnoremap <silent> [denite]h :<C-u>Denite help <CR>
 "カラースキーム変更
-nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme -start-filter<CR>
+nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme <CR>
 "カレントディレクトリファイル一覧。
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new -start-filter<CR>
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new<CR>
 "バッファ一覧
-nnoremap <silent> [denite]b :<C-u>Denite buffer -start-filter<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer <CR>
 "レジスタ一覧
-nnoremap <silent> [denite]r :<C-u>Denite register -start-filter<CR>
+nnoremap <silent> [denite]r :<C-u>Denite register <CR>
 "最近使用したファイル一覧
-nnoremap <silent> [denite]m :<C-u>Denite file/old -start-filter<CR>
+nnoremap <silent> [denite]m :<C-u>Denite file/old <CR>
 "バッファ内検索
-nnoremap <silent> [denite]<Space> :<C-u>Denite line -start-filter<CR>
+nnoremap <silent> [denite]<Space> :<C-u>Denite line <CR>
 "mark
 nnoremap <silent> [denite]a :<C-u>Denite marks<CR>
 ""ブックマーク一覧
@@ -1043,13 +1043,13 @@ nnoremap <silent> [denite]a :<C-u>Denite marks<CR>
 ""ブックマークに追加
 "nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
 " カーソル以下の単語をgrep
-nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search line -start-filter<CR><C-R><C-W><CR>
+nnoremap <silent> [denite]g :<C-u>DeniteCursorWord grep -buffer-name=search -start_filter=0<CR>
 " 普通にgrep
-nnoremap <silent> [denite]G :<C-u>Denite -buffer-name=search -mode=normal grep -start-filter<CR>
+nnoremap <silent> [denite]gg :<C-u>Denite -buffer-name=search grep<CR>
 " resume previous buffer
-nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal -start-filter<CR>
+nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal <CR>
 ".git以下のディレクトリ検索
-nnoremap <silent> [denite]k :<C-u>Denite -cursor-wrap=true
+nnoremap <silent> [denite]k :<C-u>Denite
       \ -path=`substitute(finddir('.git', './;'), '.git', '', 'g')`
       \ file_rec/git
 	  \ -start-filter<CR>
@@ -1253,8 +1253,10 @@ let g:quickrun_config = {
 let g:watchdogs_check_BufWritePost_enable=1
 let g:quickrun_config._ = {
 	  \ "hook/close_quickfix/enable_exit" : 1,
+	  \ 'hook/back_window/enable_exit':           0,
+	  \ 'hook/back_window/priority_exit':         1,
 	  \ "hook/qfstatusline_update/enable_exit" : 1,
-      \ "hook/qfstatusline_update/priority_exit" : 3,
+      \ "hook/qfstatusline_update/priority_exit" : 4,
 	  \ "hook/echo/enable" : 1,
 	  \ "hook/echo/output_success": "> Success.",
 	  \ "hook/echo/output_failure": "> Errors Found.",
@@ -1269,7 +1271,7 @@ let g:quickrun_config._ = {
       \ }
 
 " :WatchdogsRun後にlightline.vimを更新
-let g:Qfstatusline#UpdateCmd = function('lightline#update')
+"let g:Qfstatusline#UpdateCmd = function('lightline#update')
 nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR><M-q>
 "}}}
 '''
