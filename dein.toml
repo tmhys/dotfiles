@@ -1,4 +1,4 @@
-# Last Change: 25-Oct-2019.
+# Last Change: 26-Oct-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -13,13 +13,13 @@ let g:switch_custom_definitions =
 "}}}
 '''
 
-[[plugins]]
-repo='airblade/vim-gitgutter'
-hook_add='''
-"airblade/vim-gitgutter{{{
-let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
-"}}}
-'''
+#[[plugins]]
+#repo='airblade/vim-gitgutter'
+#hook_add='''
+#"airblade/vim-gitgutter{{{
+#let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
+#"}}}
+#'''
 
 [[plugins]]
 repo='LeafCage/foldCC'
@@ -264,7 +264,7 @@ endfunction
 if hostname()!=?'localhost'
 		let g:lightline = {
             \ 'active': {
-\    'right': [['lineinfo'],['percent'],[ 'fileformat','fileencoding','filetype', 'qfstatusline']],
+\    'right': [['lineinfo'],['percent'],[ 'qfstatusline', 'fileformat','fileencoding','filetype']],
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive','dir', 'filename' ],
 			\			  ['currenttag', 'anzu']]
@@ -282,8 +282,8 @@ if hostname()!=?'localhost'
   			\   'percent': 'MyLightLinePercent',
   			\   'lineinfo': 'MyLightLineLineInfo'
             \ },
-\    'component_expand': {'qfstatusline': 'qfstatusline#Update'},
 \    'component_type':   {'qfstatusline': 'error'},
+\    'component_expand': {'qfstatusline': 'qfstatusline#Update'},
 		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
@@ -1017,7 +1017,7 @@ nnoremap    [denite]   <Nop>
 nmap    <Space>f [denite]
 
 "メニュー
-"nnoremap <silent> [denite]d :<C-u>Denite menu<CR>
+"nnoremap <silent> [denite]d :<C-u>Denite menu -no-start-filter<CR>
 "dotfile
 nnoremap <silent> [denite]d :<C-u>Denite file/rec:~/dotfiles<CR>
 "プラグイン検索
@@ -1026,6 +1026,8 @@ nnoremap <silent> [denite]p :<C-u>Denite file/rec:~/.cache/dein/repos<CR>
 nnoremap <silent> [denite]c :<C-u>Denite change <CR>
 "ヘルプ
 nnoremap <silent> [denite]h :<C-u>Denite help <CR>
+"Sessions
+nnoremap <silent> [denite]s :<C-u>Denite session -no-start-filter<CR>
 "カラースキーム変更
 nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme <CR>
 "カレントディレクトリファイル一覧。
@@ -1045,7 +1047,8 @@ nnoremap <silent> [denite]a :<C-u>Denite marks<CR>
 ""ブックマークに追加
 "nnoremap <silent> [denite]a :<C-u>DeniteBookmarkAdd<CR>
 " カーソル以下の単語をgrep
-nnoremap <silent> [denite]w :<C-u>DeniteCursorWord grep -buffer-name=search -start_filter=0<CR>
+nnoremap <silent> [denite]w :<C-u>DeniteCursorWord grep -buffer-name=search<CR>
+"-start_filter=0<CR>
 " 普通にgrep
 nnoremap <silent> [denite]g :<C-u>Denite -buffer-name=search grep<CR>
 " resume previous buffer
@@ -1349,9 +1352,18 @@ hook_add='''
 [[plugins]]
 repo='KazuakiM/vim-qfsigns'
 hook_add='''
+augroup my_qfsigns
+  autocmd!
+  autocmd BufWritePost * QfsignsUpdate
+augroup END
 '''
 
 [[plugins]]
 repo='KazuakiM/vim-qfstatusline'
 hook_add='''
 '''
+
+#[[plugins]]
+#repo='xolox/vim-session'
+#hook_add='''
+#'''
