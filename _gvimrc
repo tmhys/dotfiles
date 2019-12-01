@@ -43,6 +43,10 @@ elseif has('xfontset')
 	set guifontset=a14,r14,k14
 endif
 
+"ウィンドウサイズ最大で起動
+set columns=999
+set lines=999
+
 if !has('nvim')  && has('kaoriya')
 "最大化で起動
 	au GUIEnter * simalt ~x
