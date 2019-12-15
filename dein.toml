@@ -1,4 +1,4 @@
-# Last Change: 26-Oct-2019.
+# Last Change: 15-Dec-2019.
 # Maintainer:  TH
 
 [[plugins]]
@@ -31,12 +31,12 @@ repo='Shougo/neomru.vim'
 hook_add='''
 '''
 
-#[[plugins]]
-#repo='soramugi/auto-ctags.vim'
-#hook_add='''
-#let g:auto_ctags = 1
-#let g:auto_ctags_directory_list = ['.git', '.svn']
-#'''
+[[plugins]]
+repo='soramugi/auto-ctags.vim'
+hook_add='''
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.git', '.svn']
+'''
 
 [[plugins]]
 repo='scrooloose/nerdtree'
@@ -282,11 +282,11 @@ if hostname()!=?'localhost'
   			\   'percent': 'MyLightLinePercent',
   			\   'lineinfo': 'MyLightLineLineInfo'
             \ },
-\    'component_type':   {'qfstatusline': 'error'},
-\    'component_expand': {'qfstatusline': 'qfstatusline#Update'},
 		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
             \ }
+"\    'component_type':   {'qfstatusline': 'error'},
+"\    'component_expand': {'qfstatusline': 'qfstatusline#Update'},
 
 let g:Qfstatusline#UpdateCmd = function('lightline#update')
 			"\	'currentfuncname': 'LightLineCfi',
@@ -1362,6 +1362,11 @@ augroup END
 repo='KazuakiM/vim-qfstatusline'
 hook_add='''
 '''
+
+#[[plugins]]
+#repo='vim/killersheep'
+#hook_add='''
+#'''
 
 #[[plugins]]
 #repo='xolox/vim-session'
