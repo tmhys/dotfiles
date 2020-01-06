@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 25-Oct-2019.
+" Last Change: 04-Dec-2019.
 " Maintainer:  TH
 
 "Neovim{{{
@@ -59,6 +59,7 @@ endif
 
 "メニューバーツールバー消す{{{
 set guioptions-=T
+set guioptions+=C
 set guioptions-=m
 set guioptions-=r
 set guioptions-=R
