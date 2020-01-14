@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 25-Oct-2019.
+" Last Change: 06-Jan-2020.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -107,6 +107,7 @@ set wildmenu wildmode=full
 autocmd QuickFixCmdPost *grep* cwindow
 "qfウィンドウを常に最下部で開く
 autocmd FileType qf wincmd J
+autocmd VimResized * :wincmd =
 
 "grep代替{{{
 if executable('pt')
@@ -158,7 +159,7 @@ endfor
 
 "python{{{
 let g:python3_host_prog='C:\Python37\python.exe'
-let g:python_host_prog='C:\Python27'
+"let g:python_host_prog='C:\Python27'
 if !has('nvim')
 	set pythonthreedll=C:\Python37\python37.dll
 endif
@@ -208,12 +209,9 @@ endif
 "ビープの代わりにビジュアルベル(画面フラッシュ)を使う
 "set visualbell
 
-"その他の設定ファイル読み込み
-runtime! userautoload/*.vim
-
 ""vimrcの編集再読み込み{{{
-	let $MYSEQRC =expand('$VIM\vim81\userautoload\SysSeq.vim')
-	let $MYPLUGRC =expand('$VIM\vim81\userautoload\Plugins.vim')
+	let $MYSEQRC = expand('$VIMRUNTIME\userautoload\SysSeq.vim')
+	let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
 if has('nvim')
 	let $MYSEQRC =expand('$HOME\AppData\Local\nvim\userautoload\SysSeq.vim')
 	let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.vim')
@@ -324,7 +322,7 @@ nnoremap <S-C-Tab> gT
 nnoremap gs :vertical wincmd f<CR>
 
 "最初にヤンクした文字列を繰り返しペースト
-vnoremap <Space>p "0p
+nnoremap <Space>p "0p
 
 "ディレクトリ自動で移動
 "set autochdir&vim
@@ -459,7 +457,7 @@ autocmd BufReadPost * delmarks!
 
 ""スクリプト実行{{{
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!py -3.7 %<CR>
+autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!py %<CR>
 autocmd BufNewFile,BufRead *.pl nnoremap <C-e> :!perl %<CR>
 autocmd BufNewFile,BufRead *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
