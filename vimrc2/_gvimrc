@@ -1,0 +1,82 @@
+"
+"  ██████╗ ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+" ██╔════╝ ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+" ██║  ███╗██║   ██║██║██╔████╔██║██████╔╝██║
+" ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+" ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+" Last Change: 11-Feb-2020.
+" Maintainer:  TH
+
+"Neovim{{{
+if has('nvim')
+	Guifont! Cica:h12
+	call GuiWindowMaximized(1)
+	GuiPopupmenu 0
+	GuiTabline 0
+	set pumblend=10
+   	set ambiwidth=single
+	map! <S-Insert> <C-R>+
+	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
+	set inccommand=nosplit
+endif
+"}}}
+
+"カラー設定{{{
+syntax on
+set termguicolors
+set background=light "light dark
+let ayucolor="dark" "light mirage dark
+colorscheme molokai
+"}}}
+
+"フォント設定{{{
+if has('win32') || has ('win64')
+	if !has('nvim')
+		set guifont=Cica:h12
+		set printfont=Cica:h8
+		set renderoptions=type:directx,renmode:5
+		set enc=utf-8
+		source $VIMRUNTIME/delmenu.vim
+		set langmenu=ja_jp.utf-8
+		source $VIMRUNTIME/menu.vim
+		set antialias
+		set linespace=1
+	endif
+elseif has('kaoriya')
+   	set ambiwidth=auto
+elseif has('mac')
+	set guifont=Osaka－等幅:h14
+elseif has('xfontset')
+	set guifontset=a14,r14,k14
+endif
+
+"ウィンドウサイズ最大で起動
+set columns=999
+set lines=999
+
+if !has('nvim')  && has('kaoriya')
+"最大化で起動
+	au GUIEnter * simalt ~x
+	SM 5
+"透過
+	autocmd FocusGained * set transparency=250
+	autocmd FocusLost * set transparency=240
+endif
+"}}}
+
+"メニューバーツールバー消す{{{
+set guioptions-=T
+set guioptions+=C
+set guioptions-=m
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
+set guioptions-=e
+set showtabline=2
+"}}}
+
+"gvim関連プラグイン設定読み込み
+call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})

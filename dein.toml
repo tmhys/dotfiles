@@ -1,4 +1,4 @@
-# Last Change: 15-Dec-2019.
+# Last Change: 19-Jan-2020.
 # Maintainer:  TH
 
 [[plugins]]
@@ -145,10 +145,10 @@ repo='cespare/vim-toml'
 hook_add='''
 '''
 
-[[plugins]]
-repo='davidhalter/jedi-vim'
-hook_add='''
-'''
+#[[plugins]]
+#repo='davidhalter/jedi-vim'
+#hook_add='''
+#'''
 
 [[plugins]]
 repo='deris/vim-shot-f'
@@ -398,10 +398,10 @@ nmap ga <Plug>(EasyAlign)
 "}}}
 '''
 
-[[plugins]]
-repo='kevinw/pyflakes-vim'
-hook_add='''
-'''
+#[[plugins]]
+#repo='kevinw/pyflakes-vim'
+#hook_add='''
+#'''
 
 [[plugins]]
 repo='kmnk/vim-unite-giti'
@@ -1061,6 +1061,7 @@ nnoremap <silent> [denite]k :<C-u>Denite
 "nnoremap <silent> [denite]<C-r> :<C-u>Denite -resume -buffer-name=search-buffer-denite<CR>
 "nnoremap <silent> [denite]<C-n> :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
 "nnoremap <silent> [denite]<C-p> :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
+nnoremap <silent> [denite]l :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
 
 	" Add custom menus
 	let s:menus = {}
@@ -1275,9 +1276,6 @@ let g:quickrun_config._ = {
       \ 'outputter/buffer/close_on_empty' : 1
       \ }
 
-" :WatchdogsRun後にlightline.vimを更新
-"let g:Qfstatusline#UpdateCmd = function('lightline#update')
-nmap <Space>r :cclose<CR>:write<CR>:QuickRun -mode n<CR><M-q>
 "}}}
 '''
 
@@ -1370,5 +1368,39 @@ hook_add='''
 
 #[[plugins]]
 #repo='xolox/vim-session'
+#hook_add='''
+#'''
+
+[[plugins]]
+repo='markonm/traces.vim'
+hook_add='''
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+merged = 0
+hook_add='''
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+merged = 0
+hook_add='''
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+merged = 0
+hook_add='''
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+merged = 0
+hook_add='''
+'''
+
+#[[plugins]]
+#repo='mattn/vim-lsp-settings'
 #hook_add='''
 #'''

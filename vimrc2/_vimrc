@@ -1,0 +1,364 @@
+"
+" ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+" ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+" ██║   ██║██║██╔████╔██║██████╔╝██║
+" ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+" Last Change: 11-Feb-2020.
+" Maintainer: TH
+
+"TODO colorschemeの設定場所
+"TODO ctags設定が重複していないか
+"TODO seq.vim シンタックスファイルの読み込み場所
+"TODO mappingの別ファイル化
+"TODO vintでのチェック
+"TODO clapでの設定ファイル検索、ヘルプ検索
+"TODO _configファイル更新でも自動再読み込み
+"TODO 任意のタイミングでのプラグインロード
+"TODO watchdogsのSuccessをステータスラインに表示
+"TODO autocmdをグループ化
+"TODO hier ayuでは反映されない
+
+"最初に書く必要あり
+set encoding=utf8
+scriptencoding utf-8
+
+"基本設定{{{
+"vimprocのwindows dllダウンロード
+let g:vimproc#download_windows_dll = 1
+
+"ステータスライン常時表示
+set laststatus=2
+set cmdheight=2
+
+"ラグ対策
+set lazyredraw
+
+"シンタックスハイライト関係{{{
+set autoindent
+"set expandtab
+set tabstop=4
+set shiftwidth=4
+"カーソルラインはvim-auto-cursorlineに統合
+"set cursorline
+"set cursorcolumn
+set number
+"カラムのカクカク防止
+set signcolumn=yes
+filetype plugin on
+"}}}
+
+"コマンドラインモードでTABキーによるファイル名補完を有効にする
+set wildmenu wildmode=full
+
+"backup
+let $DATE = strftime("%Y%m%d_%H%M%S")
+set backup
+set writebackup
+set backupdir=$HOME/.vimbackup
+set undodir=$HOME/.vimbackup
+set undofile
+set noswapfile
+
+augroup win_config
+	autocmd!
+	"Quickfixウィンドウ開く
+	autocmd QuickFixCmdPost *grep* cwindow
+	"qfウィンドウを常に最下部で開く
+	autocmd FileType qf wincmd J
+	"ウィンドウを常に等分割
+	autocmd VimResized * :wincmd =
+	"session保存時クイックフィックス閉じる
+	autocmd VimLeave * cclose
+	autocmd VimLeave	* mks! ~/.vim/session/$DATE.vim
+	"文末スペース / 連続改行削除
+	autocmd BufWritePre * :%s/\s\+$//ge
+	autocmd BufWritePre * :%s/\n\{3,}/\r\r/ge
+	"折りたたみ設定
+	autocmd FileType vim setlocal foldmethod=marker
+	"backupファイルに日付
+	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
+augroup END
+
+"grep代替{{{
+if executable('pt')
+	set grepprg=pt\ --nogroup\
+	set grepformat=%f:%l:%c:%m
+elseif executable('ag')
+	set grepprg=ag\ --nogroup\ -iS
+    set grepformat=%f:%l:%m
+elseif executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+"}}}
+
+"自動的にセッション保存
+set sessionoptions-=blank
+
+"対になる括弧点滅{{{
+set showmatch
+set matchtime=1
+"}}}
+
+"python{{{
+let g:python3_host_prog='C:\Python37\python.exe'
+if !has('nvim')
+	set pythonthreedll=C:\Python37\python37.dll
+endif
+"}}}
+
+"IME状態に応じたカーソル色設定{{{
+if has('multi_byte_ime')
+  highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
+  highlight CursorIM guifg=NONE guibg=#ecbcbc
+endif
+"}}}
+
+set scrolloff=10
+set backspace=indent,eol,start
+set matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
+set virtualedit=block
+set ignorecase
+set smartcase
+
+" 終了時に保存するセッションオプションを設定する{{{
+let g:restart_sessionoptions
+    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+"}}}
+
+"カレントウィンドウを新規タブで開き直す{{{
+if v:version >= 700
+    nnoremap <M-n> :call OpenNewTab()<CR>
+    function! OpenNewTab()
+        let f = expand("%:p")
+        execute ":q"
+        execute ":tabnew ".f
+    endfunction
+endif
+"}}}
+
+"ビープの代わりにビジュアルベル(画面フラッシュ)を使う
+"set visualbell
+
+""vimrcの編集再読み込み{{{
+	let $MYSEQRC = expand('$VIMRUNTIME\userautoload\SysSeq.vim')
+	let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
+	let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
+	let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
+if has('nvim')
+	let $MYSEQRC =expand('$HOME\AppData\Local\nvim\userautoload\SysSeq.vim')
+	let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.vim')
+	let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
+endif
+
+"編集
+command! Evimrc :e $MYVIMRC
+command! Egvimrc :e $MYGVIMRC
+command! Econfig :e $VIMRUNTIME\_config
+command! Eplug :e $MYPLUGRC
+command! Etoml :e $HOME\.vim\rc\dein.toml
+command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
+command! Esysseq :e $MYSEQRC
+"保存したら再読み込み
+augroup reload_vimrc
+	autocmd!
+	autocmd BufWritePost '$HOME/dotfiles/_vimrc' nested source $MYVIMRC|source $MYGVIMRC
+	autocmd BufWritePost $MYVIMRC 				 nested source $MYVIMRC|source $MYGVIMRC
+	autocmd BufWritePost $MYGVIMRC 				 nested source $MYVIMRC|source $MYGVIMRC
+	autocmd BufWritePost $MYCONFIG 				 nested source $MYVIMRC|source $MYGVIMRC " 意図通りに動かない
+	autocmd BufWritePost $MYGCONFIG 			 nested source $MYVIMRC|source $MYGVIMRC
+	autocmd BufWritePost '$HOME/dotfiles/_vimrc' nested source $MYVIMRC|source $MYGVIMRC
+	autocmd BufWritePost SysSeq.vim				 nested	source $MYVIMRC|source $MYGVIMRC
+	"autocmd WinEnter,BufEnter,SessionLoadPost * call lightline#update()
+augroup END
+"}}}
+
+"}}}
+
+""ctags{{{ auto-ctagsと重複？
+"let g:tagbar_ctags_bin = 'C:\tools\ctags58j2bin\ctags.exe'
+"set fileformats=unix,dos,mac
+"set fileencodings=utf-8,sjis
+"
+"set tags=./tags;,tags;$HOME
+"
+"function! s:execute_ctags() abort
+"  " 探すタグファイル名
+"  let tag_name = '.tags'
+"  " ディレクトリを遡り、タグファイルを探し、パス取得
+"  let tags_path = findfile(tag_name, '.;')
+"  " タグファイルパスが見つからなかった場合
+"  if tags_path ==# ''
+"    return
+"  endif
+"
+"  " タグファイルのディレクトリパスを取得
+"  " `:p:h`の部分は、:h filename-modifiersで確認
+"  let tags_dirpath = fnamemodify(tags_path, ':p:h')
+"  " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
+"  execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
+"endfunction
+"
+"augroup ctags
+"  autocmd!
+"  autocmd BufWritePost * call s:execute_ctags()
+"augroup END
+""}}}
+
+"{{{外部ソフト
+if hostname()!=?'localhost'
+	"WinMerge
+	command! WinMerge :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
+	"ImageJ マクロ実行
+	"command! ImageJ :
+endif
+"}}}
+
+" プラグインインストール{{{
+call plug#begin('$VIMRUNTIME/plugged')
+"用途依存関係を追記すること
+Plug 'osyo-manga/vim-watchdogs'		 | Plug 'KazuakiM/vim-qfsigns'	 | Plug 'KazuakiM/vim-qfstatusline' | Plug 'osyo-manga/shabadou.vim'				 " seqのエラーチェック
+Plug 'LeafCage/foldCC'					" フォールドの見た目変更
+Plug 'Yggdroot/indentLine'				" vim-indent-guidesよりこちらが好みindent可視化
+Plug 'cohama/vim-hier'					" エラー行ハイライト
+Plug 'dannyob/quickfixstatus'			" カーソルをエラー行に配置したときメッセージ表示
+Plug 'itchyny/lightline.vim'  | Plug 'delphinus/lightline-delphinus'	" lightline
+Plug 'deris/vim-shot-f'					" fキー強化
+Plug 'haya14busa/incsearch-fuzzy.vim'  | Plug 'haya14busa/incsearch.vim'			" 一文字ごとにハイライト
+Plug 'junegunn/vim-easy-align'				" テキスト整形
+Plug 'kana/vim-smartchr'					" 符号の前後にスペース
+Plug 'kshenoy/vim-signature'				" マーク位置表示
+Plug 'liuchengxu/vim-clap'					 |  Plug 'tamago324/vim-clap-help'				" ClapでHelp
+Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
+Plug 'majutsushi/tagbar'					" tag一覧表示 vistaに乗り換え検討
+Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画
+Plug 'mhinz/vim-signify'					" 差分をsignで表示
+Plug 'miura/ImageJMacro_Highlighter'		" ImageJシンタックス
+Plug 'osyo-manga/vim-anzu'					" 検索結果ヒット数表示
+Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
+Plug 'rhysd/accelerated-jK'					" カーソル移動速度変更
+Plug 'ryanoasis/vim-devicons'				" icon追加
+Plug 'scrooloose/nerdtree'					 | Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree用シンタックス
+Plug 'simeji/winresizer'					" ウィンドウリサイズ
+Plug 'soramugi/auto-ctags.vim'				" ctags自動化
+Plug 'thinca/vim-qfreplace'					" 一括置換
+Plug 'thinca/vim-quickrun'					" すぐ実行
+Plug 'thinca/vim-singleton'					" 起動数を常に1つに
+Plug 'tmhys/vim-auto-cursorline'			" カーソル放置で点滅
+Plug 'tpope/vim-fugitive'					" git用
+Plug 'tpope/vim-surround'					" 閉じカッコを編集
+Plug 'travisjeffery/vim-auto-mkdir'			" 存在しないディレクトリ作成
+Plug 'tyru/current-func-info.vim'			" カーソル位置関数表示
+Plug 'tyru/restart.vim'						" esc連打で再起動
+Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
+Plug 'mopp/autodirmake.vim' "dir自動作成
+Plug 'glidenote/memolist.vim'
+
+"" deinではインストールしているが要検討のもの{{{
+"Plug 'travisjeffery/vim-auto-mkdir' "dir自動作成
+"Plug 'cespare/vim-toml'					" toml用シンタックス
+"Plug 'Shougo/context_filetype.vim'		" カーソル位置のコンテキストでファイルタイプ判定
+"Plug 'tyru/open-browser.vim'			" カーソル下URLジャンプ
+"Plug 'tpope/vim-markdown'				" markdown用シンタックスなど
+"Plug 'ripxorip/aerojump.nvim'			" nvim用かっこいいカーソル移動
+"Plug 'thinca/vim-template'				" template作成
+"Plug 'osyo-manga/vim-precious'			" カーソル位置のコンテキストでファイルタイプ判定 context_filetypeと同じ
+"Plug 'AndrewRadev/switch.vim'			" 特定キーワードをトグルできる
+"Plug 'yuratomo/dotnet-complete'
+"Plug 'yyotti/denite-marks'
+"Plug 'w0rp/ale'
+"Plug 'ujihisa/unite-colorscheme'
+"Plug 'terryma/vim-expand-region'
+"Plug 'taku-o/vim-copypath'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'rafi/vim-denite-session'
+"Plug 'reireias/vim-cheatsheet'
+"Plug 'mattn/benchvimrc-vim'
+"Plug 'mattn/sonictemplate-vim'
+"Plug 'kmnk/denite-dirmark'
+"Plug 'kmnk/vim-unite-giti'
+"Plug 'kannokanno/previm'
+"Plug 'hrj/vim-DrawIt'
+"Plug 'equalsraf/neovim-gui-shim'
+"Plug 'h1mesuke/unite-outline'
+"Plug 'Shougo/denite.nvim'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'Shougo/neomru.vim'
+"Plug 'Shougo/neosnippet-snippets'
+"Plug 'Shougo/neosnippet.vim'
+"Plug 'Shougo/unite-session'
+"Plug 'Shougo/vimfiler.vim'
+"Plug 'Shougo/vimproc.vim'
+""Plug 'prabirshrestha/async.vim'
+""Plug 'prabirshrestha/asyncomplete-lsp.vim'
+""Plug 'prabirshrestha/asyncomplete.vim'
+""Plug 'prabirshrestha/vim-lsp'
+"}}}
+
+" deinでもコメントアウトしているもの{{{
+"#repo='Shougo/unite.vim'
+"#repo='airblade/vim-gitgutter'
+"#repo='davidhalter/jedi-vim'
+"#repo='kevinw/pyflakes-vim'
+"#repo='mattn/vim-lsp-settings'
+"#repo='mhinz/vim-startify'
+"#repo='nerdtree-git-plugin'
+"#repo='vim/killersheep'
+"#repo='xolox/vim-session'
+"#repo='yuttie/comfortable-motion.vim'
+"#repo='delphinus/vim-auto-cursorline'
+"}}}
+
+"colorscheme{{{
+Plug 'vim-scripts/Wombat'
+Plug 'ayu-theme/ayu-vim'
+Plug 'itchyny/landscape.vim'
+Plug 'tomasr/molokai'
+"Plug 'yarisgutierrez/ayu-lightline'
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'chriskempson/vim-tomorrow-theme'
+"Plug 'cocopon/iceberg.vim'
+"Plug 'gosukiwi/vim-atom-dark'
+"Plug 'jacoborus/tender.vim'
+"Plug 'jdkanani/vim-material-theme'
+"Plug 'jnurmine/Zenburn'
+"Plug 'joshdick/onedark.vim'
+"Plug 'junegunn/seoul256.vim'
+"Plug 'lifepillar/vim-solarized8'
+"Plug 'morhetz/gruvbox'
+"Plug 'nanotech/jellybeans.vim'
+"Plug 'nerdpad/dracula-vim'
+"Plug 'nightsense/nemo'
+"Plug 'rakr/vim-one'
+"Plug 'sjl/badwolf'
+"Plug 'tyrannicaltoucan/vim-quantum'
+"Plug 'vim-scripts/dw_colors'
+"Plug 'vim-scripts/newspaper.vim'
+"Plug 'vim-scripts/pyte'
+"Plug 'vim-scripts/sonoma.vim'
+"Plug 'w0ng/vim-hybrid'
+"}}}
+
+"LSP関連{{{
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-icons'
+
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+"}}}
+
+call plug#end()
+"}}}
+
+" 各種設定の読み込み
+call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+"その他の設定ファイル読み込み
+runtime! userautoload/*.vim

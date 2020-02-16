@@ -1,0 +1,51 @@
+if empty(globpath(&rtp, 'autoload/watchdogs.vim'))
+  finish
+endif
+
+"コンパイラexeにパスを通しておくこと
+"コンパイルしたいディレクトリに移動してから実行
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:watchdogs_check_BufWritePost_enables = {
+\   "seq" : 1
+\}
+let g:quickrun_config = {
+\   "_" : {
+\ 	"hook/close_quickfix/enable_exit" : 1,
+\ 	'hook/back_window/enable_exit':           0,
+\ 	'hook/back_window/priority_exit':         1,
+\ 	"hook/qfstatusline_update/enable_exit" : 1,
+\ 	"hook/qfstatusline_update/priority_exit" : 4,
+\ 	"hook/echo/enable" : 1,
+\ 	"hook/echo/output_success": "> Success.",
+\ 	"hook/echo/output_failure": "> Errors Found.",
+\ 	'outputter' : 'error',
+\ 	'runner'    : 'vimproc',
+\ 	'runner/vimproc/updatetime' : 40,
+\ 	'outputter/quickfix/open_cmd' : "",
+\ 	'outputter/error/success' : 'quickfix',
+\ 	'outputter/error/error'   : 'quickfix',
+\ 	'outputter/buffer/split'  : ':rightbelow 8sp',
+\ 	'outputter/buffer/close_on_empty' : 1,
+\   },
+\   "seq/watchdogs_checker" : {
+\   "type" : "watchdogs_checker/SeqCnv_V340",
+\	"command" : "SeqCnv_V340",
+\	"cmdopt" : "-l",
+\ 	"exec":"%c 00_Main %o",
+\	"quickfix/errorformat": "%WWarning: %f (%l):%m,%EError: %f (%l):%m",
+\   },
+\}
+
+"" vintコマンドが存在するときだけチェックを行うようにします
+"let g:quickrun_config = {
+"\    'vim/watchdogs_checker': {
+"\     'type': executable('vint') ? 'watchdogs_checker/vint' : '',
+"\    },
+"\    "watchdogs_checker/vint" : {
+"\       "command"   : "vint",
+"\       "exec"      : "%c %o %s:p ",
+"\   },
+"\ }
+
+" ここはautogroup経由で定義するようにしないとvintに怒られます
+"autocmd BufWritePost .vimrc,*.vim,_vimrc,gvimrc WatchdogsRunSilent

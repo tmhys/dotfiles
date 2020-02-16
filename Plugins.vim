@@ -1,12 +1,7 @@
-" Last Change: 02-Dec-2019.
+" Last Change: 14-Jan-2020.
 " Maintainer: TH
 
 call plug#begin('~/.vim/plugged')
-" plugでインストールするとうまく行かないのでインストール後コピペ
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"Plug 'junegunn/fzf', has('win32') ? {} : {'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-"| Plug 'Shougo/unite-session'   | Plug 'h1mesuke/unite-outline' | Plug 'ujihisa/unite-colorscheme'  | Plug 'Shougo/unite-help' | Plug 'tsukkee/unite-tag'| Plug 'tacroe/unite-mark'
-
 Plug 'AndrewRadev/switch.vim'
 "plug 'airblade/vim-gitgutter'
 Plug 'LeafCage/foldCC'
