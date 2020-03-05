@@ -7,6 +7,7 @@ nnoremap    [clap]   <Nop>
 nmap    <Space>f [clap]
 
 nnoremap <silent> [clap]f :<C-u>Clap files<CR>
+nnoremap <silent> <M-f> :<C-u>Clap files<CR>
 nnoremap <silent> [clap]i :<C-u>Clap colors<CR>
 nnoremap <silent> [clap]b :<C-u>Clap buffers<CR>
 nnoremap <silent> [clap]<Space> :<C-u>Clap blines<CR>

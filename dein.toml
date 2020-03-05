@@ -1,4 +1,4 @@
-# Last Change: 19-Jan-2020.
+# Last Change: 23-Feb-2020.
 # Maintainer:  TH
 
 [[plugins]]
@@ -1307,30 +1307,30 @@ hook_add='''
 nmap <S-space> <Plug>(AerojumpSpace)
 '''
 
-[[plugins]]
-repo='liuchengxu/vim-clap'
-hook_add='''
-" The prefix key.
-nnoremap    [clap]   <Nop>
-nmap    <Space>c [clap]
-
-nnoremap <silent> [clap]f :<C-u>Clap files<CR>
-nnoremap <silent> [clap]i :<C-u>Clap colors<CR>
-nnoremap <silent> [clap]b :<C-u>Clap buffers<CR>
-nnoremap <silent> [clap]<Space> :<C-u>Clap blines<CR>
-nnoremap <silent> [clap]c :<C-u>Clap commits<CR>
-nnoremap <silent> [clap]d :<C-u>Clap gfiles<CR>
-nnoremap <silent> [clap]g :<C-u>Clap grep<CR>
-nnoremap <silent> [clap]m :<C-u>Clap history<CR>
-nnoremap <silent> [clap]j :<C-u>Clap jumps<CR>
-nnoremap <silent> [clap]l :<C-u>Clap lines<CR>
-nnoremap <silent> [clap]a :<C-u>Clap marks<CR>
-
-let g:clap_provider_quick_open = {
-      \ 'source': ['~/.vimrc', '~/.spacevim', '~/.bashrc', '~/.tmux.conf'],
-      \ 'sink': 'e',
-      \ }
-'''
+#[[plugins]]
+#repo='liuchengxu/vim-clap'
+#hook_add='''
+#" The prefix key.
+#nnoremap    [clap]   <Nop>
+#nmap    <Space>c [clap]
+#
+#nnoremap <silent> [clap]f :<C-u>Clap files<CR>
+#nnoremap <silent> [clap]i :<C-u>Clap colors<CR>
+#nnoremap <silent> [clap]b :<C-u>Clap buffers<CR>
+#nnoremap <silent> [clap]<Space> :<C-u>Clap blines<CR>
+#nnoremap <silent> [clap]c :<C-u>Clap commits<CR>
+#nnoremap <silent> [clap]d :<C-u>Clap gfiles<CR>
+#nnoremap <silent> [clap]g :<C-u>Clap grep<CR>
+#nnoremap <silent> [clap]m :<C-u>Clap history<CR>
+#nnoremap <silent> [clap]j :<C-u>Clap jumps<CR>
+#nnoremap <silent> [clap]l :<C-u>Clap lines<CR>
+#nnoremap <silent> [clap]a :<C-u>Clap marks<CR>
+#
+#let g:clap_provider_quick_open = {
+#      \ 'source': ['~/.vimrc', '~/.spacevim', '~/.bashrc', '~/.tmux.conf'],
+#      \ 'sink': 'e',
+#      \ }
+#'''
 
 [[plugins]]
 repo='tamago324/vim-clap-help'

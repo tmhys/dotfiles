@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 06-Jan-2020.
+" Last Change: 27-Feb-2020.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -228,12 +228,12 @@ command! Esysseq :e $MYSEQRC
 "保存したら再読み込み
 augroup reload_vimrc
 	autocmd!
-	autocmd BufWritePost '$HOME/dotfiles/_vimrc' nested source $MYVIMRC
-	autocmd BufWritePost '$HOME/dotfiles/_vimrc' nested source $MYGVIMRC
+	autocmd BufWritePost $HOME/dotfiles/_vimrc nested source $MYVIMRC
+	autocmd BufWritePost $HOME/dotfiles/_gvimrc nested source $MYGVIMRC
 	autocmd BufWritePost SysSeq.vim				 nested	source $MYGVIMRC
 	autocmd BufWritePost $MYVIMRC 				 nested source $MYVIMRC
 	autocmd BufWritePost $MYGVIMRC 				 nested source $MYGVIMRC
-	autocmd WinEnter,BufEnter,SessionLoadPost * call lightline#update()
+	"autocmd WinEnter,BufEnter,SessionLoadPost * call lightline#update()
 augroup END
 "}}}
 "}}}
@@ -477,7 +477,9 @@ onoremap { i{
 "}}}
 
 "ctags{{{
-let g:tagbar_ctags_bin = 'C:\tools\ctags58j2bin\ctags.exe'
+"let g:tagbar_ctags_bin = 'C:\tools\ctags58j2bin\ctags.exe'
+"let g:tagbar_ctags_bin = 'C:\ProgramData\chocolatey\bin\ctags.exe'
+let g:tagbar_ctags_bin = 'C:\Users\thtom\scoop\shims\ctags.exe'
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
 

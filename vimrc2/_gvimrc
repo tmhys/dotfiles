@@ -5,8 +5,16 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 11-Feb-2020.
+" Last Change: 05-Mar-2020.
 " Maintainer:  TH
+
+"カラー設定{{{
+syntax enable
+set termguicolors
+set background=light "light dark
+let ayucolor="light" "light mirage dark
+colorscheme wombat256mod
+"}}}
 
 "Neovim{{{
 if has('nvim')
@@ -20,14 +28,6 @@ if has('nvim')
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 	set inccommand=nosplit
 endif
-"}}}
-
-"カラー設定{{{
-syntax on
-set termguicolors
-set background=light "light dark
-let ayucolor="dark" "light mirage dark
-colorscheme molokai
 "}}}
 
 "フォント設定{{{
@@ -56,12 +56,15 @@ set columns=999
 set lines=999
 
 if !has('nvim')  && has('kaoriya')
-"最大化で起動
-	au GUIEnter * simalt ~x
 	SM 5
+"最大化で起動
+	augroup gvim_cmd
+		autocmd!
+		autocmd GUIEnter * simalt ~x
 "透過
-	autocmd FocusGained * set transparency=250
-	autocmd FocusLost * set transparency=240
+		autocmd FocusGained * set transparency=250
+		autocmd FocusLost * set transparency=240
+	augroup END
 endif
 "}}}
 

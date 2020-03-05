@@ -33,4 +33,4 @@ inoremap <expr> @ search('^\(#.\+\)\?\%#','bcn')? smartchr#one_of('#define', '#i
 
 inoremap <expr> " search('^#include\%#', 'bcn')? ' "': '"'
 " if文直後の(は自動で間に空白を入れる
-inoremap <expr> ( search('\<\if\%#', 'bcn')? ' (': '('
+"inoremap <expr> ( search('\<\if\%#', 'bcn')? ' (': '('

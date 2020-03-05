@@ -1,3 +1,4 @@
+"USキーボード
 nnoremap ; :
 vnoremap ; :
 "command line window
@@ -147,7 +148,7 @@ inoremap { {}<ESC>i
 inoremap [ []<ESC>i
 inoremap ( ()<ESC>i
 inoremap < <><ESC>i
-inoremap * **<ESC>i
+"inoremap * **<ESC>i
 inoremap ' ''<ESC>i
 "}}}
 
@@ -233,19 +234,14 @@ onoremap @ i`
 onoremap [ i[
 onoremap { i{
 
-""補完{{{ seqのときのみ有効
-"set completeopt=menuone
-"for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-"  exec "imap " . k . " " . k . "<C-N><C-P>"
-"endfor
-"""neosnippetの設定でも定義する
-"imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-""}}}
-
 "相対行番号表示&トグル
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
 
+for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+  exec "imap " . k . " " . k . "<C-N><C-P>"
+endfor
+imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"

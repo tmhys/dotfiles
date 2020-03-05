@@ -2,8 +2,12 @@ if empty(globpath(&rtp, 'autoload/nerdtree.vim'))
   finish
 endif
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd VimLeave * NERDTreeClose
+augroup NERDTree_CLOSE
+	autocmd!
+	"NERDTree以外を閉じたらNERDTreeも閉じる
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	autocmd VimLeavePre * NERDTreeClose
+augroup END
 
 "curren directoryに合わせて NERDTreeToggle
 nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
