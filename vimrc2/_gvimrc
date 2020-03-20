@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 05-Mar-2020.
+" Last Change: 14-Mar-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -16,7 +16,7 @@ let ayucolor="light" "light mirage dark
 colorscheme wombat256mod
 "}}}
 
-"Neovim{{{
+"Neovim{{{ 要見直し
 if has('nvim')
 	Guifont! Cica:h12
 	call GuiWindowMaximized(1)
@@ -26,7 +26,7 @@ if has('nvim')
    	set ambiwidth=single
 	map! <S-Insert> <C-R>+
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
-	set inccommand=nosplit
+	set inccommand=split
 endif
 "}}}
 
