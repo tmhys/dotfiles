@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 05-Mar-2020.
+" Last Change: 20-Mar-2020.
 " Maintainer: TH
 
 "TODO ctags設定が重複していないか
@@ -54,6 +54,14 @@ set undodir=$HOME/.vimbackup
 set undofile
 set noswapfile
 
+"末尾の空白行削除
+function! s:remove_unnecessary_space()
+    " delete last blank lines
+    while getline('$') == ""
+            $delete _
+    endwhile
+endfunction
+
 augroup win_config
 	autocmd!
 	"Quickfixウィンドウ開く
@@ -68,7 +76,9 @@ augroup win_config
 	autocmd VimLeave	* mks! ~/.vim/session/$DATE.vim
 	"文末スペース / 連続改行削除
 	autocmd BufWritePre * :%s/\s\+$//ge
-	autocmd BufWritePre * :%s/\n\{3,}/\r\r/ge
+	autocmd BufWritePre * :%s/\n\{4,}/\r\r\r/ge
+	autocmd BufWritePre * call s:remove_unnecessary_space()
+
 	"折りたたみ設定
 	autocmd FileType vim setlocal foldmethod=marker
 	"backupファイルに日付
@@ -208,15 +218,6 @@ augroup ctags
 augroup END
 "}}}
 
-"{{{外部ソフト
-if hostname()!=?'localhost'
-	"WinMerge
-	command! WinMerge :! C:\"Program Files"\WinMerge\WinMergeU /e/u/wr/maximize/fl "%:p:t"
-	"ImageJ マクロ実行
-	"command! ImageJ :
-endif
-"}}}
-
 " プラグインインストール{{{
 call plug#begin('$VIMRUNTIME/plugged')
 "colorscheme{{{
@@ -224,6 +225,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 "}}}
 
 "用途依存関係を追記すること
+"Plug 'mhinz/vim-startify'					" startify
 Plug 'osyo-manga/vim-watchdogs'				" seqのエラーチェック
 	Plug 'KazuakiM/vim-qfsigns'
 	Plug 'KazuakiM/vim-qfstatusline'
@@ -240,18 +242,15 @@ Plug 'haya14busa/incsearch-fuzzy.vim'		" 一文字ごとにハイライト
 Plug 'junegunn/vim-easy-align'				" テキスト整形
 Plug 'kana/vim-smartchr'					" 符号の前後にスペース
 Plug 'kshenoy/vim-signature'				" マーク位置表示
-Plug 'liuchengxu/vim-clap'					" Clap
-	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
 Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
-Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画
 Plug 'mhinz/vim-signify'					" 差分をsignで表示
 Plug 'miura/ImageJMacro_Highlighter'		" ImageJシンタックス
 Plug 'osyo-manga/vim-anzu'					" 検索結果ヒット数表示
 Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
 Plug 'rhysd/accelerated-jK'					" カーソル移動速度変更
 Plug 'ryanoasis/vim-devicons'				" icon追加
-Plug 'scrooloose/nerdtree'					" nerdtree用シンタックス
-	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'scrooloose/nerdtree'					" nerdtree
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree用シンタックス
 Plug 'simeji/winresizer'					" ウィンドウリサイズ
 Plug 'majutsushi/tagbar'					" tag一覧表示 vistaに乗り換え検討
 "Plug 'liuchengxu/vista.vim'				"lightlineの設定も合わせて変更すること
@@ -279,6 +278,15 @@ Plug 'mattn/vim-lsp-icons'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 "}}}
+
+Plug 'liuchengxu/vim-clap'					" Clap
+	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
+if !has('nvim')
+Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画
+endif
+"if has('nvim')
+"	Plug 'Shougo/denite.nvim'
+"endif
 
 call plug#end()
 "}}}
