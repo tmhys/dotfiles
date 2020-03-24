@@ -9,10 +9,11 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_seq = {
 	\ 'ctagstype' : 'seq',
 	\ 'kinds' : [
-		\ 'u:unit'
+		\ 'm:method'
 	\ ],
 	\ 'sort' : 0
 \ }
+" ctagsの設定ファイルと整合が取れていること
 let g:tagbar_type_toml = {
     \ 'ctagstype' : 'toml',
     \ 'kinds' : [
