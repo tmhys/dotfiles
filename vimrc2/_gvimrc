@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 14-Mar-2020.
+" Last Change: 04-Apr-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -13,7 +13,7 @@ syntax enable
 set termguicolors
 set background=light "light dark
 let ayucolor="light" "light mirage dark
-colorscheme wombat256mod
+colorscheme ayu
 "}}}
 
 "Neovim{{{ 要見直し
@@ -51,20 +51,19 @@ elseif has('xfontset')
 	set guifontset=a14,r14,k14
 endif
 
-"ウィンドウサイズ最大で起動
-set columns=999
-set lines=999
-
 if !has('nvim')  && has('kaoriya')
+	""ウィンドウサイズ最大で起動
+	"set columns=999
+	"set lines=999
 	SM 5
-"最大化で起動
+	"最大化で起動
 	augroup gvim_cmd
 		autocmd!
 		autocmd GUIEnter * simalt ~x
 "透過
 		autocmd FocusGained * set transparency=250
 		autocmd FocusLost * set transparency=240
-	augroup END
+	augroup end
 endif
 "}}}
 
