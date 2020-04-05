@@ -19,7 +19,8 @@ colorscheme ayu
 "Neovim{{{ 要見直し
 if has('nvim')
 	Guifont! Cica:h12
-	call GuiWindowMaximized(1)
+	"call GuiWindowMaximized(1)
+	call GuiWindowFullScreen(1)
 	GuiPopupmenu 0
 	GuiTabline 0
 	set pumblend=10

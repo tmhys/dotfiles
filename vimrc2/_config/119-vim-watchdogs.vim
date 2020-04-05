@@ -8,8 +8,16 @@ let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:watchdogs_check_BufWritePost_enables = {
 \   "seq" : 1
 \}
+nnoremap <Space>r :QuickRun<CR>
+
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "<C-c>"
+
 let g:quickrun_config = {
 \   "_" : {
+\   "outputter/buffer/split" : ":rightbelow 8",
+\   "outputter/buffer/close_on_empty" : 1
+\	 },
+\   "seq/watchdogs_checker" : {
 \ 	"hook/close_quickfix/enable_exit" : 1,
 \ 	'hook/back_window/enable_exit':           0,
 \ 	'hook/back_window/priority_exit':         1,
@@ -25,9 +33,6 @@ let g:quickrun_config = {
 \ 	'outputter/error/success' : 'quickfix',
 \ 	'outputter/error/error'   : 'quickfix',
 \ 	'outputter/buffer/split'  : ':rightbelow 8sp',
-\ 	'outputter/buffer/close_on_empty' : 1,
-\   },
-\   "seq/watchdogs_checker" : {
 \   "type" : "watchdogs_checker/SeqCnv_V340",
 \	"command" : "SeqCnv_V340",
 \	"cmdopt" : "-l",

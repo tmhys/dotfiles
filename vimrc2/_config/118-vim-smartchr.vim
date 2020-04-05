@@ -3,9 +3,10 @@ if empty(globpath(&rtp, 'autoload/smartchr.vim'))
 endif
 
 " 演算子の間に空白を入れる
-inoremap <expr> < search('^#include\%#', 'bcn')? ' <': smartchr#one_of(' < ', ' << ', '<')
-inoremap <expr> > search('^#include <.*\%#', 'bcn')? '>': smartchr#one_of(' > ', ' >> ', '>')
+"inoremap <expr> < search('^#include\%#', 'bcn')? ' <': smartchr#one_of(' < ', ' << ', '<')
+"inoremap <expr> > search('^#include <.*\%#', 'bcn')? '>': smartchr#one_of(' > ', ' >> ', '>')
 inoremap <expr> + smartchr#one_of(' + ', '++', '+')
+inoremap <expr> # smartchr#one_of('# ', '#')
 inoremap <expr> - smartchr#one_of(' - ', '--', '-')
 inoremap <expr> / smartchr#one_of(' / ', '// ', '/')
 " *はポインタで使うので、空白はいれない

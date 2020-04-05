@@ -2,6 +2,6 @@ if empty(globpath(&rtp, 'autoload/singleton.vim'))
   finish
 endif
 
-if hostname()!=?'localhost'
+if !has('nvim')
 call singleton#enable()
 endif

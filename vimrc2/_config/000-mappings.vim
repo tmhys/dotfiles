@@ -2,8 +2,8 @@
 nnoremap ; :
 vnoremap ; :
 "command line window
-nnoremap : q:a
-nnoremap / q/a
+"nnoremap : q:a
+"nnoremap / q/a
 
 " for masui special.
 noremap g<CR> g;
@@ -50,7 +50,7 @@ nnoremap <C-h> <C-w>h
 "S-h,S-lで行頭、行末
 nnoremap <S-h> ^
 nnoremap <S-l> $
-vnoremap <S-l> $  "矩形選択モード時のカーソル移動
+vnoremap <S-l> $  " 矩形選択モード時のカーソル移動
 " vを二回で行末まで選択
 vnoremap v $h
 "" 検索後にジャンプした際に検索単語を画面中央に持ってくる
@@ -214,9 +214,9 @@ autocmd BufReadPost * delmarks!
 
 " }}}
 
-""スクリプト実行{{{
+""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
 autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!py %<CR>
+autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
 autocmd BufNewFile,BufRead *.pl nnoremap <C-e> :!perl %<CR>
 autocmd BufNewFile,BufRead *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
 autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
@@ -243,5 +243,8 @@ nnoremap <F4> :<C-u>set scrollbind!<CR>
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
-imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-imap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+"leximaと重複注意
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"

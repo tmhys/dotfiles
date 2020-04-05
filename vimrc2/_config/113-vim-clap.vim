@@ -22,7 +22,14 @@ nnoremap <silent> [clap]h :<C-u>Clap help<CR>
 nnoremap <silent> [clap]r :<C-u>Clap quick_open<CR>
 nnoremap <silent> [clap]n :<C-u>Clap filer<CR>
 nnoremap <silent> [clap]/ :<C-u>Clap search_history<CR>
-nnoremap <silent> [clap]v :<C-u>Clap files $VIMRUNTIME/_config<CR>
+nnoremap <silent> [clap]v :<C-u>Clap files $HOME/dotfiles/vimrc2<CR>
+nnoremap <silent> [clap]p :<C-u>Clap files $HOME/Programing/python<CR>
+nnoremap <silent> [clap]s :<C-u>Clap sessions<CR>
+
+let g:clap_session_dir  = 'C:\Users\thtom\.vim\session'
+
+autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
+"nnoremap <silent> [clap]v :<C-u>Clap files $VIMRUNTIME/_config<CR>
 "nnoremap <silent> [clap]s :<C-u>Clap session<CR>
 
 let g:clap_provider_quick_open = {

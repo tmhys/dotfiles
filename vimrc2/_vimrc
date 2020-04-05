@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 20-Mar-2020.
+" Last Change: 05-Apr-2020.
 " Maintainer: TH
 
 "TODO ctags設定が重複していないか
@@ -13,6 +13,7 @@
 "TODO _configファイル更新でも自動再読み込み
 "TODO 任意のタイミングでのプラグインロード
 "TODO watchdogsのSuccessをステータスラインに表示
+"TODO Neovim環境でコピペがおかしい
 "COMMENT hier ayuでは反映されない
 
 "最初に書く必要あり
@@ -170,20 +171,22 @@ augroup END
 "}}}
 
 "ペーストする際に、自動でpaste modeに
-if &term =~ "xterm"
-    let &t_ti .= "\e[?2004h"
-    let &t_te .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
+if !has('nvim')
+	if &term =~ "xterm"
+	    let &t_ti .= "\e[?2004h"
+	    let &t_te .= "\e[?2004l"
+	    let &pastetoggle = "\e[201~"
 
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
+	    function XTermPasteBegin(ret)
+	        set paste
+	        return a:ret
+	    endfunction
 
-    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-    cnoremap <special> <Esc>[200~ <nop>
-    cnoremap <special> <Esc>[201~ <nop>
+	    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+	    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+	    cnoremap <special> <Esc>[200~ <nop>
+	    cnoremap <special> <Esc>[201~ <nop>
+	endif
 endif
 "}}}
 
@@ -192,7 +195,7 @@ set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
 
 "set tags=./tags;,tags;$HOME
-set tags=.tags;$HOME
+set tags=./tags;
 "set tags=./tags
 
 function! s:execute_ctags() abort
@@ -226,6 +229,8 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 "用途依存関係を追記すること
 "Plug 'mhinz/vim-startify'					" startify
+Plug 'xolox/vim-session'
+	Plug 'xolox/vim-misc'
 Plug 'osyo-manga/vim-watchdogs'				" seqのエラーチェック
 	Plug 'KazuakiM/vim-qfsigns'
 	Plug 'KazuakiM/vim-qfstatusline'
@@ -252,7 +257,7 @@ Plug 'ryanoasis/vim-devicons'				" icon追加
 Plug 'scrooloose/nerdtree'					" nerdtree
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree用シンタックス
 Plug 'simeji/winresizer'					" ウィンドウリサイズ
-Plug 'majutsushi/tagbar'					" tag一覧表示 vistaに乗り換え検討
+Plug 'majutsushi/tagbar'					" tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
 "Plug 'liuchengxu/vista.vim'				"lightlineの設定も合わせて変更すること
 "Plug 'soramugi/auto-ctags.vim'				" ctags自動化
 Plug 'thinca/vim-qfreplace'					" 一括置換
@@ -261,6 +266,7 @@ Plug 'thinca/vim-singleton'					" 起動数を常に1つに
 Plug 'tmhys/vim-auto-cursorline'			" カーソル放置で点滅
 Plug 'tpope/vim-fugitive'					" git用
 Plug 'tpope/vim-surround'					" 閉じカッコを編集
+"Plug 'cohama/lexima.vim'					" 閉じカッコを自動で　mappingが色々干渉したのでオフにする
 Plug 'travisjeffery/vim-auto-mkdir'			" 存在しないディレクトリ作成
 Plug 'tyru/current-func-info.vim'			" カーソル位置関数表示
 Plug 'tyru/restart.vim'						" esc連打で再起動
@@ -281,8 +287,9 @@ Plug 'hrsh7th/vim-vsnip-integ'
 
 Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
+	Plug 'hokorobi/vim-clap-sessions'
 if !has('nvim')
-Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画
+Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
 "if has('nvim')
 "	Plug 'Shougo/denite.nvim'
