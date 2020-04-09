@@ -5,15 +5,14 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 05-Apr-2020.
+" Last Change: 09-Apr-2020.
 " Maintainer: TH
 
-"TODO ctags設定が重複していないか
 "TODO seq.vim シンタックスファイルの読み込み場所
 "TODO _configファイル更新でも自動再読み込み
 "TODO 任意のタイミングでのプラグインロード
-"TODO watchdogsのSuccessをステータスラインに表示
 "TODO Neovim環境でコピペがおかしい
+"TODO シンボリックリンクを簡単に貼れるbat作ること
 "COMMENT hier ayuでは反映されない
 
 "最初に書く必要あり
@@ -137,9 +136,6 @@ if v:version >= 700
 endif
 "}}}
 
-"ビープの代わりにビジュアルベル(画面フラッシュ)を使う
-"set visualbell
-
 ""vimrcの編集再読み込み{{{
 	let $MYSEQRC = expand('$VIMRUNTIME\userautoload\SysSeq.vim')
 	let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
@@ -229,8 +225,8 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 "用途依存関係を追記すること
 "Plug 'mhinz/vim-startify'					" startify
-Plug 'xolox/vim-session'
-	Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
+"	Plug 'xolox/vim-misc'
 Plug 'osyo-manga/vim-watchdogs'				" seqのエラーチェック
 	Plug 'KazuakiM/vim-qfsigns'
 	Plug 'KazuakiM/vim-qfstatusline'
@@ -288,12 +284,10 @@ Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
 	Plug 'hokorobi/vim-clap-sessions'
+
 if !has('nvim')
-Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画 nvimは標準で入っているらしい
+	Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
-"if has('nvim')
-"	Plug 'Shougo/denite.nvim'
-"endif
 
 call plug#end()
 "}}}
