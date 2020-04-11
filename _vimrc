@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 27-Feb-2020.
+" Last Change: 09-Apr-2020.
 " Maintainer: TH
 
 "最初に書く必要あり
@@ -65,8 +65,6 @@ endif
 
 "基本設定{{{
 "カラー設定{{{
-"colorscheme自体はtomlファイル内で指定する
-"再読み込みのときのため書いておく
 syntax enable
 set background=light "light dark
 let ayucolor="light"  "mirage dark

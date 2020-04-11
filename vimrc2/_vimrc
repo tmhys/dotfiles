@@ -286,7 +286,7 @@ Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'hokorobi/vim-clap-sessions'
 
 if !has('nvim')
-	Plug 'markonm/traces.vim'					" 置換時にリアルタイム描画 nvimは標準で入っているらしい
+	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
 
 call plug#end()

@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 04-Apr-2020.
+" Last Change: 08-Apr-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -13,13 +13,15 @@ syntax enable
 set termguicolors
 set background=light "light dark
 let ayucolor="light" "light mirage dark
-colorscheme ayu
+colorscheme afterglow
 "}}}
 
 "Neovim{{{ 要見直し
+"TODO ペーストモードがおかしい
 if has('nvim')
 	Guifont! Cica:h12
 	"call GuiWindowMaximized(1)
+	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
 	call GuiWindowFullScreen(1)
 	GuiPopupmenu 0
 	GuiTabline 0
@@ -53,9 +55,6 @@ elseif has('xfontset')
 endif
 
 if !has('nvim')  && has('kaoriya')
-	""ウィンドウサイズ最大で起動
-	"set columns=999
-	"set lines=999
 	SM 5
 	"最大化で起動
 	augroup gvim_cmd
