@@ -22,7 +22,7 @@ nnoremap <silent> [clap]h :<C-u>Clap help<CR>
 nnoremap <silent> [clap]r :<C-u>Clap quick_open<CR>
 nnoremap <silent> [clap]n :<C-u>Clap filer<CR>
 nnoremap <silent> [clap]/ :<C-u>Clap search_history<CR>
-nnoremap <silent> [clap]v :<C-u>Clap files $HOME/dotfiles/vimrc2<CR>
+nnoremap <silent> [clap]v :<C-u>Clap files $HOME/dotfiles/vimrc<CR>
 nnoremap <silent> [clap]p :<C-u>Clap files $HOME/Programing/python<CR>
 nnoremap <silent> [clap]s :<C-u>Clap sessions<CR>
 

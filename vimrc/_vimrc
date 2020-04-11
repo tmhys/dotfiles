@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 09-Apr-2020.
+" Last Change: 11-Apr-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -218,7 +218,8 @@ augroup END
 "}}}
 
 " プラグインインストール{{{
-call plug#begin('$VIMRUNTIME/plugged')
+"call plug#begin('$VIMRUNTIME/plugged')
+call plug#begin('~/vimfiles/plugged')
 "colorscheme{{{
 Plug 'rafi/awesome-vim-colorschemes'
 "}}}
