@@ -248,3 +248,5 @@ endfor
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
+
+tnoremap <silent> <ESC> <C-\><C-n>

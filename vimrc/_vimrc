@@ -5,19 +5,24 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 11-Apr-2020.
+" Last Change: 12-Apr-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
 "TODO _configファイル更新でも自動再読み込み
 "TODO 任意のタイミングでのプラグインロード
-"TODO Neovim環境でコピペがおかしい
 "TODO シンボリックリンクを簡単に貼れるbat作ること
+"TODO Neovim環境でコピペがおかしい
+"TODO Neovim環境でNERDTreeBracketがおかしい
+"TODO Neovim環境でambiwidth
 "COMMENT hier ayuでは反映されない
 
 "最初に書く必要あり
 set encoding=utf8
 scriptencoding utf-8
+if !has('kaoriya')
+	let g:vimproc#download_windows_dll = 1
+endif
 
 "基本設定{{{
 "ステータスライン常時表示
@@ -137,7 +142,7 @@ endif
 "}}}
 
 ""vimrcの編集再読み込み{{{
-	let $MYSEQRC = expand('$VIMRUNTIME\userautoload\SysSeq.vim')
+	let $MYSEQRC = expand('~\vimfiles\userautoload\SysSeq.vim')
 	let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
 	let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
 	let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
@@ -217,6 +222,9 @@ augroup ctags
 augroup END
 "}}}
 
+"その他の設定ファイル読み込み
+runtime! userautoload/*.vim
+
 " プラグインインストール{{{
 "call plug#begin('$VIMRUNTIME/plugged')
 call plug#begin('~/vimfiles/plugged')
@@ -246,7 +254,7 @@ Plug 'kana/vim-smartchr'					" 符号の前後にスペース
 Plug 'kshenoy/vim-signature'				" マーク位置表示
 Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
 Plug 'mhinz/vim-signify'					" 差分をsignで表示
-Plug 'miura/ImageJMacro_Highlighter'		" ImageJシンタックス
+"Plug 'miura/ImageJMacro_Highlighter'		" ImageJシンタックス
 Plug 'osyo-manga/vim-anzu'					" 検索結果ヒット数表示
 Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
 Plug 'rhysd/accelerated-jK'					" カーソル移動速度変更
@@ -289,11 +297,12 @@ Plug 'liuchengxu/vim-clap'					" Clap
 if !has('nvim')
 	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
+if has('nvim')
+	Plug 'Shougo/vimproc.vim'
+endif
 
 call plug#end()
 "}}}
 
 " 各種設定の読み込み
 call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-"その他の設定ファイル読み込み
-runtime! userautoload/*.vim

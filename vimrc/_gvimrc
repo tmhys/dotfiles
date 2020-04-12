@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 08-Apr-2020.
+" Last Change: 12-Apr-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -17,7 +17,6 @@ colorscheme afterglow
 "}}}
 
 "Neovim{{{ 要見直し
-"TODO ペーストモードがおかしい
 if has('nvim')
 	Guifont! Cica:h12
 	"call GuiWindowMaximized(1)
@@ -26,10 +25,10 @@ if has('nvim')
 	GuiPopupmenu 0
 	GuiTabline 0
 	set pumblend=10
-   	set ambiwidth=single
 	map! <S-Insert> <C-R>+
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 	set inccommand=split
+   	set ambiwidth=single
 endif
 "}}}
 

@@ -2,10 +2,6 @@ if empty(globpath(&rtp, 'plugin/webdevicons.vim'))
   finish
 endif
 
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
-
 " adding the custom source to unite
 let g:webdevicons_enable_unite = 1
 " adding the column to vimfiler
@@ -13,7 +9,11 @@ let g:webdevicons_enable_vimfiler = 1
 " Adding the custom source to denite
 let g:webdevicons_enable_denite = 0
 
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+if has('nvim')
+	let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+else
+	let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+endif
 " adding the flags to NERDTree
 let g:webdevicons_enable_nerdtree = 1
 " whether or not to show the nerdtree brackets around flags
@@ -40,3 +40,6 @@ let g:DevIconsEnableFolderPatternMatching = 1
 " enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
 let g:DevIconsEnableFolderExtensionPatternMatching = 0
 
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
