@@ -15,6 +15,10 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 let g:quickrun_config = {
 \   "_" : {
 \   "outputter/buffer/split" : ":rightbelow 8",
+\   "hook/output_encode/enable" : 1,
+\   "hook/output_encode/encoding" : "sjis",
+\ 	'runner'    : 'vimproc',
+\ 	'runner/vimproc/updatetime' : 40,
 \   "outputter/buffer/close_on_empty" : 1
 \	 },
 \   "seq/watchdogs_checker" : {
@@ -27,12 +31,9 @@ let g:quickrun_config = {
 \ 	"hook/echo/output_success": "> Success.",
 \ 	"hook/echo/output_failure": "> Errors Found.",
 \ 	'outputter' : 'error',
-\ 	'runner'    : 'vimproc',
-\ 	'runner/vimproc/updatetime' : 40,
 \ 	'outputter/quickfix/open_cmd' : "",
 \ 	'outputter/error/success' : 'quickfix',
 \ 	'outputter/error/error'   : 'quickfix',
-\ 	'outputter/buffer/split'  : ':rightbelow 8sp',
 \   "type" : "watchdogs_checker/SeqCnv_V340",
 \	"command" : "SeqCnv_V340",
 \	"cmdopt" : "-l",
@@ -40,17 +41,3 @@ let g:quickrun_config = {
 \	"quickfix/errorformat": "%WWarning: %f (%l):%m,%EError: %f (%l):%m",
 \   },
 \}
-
-"" vintコマンドが存在するときだけチェックを行うようにします
-"let g:quickrun_config = {
-"\    'vim/watchdogs_checker': {
-"\     'type': executable('vint') ? 'watchdogs_checker/vint' : '',
-"\    },
-"\    "watchdogs_checker/vint" : {
-"\       "command"   : "vint",
-"\       "exec"      : "%c %o %s:p ",
-"\   },
-"\ }
-
-" ここはautogroup経由で定義するようにしないとvintに怒られます
-"autocmd BufWritePost .vimrc,*.vim,_vimrc,gvimrc WatchdogsRunSilent
