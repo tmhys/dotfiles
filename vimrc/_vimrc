@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 12-Apr-2020.
+" Last Change: 22-Apr-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -13,8 +13,9 @@
 "TODO 任意のタイミングでのプラグインロード
 "TODO シンボリックリンクを簡単に貼れるbat作ること
 "TODO Neovim環境でコピペがおかしい
-"TODO Neovim環境でNERDTreeBracketがおかしい
 "TODO Neovim環境でambiwidth
+"TODO LSP使用できない環境での設定を検討する
+"TODO ctagsなどプラグイン以外の依存関係の整理
 "COMMENT hier ayuでは反映されない
 
 "最初に書く必要あり
@@ -278,6 +279,7 @@ Plug 'tyru/restart.vim'						" esc連打で再起動
 Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
 Plug 'mopp/autodirmake.vim' 				"dir自動作成
 Plug 'glidenote/memolist.vim'
+Plug 'mechatroner/rainbow_csv'
 
 "LSP関連{{{
 Plug 'prabirshrestha/async.vim'
