@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 22-Apr-2020.
+" Last Change: 27-Apr-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -60,6 +60,20 @@ set undodir=$HOME/.vimbackup
 set undofile
 set noswapfile
 
+"自動的にセッション保存
+set sessionoptions-=blank
+
+"対になる括弧点滅
+set showmatch
+set matchtime=1
+
+set scrolloff=10
+set backspace=indent,eol,start
+set matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
+set virtualedit=block
+set ignorecase
+set smartcase
+
 "末尾の空白行削除
 function! s:remove_unnecessary_space()
     " delete last blank lines
@@ -104,14 +118,6 @@ elseif executable('rg')
 endif
 "}}}
 
-"自動的にセッション保存
-set sessionoptions-=blank
-
-"対になる括弧点滅{{{
-set showmatch
-set matchtime=1
-"}}}
-
 "IME状態に応じたカーソル色設定{{{
 if has('multi_byte_ime')
   highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
@@ -119,31 +125,13 @@ if has('multi_byte_ime')
 endif
 "}}}
 
-set scrolloff=10
-set backspace=indent,eol,start
-set matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
-set virtualedit=block
-set ignorecase
-set smartcase
-
 " 終了時に保存するセッションオプションを設定する{{{
 let g:restart_sessionoptions
     \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 "}}}
 
-"カレントウィンドウを新規タブで開き直す{{{
-if v:version >= 700
-    nnoremap <M-n> :call OpenNewTab()<CR>
-    function! OpenNewTab()
-        let f = expand("%:p")
-        execute ":q"
-        execute ":tabnew ".f
-    endfunction
-endif
-"}}}
-
 ""vimrcの編集再読み込み{{{
-	let $MYSEQRC = expand('~\vimfiles\userautoload\SysSeq.vim')
+	let $MYSEQRC = expand('$VIMRUNTIME\userautoload\SysSeq.vim')
 	let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
 	let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
 	let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
@@ -168,7 +156,9 @@ augroup reload_vimrc
 	autocmd BufWritePost $MYGVIMRC 	 nested source $MYVIMRC|source $MYGVIMRC
 	autocmd BufWritePost $MYCONFIG   nested source $MYCONFIG
 	autocmd BufWritePost $MYGCONFIG  nested source $MYGCONFIG
-	autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
+	"autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
+	"autocmd BufWritePost SysSeq.vim	 nested source SysSeq.vim
+	autocmd BufWritePost $MYSEQRC	 nested source $MYSEQRC
 augroup END
 "}}}
 
@@ -223,12 +213,9 @@ augroup ctags
 augroup END
 "}}}
 
-"その他の設定ファイル読み込み
-runtime! userautoload/*.vim
-
 " プラグインインストール{{{
 "call plug#begin('$VIMRUNTIME/plugged')
-call plug#begin('~/vimfiles/plugged')
+silent! call plug#begin('~/vimfiles/plugged')
 "colorscheme{{{
 Plug 'rafi/awesome-vim-colorschemes'
 "}}}
@@ -246,6 +233,7 @@ Plug 'Yggdroot/indentLine'					" vim-indent-guidesよりこちらが好みindent
 Plug 'cohama/vim-hier'						" エラー行ハイライト
 Plug 'dannyob/quickfixstatus'				" カーソルをエラー行に配置したときメッセージ表示
 Plug 'itchyny/lightline.vim'				" lightline
+Plug 'itchyny/vim-cursorword'				" カーソル下の単語にアンダーライン
 	Plug 'delphinus/lightline-delphinus'
 Plug 'deris/vim-shot-f'						" fキー強化
 Plug 'haya14busa/incsearch-fuzzy.vim'		" 一文字ごとにハイライト
@@ -280,6 +268,9 @@ Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
 Plug 'mopp/autodirmake.vim' 				"dir自動作成
 Plug 'glidenote/memolist.vim'
 Plug 'mechatroner/rainbow_csv'
+"Plug 'puremourning/vimspector'
+"Plug 'thaerkh/vim-workspace'				" session管理用→フリーズ多発
+"Plug 'kassio/neoterm'						" ターミナル拡張
 
 "LSP関連{{{
 Plug 'prabirshrestha/async.vim'
@@ -305,6 +296,9 @@ endif
 
 call plug#end()
 "}}}
+
+"その他の設定ファイル読み込み
+runtime! userautoload/*.vim
 
 " 各種設定の読み込み
 call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
