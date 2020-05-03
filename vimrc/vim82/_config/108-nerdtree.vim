@@ -52,3 +52,15 @@ endfunction
 "call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', 'NONE')
 "call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
 "
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }

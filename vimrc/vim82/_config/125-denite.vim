@@ -48,6 +48,7 @@ augroup END
 	  nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
 	  nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
 	  nnoremap <silent><buffer><expr> q denite#do_map('quit')
+	  nnoremap <silent><buffer><expr> <ESC> denite#do_map('quit')
 	  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
   	  nnoremap <silent><buffer><expr> a denite#do_map('open_filter_buffer')
 	  nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
@@ -64,67 +65,9 @@ augroup END
   	  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
 	endfunction
 
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-	function! s:denite_filter_my_settings() abort
-	  call deoplete#custom#buffer_option('auto_complete', v:false)
-	endfunction
-
-	call denite#custom#var('session', 'path', '~\.vim\session')
-
-	call denite#custom#source('grep', 'args', ['', '', '!'])
-
-	let ignore=&wildignore .
-	\ ',*.pyc,.git,.hg,.svn'
-	call denite#custom#var('file/rec', 'command',
-	\ ['scantree.py', '--ignore', ignore])
-
-	call denite#custom#var('file/rec', 'command',
-	\ ['pt', '--follow', '--nocolor', '--nogroup',
-	\  (has('win32') ? '-g:' : '-g='), ''])
-
-	"let s:ignore_globs = ['.git', '.svn', 'node_module']
-	"call denite#custom#var('file/rec', 'command',
-	"\ ['pt', '--follow',]
-	"\+ map(deepcopy(s:ignore_globs),
-	"\{k, v -> '--ignore='.v}) +
-	"\['--nocolor', '--nogroup',
-	"\  (has('win32') ? '-g:' : '-g='), '']
-	"\ )
-	"call denite#custom#source('file/rec', 'max_candidates', '50000')
-"
-	" Change sorters.
-"	call denite#custom#source(
-"	\ 'file/rec', 'sorters', ['sorter/sublime'])
-
-	" Pt command on grep source
-	call denite#custom#var('grep', 'command', ['pt'])
-	call denite#custom#var('grep', 'default_opts',
-			\ ['-i', '--nogroup', '--nocolor', '--smart-case'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', [])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-
-"	" Specify multiple paths in grep source
-"	"call denite#start([{'name': 'grep',
-"	"      \ 'args': [['a.vim', 'b.vim'], '', 'pattern']}])
-"
-	" Define alias
-	call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-	call denite#custom#var('file/rec/git', 'command',
-	      \ ['git', 'ls-files', '-co', '--exclude-standard'])
-
-	call denite#custom#alias('source', 'file/rec/py', 'file/rec')
-	call denite#custom#var('file/rec/py', 'command',['scantree.py'])
-
-	" Change ignore_globs
-	call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
-	      \ [ '.git/', '.ropeproject/', '__pycache__/',
-	      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
-
 " The prefix key.
 nnoremap    [denite]   <Nop>
-nmap    <Space>f [denite]
+nmap    <Space>d [denite]
 
 "メニュー
 "nnoremap <silent> [denite]d :<C-u>Denite menu -no-start-filter<CR>
@@ -172,25 +115,3 @@ nnoremap <silent> [denite]k :<C-u>Denite
 "nnoremap <silent> [denite]<C-n> :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=+1 -immediately<CR>
 "nnoremap <silent> [denite]<C-p> :<C-u>Denite -resume -buffer-name=search-buffer-denite -select=-1 -immediately<CR>
 nnoremap <silent> [denite]l :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
-
-	" Add custom menus
-	let s:menus = {}
-
-	let s:menus.zsh = {
-		\ 'description': 'Edit your import zsh configuration'
-		\ }
-	let s:menus.zsh.file_candidates = [
-		\ ['zshrc', '~/.config/zsh/.zshrc'],
-		\ ['zshenv', '~/.zshenv'],
-		\ ]
-
-	let s:menus.my_commands = {
-		\ 'description': 'Example commands'
-		\ }
-	let s:menus.my_commands.command_candidates = [
-		\ ['Split the window', 'vnew'],
-		\ ['Open zsh menu', 'Denite menu:zsh'],
-		\ ['Format code', 'FormatCode', 'go,python'],
-		\ ]
-
-	call denite#custom#var('menu', 'menus', s:menus)

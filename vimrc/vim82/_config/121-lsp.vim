@@ -3,13 +3,13 @@ if empty(globpath(&rtp, 'autoload/lsp.vim'))
 endif
 
 function! s:on_lsp_buffer_enabled() abort
-  setlocal omnifunc=lsp#complete
-  setlocal signcolumn=yes
-  nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> <f2> <plug>(lsp-rename)
-  nnoremap <F5> :LspDocumentFormat<CR>
-  autocmd BufWritePre *.py LspDocumentFormatSync
-  "inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+	setlocal omnifunc=lsp#complete
+	setlocal signcolumn=yes
+	nmap <buffer> gd <plug>(lsp-definition)
+	nmap <buffer> <f2> <plug>(lsp-rename)
+	nnoremap <buffer> <F5> :LspDocumentFormat<CR>
+	autocmd BufWritePre *.py LspDocumentFormatSync
+	"inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 endfunction
 
 augroup lsp_install
@@ -22,5 +22,5 @@ let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 1
-let g:asyncomplete_popup_delay = 100
+let g:asyncomplete_popup_delay = 5
 let g:lsp_text_edit_enabled = 0

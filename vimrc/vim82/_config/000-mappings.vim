@@ -215,11 +215,11 @@ autocmd BufReadPost * delmarks!
 " }}}
 
 ""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
-autocmd BufNewFile,BufRead *.rb nnoremap <C-e> :!ruby %<CR>
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python %<CR>
-autocmd BufNewFile,BufRead *.pl nnoremap <C-e> :!perl %<CR>
-autocmd BufNewFile,BufRead *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
-autocmd BufNewFile,BufRead *.js nnoremap <C-e> :!electron .<CR>
+autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
+"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
+"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
+"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
+"autocmd FileType *.js nnoremap <C-e> :!electron .<CR>
 "}}}
 
 "grep
@@ -240,9 +240,10 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
 
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap " . k . " " . k . "<C-N><C-P>"
-endfor
+"seq内では有効にしたいが…
+"for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
+"  exec "imap " . k . " " . k . "<C-N><C-P>"
+"endfor
 
 "leximaと重複注意
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
