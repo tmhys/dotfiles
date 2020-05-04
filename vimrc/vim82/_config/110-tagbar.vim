@@ -9,7 +9,8 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_type_seq = {
 	\ 'ctagstype' : 'seq',
 	\ 'kinds' : [
-		\ 'm:method'
+		\ 'm:method',
+		\ 's:svport'
 	\ ],
 	\ 'sort' : 0
 \ }
