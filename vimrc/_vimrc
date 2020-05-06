@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 04-May-2020.
+" Last Change: 06-May-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -168,6 +168,7 @@ augroup reload_vimrc
 	"autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
 	"autocmd BufWritePost SysSeq.vim	 nested source SysSeq.vim
 	autocmd BufWritePost $MYSEQRC	 nested source $MYSEQRC
+	autocmd BufWritePost $MYVIMRC call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END
 "}}}
 
@@ -225,47 +226,46 @@ augroup END
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 Plug 'rafi/awesome-vim-colorschemes'		"colorscheme
-Plug 'osyo-manga/vim-watchdogs'				" seqのエラーチェック
+Plug 'osyo-manga/vim-watchdogs'				" 119 seqのエラーチェック
 	Plug 'KazuakiM/vim-qfsigns'
 	Plug 'KazuakiM/vim-qfstatusline'
 	Plug 'osyo-manga/shabadou.vim'
 Plug 'LeafCage/foldCC'						" フォールドの見た目変更
-Plug 'Yggdroot/indentLine'					" vim-indent-guidesよりこちらが好みindent可視化
+Plug 'Yggdroot/indentLine'					" 106 vim-indent-guidesよりこちらが好みindent可視化
 Plug 'cohama/vim-hier'						" エラー行ハイライト
 Plug 'dannyob/quickfixstatus'				" カーソルをエラー行に配置したときメッセージ表示
-Plug 'osyo-manga/vim-brightest'				" カーソル下の単語にアンダーライン
-Plug 'easymotion/vim-easymotion'			"
-Plug 'itchyny/lightline.vim'				" lightline
+Plug 'osyo-manga/vim-brightest'				" 131 カーソル下の単語にアンダーライン
+Plug 'easymotion/vim-easymotion'			" 132
+Plug 'itchyny/lightline.vim'				" 107 lightline
 	Plug 'delphinus/lightline-delphinus'
 Plug 'deris/vim-shot-f'						" fキー強化
-Plug 'haya14busa/incsearch-fuzzy.vim'		" 一文字ごとにハイライト
-	Plug 'haya14busa/incsearch.vim'
-Plug 'junegunn/vim-easy-align'				" テキスト整形
-Plug 'kana/vim-smartchr'					" 符号の前後にスペース
+Plug 'haya14busa/incsearch-fuzzy.vim'		" 103 一文字ごとにハイライト
+	Plug 'haya14busa/incsearch.vim'			" 104 一文字ごとにハイライト
+Plug 'junegunn/vim-easy-align'				" 114 テキスト整形
+Plug 'kana/vim-smartchr'					" 118 符号の前後にスペース
 Plug 'kshenoy/vim-signature'				" マーク位置表示
 Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
 Plug 'mhinz/vim-signify'					" 差分をsignで表示
-Plug 'osyo-manga/vim-anzu'					" 検索結果ヒット数表示
+Plug 'osyo-manga/vim-anzu'					" 112 検索結果ヒット数表示
 Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
-Plug 'rhysd/accelerated-jK'					" カーソル移動速度変更
+Plug 'rhysd/accelerated-jK'					" 100 カーソル移動速度変更
 Plug 'ryanoasis/vim-devicons'				" icon追加
-Plug 'scrooloose/nerdtree'					" nerdtree
+Plug 'scrooloose/nerdtree'					" 108 nerdtree
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree用シンタックス
 	Plug 'Xuyuanp/nerdtree-git-plugin' 		" git ステータス表示
-Plug 'simeji/winresizer'					" ウィンドウリサイズ
-Plug 'majutsushi/tagbar'					" tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
+Plug 'simeji/winresizer'					" 120 ウィンドウリサイズ
+Plug 'majutsushi/tagbar'					" 110 tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
 Plug 'thinca/vim-qfreplace'					" 一括置換
-Plug 'thinca/vim-quickrun'					" すぐ実行
-Plug 'thinca/vim-singleton'					" 起動数を常に1つに
+Plug 'thinca/vim-quickrun'					" 116 すぐ実行
+Plug 'thinca/vim-singleton'					" 117 起動数を常に1つに
 Plug 'tmhys/vim-auto-cursorline'			" カーソル放置で点滅
-Plug 'tpope/vim-fugitive'					" git用
+Plug 'tpope/vim-fugitive'					" 115 git用
 Plug 'tpope/vim-surround'					" 閉じカッコを編集
-Plug 'travisjeffery/vim-auto-mkdir'			" 存在しないディレクトリ作成
+Plug 'mopp/autodirmake.vim' 				" dir自動作成
 Plug 'tyru/current-func-info.vim'			" カーソル位置関数表示
-Plug 'tyru/restart.vim'						" esc連打で再起動
+Plug 'tyru/restart.vim'						" 109 esc連打で再起動
 Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
-Plug 'mopp/autodirmake.vim' 				"dir自動作成
-Plug 'glidenote/memolist.vim'
+Plug 'glidenote/memolist.vim'				" 123 memo
 Plug 'mechatroner/rainbow_csv'
 
 ""LSP関連
@@ -281,11 +281,11 @@ if executable('git')
 endif
 
 if !has('nvim')
-"	Plug 'Shougo/neocomplete.vim'
-"		Plug 'Shougo/neosnippet-snippets'
-"		Plug 'Shougo/neosnippet.vim'
-"
-"	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
+	Plug 'Shougo/neocomplete.vim'
+		Plug 'Shougo/neosnippet-snippets'
+		Plug 'Shougo/neosnippet.vim'
+
+	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
 
 Plug 'liuchengxu/vim-clap'					" Clap

@@ -32,6 +32,7 @@ nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
 
 "jj,kkでEcs
 inoremap jj <Esc>
+inoremap oo <Esc>
 inoremap qq <Esc>
 inoremap hhh <Esc>
 inoremap lll <Esc>
