@@ -5,18 +5,18 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 06-May-2020.
+" Last Change: 12-May-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
 "TODO _configファイル更新でも自動再読み込み
-"TODO 任意のタイミングでのプラグインロード→vim-plugで遅延読み込みすると設定ファイルが無視される
 "TODO シンボリックリンクを簡単に貼れるbat作ること
 "TODO Neovim環境でコピペがおかしい
 "TODO Neovim環境でambiwidth
 "TODO LSP使用できない環境での設定を検討する
 "TODO ctagsなどプラグイン以外の依存関係の整理
-"COMMENT hier ayuでは反映されない
+"NONE 任意のタイミングでのプラグインロード→vim-plugで遅延読み込みすると設定ファイルが無視される
+"NOTE hier ayuでは反映されない
 
 "最初に書く必要あり
 set encoding=utf8
@@ -24,6 +24,11 @@ scriptencoding utf-8
 if !has('kaoriya')
 	let g:vimproc#download_windows_dll = 1
 endif
+
+"reload時の設定検討中
+"set all&
+"autocmd!
+"mapclear
 
 "pythonインターフェース有効化
 "anacondaで指定すると動作が超絶不安定
@@ -157,18 +162,39 @@ command! Eplug :e $MYPLUGRC
 command! Etoml :e $HOME\.vim\rc\dein.toml
 command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
 command! Esysseq :e $MYSEQRC
+
 "保存したら再読み込み
+"augroup myvimrc
+"    au!
+"    au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+"augroup END
+" 以下の設定で起動後gvimrcを編集し保存してもリロードされない
+" 何故かその状態で一度vimrcをリロードするとgvimrcもリロードされる
+"augroup reload_vimrc
+"	autocmd!
+"	"autocmd BufWritePost $HOME/dotfiles/*vimrc nested source $MYVIMRC|source $MYGVIMRC
+"	autocmd BufWritePost $MYVIMRC 	 nested source $MYVIMRC
+"	"autocmd BufWritePost $MYVIMRC 	 nested source $MYGVIMRC
+"	autocmd BufWritePost $MYGVIMRC 	 nested source $MYVIMRC|source $MYGVIMRC
+"	autocmd BufWritePost $MYCONFIG   nested source $MYCONFIG
+"	autocmd BufWritePost $MYGCONFIG  nested source $MYGCONFIG
+"	"autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
+"	"autocmd BufWritePost SysSeq.vim	 nested source SysSeq.vim
+"	autocmd BufWritePost $MYSEQRC	 nested source $MYSEQRC
+"	"autocmd BufWritePost $MYVIMRC call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+"augroup END
 augroup reload_vimrc
 	autocmd!
 	"autocmd BufWritePost $HOME/dotfiles/*vimrc nested source $MYVIMRC|source $MYGVIMRC
 	autocmd BufWritePost $MYVIMRC 	 nested source $MYVIMRC
-	autocmd BufWritePost $MYGVIMRC 	 nested source $MYVIMRC|source $MYGVIMRC
+	"autocmd BufWritePost $MYVIMRC 	 nested source $MYGVIMRC
+	autocmd BufWritePost $MYGVIMRC 	 nested source $MYGVIMRC
 	autocmd BufWritePost $MYCONFIG   nested source $MYCONFIG
 	autocmd BufWritePost $MYGCONFIG  nested source $MYGCONFIG
 	"autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
 	"autocmd BufWritePost SysSeq.vim	 nested source SysSeq.vim
 	autocmd BufWritePost $MYSEQRC	 nested source $MYSEQRC
-	autocmd BufWritePost $MYVIMRC call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+	"autocmd BufWritePost $MYVIMRC call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END
 "}}}
 

@@ -5,20 +5,21 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 06-May-2020.
+" Last Change: 12-May-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
 syntax enable
 set termguicolors
 set background=light "light dark
-let ayucolor="light" "light mirage dark
-colorscheme afterglow
+let ayucolor="dark" "light mirage dark
+colorscheme molokai
 "}}}
 
 "Neovim{{{ 要見直し
 if has('nvim')
 	Guifont! Cica:h12
+	"Guifont! Consolas:h12
 	"call GuiWindowMaximized(1)
 	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
 	call GuiWindowFullScreen(1)
@@ -35,8 +36,8 @@ endif
 "フォント設定{{{
 if has('win32') || has ('win64')
 	if !has('nvim')
-		set guifont=Cica:h12
-		set printfont=Cica:h8
+		set guifont=Cica:h12,Consolas:h12
+		set printfont=Cica:h8,Consolas:h8
 		set renderoptions=type:directx,renmode:5
 		set enc=utf-8
 		source $VIMRUNTIME/delmenu.vim

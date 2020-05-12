@@ -2,8 +2,8 @@ if empty(globpath(&rtp, 'autoload/denite.vim'))
   finish
 endif
 
-let s:denite_win_width_percent = 0.63
-let s:denite_win_height_percent = 0.42
+let s:denite_win_width_percent = 0.65
+let s:denite_win_height_percent = 0.38
 
 " Change denite default options
 call denite#custom#option('_', {
