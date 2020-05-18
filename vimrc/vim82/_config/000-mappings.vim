@@ -32,11 +32,12 @@ nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
 
 "jj,kkでEcs
 inoremap jj <Esc>
+inoremap jk <Esc>
 inoremap oo <Esc>
 inoremap qq <Esc>
-inoremap hhh <Esc>
-inoremap lll <Esc>
-inoremap kkk <Esc>
+"inoremap hhh <Esc>
+"inoremap lll <Esc>
+"inoremap kkk <Esc>
 
 "アクティブウィンドウ移動
 nnoremap <C-j> <C-w>j
@@ -120,8 +121,10 @@ nnoremap <Space>o :<C-u>call append(expand('.'), '')<Cr>j
 "改行する
 "nnoremap <M-o> i<CR><ESC>
 
-"ESCで確実にIMEオフ
-inoremap <ESC> <ESC>:set iminsert=0<CR>
+if !has('nvim')
+	"ESCで確実にIMEオフ
+	inoremap <silent><ESC> <ESC>:set iminsert=0<CR>
+endif
 
 "コマンドモード{{{
 " 一文字戻る
@@ -207,20 +210,25 @@ nnoremap [Mark]N [`
 " 一覧表示
 nnoremap [Mark]l :<C-u>marks<CR>
 
-" 前回終了位置に移動
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
-
-" バッファ読み込み時にマークを初期化
-autocmd BufReadPost * delmarks!
+augroup last_status
+	autocmd!
+	" 前回終了位置に移動
+	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
+	" バッファ読み込み時にマークを初期化
+	autocmd BufReadPost * delmarks!
+augroup END
 
 " }}}
 
-""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
-autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
-"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
-"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
-"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
-"autocmd FileType *.js nnoremap <C-e> :!electron .<CR>
+augroup run_script
+	autocmd!
+	""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
+	autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
+	"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
+	"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
+	"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
+	"autocmd FileType *.js nnoremap <C-e> :!electron .<CR>
+augroup END
 "}}}
 
 "grep
@@ -234,6 +242,8 @@ onoremap 7 i'
 onoremap @ i`
 onoremap [ i[
 onoremap { i{
+"カーソル下の単語とヤンクした単語を置換
+nnoremap cp ciw<C-r>0<ESC>
 
 "相対行番号表示&トグル
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>

@@ -9,6 +9,7 @@ augroup LightlineColorscheme
 	  autocmd ColorScheme * call s:lightline_update()
 	  "autocmd ColorSchemePre * call s:lightline_update()
 augroup END
+
 function! s:lightline_update()
   if !exists('g:loaded_lightline')
 	    return
@@ -68,6 +69,24 @@ let g:Qfstatusline#UpdateCmd = function('lightline#update')
 		"}}}
 endif
 
+""mode短縮形{{{
+"let g:lightline = {
+"      \ 'mode_map': {
+"        \ 'n' : 'N',
+"        \ 'i' : 'I',
+"        \ 'R' : 'R',
+"        \ 'v' : 'V',
+"        \ 'V' : 'VL',
+"        \ "\<C-v>": 'VB',
+"        \ 'c' : 'C',
+"        \ 's' : 'S',
+"        \ 'S' : 'SL',
+"        \ "\<C-s>": 'SB',
+"        \ 't': 'T',
+"        \ },
+"      \ }
+""      }}}
+
 function! LightLineModified()
     if &filetype == "help"
         return ""
@@ -112,8 +131,6 @@ function! LightLineFilename()
         	\ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
         	\ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
-                "\ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-                "\ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 
 function! LightLineFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''

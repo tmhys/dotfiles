@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 12-May-2020.
+" Last Change: 18-May-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -24,6 +24,8 @@ scriptencoding utf-8
 if !has('kaoriya')
 	let g:vimproc#download_windows_dll = 1
 endif
+
+set shortmess+=I                                 " 起動時のメッセージを消す
 
 "reload時の設定検討中
 "set all&
@@ -49,7 +51,6 @@ set completeopt=menuone
 set lazyredraw
 set updatetime=700
 
-"シンタックスハイライト関係{{{
 set autoindent
 "set expandtab
 set tabstop=4
@@ -61,7 +62,6 @@ set number
 "カラムのカクカク防止
 set signcolumn=yes
 filetype plugin on
-"}}}
 
 "コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=full
@@ -89,7 +89,7 @@ set virtualedit=block
 set ignorecase
 set smartcase
 
-"末尾の空白行削除
+"末尾の空白行削除{{{
 function! s:remove_unnecessary_space()
     " delete last blank lines
     while getline('$') == ""
@@ -119,6 +119,7 @@ augroup win_config
 	"backupファイルに日付
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 augroup END
+"}}}
 
 "grep代替{{{
 if executable('pt')
@@ -164,39 +165,12 @@ command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
 command! Esysseq :e $MYSEQRC
 
 "保存したら再読み込み
-"augroup myvimrc
-"    au!
-"    au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim nested so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-"augroup END
-" 以下の設定で起動後gvimrcを編集し保存してもリロードされない
-" 何故かその状態で一度vimrcをリロードするとgvimrcもリロードされる
-"augroup reload_vimrc
-"	autocmd!
-"	"autocmd BufWritePost $HOME/dotfiles/*vimrc nested source $MYVIMRC|source $MYGVIMRC
-"	autocmd BufWritePost $MYVIMRC 	 nested source $MYVIMRC
-"	"autocmd BufWritePost $MYVIMRC 	 nested source $MYGVIMRC
-"	autocmd BufWritePost $MYGVIMRC 	 nested source $MYVIMRC|source $MYGVIMRC
-"	autocmd BufWritePost $MYCONFIG   nested source $MYCONFIG
-"	autocmd BufWritePost $MYGCONFIG  nested source $MYGCONFIG
-"	"autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
-"	"autocmd BufWritePost SysSeq.vim	 nested source SysSeq.vim
-"	autocmd BufWritePost $MYSEQRC	 nested source $MYSEQRC
-"	"autocmd BufWritePost $MYVIMRC call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-"augroup END
-augroup reload_vimrc
-	autocmd!
-	"autocmd BufWritePost $HOME/dotfiles/*vimrc nested source $MYVIMRC|source $MYGVIMRC
-	autocmd BufWritePost $MYVIMRC 	 nested source $MYVIMRC
-	"autocmd BufWritePost $MYVIMRC 	 nested source $MYGVIMRC
-	autocmd BufWritePost $MYGVIMRC 	 nested source $MYGVIMRC
-	autocmd BufWritePost $MYCONFIG   nested source $MYCONFIG
-	autocmd BufWritePost $MYGCONFIG  nested source $MYGCONFIG
-	"autocmd BufWritePost SysSeq.vim	 nested source $MYVIMRC|source $MYGVIMRC
-	"autocmd BufWritePost SysSeq.vim	 nested source SysSeq.vim
-	autocmd BufWritePost $MYSEQRC	 nested source $MYSEQRC
-	"autocmd BufWritePost $MYVIMRC call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+"gui_runningがnvimでは機能しないらしい
+augroup myvimrc
+    au!
+    au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
+	au BufWritePost $MYSEQRC nesterd so $MYSEQRC
 augroup END
-"}}}
 
 "ペーストする際に、自動でpaste modeに
 if !has('nvim')
@@ -216,6 +190,9 @@ if !has('nvim')
 	    cnoremap <special> <Esc>[201~ <nop>
 	endif
 endif
+
+"yank した文字列をクリップボードにコピー
+"set clipboard=unnamed
 "}}}
 
 "ctags{{{ auto-ctagsと重複？
@@ -248,6 +225,7 @@ augroup ctags
   autocmd BufWritePost * call s:execute_ctags()
 augroup END
 "}}}
+"}}}
 
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
@@ -264,7 +242,7 @@ Plug 'osyo-manga/vim-brightest'				" 131 カーソル下の単語にアンダー
 Plug 'easymotion/vim-easymotion'			" 132
 Plug 'itchyny/lightline.vim'				" 107 lightline
 	Plug 'delphinus/lightline-delphinus'
-Plug 'deris/vim-shot-f'						" fキー強化
+Plug 'rhysd/clever-f.vim'					" fキー強化
 Plug 'haya14busa/incsearch-fuzzy.vim'		" 103 一文字ごとにハイライト
 	Plug 'haya14busa/incsearch.vim'			" 104 一文字ごとにハイライト
 Plug 'junegunn/vim-easy-align'				" 114 テキスト整形
@@ -293,6 +271,7 @@ Plug 'tyru/restart.vim'						" 109 esc連打で再起動
 Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
 Plug 'glidenote/memolist.vim'				" 123 memo
 Plug 'mechatroner/rainbow_csv'
+
 
 ""LSP関連
 if executable('git')
@@ -330,6 +309,9 @@ else
 endif
 
 " ボツプラグイン機会があれば
+"Plug 'deris/vim-shot-f'						" fキー強化
+"Plug 'arp242/startscreen.vim'				" simple startify
+"Plug 'thinca/vim-splash'					"joke
 "Plug 'mhinz/vim-startify'					" startify
 "Plug 'xolox/vim-session'					" session管理
 "	Plug 'xolox/vim-misc'

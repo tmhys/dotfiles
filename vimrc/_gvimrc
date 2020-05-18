@@ -5,24 +5,25 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 12-May-2020.
+" Last Change: 18-May-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
+"カラー設定はvimrcではなぜか反映されないのでここに書くこと
 syntax enable
 set termguicolors
 set background=light "light dark
-let ayucolor="dark" "light mirage dark
-colorscheme molokai
+let ayucolor="mirage" "light mirage dark
+colorscheme ayu
 "}}}
 
 "Neovim{{{ 要見直し
 if has('nvim')
+	Guifont! Consolas:h12
 	Guifont! Cica:h12
-	"Guifont! Consolas:h12
-	"call GuiWindowMaximized(1)
+	call GuiWindowMaximized(1)
 	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
-	call GuiWindowFullScreen(1)
+	"call GuiWindowFullScreen(1)
 	GuiPopupmenu 0
 	GuiTabline 0
 	set pumblend=10
