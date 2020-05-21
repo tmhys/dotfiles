@@ -7,20 +7,21 @@ nnoremap <M-s> :Startify<CR>
 "noremap <Space>tn :<C-u>tabnew<CR> :Startify<CR>
 
 " 起動時の画面の設定
-let g:startify_files_number = 10
+"let g:startify_session_sort = 1
+let NERDTreeHijackNetrw = 0
+let g:startify_enable_unsafe = 1
 let g:startify_change_to_dir       = 0
 let g:startify_enable_special      = 0
+let g:startify_enable_special = 1
+let g:startify_files_number = 10
 let g:startify_fortune_use_unicode = 1
-let g:startify_update_oldfiles     = 1
-let g:startify_use_env             = 1
 let g:startify_session_autoload       = 1
 let g:startify_session_delete_buffers = 1
-let g:startify_session_persistence    = 1
-let g:startify_session_number = 10
-let g:startify_session_sort = 1
-let g:startify_enable_special = 1
 let g:startify_session_dir = '~/.vim/session'
-let NERDTreeHijackNetrw = 0
+let g:startify_session_number = 10
+let g:startify_session_persistence    = 1
+let g:startify_update_oldfiles     = 1
+let g:startify_use_env             = 1
 let g:startify_session_before_save = [
         \ 'echo "Cleaning up before saving.."',
         \ 'silent! NERDTreeTabsClose'
@@ -67,4 +68,3 @@ let g:startify_custom_header =
 "                "\ |   NERDTree
 "                \ |   wincmd w
 "                \ | endif
-let g:startify_enable_unsafe = 1

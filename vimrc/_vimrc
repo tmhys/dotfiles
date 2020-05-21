@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 18-May-2020.
+" Last Change: 21-May-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -312,7 +312,7 @@ endif
 "Plug 'deris/vim-shot-f'						" fキー強化
 "Plug 'arp242/startscreen.vim'				" simple startify
 "Plug 'thinca/vim-splash'					"joke
-"Plug 'mhinz/vim-startify'					" startify
+Plug 'mhinz/vim-startify'					" startify
 "Plug 'xolox/vim-session'					" session管理
 "	Plug 'xolox/vim-misc'
 "Plug 'itchyny/vim-cursorword'				" カーソル下の単語にアンダーライン

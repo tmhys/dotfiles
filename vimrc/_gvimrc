@@ -31,6 +31,7 @@ if has('nvim')
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 	set inccommand=split
    	set ambiwidth=single
+
 endif
 "}}}
 
