@@ -5,14 +5,13 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 21-May-2020.
+" Last Change: 03-Jun-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
 "TODO _configファイル更新でも自動再読み込み
 "TODO シンボリックリンクを簡単に貼れるbat作ること
 "TODO Neovim環境でコピペがおかしい
-"TODO Neovim環境でambiwidth
 "TODO LSP使用できない環境での設定を検討する
 "TODO ctagsなどプラグイン以外の依存関係の整理
 "NONE 任意のタイミングでのプラグインロード→vim-plugで遅延読み込みすると設定ファイルが無視される
@@ -26,6 +25,7 @@ if !has('kaoriya')
 endif
 
 set shortmess+=I                                 " 起動時のメッセージを消す
+set shortmess-=S                                 " 検索件数表示
 
 "reload時の設定検討中
 "set all&
@@ -34,9 +34,10 @@ set shortmess+=I                                 " 起動時のメッセージ�
 
 "pythonインターフェース有効化
 "anacondaで指定すると動作が超絶不安定
+"pynvimのインストール方法謎
 "if !has('nvim')
 ""	set pythonthreedll=$HOME\scoop\apps\anaconda3\current\python37.dll
-"	set pythonthreedll=$HOME\vimfiles\python-3.8.3rc1-embed-amd64\python38.dll
+"	set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
 "endif
 
 "基本設定{{{
@@ -230,6 +231,7 @@ augroup END
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 Plug 'rafi/awesome-vim-colorschemes'		"colorscheme
+Plug 'mhinz/vim-startify'					" 124 startify
 Plug 'osyo-manga/vim-watchdogs'				" 119 seqのエラーチェック
 	Plug 'KazuakiM/vim-qfsigns'
 	Plug 'KazuakiM/vim-qfstatusline'
@@ -250,7 +252,6 @@ Plug 'kana/vim-smartchr'					" 118 符号の前後にスペース
 Plug 'kshenoy/vim-signature'				" マーク位置表示
 Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
 Plug 'mhinz/vim-signify'					" 差分をsignで表示
-Plug 'osyo-manga/vim-anzu'					" 112 検索結果ヒット数表示
 Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
 Plug 'rhysd/accelerated-jK'					" 100 カーソル移動速度変更
 Plug 'ryanoasis/vim-devicons'				" icon追加
@@ -286,18 +287,22 @@ if executable('git')
 endif
 
 if !has('nvim')
-	Plug 'Shougo/neocomplete.vim'
-		Plug 'Shougo/neosnippet-snippets'
-		Plug 'Shougo/neosnippet.vim'
+	Plug 'Shougo/neocomplete.vim'			" luaサポートうんぬん
+
+	"Plug 'roxma/nvim-yarp'
+	"Plug 'roxma/vim-hug-neovim-rpc'
 
 	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
+		Plug 'Shougo/neosnippet-snippets'
+		Plug 'Shougo/neosnippet.vim'
 
 Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
 	Plug 'hokorobi/vim-clap-sessions'
 
-if has('nvim')
+if has('nvim') || has('python3')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/vimproc.vim'
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -309,10 +314,11 @@ else
 endif
 
 " ボツプラグイン機会があれば
+"Plug 'lambdalisue/fern.vim'
+"Plug 'osyo-manga/vim-anzu'					" 112 検索結果ヒット数表示shortmessで実現可能
 "Plug 'deris/vim-shot-f'						" fキー強化
 "Plug 'arp242/startscreen.vim'				" simple startify
 "Plug 'thinca/vim-splash'					"joke
-Plug 'mhinz/vim-startify'					" startify
 "Plug 'xolox/vim-session'					" session管理
 "	Plug 'xolox/vim-misc'
 "Plug 'itchyny/vim-cursorword'				" カーソル下の単語にアンダーライン

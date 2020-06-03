@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 18-May-2020.
+" Last Change: 29-May-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -63,7 +63,7 @@ if !has('nvim')  && has('kaoriya')
 		autocmd!
 		autocmd GUIEnter * simalt ~x
 		"透過
-		autocmd FocusGained * set transparency=230
+		autocmd FocusGained * set transparency=245
 		autocmd FocusLost * set transparency=220
 	augroup end
 endif
