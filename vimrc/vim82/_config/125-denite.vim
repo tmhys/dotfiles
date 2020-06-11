@@ -40,7 +40,7 @@ call s:denite_detect_size()
 
 augroup transparent-windows
 	autocmd!
-	autocmd FileType denite set winblend=10  " こちらも 5 〜 30 で試してみてください。
+	autocmd FileType denite set winblend=15  " こちらも 5 〜 30 で試してみてください。
 	autocmd FileType denite-filter set winblend=10
 augroup END
 

@@ -7,7 +7,7 @@ let g:webdevicons_enable_unite = 1
 " adding the column to vimfiler
 let g:webdevicons_enable_vimfiler = 1
 " Adding the custom source to denite
-let g:webdevicons_enable_denite = 0
+let g:webdevicons_enable_denite = 1
 
 if has('nvim')
 	let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '

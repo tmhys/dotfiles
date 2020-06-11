@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 03-Jun-2020.
+" Last Change: 10-Jun-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -35,10 +35,10 @@ set shortmess-=S                                 " 検索件数表示
 "pythonインターフェース有効化
 "anacondaで指定すると動作が超絶不安定
 "pynvimのインストール方法謎
-"if !has('nvim')
-""	set pythonthreedll=$HOME\scoop\apps\anaconda3\current\python37.dll
-"	set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
-"endif
+if !has('nvim')
+"	set pythonthreedll=$HOME\scoop\apps\anaconda3\current\python37.dll
+	set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
+endif
 
 "基本設定{{{
 "ステータスライン常時表示
@@ -170,7 +170,7 @@ command! Esysseq :e $MYSEQRC
 augroup myvimrc
     au!
     au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
-	au BufWritePost $MYSEQRC nesterd so $MYSEQRC
+	au BufWritePost $MYSEQRC nested so $MYSEQRC
 augroup END
 
 "ペーストする際に、自動でpaste modeに
@@ -272,6 +272,7 @@ Plug 'tyru/restart.vim'						" 109 esc連打で再起動
 Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
 Plug 'glidenote/memolist.vim'				" 123 memo
 Plug 'mechatroner/rainbow_csv'
+Plug 'mbbill/undotree'
 
 
 ""LSP関連
@@ -286,12 +287,9 @@ if executable('git')
 	Plug 'hrsh7th/vim-vsnip-integ'
 endif
 
-if !has('nvim')
-	Plug 'Shougo/neocomplete.vim'			" luaサポートうんぬん
-
-	"Plug 'roxma/nvim-yarp'
-	"Plug 'roxma/vim-hug-neovim-rpc'
-
+if !has('nvim') || !has('python3')
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
 	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
 		Plug 'Shougo/neosnippet-snippets'
@@ -301,12 +299,14 @@ Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
 	Plug 'hokorobi/vim-clap-sessions'
 
-if has('nvim') || has('python3')
+if has('nvim')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+elseif has('python3')
+	Plug 'Shougo/deoplete.nvim',
+else
 	Plug 'Shougo/vimproc.vim'
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
 	"Plug 'Shougo/denite.nvim'
 	"Plug 'Shougo/defx.nvim'
 	"Plug 'roxma/nvim-yarp'
@@ -314,6 +314,7 @@ else
 endif
 
 " ボツプラグイン機会があれば
+"Plug 'Shougo/neocomplete.vim'			" luaサポートうんぬん
 "Plug 'lambdalisue/fern.vim'
 "Plug 'osyo-manga/vim-anzu'					" 112 検索結果ヒット数表示shortmessで実現可能
 "Plug 'deris/vim-shot-f'						" fキー強化
