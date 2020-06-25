@@ -9,3 +9,5 @@ command! MyRestart Restart --cmd "let g:restarted = 1"
 if !exists("g:restarted")
     let $PATH = $PATH . ";C:/cpp/boost"
 endif
+
+nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>

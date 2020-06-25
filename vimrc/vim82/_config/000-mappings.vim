@@ -27,8 +27,14 @@ inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
 "}}}
 
 "ESCキー連打
-nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>:AnzuClearSearchStatus<CR>
-nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
+"undiffはkaoriya限定
+if has('kaoriya')
+"nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>
+	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>
+else
+	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
+endif
+
 
 "jj,kkでEcs
 inoremap jj <Esc>

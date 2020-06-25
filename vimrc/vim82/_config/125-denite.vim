@@ -6,16 +6,30 @@ let s:denite_win_width_percent = 0.65
 let s:denite_win_height_percent = 0.38
 
 " Change denite default options
-call denite#custom#option('_', {
-    \ 'winheight': '40*winheight(0)/100',
-    \ 'prompt': '>',
-    \ 'cached_filter': v:true,
-    \ 'start_filter': v:true,
-    \ 'statusline': v:false,
-    \ 'highlight_filter_background': 'DeniteFilter',
-    \ 'highlight_matched_char': 'Underlined',
-    \ 'split': 'floating',
-    \ })
+
+if has('nvim')
+	call denite#custom#option('_', {
+	    \ 'winheight': '40*winheight(0)/100',
+	    \ 'prompt': '>',
+	    \ 'cached_filter': v:true,
+	    \ 'start_filter': v:true,
+	    \ 'statusline': v:false,
+	    \ 'highlight_filter_background': 'DeniteFilter',
+	    \ 'highlight_matched_char': 'Underlined',
+	    \ 'split': 'floating',
+	    \ })
+else
+	call denite#custom#option('_', {
+	    \ 'winheight': '40*winheight(0)/100',
+	    \ 'prompt': '>',
+	    \ 'cached_filter': v:true,
+	    \ 'start_filter': v:true,
+	    \ 'statusline': v:false,
+	    \ 'highlight_filter_background': 'DeniteFilter',
+	    \ 'highlight_matched_char': 'Underlined',
+	    \ })
+endif
+
 "    \ 'cursor_shape': v:true,
 "    \ 'cursor_wrap': v:true,
 
@@ -47,6 +61,9 @@ augroup END
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)
+  imap <silent><buffer> jj <Plug>(denite_filter_quit)
+  imap <silent><buffer> <C-j> <Plug>(denite_filter_quit)
+  imap <silent><buffer> <C-k> <Plug>(denite_filter_quit)
 endfunction
 
 " Define mappings
@@ -57,7 +74,8 @@ function! s:denite_my_settings() abort
 	nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
 	nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
 	nnoremap <silent><buffer><expr> q denite#do_map('quit')
-	nnoremap <silent><buffer><expr> <ESC> denite#do_map('quit')
+	"nnoremap <silent><buffer><expr> <ESC> denite#do_map('quit')
+	nnoremap <silent><buffer> <ESC> :<C-u>q<CR>
 	nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
 	nnoremap <silent><buffer><expr> a denite#do_map('open_filter_buffer')
 	nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
@@ -93,7 +111,7 @@ nnoremap <silent> [denite]s :<C-u>Denite session -no-start-filter<CR>
 "カラースキーム変更
 nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme <CR>
 "カレントディレクトリファイル一覧。
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file file:new<CR>
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file:new<CR>
 "バッファ一覧
 nnoremap <silent> [denite]b :<C-u>Denite buffer <CR>
 "レジスタ一覧

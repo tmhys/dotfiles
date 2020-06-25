@@ -27,3 +27,9 @@ let g:hier_highlight_group_qfi = ""
 "    autocmd!
 "    autocmd QuickFixCmdPre * call ResetHierAutocmd()
 "augroup END
+
+if has('kaoriya')
+	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>
+else
+	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:HierClear<CR>
+endif

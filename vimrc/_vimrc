@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 10-Jun-2020.
+" Last Change: 25-Jun-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -228,6 +228,85 @@ augroup END
 "}}}
 "}}}
 
+" install vim-pulg{{{
+if has('vim_starting')
+  set rtp+=~/vimfiles/plugged
+  if !isdirectory(expand('~/vimfiles/plugged'))
+    echo 'install vim-plug...'
+    call system('mkdir -p ~/vimfiles/plugged')
+    call system('git clone https://github.com/junegunn/vim-plug.git ~/vimfiles/plugged/vim-plug/autoload')
+  end
+endif
+"}}}
+
+" auto - install plugins{{{
+let s:plug = {
+      \ "plugs": get(g:, 'plugs', {})
+      \ }
+
+function! s:plug.is_installed(name)
+  return has_key(self.plugs, a:name) ? isdirectory(self.plugs[a:name].dir) : 0
+endfunction
+
+if s:plug.is_installed("vim-myplugin")
+  " setting
+endif
+function! s:plug.check_installation()
+  if empty(self.plugs)
+    return
+  endif
+
+  let list = []
+  for [name, spec] in items(self.plugs)
+    if !isdirectory(spec.dir)
+      call add(list, spec.uri)
+    endif
+  endfor
+
+  if len(list) > 0
+    let unplugged = map(list, 'substitute(v:val, "^.*github\.com/\\(.*/.*\\)\.git$", "\\1", "g")')
+
+    " Ask whether installing plugs like NeoBundle
+    echomsg 'Not installed plugs: ' . string(unplugged)
+    if confirm('Install plugs now?', "yes\nNo", 2) == 1
+      PlugInstall
+      " Close window for vim-plug
+      silent! close
+      " Restart vim
+      silent! !vim
+      quit!
+    endif
+
+  endif
+endfunction
+
+augroup check-plug
+  autocmd!
+  autocmd VimEnter * if !argc() | call s:plug.check_installation() | endif
+augroup END
+"}}}
+
+" auto - update per week{{{
+function! OnVimEnter() abort
+  " Run PlugUpdate every week automatically when entering Vim.
+  if exists('g:plug_home')
+    let l:filename = printf('%s/.vim_plug_update', g:plug_home)
+    if filereadable(l:filename) == 0
+      call writefile([], l:filename)
+    endif
+
+    let l:this_week = strftime('%Y_%V')
+    let l:contents = readfile(l:filename)
+    if index(l:contents, l:this_week) < 0
+      call execute('PlugUpdate')
+      call writefile([l:this_week], l:filename, 'a')
+    endif
+  endif
+endfunction
+
+autocmd VimEnter * call OnVimEnter()
+"}}}
+
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 Plug 'rafi/awesome-vim-colorschemes'		"colorscheme
@@ -254,7 +333,6 @@ Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
 Plug 'mhinz/vim-signify'					" 差分をsignで表示
 Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
 Plug 'rhysd/accelerated-jK'					" 100 カーソル移動速度変更
-Plug 'ryanoasis/vim-devicons'				" icon追加
 Plug 'scrooloose/nerdtree'					" 108 nerdtree
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree用シンタックス
 	Plug 'Xuyuanp/nerdtree-git-plugin' 		" git ステータス表示
@@ -268,14 +346,16 @@ Plug 'tpope/vim-fugitive'					" 115 git用
 Plug 'tpope/vim-surround'					" 閉じカッコを編集
 Plug 'mopp/autodirmake.vim' 				" dir自動作成
 Plug 'tyru/current-func-info.vim'			" カーソル位置関数表示
-Plug 'tyru/restart.vim'						" 109 esc連打で再起動
 Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
 Plug 'glidenote/memolist.vim'				" 123 memo
 Plug 'mechatroner/rainbow_csv'
 Plug 'mbbill/undotree'
+Plug 'liuchengxu/vim-clap'					" Clap
+	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
+	Plug 'hokorobi/vim-clap-sessions'
+Plug 'istepura/vim-toolbar-icons-silk'
 
-
-""LSP関連
+" LSP関連
 if executable('git')
 	Plug 'prabirshrestha/async.vim'
 	Plug 'prabirshrestha/asyncomplete.vim'
@@ -287,6 +367,7 @@ if executable('git')
 	Plug 'hrsh7th/vim-vsnip-integ'
 endif
 
+" Shougoware関連
 if !has('nvim') || !has('python3')
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
@@ -295,22 +376,17 @@ endif
 		Plug 'Shougo/neosnippet-snippets'
 		Plug 'Shougo/neosnippet.vim'
 
-Plug 'liuchengxu/vim-clap'					" Clap
-	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
-	Plug 'hokorobi/vim-clap-sessions'
+	Plug 'Shougo/vimproc.vim'
 
 if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-elseif has('python3')
-	Plug 'Shougo/deoplete.nvim',
-else
-	Plug 'Shougo/vimproc.vim'
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-	"Plug 'Shougo/denite.nvim'
-	"Plug 'Shougo/defx.nvim'
-	"Plug 'roxma/nvim-yarp'
-	"Plug 'roxma/vim-hug-neovim-rpc'
+	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	"Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'tyru/restart.vim'						" 109 esc連打で再起動
+	"Plug 'Shougo/deoplete.nvim',
+	Plug 'Shougo/denite.nvim',
+	"Plug 'Shougo/defx.nvim',
 endif
 
 " ボツプラグイン機会があれば
@@ -331,6 +407,7 @@ endif
 "Plug 'thaerkh/vim-workspace'				" session管理用→フリーズ多発
 "Plug 'kassio/neoterm'						" ターミナル拡張
 
+Plug 'ryanoasis/vim-devicons'				" icon追加 最後に読み込み事
 call plug#end()
 "}}}
 
