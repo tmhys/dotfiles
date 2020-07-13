@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 25-Jun-2020.
+" Last Change: 13-Jul-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -68,11 +68,21 @@ filetype plugin on
 set wildmenu wildmode=full
 
 "backup
+" ネストしたディレクトリを作成する関数
+function! s:mkdir(dir)
+    if !isdirectory(a:dir)
+       " "p" を渡すことでネストしたディレクトリ全てが作成される
+        call mkdir(a:dir, "p")
+    endif
+endfunction
+
 let $DATE = strftime("%Y%m%d_%H%M%S")
 set backup
 set writebackup
 set backupdir=$HOME/.vimbackup
+call s:mkdir(&backupdir)
 set undodir=$HOME/.vimbackup
+call s:mkdir(&undodir)
 set undofile
 set noswapfile
 
@@ -354,10 +364,12 @@ Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
 	Plug 'hokorobi/vim-clap-sessions'
 Plug 'istepura/vim-toolbar-icons-silk'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'tpope/vim-markdown'
 
 " LSP関連
 if executable('git')
-	Plug 'prabirshrestha/async.vim'
+	"Plug 'prabirshrestha/async.vim' "不要になったらしい
 	Plug 'prabirshrestha/asyncomplete.vim'
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 	Plug 'prabirshrestha/vim-lsp'
@@ -407,7 +419,7 @@ endif
 "Plug 'thaerkh/vim-workspace'				" session管理用→フリーズ多発
 "Plug 'kassio/neoterm'						" ターミナル拡張
 
-Plug 'ryanoasis/vim-devicons'				" icon追加 最後に読み込み事
+Plug 'ryanoasis/vim-devicons'				" icon追加 最後に読み込む事
 call plug#end()
 "}}}
 
