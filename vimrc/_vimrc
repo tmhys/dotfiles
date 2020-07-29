@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Jul-2020.
+" Last Change: 29-Jul-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -67,7 +67,7 @@ filetype plugin on
 "コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=full
 
-"backup
+"backup{{{
 " ネストしたディレクトリを作成する関数
 function! s:mkdir(dir)
     if !isdirectory(a:dir)
@@ -85,6 +85,7 @@ set undodir=$HOME/.vimbackup
 call s:mkdir(&undodir)
 set undofile
 set noswapfile
+"}}}
 
 "自動的にセッション保存
 set sessionoptions-=blank
@@ -370,8 +371,13 @@ Plug 'tpope/vim-markdown'
 " LSP関連
 if executable('git')
 	"Plug 'prabirshrestha/async.vim' "不要になったらしい
-	Plug 'prabirshrestha/asyncomplete.vim'
-	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	"以下どっちか使うべし
+	"Plug 'prabirshrestha/asyncomplete.vim'
+	"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+	"Plug 'Shougo/deoplete.nvim'
+	Plug 'lighttiger2505/deoplete-vim-lsp'
+
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
 	Plug 'mattn/vim-lsp-icons'
@@ -392,14 +398,15 @@ endif
 
 if has('nvim')
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	"Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
 	Plug 'tyru/restart.vim'						" 109 esc連打で再起動
-	"Plug 'Shougo/deoplete.nvim',
+	Plug 'Shougo/deoplete.nvim',
 	Plug 'Shougo/denite.nvim',
-	"Plug 'Shougo/defx.nvim',
+	Plug 'Shougo/defx.nvim',
 endif
+
 
 " ボツプラグイン機会があれば
 "Plug 'Shougo/neocomplete.vim'			" luaサポートうんぬん
