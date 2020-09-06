@@ -41,3 +41,9 @@ let g:quickrun_config = {
 \	"quickfix/errorformat": "%WWarning: %f (%l):%m,%EError: %f (%l):%m",
 \   },
 \}
+
+augroup my_watchdogs
+  autocmd!
+  autocmd InsertLeave,BufWritePost,TextChanged *.seq,*.s WatchdogsRun
+  autocmd BufRead,BufNewFile *.seq,*.s WatchdogsRun
+augroup END
