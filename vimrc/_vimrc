@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 06-Sep-2020.
+" Last Change: 22-Sep-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -14,7 +14,7 @@
 "TODO Neovim環境でコピペがおかしい
 "TODO LSP使用できない環境での設定を検討する
 "TODO ctagsなどプラグイン以外の依存関係の整理
-"TODO watchdogsからaleでエラー検知できないか検討
+"DONE watchdogsからaleでエラー検知できないか検討→無理
 "TODO LSP deopleteの設定
 "NONE 任意のタイミングでのプラグインロード→vim-plugで遅延読み込みすると設定ファイルが無視される
 "NOTE hier ayuでは反映されない
@@ -28,11 +28,6 @@ endif
 
 set shortmess+=I                                 " 起動時のメッセージを消す
 set shortmess-=S                                 " 検索件数表示
-
-"reload時の設定検討中
-"set all&
-"autocmd!
-"mapclear
 
 "pythonインターフェース有効化
 "anacondaで指定すると動作が超絶不安定
@@ -58,9 +53,6 @@ set autoindent
 "set expandtab
 set tabstop=4
 set shiftwidth=4
-"カーソルラインはvim-auto-cursorlineに統合
-"set cursorline
-"set cursorcolumn
 set number
 "カラムのカクカク防止
 set signcolumn=yes
@@ -367,24 +359,19 @@ Plug 'liuchengxu/vim-clap'					" Clap
 	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
 	Plug 'hokorobi/vim-clap-sessions'
 Plug 'istepura/vim-toolbar-icons-silk'
-Plug 'iamcco/markdown-preview.nvim'
 Plug 'tpope/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " LSP関連
-if executable('git')
-	"以下どっちか使うべし
-	"Plug 'prabirshrestha/asyncomplete.vim'
-	"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-	"Plug 'Shougo/deoplete.nvim'
-	Plug 'lighttiger2505/deoplete-vim-lsp'
-
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
-	Plug 'mattn/vim-lsp-icons'
-	Plug 'hrsh7th/vim-vsnip'
-	Plug 'hrsh7th/vim-vsnip-integ'
-endif
+"以下どっちか使うべし
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'lighttiger2505/deoplete-vim-lsp'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-icons'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 " Shougoware関連
 if !has('nvim') || !has('python3')
@@ -392,10 +379,10 @@ if !has('nvim') || !has('python3')
 	Plug 'roxma/vim-hug-neovim-rpc'
 	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
-		Plug 'Shougo/neosnippet-snippets'
-		Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
 
-	Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim'
 
 if has('nvim')
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -418,7 +405,7 @@ runtime! userautoload/*.vim
 " 各種設定の読み込み
 call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 
-" ボツプラグイン機会があれば
+" ボツプラグイン機会があれば{{{
 "Plug 'Shougo/neocomplete.vim'			" luaサポートうんぬん
 "Plug 'lambdalisue/fern.vim'
 "Plug 'osyo-manga/vim-anzu'					" 112 検索結果ヒット数表示shortmessで実現可能
@@ -435,3 +422,4 @@ call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec
 "Plug 'puremourning/vimspector'				" debug用
 "Plug 'thaerkh/vim-workspace'				" session管理用→フリーズ多発
 "Plug 'kassio/neoterm'						" ターミナル拡張
+"}}}
