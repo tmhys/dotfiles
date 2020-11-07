@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 22-Sep-2020.
+" Last Change: 07-Nov-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -174,31 +174,30 @@ command! Esysseq :e $MYSEQRC
 "gui_runningがnvimでは機能しないらしい
 augroup myvimrc
     au!
-    au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
+    au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
+				\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
 	au BufWritePost $MYSEQRC nested so $MYSEQRC
 augroup END
 
-"ペーストする際に、自動でpaste modeに
-if !has('nvim')
-	if &term =~ "xterm"
-	    let &t_ti .= "\e[?2004h"
-	    let &t_te .= "\e[?2004l"
-	    let &pastetoggle = "\e[201~"
+""ペーストする際に、自動でpaste modeに
+"if !has('nvim')
+"	if &term =~ "xterm"
+"	    let &t_ti .= "\e[?2004h"
+"	    let &t_te .= "\e[?2004l"
+"	    let &pastetoggle = "\e[201~"
+"
+"	    function XTermPasteBegin(ret)
+"	        set paste
+"	        return a:ret
+"	    endfunction
+"
+"	    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+"	    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+"	    cnoremap <special> <Esc>[200~ <nop>
+"	    cnoremap <special> <Esc>[201~ <nop>
+"	endif
+"endif
 
-	    function XTermPasteBegin(ret)
-	        set paste
-	        return a:ret
-	    endfunction
-
-	    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-	    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-	    cnoremap <special> <Esc>[200~ <nop>
-	    cnoremap <special> <Esc>[201~ <nop>
-	endif
-endif
-
-"yank した文字列をクリップボードにコピー
-"set clipboard=unnamed
 "}}}
 
 "ctags{{{ auto-ctagsと重複？
@@ -209,27 +208,27 @@ set fileencodings=utf-8,sjis
 set tags=./tags;
 "set tags=./tags
 
-function! s:execute_ctags() abort
-  " 探すタグファイル名
-  let tag_name = '.tags'
-  " ディレクトリを遡り、タグファイルを探し、パス取得
-  let tags_path = findfile(tag_name, '.;')
-  " タグファイルパスが見つからなかった場合
-  if tags_path ==# ''
-    return
-  endif
-
-  " タグファイルのディレクトリパスを取得
-  " `:p:h`の部分は、:h filename-modifiersで確認
-  let tags_dirpath = fnamemodify(tags_path, ':p:h')
-  " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
-  execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
-endfunction
-
-augroup ctags
-  autocmd!
-  autocmd BufWritePost * call s:execute_ctags()
-augroup END
+"function! s:execute_ctags() abort
+"  " 探すタグファイル名
+"  let tag_name = '.tags'
+"  " ディレクトリを遡り、タグファイルを探し、パス取得
+"  let tags_path = findfile(tag_name, '.;')
+"  " タグファイルパスが見つからなかった場合
+"  if tags_path ==# ''
+"    return
+"  endif
+"
+"  " タグファイルのディレクトリパスを取得
+"  " `:p:h`の部分は、:h filename-modifiersで確認
+"  let tags_dirpath = fnamemodify(tags_path, ':p:h')
+"  " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
+"  execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
+"endfunction
+"
+"augroup ctags
+"  autocmd!
+"  autocmd BufWritePost * call s:execute_ctags()
+"augroup END
 "}}}
 "}}}
 
@@ -314,70 +313,82 @@ autocmd VimEnter * call OnVimEnter()
 
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
-Plug 'rafi/awesome-vim-colorschemes'		"colorscheme
-Plug 'mhinz/vim-startify'					" 124 startify
-Plug 'osyo-manga/vim-watchdogs'				" 119 seqのエラーチェック
-	Plug 'KazuakiM/vim-qfsigns'
-	Plug 'KazuakiM/vim-qfstatusline'
-	Plug 'osyo-manga/shabadou.vim'
-Plug 'LeafCage/foldCC'						" フォールドの見た目変更
-Plug 'Yggdroot/indentLine'					" 106 vim-indent-guidesよりこちらが好みindent可視化
-Plug 'cohama/vim-hier'						" エラー行ハイライト
-Plug 'dannyob/quickfixstatus'				" カーソルをエラー行に配置したときメッセージ表示
-Plug 'osyo-manga/vim-brightest'				" 131 カーソル下の単語にアンダーライン
-Plug 'easymotion/vim-easymotion'			" 132
-Plug 'itchyny/lightline.vim'				" 107 lightline
+" 起動時に読み込まれてほしいplugin
+Plug 'rafi/awesome-vim-colorschemes'				"colorscheme
+Plug 'LeafCage/foldCC'								" フォールドの見た目変更
+Plug 'Yggdroot/indentLine'							" 106 vim-indent-guidesよりこちらが好みindent可視化
+Plug 'itchyny/lightline.vim'						" 107 lightline
 	Plug 'delphinus/lightline-delphinus'
-Plug 'rhysd/clever-f.vim'					" fキー強化
-Plug 'haya14busa/incsearch-fuzzy.vim'		" 103 一文字ごとにハイライト
-	Plug 'haya14busa/incsearch.vim'			" 104 一文字ごとにハイライト
-Plug 'junegunn/vim-easy-align'				" 114 テキスト整形
-Plug 'kana/vim-smartchr'					" 118 符号の前後にスペース
-Plug 'kshenoy/vim-signature'				" マーク位置表示
-Plug 'machakann/vim-highlightedyank'		" yank文字列ハイライト
-Plug 'mhinz/vim-signify'					" 差分をsignで表示
-Plug 'qpkorr/vim-renamer'					" ファイル名一括編集
-Plug 'rhysd/accelerated-jK'					" 100 カーソル移動速度変更
-Plug 'scrooloose/nerdtree'					" 108 nerdtree
-	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " nerdtree用シンタックス
-	"Plug 'Xuyuanp/nerdtree-git-plugin' 		" git ステータス表示
-Plug 'simeji/winresizer'					" 120 ウィンドウリサイズ
-Plug 'majutsushi/tagbar'					" 110 tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
-Plug 'thinca/vim-qfreplace'					" 一括置換
-Plug 'thinca/vim-quickrun'					" 116 すぐ実行
-Plug 'thinca/vim-singleton'					" 117 起動数を常に1つに
-Plug 'tmhys/vim-auto-cursorline'			" カーソル放置で点滅
-Plug 'tpope/vim-fugitive'					" 115 git用
-Plug 'tpope/vim-surround'					" 閉じカッコを編集
-Plug 'mopp/autodirmake.vim' 				" dir自動作成
-Plug 'tyru/current-func-info.vim'			" カーソル位置関数表示
-Plug 'vim-scripts/errormarker.vim'			" コンパイラエラー箇所マーク
-Plug 'glidenote/memolist.vim'				" 123 memo
-Plug 'mechatroner/rainbow_csv'
-Plug 'mbbill/undotree'
-Plug 'liuchengxu/vim-clap'					" Clap
-	Plug 'tamago324/vim-clap-help' 			" ClapでHelp
-	Plug 'hokorobi/vim-clap-sessions'
-Plug 'istepura/vim-toolbar-icons-silk'
-Plug 'tpope/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'tyru/current-func-info.vim'					" カーソル位置関数表示
 
+" lazy load insert
 " LSP関連
 "以下どっちか使うべし
 "Plug 'prabirshrestha/asyncomplete.vim'
 "Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'lighttiger2505/deoplete-vim-lsp'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-lsp-icons'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'lighttiger2505/deoplete-vim-lsp', { 'on': [] }
+Plug 'prabirshrestha/vim-lsp'         , { 'on': [] }
+Plug 'mattn/vim-lsp-settings'         , { 'on': [] }
+Plug 'mattn/vim-lsp-icons'            , { 'on': [] }
+Plug 'hrsh7th/vim-vsnip'              , { 'on': [] }
+Plug 'hrsh7th/vim-vsnip-integ'        , { 'on': [] }
+
+Plug 'osyo-manga/vim-watchdogs'						, { 'on': [] } " 119 seqのエラーチェック
+	Plug 'KazuakiM/vim-qfsigns'						, { 'on': [] }
+	Plug 'KazuakiM/vim-qfstatusline'				, { 'on': [] }
+	Plug 'osyo-manga/shabadou.vim'					, { 'on': [] }
+Plug 'kana/vim-smartchr'							, { 'on': [] } " 118 符号の前後にスペース
+
+" lazy load timer
+Plug 'liuchengxu/vim-clap'							, { 'on': [] } " Clap
+	Plug 'tamago324/vim-clap-help' 					, { 'on': [] } " ClapでHelp
+	Plug 'hokorobi/vim-clap-sessions'				, { 'on': [] }
+Plug 'ctrlpvim/ctrlp.vim'							, { 'on': [] }
+	Plug 'mattn/ctrlp-matchfuzzy'					, { 'on': [] }
+
+Plug 'scrooloose/nerdtree'							,  { 'on': [] } " 108 nerdtree
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	,  { 'on': [] } " nerdtree用シンタックス
+	"Plug 'Xuyuanp/nerdtree-git-plugin' 			,  { 'on': [] } " git ステータス表示
+Plug 'easymotion/vim-easymotion'					,  { 'on': [] } " 132
+Plug 'majutsushi/tagbar'							,  { 'on': [] } " 110 tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
+Plug 'osyo-manga/vim-brightest'						,  { 'on': [] } " 131 カーソル下の単語にアンダーライン
+Plug 'thinca/vim-singleton'							,  " { 'on': [] }  117 起動数を常に1つに
+
+" lazy load hold
+Plug 'tmhys/vim-auto-cursorline'					, { 'on': [] } " カーソル放置で点滅
+
+" lazy load
+Plug 'cohama/vim-hier'								, " { 'on': [] } " エラー行ハイライト
+Plug 'dannyob/quickfixstatus'						, " { 'on': [] } " カーソルをエラー行に配置したときメッセージ表示
+Plug 'rhysd/clever-f.vim'							, " { 'on': [] } " fキー強化
+Plug 'haya14busa/incsearch-fuzzy.vim'				, " { 'on': [] } " 103 一文字ごとにハイライト
+	Plug 'haya14busa/incsearch.vim'					, " { 'on': [] } " 104 一文字ごとにハイライト
+Plug 'junegunn/vim-easy-align'						, " { 'on': [] } " 114 テキスト整形
+Plug 'kshenoy/vim-signature'						, " { 'on': [] } " マーク位置表示
+Plug 'machakann/vim-highlightedyank'				, " { 'on': [] } " yank文字列ハイライト
+Plug 'mhinz/vim-signify'							, " { 'on': [] } " 差分をsignで表示
+Plug 'qpkorr/vim-renamer'							, " { 'on': [] } " ファイル名一括編集
+Plug 'rhysd/accelerated-jK'							, " { 'on': [] } " 100 カーソル移動速度変更
+Plug 'simeji/winresizer'							, " { 'on': [] } " 120 ウィンドウリサイズ
+Plug 'thinca/vim-qfreplace'							, " { 'on': [] } " 一括置換
+Plug 'thinca/vim-quickrun'							, " { 'on': [] } " 116 すぐ実行
+Plug 'tpope/vim-fugitive'							, " { 'on': [] } " 115 git用
+Plug 'tpope/vim-surround'							, " { 'on': [] } " 閉じカッコを編集
+Plug 'mopp/autodirmake.vim' 						, " { 'on': [] } " dir自動作成
+Plug 'vim-scripts/errormarker.vim'					, " { 'on': [] } " コンパイラエラー箇所マーク
+Plug 'glidenote/memolist.vim'						, " { 'on': [] } " 123 memo
+Plug 'mechatroner/rainbow_csv'						, " { 'on': [] }
+Plug 'tpope/vim-markdown'							, " { 'on': [] }
+Plug 'dstein64/vim-startuptime'						, " { 'on': [] }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'mhinz/vim-startify'							" 124 startify
+
 
 " Shougoware関連
 if !has('nvim') || !has('python3')
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
-	Plug 'markonm/traces.vim'				" 置換時にリアルタイム描画 nvimは標準で入っているらしい
+	Plug 'markonm/traces.vim'						" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 endif
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
@@ -385,41 +396,82 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/vimproc.vim'
 
 if has('nvim')
+	Plug 'Xuyuanp/scrollbar.nvim'
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-	Plug 'tyru/restart.vim'						" 109 esc連打で再起動
-	Plug 'Shougo/deoplete.nvim',
-	Plug 'Shougo/denite.nvim',
-	Plug 'Shougo/defx.nvim',
+	Plug 'tyru/restart.vim'							" 109 esc連打で再起動
+	Plug 'Shougo/deoplete.nvim', { 'on': [] }
+	Plug 'Shougo/denite.nvim', "{ 'on': [] }
+	Plug 'Shougo/defx.nvim', { 'on': [] }
 endif
 
-Plug 'ryanoasis/vim-devicons'				" icon追加 最後に読み込む事
+Plug 'ryanoasis/vim-devicons'						" icon追加 最後に読み込む事
 call plug#end()
+
+
+" Load Event
+augroup load_us_hold
+    autocmd!
+    autocmd CursorHold * call plug#load(
+				\'vim-auto-cursorline'					,
+                \ )| autocmd! load_us_hold
+    autocmd CursorHold * call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+augroup END
+
+" Load Event
+function! s:load_plug(timer)
+    call plug#load(
+				\'vim-clap'							,
+				\'vim-clap-help' 					,
+				\'vim-clap-sessions'				,
+				\'ctrlp.vim'						,
+				\'nerdtree'							,
+				\'vim-nerdtree-syntax-highlight' 	,
+				\'vim-easymotion'					,
+				\'tagbar'							,
+				\'deoplete.nvim',
+				\'denite.nvim',
+				\'defx.nvim',
+				\'vim-brightest',
+				\'vim-singleton',
+                \ )
+	call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+endfunction
+
+" 500ミリ秒後にプラグインを読み込む
+call timer_start(500, function("s:load_plug"))
+
+" Load Event
+augroup load_us_insert
+    autocmd!
+    autocmd InsertEnter * call plug#load(
+				\'deoplete-vim-lsp',
+				\'vim-lsp',
+				\'vim-lsp-settings',
+				\'vim-lsp-icons',
+				\'vim-vsnip',
+				\'vim-vsnip-integ',
+				\'vim-watchdogs',
+				\'vim-qfsigns',
+				\'vim-qfstatusline',
+				\'shabadou.vim',
+				\'vim-smartchr',
+                \ )| autocmd! load_us_insert
+    autocmd InsertEnter * call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+augroup END
 "}}}
 
 "その他の設定ファイル読み込み
 runtime! userautoload/*.vim
 
 " 各種設定の読み込み
-call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+"call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
+function! FindPlugin(name) abort
+  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
+endfunction
+command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
 
-" ボツプラグイン機会があれば{{{
-"Plug 'Shougo/neocomplete.vim'			" luaサポートうんぬん
-"Plug 'lambdalisue/fern.vim'
-"Plug 'osyo-manga/vim-anzu'					" 112 検索結果ヒット数表示shortmessで実現可能
-"Plug 'deris/vim-shot-f'						" fキー強化
-"Plug 'arp242/startscreen.vim'				" simple startify
-"Plug 'thinca/vim-splash'					"joke
-"Plug 'xolox/vim-session'					" session管理
-"	Plug 'xolox/vim-misc'
-"Plug 'itchyny/vim-cursorword'				" カーソル下の単語にアンダーライン
-"Plug 'miura/ImageJMacro_Highlighter'		" ImageJシンタックス
-"Plug 'liuchengxu/vista.vim'				" lightlineの設定も合わせて変更すること
-"Plug 'soramugi/auto-ctags.vim'				" ctags自動化
-"Plug 'cohama/lexima.vim'					" 閉じカッコを自動で　mappingが色々干渉したのでオフにする
-"Plug 'puremourning/vimspector'				" debug用
-"Plug 'thaerkh/vim-workspace'				" session管理用→フリーズ多発
-"Plug 'kassio/neoterm'						" ターミナル拡張
-"}}}
+runtime! _config/*.vim
