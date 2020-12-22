@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 16-Jun-2020.
+" Last Change: 05-Nov-2020.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -21,9 +21,9 @@ colorscheme ayu
 if has('nvim')
 	Guifont! Consolas:h12
 	Guifont! Cica:h12
-	"call GuiWindowMaximized(1)
+	call GuiWindowMaximized(1)
 	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
-	call GuiWindowFullScreen(1)
+	"call GuiWindowFullScreen(1)
 	GuiPopupmenu 0
 	GuiTabline 0
 	set pumblend=10
@@ -50,10 +50,10 @@ if has('win32') || has ('win64')
 	endif
 elseif has('kaoriya')
    	set ambiwidth=auto
-elseif has('mac')
-	set guifont=Osaka－等幅:h14
-elseif has('xfontset')
-	set guifontset=a14,r14,k14
+"elseif has('mac')
+"	set guifont=Osaka－等幅:h14
+"elseif has('xfontset')
+"	set guifontset=a14,r14,k14
 endif
 
 if !has('nvim')  && has('kaoriya')
