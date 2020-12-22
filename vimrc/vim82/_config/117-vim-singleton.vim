@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/singleton.vim'))
-  finish
-endif
+UsePlugin 'vim-singleton'
 
 if !has('nvim')
 call singleton#enable()

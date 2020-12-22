@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/EasyMotion.vim'))
-  finish
-endif
+UsePlugin 'vim-easymotion'
 
 
 " The prefix key.

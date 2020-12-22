@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 07-Nov-2020.
+" Last Change: 22-Dec-2020.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -348,7 +348,7 @@ Plug 'ctrlpvim/ctrlp.vim'							, { 'on': [] }
 
 Plug 'scrooloose/nerdtree'							,  { 'on': [] } " 108 nerdtree
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	,  { 'on': [] } " nerdtree用シンタックス
-	"Plug 'Xuyuanp/nerdtree-git-plugin' 			,  { 'on': [] } " git ステータス表示
+	Plug 'Xuyuanp/nerdtree-git-plugin' 			,  { 'on': [] } " git ステータス表示
 Plug 'easymotion/vim-easymotion'					,  { 'on': [] } " 132
 Plug 'majutsushi/tagbar'							,  { 'on': [] } " 110 tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
 Plug 'osyo-manga/vim-brightest'						,  { 'on': [] } " 131 カーソル下の単語にアンダーライン
@@ -377,8 +377,8 @@ Plug 'tpope/vim-surround'							, " { 'on': [] } " 閉じカッコを編集
 Plug 'mopp/autodirmake.vim' 						, " { 'on': [] } " dir自動作成
 Plug 'vim-scripts/errormarker.vim'					, " { 'on': [] } " コンパイラエラー箇所マーク
 Plug 'glidenote/memolist.vim'						, " { 'on': [] } " 123 memo
-Plug 'mechatroner/rainbow_csv'						, " { 'on': [] }
-Plug 'tpope/vim-markdown'							, " { 'on': [] }
+Plug 'mechatroner/rainbow_csv'						,  { 'for': ['csv'] }
+Plug 'tpope/vim-markdown'							,  { 'for': ['markdown'] }
 Plug 'dstein64/vim-startuptime'						, " { 'on': [] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 "Plug 'mhinz/vim-startify'							" 124 startify

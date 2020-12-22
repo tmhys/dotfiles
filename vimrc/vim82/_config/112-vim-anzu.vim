@@ -1,6 +1,7 @@
-if empty(globpath(&rtp, 'autoload/anzu.vim'))
-  finish
-endif
+UsePlugin 'anzu.vim'
+"if empty(globpath(&rtp, 'autoload/anzu.vim'))
+"  finish
+"endif
 
 " mapping
 nmap n <Plug>(anzu-n-with-echo)

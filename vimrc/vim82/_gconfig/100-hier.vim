@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'plugin/hier.vim'))
-  finish
-endif
+UsePlugin 'vim-hier'
 
 "gvimrcに書かないと反映されない
 " エラーを赤字の波線で

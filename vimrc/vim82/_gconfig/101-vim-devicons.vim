@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'plugin/webdevicons.vim'))
-  finish
-endif
+UsePlugin 'vim-devicons'
 
 " adding the custom source to unite
 let g:webdevicons_enable_unite = 1

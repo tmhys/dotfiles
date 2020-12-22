@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/nerdtree.vim'))
-  finish
-endif
+UsePlugin 'nerdtree'
 
 augroup NERDTree_CLOSE
 	autocmd!
@@ -19,7 +17,7 @@ let g:NERDTreeLimitedSyntax = 1
 let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
 ""NERDTree矢印変更{{{
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+"let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable  = '▶'
 let g:NERDTreeDirArrowCollapsible = '▼'

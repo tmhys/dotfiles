@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/clap.vim'))
-  finish
-endif
+UsePlugin 'vim-clap'
 
 " The prefix key.
 nnoremap    [clap]   <Nop>

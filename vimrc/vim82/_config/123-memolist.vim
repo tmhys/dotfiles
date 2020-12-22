@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/memolist.vim'))
-  finish
-endif
+UsePlugin 'memolist.vim'
 
 nnoremap <M-m>n  :MemoNew<CR>
 nnoremap <M-m>l  :MemoList<CR>

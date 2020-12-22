@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/brightest.vim'))
-  finish
-endif
+UsePlugin 'vim-brightest'
 
 let g:brightest#highlight = {
 \   "group" : "BrightestUnderline"

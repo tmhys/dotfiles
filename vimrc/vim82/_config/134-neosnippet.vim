@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/neosnippet.vim'))
-  finish
-endif
+UsePlugin 'neosnippet.vim'
 
 let g:neosnippet#snippets_directory='~/vimfiles/my_snippet'
 

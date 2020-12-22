@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/fugitive.vim'))
-  finish
-endif
+UsePlugin 'vim-fugitive'
 
 nnoremap [fugitive]  <Nop>
 nmap <space>g [fugitive]

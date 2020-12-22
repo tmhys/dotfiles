@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/startify.vim'))
-  finish
-endif
+UsePlugin 'startify'
 
 nnoremap <M-s> :Startify<CR>
 "autocmd TabNew * :Startify

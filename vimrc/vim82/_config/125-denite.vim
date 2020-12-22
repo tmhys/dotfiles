@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/denite.vim'))
-  finish
-endif
+UsePlugin 'denite.nvim'
 
 let s:denite_win_width_percent = 0.65
 let s:denite_win_height_percent = 0.38

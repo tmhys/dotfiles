@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/vista.vim'))
-  finish
-endif
+UsePlugin 'vista'
 
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.

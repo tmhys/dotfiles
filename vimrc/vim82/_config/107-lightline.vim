@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/lightline.vim'))
-  finish
-endif
+UsePlugin 'lightline.vim'
 
 command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
 "カラースキームを自動で変更
@@ -25,49 +23,34 @@ function! s:lightline_update()
   catch
   endtry
 endfunction
-"
-if hostname()!=?'localhost'
-		let g:lightline = {
-            \ 'active': {
-			\   'right': [['lineinfo'],['percent'],[ 'qfstatusline', 'fileformat','fileencoding','filetype']],
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive','dir', 'filename' ],
-			\			  ['currenttag', 'anzu']]
-            \ },
-            \ 'component_function': {
-            \   'fugitive': 'LightLineFugitive',
-            \   'dir': 'LightLineDir',
-            \   'readonly': 'LightLineReadonly',
-            \   'modified': 'LightLineModified',
-            \   'filename': 'LightLineFilename',
-            \   'filetype': 'LightLineFiletype',
-            \   'fileformat': 'LightLineFileformat',
-			\	'anzu': 'anzu#search_status',
-			\	'currenttag': 'LightLineCurrentTag',
-  			\   'percent': 'MyLightLinePercent',
-  			\   'lineinfo': 'MyLightLineLineInfo'
-            \ },
-			\ 'component_expand': {'qfstatusline': 'qfstatusline#Update'},
-			\ 'component_type':   {'qfstatusline': 'error'},
-		    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-            \ }
+
+let g:lightline = {
+    \ 'active': {
+	\   'right': [['lineinfo'],['percent'],[ 'qfstatusline', 'fileformat','fileencoding','filetype']],
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'fugitive','dir', 'filename' ],
+	\			  ['currenttag']]
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \   'dir': 'LightLineDir',
+    \   'readonly': 'LightLineReadonly',
+    \   'modified': 'LightLineModified',
+    \   'filename': 'LightLineFilename',
+    \   'filetype': 'LightLineFiletype',
+    \   'fileformat': 'LightLineFileformat',
+	\	'currenttag': 'LightLineCurrentTag',
+	\   'percent': 'MyLightLinePercent',
+	\   'lineinfo': 'MyLightLineLineInfo'
+    \ },
+	\ 'component_expand': {'qfstatusline': 'qfstatusline#Update'},
+	\ 'component_type':   {'qfstatusline': 'error'},
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \ }
 
 let g:Qfstatusline#UpdateCmd = function('lightline#update')
 
-		"{{{separator candidates
-			"\ 'separator': { 'left': "\ue0b4", 'right': "\ue0b6" },
-			"\ 'subseparator': { 'left': "\ue0b5", 'right': "\ue0b7" }
-		    "\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      		"\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-		    "\ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba" },
-      		"\ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb" }
-		    "\ 'separator': { 'left': "\ue0c4", 'right': "\ue0c6" },
-      		"\ 'subseparator': { 'left': "\ue0c5", 'right': "\ue0c7" }
-            "\ 'separator': { 'left': '', 'right': '' },
-            "\ 'subseparator': { 'left': '', 'right': '' }
-		"}}}
-endif
 
 ""mode短縮形{{{
 "let g:lightline = {

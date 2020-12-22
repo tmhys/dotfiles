@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/watchdogs.vim'))
-  finish
-endif
+UsePlugin 'vim-watchdogs'
 
 "コンパイラexeにパスを通しておくこと
 "コンパイルしたいディレクトリに移動してから実行

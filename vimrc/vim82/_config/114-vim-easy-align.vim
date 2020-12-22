@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/easy_align.vim'))
-  finish
-endif
+UsePlugin 'easy-align'
 
 "" Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)

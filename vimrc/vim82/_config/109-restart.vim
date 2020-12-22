@@ -1,6 +1,4 @@
-if empty(globpath(&rtp, 'autoload/restart.vim'))
-  finish
-endif
+UsePlugin 'restart.vim'
 
 " :Restart 時に変数の定義を行う
 command! MyRestart Restart --cmd "let g:restarted = 1"

@@ -39,7 +39,7 @@ endif
 "jj,kkでEcs
 inoremap jj <Esc>
 inoremap jk <Esc>
-inoremap oo <Esc>
+" inoremap oo <Esc>
 inoremap qq <Esc>
 "inoremap hhh <Esc>
 "inoremap lll <Esc>
@@ -133,6 +133,7 @@ if !has('nvim')
 endif
 
 "コマンドモード{{{
+cnoremap <expr> j getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'
 " 一文字戻る
 cnoremap <C-h> <Home>
 " カーソルの下の文字を削除

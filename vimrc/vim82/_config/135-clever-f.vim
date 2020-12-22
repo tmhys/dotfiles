@@ -1,5 +1,3 @@
-if empty(globpath(&rtp, 'autoload/clever_f.vim'))
-  finish
-endif
+UsePlugin 'clever-f.vim'
 
 let g:clever_f_mark_direct = 1
