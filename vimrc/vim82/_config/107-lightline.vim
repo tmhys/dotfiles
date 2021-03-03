@@ -5,6 +5,7 @@ command! -bar LightlineUpdate    call lightline#init()| call lightline#colorsche
 augroup LightlineColorscheme
 	  autocmd!
 	  autocmd ColorScheme * call s:lightline_update()
+	  "autocmd BufWritePost $VIMRC, $GVIMRC call s:lightline_update()
 	  "autocmd ColorSchemePre * call s:lightline_update()
 augroup END
 

@@ -1,3 +1,4 @@
+"echo "keymap is loaded"
 "USキーボード
 nnoremap ; :
 vnoremap ; :
@@ -39,11 +40,11 @@ endif
 "jj,kkでEcs
 inoremap jj <Esc>
 inoremap jk <Esc>
-" inoremap oo <Esc>
+inoremap oo <Esc>
 inoremap qq <Esc>
-"inoremap hhh <Esc>
-"inoremap lll <Esc>
-"inoremap kkk <Esc>
+inoremap hhh <Esc>
+inoremap lll <Esc>
+inoremap kkk <Esc>
 
 "アクティブウィンドウ移動
 nnoremap <C-j> <C-w>j

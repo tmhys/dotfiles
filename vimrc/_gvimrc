@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 05-Nov-2020.
+" Last Change: 03-Mar-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -13,7 +13,7 @@
 syntax enable
 set termguicolors
 set background=light "light dark
-let ayucolor="mirage" "light mirage dark
+let ayucolor="light" "light mirage dark
 colorscheme ayu
 "}}}
 
@@ -31,7 +31,6 @@ if has('nvim')
 	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 	set inccommand=split
    	set ambiwidth=single
-
 endif
 "}}}
 
