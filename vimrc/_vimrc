@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 03-Mar-2021.
+" Last Change: 04-Mar-2021.
 " Maintainer: TH
 
 "TODO seq.vim シンタックスファイルの読み込み場所
@@ -473,7 +473,6 @@ augroup END
 
 "その他の設定ファイル読み込み
 runtime! userautoload/*.vim
-runtime! userautoload/syntax/*.vim
 
 " 各種設定の読み込み
 "call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
