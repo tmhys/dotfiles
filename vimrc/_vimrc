@@ -8,27 +8,14 @@
 " Last Change: 04-Mar-2021.
 " Maintainer: TH
 
-"TODO seq.vim シンタックスファイルの読み込み場所
-"TODO _configファイル更新でも自動再読み込み
-"TODO シンボリックリンクを簡単に貼れるbat作ること
-"TODO Neovim環境でコピペがおかしい
-"TODO LSP使用できない環境での設定を検討する
-"TODO ctagsなどプラグイン以外の依存関係の整理
-"DONE watchdogsからaleでエラー検知できないか検討→無理
-"TODO LSP deopleteの設定
-"NONE 任意のタイミングでのプラグインロード→vim-plugで遅延読み込みすると設定ファイルが無視される
-"NOTE hier ayuでは反映されない
-
-"最初に書く必要あり
+"set{{{
 set encoding=utf8
 scriptencoding utf-8
 if !has('kaoriya')
 	let g:vimproc#download_windows_dll = 1
 endif
-
 set shortmess+=I                                 " 起動時のメッセージを消す
 set shortmess-=S                                 " 検索件数表示
-
 "pythonインターフェース有効化
 "anacondaで指定すると動作が超絶不安定
 "pynvimのインストール方法謎
@@ -36,19 +23,15 @@ if !has('nvim')
 	set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
 endif
 "let g:python3_host_prog = '$HOME\AppData\Local\Programs\Python\Python38\python'
-
-"基本設定{{{
 "ステータスライン常時表示
 set laststatus=2
 set cmdheight=2
-
 "候補が一つでも表示、勝手にインサートされない
 "set completeopt=menuone,noinsert
 set completeopt=menuone
 "ラグ対策
 set lazyredraw
 set updatetime=700
-
 set autoindent
 "set expandtab
 set tabstop=4
@@ -57,10 +40,21 @@ set number
 "カラムのカクカク防止
 set signcolumn=yes
 filetype plugin on
-
 "コマンドラインモードでTABキーによるファイル名補完を有効にする
 set wildmenu wildmode=full
-
+"自動的にセッション保存
+set sessionoptions-=blank
+"対になる括弧点滅
+set showmatch
+set matchtime=1
+set scrolloff=10
+set backspace=indent,eol,start
+set matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
+set virtualedit=block
+set ignorecase
+set smartcase
+set wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
+"}}}
 "backup{{{
 " ネストしたディレクトリを作成する関数
 function! s:mkdir(dir)
@@ -69,7 +63,6 @@ function! s:mkdir(dir)
         call mkdir(a:dir, "p")
     endif
 endfunction
-
 let $DATE = strftime("%Y%m%d_%H%M%S")
 set backup
 set writebackup
@@ -80,22 +73,24 @@ call s:mkdir(&undodir)
 set undofile
 set noswapfile
 "}}}
-
-"自動的にセッション保存
-set sessionoptions-=blank
-
-"対になる括弧点滅
-set showmatch
-set matchtime=1
-
-set scrolloff=10
-set backspace=indent,eol,start
-set matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
-set virtualedit=block
-set ignorecase
-set smartcase
-set wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
-
+"grep代替{{{
+if executable('pt')
+	set grepprg=pt\ --nogroup\
+	set grepformat=%f:%l:%c:%m
+elseif executable('ag')
+	set grepprg=ag\ --nogroup\ -iS
+    set grepformat=%f:%l:%m
+elseif executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+"}}}
+"IME状態に応じたカーソル色設定{{{
+if has('multi_byte_ime')
+  highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
+  highlight CursorIM guifg=NONE guibg=#ecbcbc
+endif
+"}}}
 "末尾の空白行削除{{{
 function! s:remove_unnecessary_space()
     " delete last blank lines
@@ -103,7 +98,6 @@ function! s:remove_unnecessary_space()
             $delete _
     endwhile
 endfunction
-
 augroup win_config
 	autocmd!
 	"Quickfixウィンドウ開く
@@ -120,39 +114,16 @@ augroup win_config
 	autocmd BufWritePre * :%s/\s\+$//ge
 	autocmd BufWritePre * :%s/\n\{4,}/\r\r\r/ge
 	autocmd BufWritePre * call s:remove_unnecessary_space()
-
 	"折りたたみ設定
 	autocmd FileType vim setlocal foldmethod=marker
 	"backupファイルに日付
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 augroup END
 "}}}
-
-"grep代替{{{
-if executable('pt')
-	set grepprg=pt\ --nogroup\
-	set grepformat=%f:%l:%c:%m
-elseif executable('ag')
-	set grepprg=ag\ --nogroup\ -iS
-    set grepformat=%f:%l:%m
-elseif executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-"}}}
-
-"IME状態に応じたカーソル色設定{{{
-if has('multi_byte_ime')
-  highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
-  highlight CursorIM guifg=NONE guibg=#ecbcbc
-endif
-"}}}
-
 " 終了時に保存するセッションオプションを設定する{{{
 let g:restart_sessionoptions
     \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 "}}}
-
 ""vimrcの編集再読み込み{{{
 	let $MYSEQRC = expand('$HOME\vimfiles\userautoload\SysSeq.vim')
 	let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
@@ -174,15 +145,14 @@ command! Esysseq :e $MYSEQRC
 "保存したら再読み込み
 "gui_runningがnvimでは機能しないらしい
 augroup myvimrc
-    au!
-    au BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
+    autocmd!
+    autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
 				\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
-    au BufWritePost  /_config/*.vim,/_gconfig/*.vim
+    autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
 				\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-	au BufWritePost $MYSEQRC nested so $MYSEQRC
+	autocmd BufWritePost $MYSEQRC nested so $MYSEQRC
 augroup END
 "}}}
-
 ""ペーストする際に、自動でpaste modeに{{{
 "if !has('nvim')
 "	if &term =~ "xterm"
@@ -203,7 +173,6 @@ augroup END
 "endif
 
 "}}}
-
 "ctags{{{ auto-ctagsと重複？
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,sjis
@@ -234,8 +203,7 @@ set tags=./tags;
 "  autocmd BufWritePost * call s:execute_ctags()
 "augroup END
 "}}}
-"}}}
-
+"plug{{{
 " install vim-pulg{{{
 if has('vim_starting')
   set rtp+=~/vimfiles/plugged
@@ -246,7 +214,6 @@ if has('vim_starting')
   end
 endif
 "}}}
-
 " auto - install plugins{{{
 let s:plug = {
       \ "plugs": get(g:, 'plugs', {})
@@ -293,7 +260,6 @@ augroup check-plug
   autocmd VimEnter * if !argc() | call s:plug.check_installation() | endif
 augroup END
 "}}}
-
 " auto - update per week{{{
 function! OnVimEnter() abort
   " Run PlugUpdate every week automatically when entering Vim.
@@ -314,7 +280,6 @@ endfunction
 
 autocmd VimEnter * call OnVimEnter()
 "}}}
-
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 " 起動時に読み込まれてほしいplugin
@@ -470,10 +435,8 @@ augroup load_us_insert
     autocmd InsertEnter * call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END
 "}}}
-
-"その他の設定ファイル読み込み
+"その他の設定ファイル読み込み{{{
 runtime! userautoload/*.vim
-
 " 各種設定の読み込み
 "call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
@@ -481,5 +444,6 @@ function! FindPlugin(name) abort
   return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
 endfunction
 command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
-
 runtime! _config/*.vim
+"}}}
+"}}}
