@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 03-Mar-2021.
+" Last Change: 13-Mar-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -14,9 +14,8 @@ syntax enable
 set termguicolors
 set background=light "light dark
 let ayucolor="light" "light mirage dark
-colorscheme ayu
+colorscheme wombat256mod
 "}}}
-
 "Neovim{{{ 要見直し
 if has('nvim')
 	Guifont! Consolas:h12
@@ -33,7 +32,6 @@ if has('nvim')
    	set ambiwidth=single
 endif
 "}}}
-
 "フォント設定{{{
 if has('win32') || has ('win64')
 	if !has('nvim')
@@ -54,7 +52,8 @@ elseif has('kaoriya')
 "elseif has('xfontset')
 "	set guifontset=a14,r14,k14
 endif
-
+"}}}
+"window size{{{
 if !has('nvim')  && has('kaoriya')
 	SM 5
 	"最大化で起動
@@ -67,7 +66,6 @@ if !has('nvim')  && has('kaoriya')
 	augroup end
 endif
 "}}}
-
 "メニューバーツールバー消す{{{
 set guioptions-=T
 set guioptions+=C
@@ -80,6 +78,8 @@ set guioptions-=b
 set guioptions-=e
 set showtabline=2
 "}}}
-
-"gvim関連プラグイン設定読み込み
+"gvim関連プラグイン設定読み込み{{{
 call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})
+"}}}
+"なぜかリロードでカーソルが見えなくなるので
+set guicursor =
