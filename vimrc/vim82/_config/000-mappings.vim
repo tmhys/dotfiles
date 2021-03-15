@@ -206,7 +206,7 @@ augroup run_script
 	autocmd!
 	""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
 	autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
-	autocmd FileType *.js nnoremap <C-e> :!electron .<CR>
+	autocmd FileType javascript nnoremap <silent><buffer><C-e> :!electron .<CR>
 	"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
 	"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
 	"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
