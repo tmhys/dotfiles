@@ -16,35 +16,35 @@ if has('nvim')
 	    \ 'highlight_matched_char': 'Underlined',
 	    \ 'split': 'floating',
 	    \ })
-else
-	call denite#custom#option('_', {
-	    \ 'winheight': '40*winheight(0)/100',
-	    \ 'prompt': '>',
-	    \ 'cached_filter': v:true,
-	    \ 'start_filter': v:true,
-	    \ 'statusline': v:false,
-	    \ 'highlight_filter_background': 'DeniteFilter',
-	    \ 'highlight_matched_char': 'Underlined',
-	    \ })
-endif
+"else
+"	call denite#custom#option('_', {
+"	    \ 'winheight': '40*winheight(0)/100',
+"	    \ 'prompt': '>',
+"	    \ 'cached_filter': v:true,
+"	    \ 'start_filter': v:true,
+"	    \ 'statusline': v:false,
+"	    \ 'highlight_filter_background': 'DeniteFilter',
+"	    \ 'highlight_matched_char': 'Underlined',
+"	    \ })
 
 "    \ 'cursor_shape': v:true,
 "    \ 'cursor_wrap': v:true,
 
-augroup DeniteDetectSize
-	    autocmd!
-		autocmd VimResized * call <SID>denite_detect_size()
-augroup END
+	augroup DeniteDetectSize
+		    autocmd!
+			autocmd VimResized * call <SID>denite_detect_size()
+	augroup END
 
-function! s:denite_detect_size() abort
-	call denite#custom#option('_', {
-        \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-        \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-        \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-        \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-        \ })
-endfunction
-call s:denite_detect_size()
+	function! s:denite_detect_size() abort
+		call denite#custom#option('_', {
+	        \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+	        \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+	        \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+	        \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
+	        \ })
+	endfunction
+	call s:denite_detect_size()
+endif
 
 "ESCキーでdeniteを終了
 "call denite#custom#map('insert', '<Space>', '<denite:enter_mode:normal>', 'noremap')

@@ -2,7 +2,7 @@ UsePlugin 'vim-clap'
 
 " The prefix key.
 nnoremap    [clap]   <Nop>
-nmap    <Space>f [clap]
+nmap    <Space>c [clap]
 
 nnoremap <silent> [clap]f :<C-u>Clap files<CR>
 "nnoremap <silent> <M-f> :<C-u>Clap files<CR>
@@ -24,18 +24,19 @@ nnoremap <silent> [clap]v :<C-u>Clap files $HOME/dotfiles/vimrc<CR><C-u>
 nnoremap <silent> [clap]p :<C-u>Clap files $HOME/Programing/python<CR><C-u>
 nnoremap <silent> [clap]s :<C-u>Clap sessions<CR>
 
+let g:clap_open_preview = "never"
 let g:clap_session_dir  = 'C:\Users\thtom\.vim\session'
 
 autocmd FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
 "nnoremap <silent> [clap]v :<C-u>Clap files $VIMRUNTIME/_config<CR>
 "nnoremap <silent> [clap]s :<C-u>Clap session<CR>
 
-let g:clap_provider_quick_open = {
-      \ 'source': ['$VIM/_vimrc', '$VIM/_gvimrc','$VIMRUNTIME/userautoload/SysSeq.vim'],
-      \ 'sink': 'e',
-      \ }
-
-let g:clap_theme = 'material_design_dark'
+"let g:clap_provider_quick_open = {
+"      \ 'source': ['$VIM/_vimrc', '$VIM/_gvimrc','$VIMRUNTIME/userautoload/SysSeq.vim'],
+"      \ 'sink': 'e',
+"      \ }
+"
+"let g:clap_theme = 'material_design_dark'
 
 "以下他人の設定参考
 "" vim-clap {{{

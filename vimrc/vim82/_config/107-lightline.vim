@@ -1,16 +1,6 @@
 UsePlugin 'lightline.vim'
 
-command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
 "カラースキームを自動で変更
-augroup LightlineColorscheme
-	  autocmd!
-	  autocmd ColorScheme * call s:lightline_update()
-	  "autocmd GuiEnter * LightlineUpdate
-	  "autocmd GuiEnter * call s:lightline_update()
-	  "autocmd BufWritePost $VIMRC, $GVIMRC call s:lightline_update()
-	  "autocmd ColorSchemePre * call s:lightline_update()
-augroup END
-
 function! s:lightline_update()
   if !exists('g:loaded_lightline')
 	    return
@@ -26,6 +16,15 @@ function! s:lightline_update()
   catch
   endtry
 endfunction
+
+call s:lightline_update()
+augroup LightlineColorscheme
+	  autocmd!
+	  autocmd ColorScheme * call s:lightline_update()
+      autocmd BufWritePost $MYVIMRC,$MYGVIMMRC call s:lightline_update()
+augroup END
+
+command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
 
 let g:lightline = {
     \ 'active': {

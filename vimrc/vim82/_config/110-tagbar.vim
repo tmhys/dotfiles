@@ -1,7 +1,8 @@
 UsePlugin 'tagbar'
 
 "let g:tagbar_ctags_bin = 'C:\ProgramData\chocolatey\bin\ctags.exe'
-let g:tagbar_ctags_bin = '$HOME\scoop\shims\ctags.exe'
+"let g:tagbar_ctags_bin = '$HOME\scoop\shims\ctags.exe'
+"上記設定をコメントアウトしておかないと何故かうまく行かない
 "設定ファイルは
 "$HOME/ctags.d/config.ctags
 let g:tagbar_visibility_symbols = {

@@ -14,7 +14,7 @@ syntax enable
 set termguicolors
 set background=light "light dark
 let ayucolor="light" "light mirage dark
-colorscheme wombat256mod
+colorscheme jellybeans
 "}}}
 "Neovim{{{ 要見直し
 if has('nvim')

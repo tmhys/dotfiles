@@ -1,0 +1,408 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/952bd1e9/
+"	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> " search('^#include\\%#', 'bcn')? ' "': '"'$/;"	m
+#	vim82/_config/000-mappings.vim	/^nnoremap # <Space><Space>:%s\/<C-r>\/\/\/g<Left><Left>$/;"	m
+#	vim82/_config/000-mappings.vim	/^vnoremap # :s\/\/\/gc<Left><Left><Left><Left>$/;"	m
+#	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> # smartchr#one_of('# ', '#')$/;"	m
+$DATE	_vimrc	/^let $DATE = strftime("%Y%m%d_%H%M%S")$/;"	v
+$MYCONFIG	_vimrc	/^	let $MYCONFIG =expand('$VIMRUNTIME\\_config\\*.vim')$/;"	v
+$MYGCONFIG	_vimrc	/^	let $MYGCONFIG =expand('$VIMRUNTIME\\_gconfig\\*.vim')$/;"	v
+$MYGVIMRC	_vimrc	/^	let $MYGVIMRC =expand('$HOME\\AppData\\Local\\nvim\\ginit.vim')$/;"	v
+$MYPLUGRC	_vimrc	/^	let $MYPLUGRC =expand('$VIMRUNTIME\\userautoload\\Plugins.vim')$/;"	v
+$MYSEQRC	_vimrc	/^	let $MYSEQRC = expand('$HOME\\vimfiles\\userautoload\\SysSeq.vim')$/;"	v
+$MYVIMRC	_vimrc	/^	let $MYVIMRC =expand('$HOME\\AppData\\Local\\nvim\\init.vim')$/;"	v
+$PATH	vim82/_config/109-restart.vim	/^    let $PATH = $PATH . ";C:\/cpp\/boost"$/;"	v
+%	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> % smartchr#one_of(' % ', '%')$/;"	m
+&	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> & smartchr#one_of(' & ', ' && ', '&')$/;"	m
++	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> + smartchr#one_of(' + ', '++', '+')$/;"	m
+,	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> , smartchr#one_of(', ', ',')$/;"	m
+-	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> - smartchr#one_of(' - ', '--', '-')$/;"	m
+.	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> . smartchr#loop('.', '->', '...')$/;"	m
+/	vim82/_config/104-incsearch.vim	/^map \/  <Plug>(incsearch-forward)$/;"	m
+/	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> \/ smartchr#one_of(' \/ ', '\/\/ ', '\/')$/;"	m
+2	vim82/_config/000-mappings.vim	/^onoremap 2 i"$/;"	m
+7	vim82/_config/000-mappings.vim	/^onoremap 7 i'$/;"	m
+8	vim82/_config/000-mappings.vim	/^onoremap 8 i($/;"	m
+:	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> : smartchr#one_of(': ', '::', ':')$/;"	m
+;	vim82/_config/000-mappings.vim	/^nnoremap ; :$/;"	m
+;	vim82/_config/000-mappings.vim	/^vnoremap ; :$/;"	m
+;	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> ; smartchr#one_of(';', ';<cr>')$/;"	m
+;r	vim82/_config/125-denite.vim	/^nnoremap <silent> ;r :<C-u>Denite -buffer-name=search -resume -mode=normal <CR>$/;"	m
+<BS>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <BS>    denite#do_map('move_up_path')$/;"	m
+<Bar>	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> <Bar> smartchr#one_of(' <Bar> ', ' <Bar><Bar> ', '<Bar>')$/;"	m
+<C-Down>	vim82/_config/000-mappings.vim	/^nnoremap <C-Down> "zdd"zp$/;"	m
+<C-Down>	vim82/_config/000-mappings.vim	/^vnoremap <C-Down> "zx"zp`[V`]$/;"	m
+<C-Tab>	vim82/_config/000-mappings.vim	/^nnoremap <C-Tab> gt$/;"	m
+<C-Up>	vim82/_config/000-mappings.vim	/^nnoremap <C-Up> "zdd<Up>"zP$/;"	m
+<C-Up>	vim82/_config/000-mappings.vim	/^vnoremap <C-Up> "zx<Up>"zP`[V`]$/;"	m
+<C-]>	vim82/_config/000-mappings.vim	/^inoremap <C-]> <ESC>g<C-]>$/;"	m
+<C-]>	vim82/_config/000-mappings.vim	/^nnoremap <C-]> g<C-]>$/;"	m
+<C-a>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-a>   denite#do_map('do_action', 'my_file_rec')$/;"	m
+<C-b>	vim82/_config/000-mappings.vim	/^cnoremap <C-b> <S-Left>$/;"	m
+<C-b>	vim82/_config/000-mappings.vim	/^cnoremap <C-b> <S-Right>$/;"	m
+<C-c>	vim82/_config/119-vim-watchdogs.vim	/^nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "<C-c>"$/;"	m
+<C-c>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')$/;"	m
+<C-g>	vim82/_config/000-mappings.vim	/^nnoremap <C-g> :vim \/<C-r><C-w>\/jg **<CR>$/;"	m
+<C-g>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-g>   denite#do_map('do_action', 'grep')$/;"	m
+<C-h>	vim82/_config/000-mappings.vim	/^cnoremap <C-h> <Home>$/;"	m
+<C-h>	vim82/_config/000-mappings.vim	/^nnoremap <C-h> <C-w>h$/;"	m
+<C-h>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-h>   denite#do_map('quit')$/;"	m
+<C-j>	vim82/_config/000-mappings.vim	/^cnoremap <C-j> <Right>$/;"	m
+<C-j>	vim82/_config/000-mappings.vim	/^nnoremap <C-j> <C-w>j$/;"	m
+<C-j>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-j>   denite#do_map('quit')$/;"	m
+<C-j>	vim82/_config/125-denite.vim	/^  imap <silent><buffer> <C-j> <Plug>(denite_filter_quit)$/;"	m
+<C-k>	vim82/_config/000-mappings.vim	/^cnoremap <C-k> <Down>$/;"	m
+<C-k>	vim82/_config/000-mappings.vim	/^nnoremap <C-k> <C-w>k$/;"	m
+<C-k>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-k>   denite#do_map('quit')$/;"	m
+<C-k>	vim82/_config/125-denite.vim	/^  imap <silent><buffer> <C-k> <Plug>(denite_filter_quit)$/;"	m
+<C-k>	vim82/_config/134-neosnippet.vim	/^imap <C-k>     <Plug>(neosnippet_expand_or_jump)$/;"	m
+<C-k>	vim82/_config/134-neosnippet.vim	/^smap <C-k>     <Plug>(neosnippet_expand_or_jump)$/;"	m
+<C-k>	vim82/_config/134-neosnippet.vim	/^xmap <C-k>     <Plug>(neosnippet_expand_target)$/;"	m
+<C-l>	vim82/_config/000-mappings.vim	/^cnoremap <C-l> <Del>$/;"	m
+<C-l>	vim82/_config/000-mappings.vim	/^cnoremap <C-l> <End>$/;"	m
+<C-l>	vim82/_config/000-mappings.vim	/^nnoremap <C-l> <C-w>l$/;"	m
+<C-n>	vim82/_config/108-nerdtree.vim	/^nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\\:NERDTreeClose<CR>" : bufexists(expand('/;"	m
+<C-n>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-n>   denite#do_map('redraw')$/;"	m
+<C-o>	vim82/_config/000-mappings.vim	/^cnoremap <C-o> <C-\\>e(getcmdtype() == '\/' <Bar><Bar> getcmdtype() == '?') ? '\\<' . getcmdline/;"	m
+<C-x>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <C-x>   denite#do_map('quick_move')$/;"	m
+<CR>	vim82/_config/000-mappings.vim	/^inoremap <expr><CR>  pumvisible() ? "\\<C-y>" : "\\<CR>"$/;"	m
+<CR>	vim82/_config/000-mappings.vim	/^inoremap <silent> <CR> <C-g>u<CR>$/;"	m
+<CR>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')$/;"	m
+<CR>	vim82/_config/136-deoplete.vim	/^inoremap <expr><CR> pumvisible() ? deoplete#close_popup() : "<CR>"$/;"	m
+<ESC>	vim82/_config/000-mappings.vim	/^	inoremap <silent><ESC> <ESC>:set iminsert=0<CR>$/;"	m
+<ESC>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer> <ESC> :<C-u>q<CR>$/;"	m
+<ESC><ESC>	vim82/_config/000-mappings.vim	/^	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>$/;"	m
+<ESC><ESC>	vim82/_config/000-mappings.vim	/^	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>$/;"	m
+<ESC><ESC>	vim82/_gconfig/100-hier.vim	/^	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:HierClear<CR>$/;"	m
+<ESC><ESC>	vim82/_gconfig/100-hier.vim	/^	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>$/;"	m
+<ESC><ESC><ESC><ESC>	vim82/_config/109-restart.vim	/^nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>$/;"	m
+<Esc>	vim82/_config/125-denite.vim	/^  imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)$/;"	m
+<F3>	vim82/_config/000-mappings.vim	/^nnoremap <F3> :<C-u>setlocal relativenumber!<CR>$/;"	m
+<F4>	vim82/_config/000-mappings.vim	/^nnoremap <F4> :<C-u>set scrollbind!<CR>$/;"	m
+<F5>	vim82/_config/121-lsp.vim	/^	nnoremap <buffer> <F5> :LspDocumentFormat<CR>$/;"	m
+<F6>	vim82/_config/000-mappings.vim	/^inoremap <F6> <ESC>a<C-R>=strftime("%Y\/%m\/%d %H:%M")<CR>$/;"	m
+<F6>	vim82/_config/000-mappings.vim	/^nnoremap <F6> <ESC>a<C-R>=strftime("%Y\/%m\/%d %H:%M")<CR><ESC>$/;"	m
+<F6>a	vim82/_config/000-mappings.vim	/^inoremap <F6>a <ESC>a<C-R>=strftime("%Y\/%m\/%d %H:%M")<CR> appended by$/;"	m
+<F6>a	vim82/_config/000-mappings.vim	/^nnoremap <F6>a <ESC>a<C-R>=strftime("%Y\/%m\/%d %H:%M")<CR> appended by <ESC>$/;"	m
+<F6>m	vim82/_config/000-mappings.vim	/^inoremap <F6>m <ESC>a<C-R>=strftime("%Y\/%m\/%d %H:%M")<CR> modified by$/;"	m
+<F6>m	vim82/_config/000-mappings.vim	/^nnoremap <F6>m <ESC>a<C-R>=strftime("%Y\/%m\/%d %H:%M")<CR> modified by <ESC>$/;"	m
+<F8>	vim82/_config/110-tagbar.vim	/^nmap <F8> :TagbarToggle<CR>$/;"	m
+<F8>	vim82/_config/122-vista.vim	/^nmap <F8> :Vista!!<CR>$/;"	m
+<M-3>	vim82/_config/000-mappings.vim	/^nnoremap <M-3> :%s\/<C-r>"\/\/\/g<Left><Left>$/;"	m
+<M-f>	vim82/_config/132-vim-easymotion.vim	/^nmap    <M-f> [easymotion]$/;"	m
+<M-g>	vim82/_config/000-mappings.vim	/^nnoremap <M-g> :vim \/\/jg **<Left><Left><Left><Left><Left><Left>$/;"	m
+<M-h>	vim82/_config/000-mappings.vim	/^nnoremap <M-h> <C-w>hdo$/;"	m
+<M-j>	vim82/_config/000-mappings.vim	/^nnoremap <M-j> :cn<CR>$/;"	m
+<M-j>	vim82/_config/000-mappings.vim	/^nnoremap <M-j> ]c$/;"	m
+<M-k>	vim82/_config/000-mappings.vim	/^nnoremap <M-k> :cp<CR>$/;"	m
+<M-k>	vim82/_config/000-mappings.vim	/^nnoremap <M-k> [c$/;"	m
+<M-l>	vim82/_config/000-mappings.vim	/^nnoremap <M-l> <C-w>hdp$/;"	m
+<M-m>g	vim82/_config/123-memolist.vim	/^nnoremap <M-m>g  :MemoGrep<CR>$/;"	m
+<M-m>l	vim82/_config/123-memolist.vim	/^nnoremap <M-m>l  :MemoList<CR>$/;"	m
+<M-m>n	vim82/_config/123-memolist.vim	/^nnoremap <M-m>n  :MemoNew<CR>$/;"	m
+<M-n>	vim82/_config/000-mappings.vim	/^    nnoremap <M-n> :call OpenNewTab()<CR>$/;"	m
+<M-q>	vim82/_config/000-mappings.vim	/^nnoremap <M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>$/;"	m
+<M-s>	vim82/_config/124-startify.vim	/^nnoremap <M-s> :Startify<CR>$/;"	m
+<S-C-Tab>	vim82/_config/000-mappings.vim	/^nnoremap <S-C-Tab> gT$/;"	m
+<S-CR>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <S-CR> denite#do_map('do_action', 'vsplit')$/;"	m
+<S-Insert>	_gvimrc	/^	map! <S-Insert> <C-R>+$/;"	m
+<S-TAB>	vim82/_config/000-mappings.vim	/^inoremap <expr><S-TAB>  pumvisible() ? "\\<C-p>" : "\\<S-TAB>"$/;"	m
+<S-TAB>	vim82/_config/134-neosnippet.vim	/^imap  <expr><S-TAB>$/;"	m
+<S-Tab>	vim82/_config/121-lsp.vim	/^inoremap <expr> <S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"$/;"	m
+<S-h>	vim82/_config/000-mappings.vim	/^nnoremap <S-h> ^$/;"	m
+<S-l>	vim82/_config/000-mappings.vim	/^nnoremap <S-l> \$$/;"	m
+<S-l>	vim82/_config/000-mappings.vim	/^vnoremap <S-l> $  " 矩形選択モード時のカーソル移動$/;"	m
+<Space>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'$/;"	m
+<Space><Space>	vim82/_config/000-mappings.vim	/^nnoremap <silent> <Space><Space> *N$/;"	m
+<Space>c	vim82/_config/113-vim-clap.vim	/^nmap    <Space>c [clap]$/;"	m
+<Space>cd	vim82/_config/000-mappings.vim	/^nnoremap <silent> <Space>cd :<C-u>CD<CR>$/;"	m
+<Space>d	vim82/_config/125-denite.vim	/^nmap    <Space>d [denite]$/;"	m
+<Space>f	vim82/_config/140-ctrlp.vim	/^nmap    <Space>f [ctrlp]$/;"	m
+<Space>o	vim82/_config/000-mappings.vim	/^nnoremap <Space>o :<C-u>call append(expand('.'), '')<Cr>j$/;"	m
+<Space>p	vim82/_config/000-mappings.vim	/^nnoremap <Space>p "0p$/;"	m
+<Space>r	vim82/_config/119-vim-watchdogs.vim	/^nnoremap <Space>r :QuickRun<CR>$/;"	m
+<Space>tn	vim82/_config/000-mappings.vim	/^noremap <Space>tn :<C-u>tabnew<CR>$/;"	m
+<TAB>	vim82/_config/000-mappings.vim	/^inoremap <expr><TAB> pumvisible() ? "\\<C-n>" : "\\<TAB>"$/;"	m
+<TAB>	vim82/_config/000-mappings.vim	/^nnoremap <TAB> %$/;"	m
+<TAB>	vim82/_config/000-mappings.vim	/^vnoremap <TAB> %$/;"	m
+<TAB>	vim82/_config/134-neosnippet.vim	/^imap  <expr><TAB>$/;"	m
+<TAB>	vim82/_config/134-neosnippet.vim	/^smap <expr><TAB> neosnippet#expandable_or_jumpable() ?$/;"	m
+<Tab>	vim82/_config/121-lsp.vim	/^inoremap <expr> <Tab>   pumvisible() ? "\\<C-n>" : "\\<Tab>"$/;"	m
+<Tab>	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')$/;"	m
+<c-h>	vim82/_config/000-mappings.vim	/^inoremap <c-h> <left>$/;"	m
+<c-j>	vim82/_config/000-mappings.vim	/^inoremap <c-j> <down>$/;"	m
+<c-k>	vim82/_config/000-mappings.vim	/^inoremap <c-k> <up>$/;"	m
+<c-l>	vim82/_config/000-mappings.vim	/^inoremap <c-l> <right>$/;"	m
+<cr>	vim82/_config/121-lsp.vim	/^inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\\<cr>"$/;"	m
+<f2>	vim82/_config/121-lsp.vim	/^	nmap <buffer> <f2> <plug>(lsp-rename)$/;"	m
+<space>g	vim82/_config/115-vim-fugitive.vim	/^nmap <space>g [fugitive]$/;"	m
+=	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> = search('\\(&\\<bar><bar>\\<bar>+\\<bar>-\\<bar>\/\\<bar>>\\<bar><\\) \\%#', 'b/;"	m
+?	vim82/_config/104-incsearch.vim	/^map ?  <Plug>(incsearch-backward)$/;"	m
+?	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> ? smartchr#one_of('? ', '?')$/;"	m
+@	vim82/_config/000-mappings.vim	/^onoremap @ i`$/;"	m
+@	vim82/_config/118-vim-smartchr.vim	/^inoremap <expr> @ search('^\\(#.\\+\\)\\?\\%#','bcn')? smartchr#one_of('#define', '#include', '#/;"	m
+CD	vim82/_config/000-mappings.vim	/^command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')$/;"	c
+DeniteDetectSize	vim82/_config/125-denite.vim	/^	augroup DeniteDetectSize$/;"	a
+Egvimrc	_vimrc	/^command! Egvimrc :e $MYGVIMRC$/;"	c
+Eltoml	_vimrc	/^command! Eltoml :e $HOME\\.vim\\rc\\dein_lazy.toml$/;"	c
+Eplug	_vimrc	/^command! Eplug :e $MYPLUGRC$/;"	c
+Esysseq	_vimrc	/^command! Esysseq :e $MYSEQRC$/;"	c
+Etoml	_vimrc	/^command! Etoml :e $HOME\\.vim\\rc\\dein.toml$/;"	c
+Evimrc	_vimrc	/^command! Evimrc :e $MYVIMRC$/;"	c
+FindPlugin	_vimrc	/^function! FindPlugin(name) abort$/;"	f
+LightLineCurrentTag	vim82/_config/107-lightline.vim	/^	function! LightLineCurrentTag() abort$/;"	f
+LightLineCurrentTag	vim82/_config/107-lightline.vim	/^	function! LightLineCurrentTag()$/;"	f
+LightLineDir	vim82/_config/107-lightline.vim	/^function! LightLineDir()$/;"	f
+LightLineFileformat	vim82/_config/107-lightline.vim	/^function! LightLineFileformat()$/;"	f
+LightLineFilename	vim82/_config/107-lightline.vim	/^function! LightLineFilename()$/;"	f
+LightLineFiletype	vim82/_config/107-lightline.vim	/^function! LightLineFiletype()$/;"	f
+LightLineFugitive	vim82/_config/107-lightline.vim	/^function! LightLineFugitive()$/;"	f
+LightLineModified	vim82/_config/107-lightline.vim	/^function! LightLineModified()$/;"	f
+LightLineReadonly	vim82/_config/107-lightline.vim	/^function! LightLineReadonly()$/;"	f
+LightlineColorscheme	vim82/_config/107-lightline.vim	/^augroup LightlineColorscheme$/;"	a
+LightlineUpdate	vim82/_config/107-lightline.vim	/^command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call light/;"	c
+LspDebug	vim82/_config/121-lsp.vim	/^command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~\/lsp.log')$/;"	c
+MyLightLineLineInfo	vim82/_config/107-lightline.vim	/^function! MyLightLineLineInfo()$/;"	f
+MyLightLinePercent	vim82/_config/107-lightline.vim	/^function! MyLightLinePercent()$/;"	f
+MyRestart	vim82/_config/109-restart.vim	/^command! MyRestart Restart --cmd "let g:restarted = 1"$/;"	c
+N	vim82/_config/112-vim-anzu.vim	/^nmap N <Plug>(anzu-N-with-echo)$/;"	m
+NERDTreeHighlightFile	vim82/_config/108-nerdtree.vim	/^function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)$/;"	f
+NERDTreeHijackNetrw	vim82/_config/124-startify.vim	/^let NERDTreeHijackNetrw = 0$/;"	v
+NERDTreeIgnore	vim82/_config/108-nerdtree.vim	/^let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']$/;"	v
+NERDTree_CLOSE	vim82/_config/108-nerdtree.vim	/^augroup NERDTree_CLOSE$/;"	a
+OnVimEnter	_vimrc	/^function! OnVimEnter() abort$/;"	f
+OpenNewTab	vim82/_config/000-mappings.vim	/^    function! OpenNewTab()$/;"	f
+S	vim82/_config/000-mappings.vim	/^nnoremap S "_S$/;"	m
+ScrollbarInit	vim82/_config/139-scrollvar.vim	/^augroup ScrollbarInit$/;"	a
+UsePlugin	_vimrc	/^command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif$/;"	c
+Y	vim82/_config/000-mappings.vim	/^nnoremap Y y\$$/;"	m
+[	vim82/_config/000-mappings.vim	/^onoremap [ i[$/;"	m
+[Mark]	vim82/_config/000-mappings.vim	/^nnoremap [Mark] <Nop>$/;"	m
+[Mark]N	vim82/_config/000-mappings.vim	/^nnoremap [Mark]N [`$/;"	m
+[Mark]l	vim82/_config/000-mappings.vim	/^nnoremap [Mark]l :<C-u>marks<CR>$/;"	m
+[Mark]m	vim82/_config/000-mappings.vim	/^nnoremap <silent>[Mark]m :<C-u>call <SID>AutoMarkrement()<CR>$/;"	m
+[Mark]n	vim82/_config/000-mappings.vim	/^nnoremap [Mark]n ]`$/;"	m
+[clap]	vim82/_config/113-vim-clap.vim	/^nnoremap    [clap]   <Nop>$/;"	m
+[clap]/	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]\/ :<C-u>Clap search_history<CR>$/;"	m
+[clap]<Space>	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]<Space> :<C-u>Clap blines<CR>$/;"	m
+[clap]a	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]a :<C-u>Clap marks<CR>$/;"	m
+[clap]b	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]b :<C-u>Clap buffers<CR>$/;"	m
+[clap]c	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]c :<C-u>Clap commits<CR>$/;"	m
+[clap]d	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]d :<C-u>Clap gfiles<CR>$/;"	m
+[clap]f	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]f :<C-u>Clap files<CR>$/;"	m
+[clap]g	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]g :<C-u>Clap grep<CR>$/;"	m
+[clap]h	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]h :<C-u>Clap help<CR>$/;"	m
+[clap]i	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]i :<C-u>Clap colors<CR>$/;"	m
+[clap]j	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]j :<C-u>Clap jumps<CR>$/;"	m
+[clap]l	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]l :<C-u>Clap lines<CR>$/;"	m
+[clap]m	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]m :<C-u>Clap history<CR>$/;"	m
+[clap]n	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]n :<C-u>Clap filer<CR>$/;"	m
+[clap]p	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]p :<C-u>Clap files $HOME\/Programing\/python<CR><C-u>$/;"	m
+[clap]r	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]r :<C-u>Clap quick_open<CR>$/;"	m
+[clap]s	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]s :<C-u>Clap sessions<CR>$/;"	m
+[clap]v	vim82/_config/113-vim-clap.vim	/^nnoremap <silent> [clap]v :<C-u>Clap files $HOME\/dotfiles\/vimrc<CR><C-u>$/;"	m
+[ctrlp]	vim82/_config/140-ctrlp.vim	/^nnoremap    [ctrlp]   <Nop>$/;"	m
+[ctrlp]a	vim82/_config/140-ctrlp.vim	/^nnoremap <silent> [ctrlp]a :<C-u>CtrlPMixed<CR>$/;"	m
+[ctrlp]b	vim82/_config/140-ctrlp.vim	/^nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>$/;"	m
+[ctrlp]f	vim82/_config/140-ctrlp.vim	/^nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurFile<CR>$/;"	m
+[ctrlp]m	vim82/_config/140-ctrlp.vim	/^nnoremap <silent> [ctrlp]m :<C-u>CtrlPMRUFiles<CR>$/;"	m
+[ctrlp]v	vim82/_config/140-ctrlp.vim	/^nnoremap <silent> [ctrlp]v :<C-u>CtrlP $HOME\/dotfiles\/vimrc<CR>$/;"	m
+[denite]	vim82/_config/125-denite.vim	/^nnoremap    [denite]   <Nop>$/;"	m
+[denite]<Space>	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]<Space> :<C-u>Denite line <CR>$/;"	m
+[denite]a	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]a :<C-u>Denite marks<CR>$/;"	m
+[denite]b	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]b :<C-u>Denite buffer <CR>$/;"	m
+[denite]c	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]c :<C-u>Denite change <CR>$/;"	m
+[denite]d	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]d :<C-u>Denite file\/rec:~\/dotfiles<CR>$/;"	m
+[denite]f	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]f :<C-u>DeniteBufferDir file:new<CR>$/;"	m
+[denite]g	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]g :<C-u>Denite -buffer-name=search grep<CR>$/;"	m
+[denite]h	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]h :<C-u>Denite help <CR>$/;"	m
+[denite]i	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]i :<C-u>Denite -auto-action=preview colorscheme <CR>$/;"	m
+[denite]m	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]m :<C-u>Denite file\/old <CR>$/;"	m
+[denite]p	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]p :<C-u>Denite file\/rec:~\/.cache\/dein\/repos<CR>$/;"	m
+[denite]r	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]r :<C-u>Denite register <CR>$/;"	m
+[denite]s	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]s :<C-u>Denite session -no-start-filter<CR>$/;"	m
+[denite]v	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]v :<C-u>Denite file\/rec:~\/dotfiles\/vimrc<CR>$/;"	m
+[denite]w	vim82/_config/125-denite.vim	/^nnoremap <silent> [denite]w :<C-u>DeniteCursorWord grep -buffer-name=search<CR>$/;"	m
+[easymotion]	vim82/_config/132-vim-easymotion.vim	/^nnoremap    [easymotion]   <Nop>$/;"	m
+[easymotion]f	vim82/_config/132-vim-easymotion.vim	/^map  [easymotion]f <Plug>(easymotion-bd-f)$/;"	m
+[easymotion]f	vim82/_config/132-vim-easymotion.vim	/^nmap [easymotion]f <Plug>(easymotion-overwin-f)$/;"	m
+[easymotion]j	vim82/_config/132-vim-easymotion.vim	/^map  [easymotion]j <Plug>(easymotion-bd-jk)$/;"	m
+[easymotion]j	vim82/_config/132-vim-easymotion.vim	/^nmap [easymotion]j <Plug>(easymotion-overwin-line)$/;"	m
+[easymotion]s	vim82/_config/132-vim-easymotion.vim	/^nmap [easymotion]s <Plug>(easymotion-overwin-f2)$/;"	m
+[easymotion]s	vim82/_config/132-vim-easymotion.vim	/^vmap [easymotion]s <Plug>(easymotion-bd-f2)$/;"	m
+[easymotion]w	vim82/_config/132-vim-easymotion.vim	/^map  [easymotion]w <Plug>(easymotion-bd-w)$/;"	m
+[easymotion]w	vim82/_config/132-vim-easymotion.vim	/^nmap [easymotion]w <Plug>(easymotion-overwin-w)$/;"	m
+[fugitive]	vim82/_config/115-vim-fugitive.vim	/^nnoremap [fugitive]  <Nop>$/;"	m
+[fugitive]a	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]a :Gwrite<CR>$/;"	m
+[fugitive]b	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]b :Gblame<CR>$/;"	m
+[fugitive]c	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]c :Git commit<CR>$/;"	m
+[fugitive]d	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]d :Gdiff<CR>$/;"	m
+[fugitive]m	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]m :Gmerge<CR>$/;"	m
+[fugitive]p	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]p :Git push origin master<CR>$/;"	m
+[fugitive]s	vim82/_config/115-vim-fugitive.vim	/^nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T$/;"	m
+a	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> a denite#do_map('open_filter_buffer')$/;"	m
+ayucolor	_gvimrc	/^let ayucolor="light" "light mirage dark$/;"	v
+check	_vimrc	/^augroup check-plug$/;"	a
+cp	vim82/_config/000-mappings.vim	/^nnoremap cp ciw<C-r>0<ESC>$/;"	m
+ctags	_vimrc	/^augroup ctags$/;"	a
+d	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')$/;"	m
+g/	vim82/_config/104-incsearch.vim	/^map g\/ <Plug>(incsearch-stay)$/;"	m
+g:DevIconsEnableFolderExtensionPatternMatching	vim82/_gconfig/101-vim-devicons.vim	/^let g:DevIconsEnableFolderExtensionPatternMatching = 0$/;"	v
+g:DevIconsEnableFolderPatternMatching	vim82/_gconfig/101-vim-devicons.vim	/^let g:DevIconsEnableFolderPatternMatching = 1$/;"	v
+g:DevIconsEnableFoldersOpenClose	vim82/_gconfig/101-vim-devicons.vim	/^let g:DevIconsEnableFoldersOpenClose = 1$/;"	v
+g:EasyMotion_do_mapping	vim82/_config/132-vim-easymotion.vim	/^let g:EasyMotion_do_mapping = 0$/;"	v
+g:NERDTreeChDirMode	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeChDirMode = 2$/;"	v
+g:NERDTreeDirArrowCollapsible	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeDirArrowCollapsible = '▼'$/;"	v
+g:NERDTreeDirArrowExpandable	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeDirArrowExpandable  = '▶'$/;"	v
+g:NERDTreeDirArrows	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeDirArrows = 1$/;"	v
+g:NERDTreeIndicatorMapCustom	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeIndicatorMapCustom = {$/;"	v
+g:NERDTreeLimitedSyntax	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeLimitedSyntax = 1$/;"	v
+g:NERDTreeShowBookmarks	vim82/_config/108-nerdtree.vim	/^let g:NERDTreeShowBookmarks=1$/;"	v
+g:Qfstatusline#UpdateCmd	vim82/_config/107-lightline.vim	/^let g:Qfstatusline#UpdateCmd = function('lightline#update')$/;"	v
+g:WebDevIconsNerdTreeAfterGlyphPadding	vim82/_gconfig/101-vim-devicons.vim	/^	let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '$/;"	v
+g:WebDevIconsNerdTreeAfterGlyphPadding	vim82/_gconfig/101-vim-devicons.vim	/^	let g:WebDevIconsNerdTreeAfterGlyphPadding = ''$/;"	v
+g:WebDevIconsNerdTreeGitPluginForceVAlign	vim82/_gconfig/101-vim-devicons.vim	/^let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1$/;"	v
+g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol	vim82/_gconfig/101-vim-devicons.vim	/^let g:WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ''$/;"	v
+g:WebDevIconsUnicodeDecorateFolderNodes	vim82/_gconfig/101-vim-devicons.vim	/^let g:WebDevIconsUnicodeDecorateFolderNodes = 1$/;"	v
+g:asyncomplete_auto_completeopt	vim82/_config/121-lsp.vim	/^let g:asyncomplete_auto_completeopt = 1$/;"	v
+g:asyncomplete_auto_popup	vim82/_config/121-lsp.vim	/^let g:asyncomplete_auto_popup = 2$/;"	v
+g:asyncomplete_popup_delay	vim82/_config/121-lsp.vim	/^let g:asyncomplete_popup_delay = 1$/;"	v
+g:auto_ctags_set_tags_option	vim82/_config/111-auto-ctags.vim	/^let g:auto_ctags_set_tags_option = 1$/;"	v
+g:auto_ctags_warn_once	vim82/_config/111-auto-ctags.vim	/^let g:auto_ctags_warn_once = 1$/;"	v
+g:brightest#enable_highlight_all_window	vim82/_config/131-brightest.vim	/^let g:brightest#enable_highlight_all_window = 1$/;"	v
+g:brightest#enable_on_CursorHold	vim82/_config/131-brightest.vim	/^let g:brightest#enable_on_CursorHold = 1$/;"	v
+g:brightest#highlight	vim82/_config/131-brightest.vim	/^let g:brightest#highlight = {$/;"	v
+g:clap_open_preview	vim82/_config/113-vim-clap.vim	/^let g:clap_open_preview = "never"$/;"	v
+g:clap_session_dir	vim82/_config/113-vim-clap.vim	/^let g:clap_session_dir  = 'C:\\Users\\thtom\\.vim\\session'$/;"	v
+g:clever_f_mark_direct	vim82/_config/135-clever-f.vim	/^let g:clever_f_mark_direct = 1$/;"	v
+g:ctrlp_clear_cache_on_exit	vim82/_config/140-ctrlp.vim	/^let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない$/;"	v
+g:ctrlp_lazy_update	vim82/_config/140-ctrlp.vim	/^let g:ctrlp_lazy_update = 1$/;"	v
+g:deoplete#enable_at_startup	vim82/_config/136-deoplete.vim	/^let g:deoplete#enable_at_startup = 1$/;"	v
+g:easy_align_delimiters	vim82/_config/114-vim-easy-align.vim	/^let g:easy_align_delimiters = {$/;"	v
+g:hier_highlight_group_qf	vim82/_gconfig/100-hier.vim	/^let g:hier_highlight_group_qf  = "qf_error_ucurl"$/;"	v
+g:hier_highlight_group_qfi	vim82/_gconfig/100-hier.vim	/^let g:hier_highlight_group_qfi = ""$/;"	v
+g:hier_highlight_group_qfw	vim82/_gconfig/100-hier.vim	/^let g:hier_highlight_group_qfw = "qf_warning_ucurl"$/;"	v
+g:indentLine_fileTypeExclude	vim82/_config/106-indentLine.vim	/^let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','/;"	v
+g:jupytext_filetype_map	vim82/_config/141-jupytext.vim	/^let g:jupytext_filetype_map = {'py': 'python'}$/;"	v
+g:jupytext_fmt	vim82/_config/141-jupytext.vim	/^let g:jupytext_fmt = 'py:percent'$/;"	v
+g:lightline	vim82/_config/107-lightline.vim	/^	  let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '/;"	v
+g:lightline	vim82/_config/107-lightline.vim	/^let g:lightline = {$/;"	v
+g:lightline	vim82/_config/107-lightline.vim	/^let g:lightline.component = {'cd': '%.35(%{fnamemodify(getcwd(), ":~")}%)'}$/;"	v
+g:lightline	vim82/_config/107-lightline.vim	/^let g:lightline.tabline = {'right': [['cd']]}$/;"	v
+g:lsp_diagnostics_echo_cursor	vim82/_config/121-lsp.vim	/^let g:lsp_diagnostics_echo_cursor = 1$/;"	v
+g:lsp_diagnostics_enabled	vim82/_config/121-lsp.vim	/^let g:lsp_diagnostics_enabled = 1$/;"	v
+g:lsp_text_edit_enabled	vim82/_config/121-lsp.vim	/^let g:lsp_text_edit_enabled = 0$/;"	v
+g:markrement_char	vim82/_config/000-mappings.vim	/^    let g:markrement_char = [$/;"	v
+g:mkdp_auto_close	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_auto_close = 1$/;"	v
+g:mkdp_auto_start	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_auto_start = 0$/;"	v
+g:mkdp_browser	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_browser = ''$/;"	v
+g:mkdp_browserfunc	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_browserfunc = ''$/;"	v
+g:mkdp_command_for_global	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_command_for_global = 0$/;"	v
+g:mkdp_echo_preview_url	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_echo_preview_url = 0$/;"	v
+g:mkdp_highlight_css	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_highlight_css = ''$/;"	v
+g:mkdp_markdown_css	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_markdown_css = ''$/;"	v
+g:mkdp_open_ip	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_open_ip = ''$/;"	v
+g:mkdp_open_to_the_world	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_open_to_the_world = 0$/;"	v
+g:mkdp_page_title	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_page_title = '「${name}」'$/;"	v
+g:mkdp_port	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_port = ''$/;"	v
+g:mkdp_preview_options	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_preview_options = {$/;"	v
+g:mkdp_refresh_slow	vim82/_config/138-markdownpreview.vim	/^let g:mkdp_refresh_slow = 0$/;"	v
+g:neosnippet#snippets_directory	vim82/_config/134-neosnippet.vim	/^let g:neosnippet#snippets_directory='~\/vimfiles\/my_snippet'$/;"	v
+g:quickrun_config	vim82/_config/119-vim-watchdogs.vim	/^let g:quickrun_config = get(g:, 'quickrun_config', {})$/;"	v
+g:quickrun_config	vim82/_config/119-vim-watchdogs.vim	/^let g:quickrun_config = {$/;"	v
+g:restart_sessionoptions	_vimrc	/^let g:restart_sessionoptions$/;"	v
+g:startify_change_to_dir	vim82/_config/124-startify.vim	/^let g:startify_change_to_dir       = 0$/;"	v
+g:startify_custom_header	vim82/_config/124-startify.vim	/^let g:startify_custom_header =$/;"	v
+g:startify_custom_indices	vim82/_config/124-startify.vim	/^let g:startify_custom_indices = ['d', 'f', 'h', 'r', 'i', 'o', 'b']$/;"	v
+g:startify_enable_special	vim82/_config/124-startify.vim	/^let g:startify_enable_special      = 0$/;"	v
+g:startify_enable_special	vim82/_config/124-startify.vim	/^let g:startify_enable_special = 1$/;"	v
+g:startify_enable_unsafe	vim82/_config/124-startify.vim	/^let g:startify_enable_unsafe = 1$/;"	v
+g:startify_files_number	vim82/_config/124-startify.vim	/^let g:startify_files_number = 10$/;"	v
+g:startify_fortune_use_unicode	vim82/_config/124-startify.vim	/^let g:startify_fortune_use_unicode = 1$/;"	v
+g:startify_list_order	vim82/_config/124-startify.vim	/^let g:startify_list_order = [$/;"	v
+g:startify_session_autoload	vim82/_config/124-startify.vim	/^let g:startify_session_autoload       = 1$/;"	v
+g:startify_session_before_save	vim82/_config/124-startify.vim	/^let g:startify_session_before_save = [$/;"	v
+g:startify_session_delete_buffers	vim82/_config/124-startify.vim	/^let g:startify_session_delete_buffers = 1$/;"	v
+g:startify_session_dir	vim82/_config/124-startify.vim	/^let g:startify_session_dir = '~\/.vim\/session'$/;"	v
+g:startify_session_number	vim82/_config/124-startify.vim	/^let g:startify_session_number = 10$/;"	v
+g:startify_session_persistence	vim82/_config/124-startify.vim	/^let g:startify_session_persistence    = 1$/;"	v
+g:startify_session_savevars	vim82/_config/124-startify.vim	/^let g:startify_session_savevars = [$/;"	v
+g:startify_update_oldfiles	vim82/_config/124-startify.vim	/^let g:startify_update_oldfiles     = 1$/;"	v
+g:startify_use_env	vim82/_config/124-startify.vim	/^let g:startify_use_env             = 1$/;"	v
+g:tagbar_type_seq	vim82/_config/110-tagbar.vim	/^let g:tagbar_type_seq = {$/;"	v
+g:tagbar_type_toml	vim82/_config/110-tagbar.vim	/^let g:tagbar_type_toml = {$/;"	v
+g:tagbar_visibility_symbols	vim82/_config/110-tagbar.vim	/^let g:tagbar_visibility_symbols = {$/;"	v
+g:vim_tags_ctags_binary	vim82/_config/142-vim-tags.vim	/^let g:vim_tags_ctags_binary ='$HOME\\scoop\\shims\\ctags.exe'$/;"	v
+g:vimproc#download_windows_dll	_vimrc	/^	let g:vimproc#download_windows_dll = 1$/;"	v
+g:vista_default_executive	vim82/_config/122-vista.vim	/^let g:vista_default_executive = 'ctags'$/;"	v
+g:vista_executive_for	vim82/_config/122-vista.vim	/^let g:vista_executive_for = {$/;"	v
+g:vista_fzf_preview	vim82/_config/122-vista.vim	/^let g:vista_fzf_preview = ['right:50%']$/;"	v
+g:watchdogs_check_BufWritePost_enables	vim82/_config/119-vim-watchdogs.vim	/^let g:watchdogs_check_BufWritePost_enables = {$/;"	v
+g:webdevicons_conceal_nerdtree_brackets	vim82/_gconfig/101-vim-devicons.vim	/^let g:webdevicons_conceal_nerdtree_brackets = 1$/;"	v
+g:webdevicons_enable_denite	vim82/_gconfig/101-vim-devicons.vim	/^let g:webdevicons_enable_denite = 1$/;"	v
+g:webdevicons_enable_nerdtree	vim82/_gconfig/101-vim-devicons.vim	/^let g:webdevicons_enable_nerdtree = 1$/;"	v
+g:webdevicons_enable_unite	vim82/_gconfig/101-vim-devicons.vim	/^let g:webdevicons_enable_unite = 1$/;"	v
+g:webdevicons_enable_vimfiler	vim82/_gconfig/101-vim-devicons.vim	/^let g:webdevicons_enable_vimfiler = 1$/;"	v
+g:winresizer_start_key	vim82/_config/120-winresizer.vim	/^let g:winresizer_start_key = '<M-w>'$/;"	v
+g<CR>	vim82/_config/000-mappings.vim	/^noremap g<CR> g;$/;"	m
+ga	vim82/_config/114-vim-easy-align.vim	/^nmap ga <Plug>(EasyAlign)$/;"	m
+ga	vim82/_config/114-vim-easy-align.vim	/^xmap ga <Plug>(EasyAlign)$/;"	m
+gd	vim82/_config/121-lsp.vim	/^	nmap <buffer> gd <plug>(lsp-definition)$/;"	m
+gs	vim82/_config/000-mappings.vim	/^nnoremap gs :<C-u>vertical wincmd f<CR>$/;"	m
+gvim_cmd	_gvimrc	/^	augroup gvim_cmd$/;"	a
+hhh	vim82/_config/000-mappings.vim	/^inoremap hhh <Esc>$/;"	m
+i	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')$/;"	m
+j	vim82/_config/000-mappings.vim	/^cnoremap <expr> j getcmdline()[getcmdpos()-2] ==# 'j' ? "\\<BS>\\<C-c>" : 'j'$/;"	m
+j	vim82/_config/100-accelerated-jk.vim	/^nmap j <Plug>(accelerated_jk_gj)$/;"	m
+jj	vim82/_config/000-mappings.vim	/^inoremap jj <Esc>$/;"	m
+jj	vim82/_config/125-denite.vim	/^  imap <silent><buffer> jj <Plug>(denite_filter_quit)$/;"	m
+jk	vim82/_config/000-mappings.vim	/^inoremap jk <Esc>$/;"	m
+k	vim82/_config/100-accelerated-jk.vim	/^nmap k <Plug>(accelerated_jk_gk)$/;"	m
+kkk	vim82/_config/000-mappings.vim	/^inoremap kkk <Esc>$/;"	m
+last_status	vim82/_config/000-mappings.vim	/^augroup last_status$/;"	a
+lll	vim82/_config/000-mappings.vim	/^inoremap lll <Esc>$/;"	m
+load_us_hold	_vimrc	/^augroup load_us_hold$/;"	a
+load_us_insert	_vimrc	/^augroup load_us_insert$/;"	a
+lsp_install	vim82/_config/121-lsp.vim	/^augroup lsp_install$/;"	a
+m	vim82/_config/000-mappings.vim	/^nmap m [Mark]$/;"	m
+my_watchdogs	vim82/_config/119-vim-watchdogs.vim	/^augroup my_watchdogs$/;"	a
+myvimrc	_vimrc	/^augroup myvimrc$/;"	a
+n	vim82/_config/112-vim-anzu.vim	/^nmap n <Plug>(anzu-n-with-echo)$/;"	m
+p	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')$/;"	m
+q	vim82/_config/125-denite.vim	/^	nnoremap <silent><buffer><expr> q denite#do_map('quit')$/;"	m
+qq	vim82/_config/000-mappings.vim	/^inoremap qq <Esc>$/;"	m
+run_script	vim82/_config/000-mappings.vim	/^augroup run_script$/;"	a
+s	vim82/_config/000-mappings.vim	/^nnoremap s "_s$/;"	m
+s:AutoMarkrement	vim82/_config/000-mappings.vim	/^function! s:AutoMarkrement()$/;"	f
+s:ChangeCurrentDir	vim82/_config/000-mappings.vim	/^function! s:ChangeCurrentDir(directory, bang)$/;"	f
+s:denite_detect_size	vim82/_config/125-denite.vim	/^	function! s:denite_detect_size() abort$/;"	f
+s:denite_filter_my_settings	vim82/_config/125-denite.vim	/^function! s:denite_filter_my_settings() abort$/;"	f
+s:denite_my_settings	vim82/_config/125-denite.vim	/^function! s:denite_my_settings() abort$/;"	f
+s:denite_win_height_percent	vim82/_config/125-denite.vim	/^let s:denite_win_height_percent = 0.38$/;"	v
+s:denite_win_width_percent	vim82/_config/125-denite.vim	/^let s:denite_win_width_percent = 0.65$/;"	v
+s:execute_ctags	_vimrc	/^function! s:execute_ctags() abort$/;"	f
+s:lightline_update	vim82/_config/107-lightline.vim	/^function! s:lightline_update()$/;"	f
+s:load_plug	_vimrc	/^function! s:load_plug(timer)$/;"	f
+s:mkdir	_vimrc	/^function! s:mkdir(dir)$/;"	f
+s:on_lsp_buffer_enabled	vim82/_config/121-lsp.vim	/^function! s:on_lsp_buffer_enabled() abort$/;"	f
+s:plug	_vimrc	/^let s:plug = {$/;"	v
+s:plug.check_installation	_vimrc	/^function! s:plug.check_installation()$/;"	f
+s:plug.is_installed	_vimrc	/^function! s:plug.is_installed(name)$/;"	f
+s:plugs	_vimrc	/^let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))$/;"	v
+s:remove_unnecessary_space	_vimrc	/^function! s:remove_unnecessary_space()$/;"	f
+s:toggle_quickfix_window	vim82/_config/000-mappings.vim	/^function! s:toggle_quickfix_window()$/;"	f
+transparent	vim82/_config/125-denite.vim	/^augroup transparent-windows$/;"	a
+v	vim82/_config/000-mappings.vim	/^vnoremap v $h$/;"	m
+win_config	_vimrc	/^augroup win_config$/;"	a
+x	vim82/_config/000-mappings.vim	/^nnoremap x "_x$/;"	m
+z/	vim82/_config/104-incsearch.vim	/^map z\/ <Plug>(incsearch-fuzzy-\/)$/;"	m
+z?	vim82/_config/104-incsearch.vim	/^map z? <Plug>(incsearch-fuzzy-?)$/;"	m
+zg/	vim82/_config/104-incsearch.vim	/^map zg\/ <Plug>(incsearch-fuzzy-stay)$/;"	m
+{	vim82/_config/000-mappings.vim	/^onoremap { i{$/;"	m
