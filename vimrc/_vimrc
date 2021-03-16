@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Mar-2021.
+" Last Change: 16-Mar-2021.
 " Maintainer: TH
 
 "set{{{
@@ -147,31 +147,11 @@ command! Esysseq :e $MYSEQRC
 augroup myvimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
-				\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
+				\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif  | LightlineUpdate
     autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
 				\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 	autocmd BufWritePost $MYSEQRC nested so $MYSEQRC
 augroup END
-"}}}
-""ペーストする際に、自動でpaste modeに{{{
-"if !has('nvim')
-"	if &term =~ "xterm"
-"	    let &t_ti .= "\e[?2004h"
-"	    let &t_te .= "\e[?2004l"
-"	    let &pastetoggle = "\e[201~"
-"
-"	    function XTermPasteBegin(ret)
-"	        set paste
-"	        return a:ret
-"	    endfunction
-"
-"	    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-"	    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-"	    cnoremap <special> <Esc>[200~ <nop>
-"	    cnoremap <special> <Esc>[201~ <nop>
-"	endif
-"endif
-
 "}}}
 "plug{{{
 " install vim-pulg{{{
@@ -253,13 +233,17 @@ autocmd VimEnter * call OnVimEnter()
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 " 起動時読込
-Plug 'thinca/vim-singleton'							,  "   117 起動数を常に1つに
+Plug 'blueyed/vim-diminactive'
+Plug 'mattn/emmet-vim'
+Plug 'thinca/vim-singleton'							"   117 起動数を常に1つに
+Plug 'jiangmiao/auto-pairs'							"
 Plug 'rafi/awesome-vim-colorschemes'				"colorscheme
 Plug 'LeafCage/foldCC'								" フォールドの見た目変更
 Plug 'Yggdroot/indentLine'							" 106 vim-indent-guidesよりこちらが好みindent可視化
 Plug 'itchyny/lightline.vim'						" 107 lightline
 	Plug 'delphinus/lightline-delphinus'
 Plug 'tyru/current-func-info.vim'					" カーソル位置関数表示
+Plug 'soramugi/auto-ctags.vim'						,
 " lazy load insert
 " LSP関連
 "以下どっちか使うべし
@@ -268,7 +252,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'lighttiger2505/deoplete-vim-lsp'				, { 'on': [] }
 Plug 'prabirshrestha/vim-lsp'         				, "{ 'on': [] }
 Plug 'mattn/vim-lsp-settings'         				, "{ 'on': [] }
-"Plug 'mattn/vim-lsp-icons'            				, "{ 'on': [] }
+Plug 'mattn/vim-lsp-icons'            				, "{ 'on': [] }
 Plug 'hrsh7th/vim-vsnip'              				, "{ 'on': [] }
 Plug 'hrsh7th/vim-vsnip-integ'        				, "{ 'on': [] }
 
@@ -280,11 +264,13 @@ Plug 'KazuakiM/vim-qfstatusline'					, { 'on': [] }
 Plug 'kana/vim-smartchr'							, { 'on': [] } " 118 符号の前後にスペース
 
 "" lazy load timer
-"Plug 'liuchengxu/vim-clap'							, { 'on': [] } " Clap
-"	Plug 'tamago324/vim-clap-help' 					, { 'on': [] } " ClapでHelp
-"	Plug 'hokorobi/vim-clap-sessions'				, { 'on': [] }
+Plug 'liuchengxu/vim-clap'							, { 'on': [] } " Clap
+	Plug 'tamago324/vim-clap-help' 					, { 'on': [] } " ClapでHelp
+	Plug 'hokorobi/vim-clap-sessions'				, { 'on': [] }
 Plug 'ctrlpvim/ctrlp.vim'							, " { 'on': [] }
 	Plug 'mattn/ctrlp-matchfuzzy'					, " { 'on': [] }
+	Plug 'mattn/ctrlp-mark'					, " { 'on': [] }
+	Plug 'hara/ctrlp-colorscheme'					, " { 'on': [] }
 
 Plug 'scrooloose/nerdtree'							,  { 'on': [] } " 108 nerdtree
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	,  { 'on': [] } " nerdtree用シンタックス
@@ -316,13 +302,11 @@ Plug 'tpope/vim-surround'							, " { 'on': [] } " 閉じカッコを編集
 Plug 'mopp/autodirmake.vim' 						, " { 'on': [] } " dir自動作成
 Plug 'vim-scripts/errormarker.vim'					, " { 'on': [] } " コンパイラエラー箇所マーク
 Plug 'glidenote/memolist.vim'						, " { 'on': [] } " 123 memo
-Plug 'soramugi/auto-ctags.vim'						,
 
 Plug 'dstein64/vim-startuptime'						, " { 'on': [] }
 Plug 'mechatroner/rainbow_csv'						,  { 'for': ['csv'] }
 Plug 'tpope/vim-markdown'							,  { 'for': ['markdown'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"Plug 'mhinz/vim-startify'							" 124 startify
 
 " Shougoware関連
 Plug 'Shougo/neosnippet-snippets'
@@ -332,17 +316,17 @@ Plug 'Shougo/neosnippet.vim'
 if has('nvim')
 	Plug 'Xuyuanp/scrollbar.nvim'
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 else
 	Plug 'markonm/traces.vim'						" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 	Plug 'roxma/nvim-yarp'
 	Plug 'roxma/vim-hug-neovim-rpc'
 	Plug 'tyru/restart.vim'							" 109 esc連打で再起動
-	Plug 'Shougo/deoplete.nvim', { 'on': [] }
 	Plug 'Shougo/defx.nvim', { 'on': [] }
+	Plug 'Shougo/denite.nvim', { 'on': [] }		" lazy loadが何故かできない
 endif
-	"Plug 'Shougo/denite.nvim', { 'on': [] }		" lazy loadが何故かできない
+	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	"Plug 'Shougo/deoplete.nvim', { 'on': [] }
 
 Plug 'ryanoasis/vim-devicons'						" icon追加 最後に読み込む事
 call plug#end()
@@ -367,13 +351,13 @@ function! s:load_plug(timer)
 				\'defx.nvim',
 				\'vim-brightest',
 				\'vim-singleton',
+	 			\'denite.nvim',
+				\'vim-clap'							,
+				\'vim-clap-help' 					,
+				\'vim-clap-sessions'				,
                 \ )
 				"\'deoplete.nvim',
 	" clap denite ctrlpどれかお好みで　今はctrlpが好きです
-				"\'vim-clap'							,
-				"\'vim-clap-help' 					,
-				"\'vim-clap-sessions'				,
-	" 			\'denite.nvim',
 	call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 endfunction
 
