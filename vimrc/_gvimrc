@@ -19,10 +19,10 @@ colorscheme jellybeans
 "Neovim{{{ 要見直し
 if has('nvim')
 	Guifont! Consolas:h12
-	Guifont! Cica:h12
+	Guifont! Cica:h13
 	call GuiWindowMaximized(1)
 	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
-	"call GuiWindowFullScreen(1)
+	call GuiWindowFullScreen(1)
 	GuiPopupmenu 0
 	GuiTabline 0
 	set pumblend=10
