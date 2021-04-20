@@ -5,7 +5,7 @@ vnoremap ; :
 "tagjump 複数候補
 nnoremap <C-]> g<C-]>
 inoremap <C-]> <ESC>g<C-]>
-"githubリポジトリコピペ時に改行しちゃうので力技で修正
+"githubリポジトリplugコピペ時に改行しちゃうので力技で修正
 inoremap <M-Insert> <C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa
 "command line window
 "nnoremap : q:a

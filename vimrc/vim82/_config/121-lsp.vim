@@ -27,6 +27,11 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-"let g:lsp_signs_error = {'text': '✗'}
-"let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'}
+let g:lsp_signs_error = {'text': '❌'}
+let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
 "let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'}
+let g:lsp_signs_hint = {'text': '💡'}
+let g:lsp_diagnostics_signs_error            = {'text': '❌'}
+let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
+let g:lsp_diagnostics_signs_information      = {'text': '❓'}
+let g:lsp_diagnostics_signs_hint             = {'text': '💡'}

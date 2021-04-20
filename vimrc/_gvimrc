@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Mar-2021.
+" Last Change: 07-Apr-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -81,5 +81,3 @@ set showtabline=2
 "gvim関連プラグイン設定読み込み{{{
 call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})
 "}}}
-"なぜかリロードでカーソルが見えなくなるので
-set guicursor =

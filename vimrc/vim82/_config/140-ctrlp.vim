@@ -15,3 +15,12 @@ let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアし�
 " 遅延再描画
 let g:ctrlp_lazy_update = 1
 "let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+" CtrlPのウィンドウ最大高さ
+autocmd VimEnter,VimResized *  let g:ctrlp_match_window = 'max:' . string(min([(&lines/3), 20]) - 1)
+
+"何故かワークしない
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+  \ }
