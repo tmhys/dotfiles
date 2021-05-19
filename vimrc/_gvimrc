@@ -14,7 +14,7 @@ syntax enable
 set termguicolors
 set background=light "light dark
 let ayucolor="light" "light mirage dark
-colorscheme jellybeans
+colorscheme PaperColor
 "}}}
 "Neovim{{{ 要見直し
 if has('nvim')
@@ -22,7 +22,7 @@ if has('nvim')
 	Guifont! Cica:h13
 	call GuiWindowMaximized(1)
 	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
-	call GuiWindowFullScreen(1)
+	"call GuiWindowFullScreen(1)
 	GuiPopupmenu 0
 	GuiTabline 0
 	set pumblend=10
