@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Apr-2021.
+" Last Change: 22-May-2021.
 " Maintainer: TH
 
 "set{{{
@@ -227,8 +227,6 @@ autocmd VimEnter * call OnVimEnter()
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 " 起動時読込
-Plug 'yssl/QFEnter'								"quickfixwindowから開くとき直前のwindowで
-Plug 'RobRoseKnows/lark-vim'
 Plug 'thinca/vim-singleton'							"   117 起動数を常に1つに
 Plug 'rafi/awesome-vim-colorschemes'				"colorscheme
 Plug 'LeafCage/foldCC'								" フォールドの見た目変更
@@ -236,12 +234,12 @@ Plug 'Yggdroot/indentLine'							" 106 vim-indent-guidesよりこちらが好み
 Plug 'itchyny/lightline.vim'						" 107 lightline
 	Plug 'delphinus/lightline-delphinus'
 Plug 'tyru/current-func-info.vim'					" カーソル位置関数表示
-Plug 'soramugi/auto-ctags.vim'						,
-
-
-Plug 'blueyed/vim-diminactive'						,
-Plug 'osyo-manga/shabadou.vim'						,
+Plug 'soramugi/auto-ctags.vim'						" auto ctags
+Plug 'blueyed/vim-diminactive'						,  " inactiveタブを暗く
 Plug 'cohama/vim-hier'								,  " エラー行ハイライト
+Plug 'yssl/QFEnter'									"quickfixwindowから開くとき直前のwindowで
+Plug 'thinca/vim-quickrun'							,  " 116 すぐ実行
+	Plug 'osyo-manga/shabadou.vim'						,
 Plug 'dannyob/quickfixstatus'						,  " カーソルをエラー行に配置したときメッセージ表示
 Plug 'rhysd/clever-f.vim'							,  " fキー強化
 Plug 'haya14busa/incsearch-fuzzy.vim'				,  " 103 一文字ごとにハイライト
@@ -254,7 +252,6 @@ Plug 'qpkorr/vim-renamer'							,  " ファイル名一括編集
 Plug 'rhysd/accelerated-jK'							,  " 100 カーソル移動速度変更
 Plug 'simeji/winresizer'							,  " 120 ウィンドウリサイズ
 Plug 'thinca/vim-qfreplace'							,  " 一括置換
-Plug 'thinca/vim-quickrun'							,  " 116 すぐ実行
 Plug 'tpope/vim-fugitive'							,  " 115 git用
 Plug 'mopp/autodirmake.vim' 						,  " dir自動作成
 Plug 'vim-scripts/errormarker.vim'					,  " コンパイラエラー箇所マーク
@@ -262,20 +259,25 @@ Plug 'dstein64/vim-startuptime'						,
 " lazy load insert
 " LSP関連
 "以下どっちか使うべし
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'lighttiger2505/deoplete-vim-lsp'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-"Plug 'mattn/vim-lsp-icons'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+if has('kaoriya')
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	"Plug 'lighttiger2505/deoplete-vim-lsp'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+	"Plug 'mattn/vim-lsp-icons'
+	Plug 'hrsh7th/vim-vsnip'
+	Plug 'hrsh7th/vim-vsnip-integ'
+endif
 
 Plug 'mattn/emmet-vim'								, { 'for': ['html', 'css'] }
+Plug 'RobRoseKnows/lark-vim'						, { 'for': ['lark'] } " lark syntax
+Plug 'cespare/vim-toml'								, { 'for': ['toml'] } " toml syntax
 Plug 'osyo-manga/vim-watchdogs'						, { 'for': ['seq'] } " 119 seqのエラーチェック
 Plug 'mechatroner/rainbow_csv'						, { 'for': ['csv'] }
 Plug 'tpope/vim-markdown'							, { 'for': ['markdown'] }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'skanehira/preview-markdown.vim'
 
 "" lazy load timer
 Plug 'liuchengxu/vim-clap'							, { 'on': [] } " Clap
@@ -312,6 +314,7 @@ if has('nvim')
 	Plug 'Xuyuanp/scrollbar.nvim'
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 	"Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
 	Plug 'markonm/traces.vim'						" 置換時にリアルタイム描画 nvimは標準で入っているらしい
 	Plug 'roxma/nvim-yarp'
@@ -319,11 +322,14 @@ else
 	Plug 'tyru/restart.vim'							" 109 esc連打で再起動
 	"Plug 'Shougo/defx.nvim',
 	"Plug 'kristijanhusak/defx-icons',
-
-	Plug 'Shougo/denite.nvim', { 'on': [] }		" lazy loadが何故かできない
 endif
-	"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	"Plug 'Shougo/deoplete.nvim', { 'on': [] }
+""deoplete検討
+"if !has('nvim') "&& !has('kaoriya')
+"	Plug 'Shougo/deoplete.nvim', " { 'on': [] }
+"	Plug 'deoplete-plugins/deoplete-jedi',
+"	"Plug 'davidhalter/jedi-vim',
+"	"Plug 'Shougo/denite.nvim', { 'on': [] }		" lazy loadが何故かできない
+"endif
 
 Plug 'ryanoasis/vim-devicons'						" icon追加 最後に読み込む事
 call plug#end()
@@ -369,7 +375,7 @@ augroup load_us_insert
 				\'auto-pairs',
 				\'vim-qfsigns',
 				\'vim-qfstatusline',
- 				\'vim-surround'							,
+				\'vim-surround',
 				\'shabadou.vim',
 				\'vim-smartchr',
                 \ )| autocmd! load_us_insert
