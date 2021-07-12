@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 07-Apr-2021.
+" Last Change: 25-May-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -13,8 +13,8 @@
 syntax enable
 set termguicolors
 set background=light "light dark
-let ayucolor="light" "light mirage dark
-colorscheme PaperColor
+let ayucolor="mirage" "light mirage dark
+colorscheme ayu
 "}}}
 "Neovim{{{ 要見直し
 if has('nvim')
