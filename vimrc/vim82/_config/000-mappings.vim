@@ -1,4 +1,7 @@
 "echo "keymap is loaded"
+
+nnoremap za za
+vnoremap za zf
 "USキーボード
 nnoremap ; :
 vnoremap ; :

@@ -14,7 +14,9 @@ nnoremap <silent> [ctrlp]k :<C-u>CtrlPMark<CR>
 let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
 " 遅延再描画
 let g:ctrlp_lazy_update = 1
-"let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+if v:version  == 802  && has("patch1665")
+	let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+endif
 " CtrlPのウィンドウ最大高さ
 autocmd VimEnter,VimResized *  let g:ctrlp_match_window = 'max:' . string(min([(&lines/3), 20]) - 1)
 
@@ -24,3 +26,18 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
+" # lightline.vimで表示しているステータスラインとの衝突を避けるため
+let g:ctrlp_buffer_func = {
+	\ 'enter': 'CtrlPEnter',
+	\ 'exit': 'CtrlPLeave',
+\ }
+
+" # ctrlpに入るとき，ステータスラインの表示をoffに
+function! CtrlPEnter()
+	set laststatus=0
+endfunction
+
+" # ctrlpから出るとき，ステータスラインの表示をonに
+function! CtrlPLeave()
+	set laststatus=2
+endfunction

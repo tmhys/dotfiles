@@ -4,7 +4,7 @@ augroup NERDTree_CLOSE
 	autocmd!
 	"NERDTree以外を閉じたらNERDTreeも閉じる
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-	autocmd VimLeavePre * NERDTreeClose
+	"autocmd VimLeavePre * NERDTreeClose
 augroup END
 
 "curren directoryに合わせて NERDTreeToggle
@@ -17,7 +17,7 @@ let g:NERDTreeLimitedSyntax = 1
 let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
 ""NERDTree矢印変更{{{
-"let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable  = '▶'
 let g:NERDTreeDirArrowCollapsible = '▼'
@@ -51,7 +51,8 @@ endfunction
 "call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', 'NONE')
 "
 
-let g:NERDTreeIndicatorMapCustom = {
+"let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",

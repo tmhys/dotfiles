@@ -1,0 +1,1 @@
+UsePlugin 'coc.nvim'

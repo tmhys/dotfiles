@@ -5,15 +5,15 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 25-May-2021.
+" Last Change: 13-Jul-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
 "カラー設定はvimrcではなぜか反映されないのでここに書くこと
 syntax enable
 set termguicolors
-set background=light "light dark
-let ayucolor="mirage" "light mirage dark
+set background=dark "light dark
+let ayucolor="dark" "light mirage dark
 colorscheme ayu
 "}}}
 "Neovim{{{ 要見直し
@@ -79,5 +79,11 @@ set guioptions-=e
 set showtabline=2
 "}}}
 "gvim関連プラグイン設定読み込み{{{
-call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})
+"call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})
+let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
+function! FindPlugin(name) abort
+  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
+endfunction
+command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
+runtime! _gconfig/*.vim
 "}}}

@@ -1,0 +1,1 @@
+UsePlugin 'vim-lastplace.vim'
