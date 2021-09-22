@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 13-Jul-2021.
+" Last Change: 22-Sep-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -14,23 +14,8 @@ syntax enable
 set termguicolors
 set background=dark "light dark
 let ayucolor="dark" "light mirage dark
+colorscheme desert
 colorscheme ayu
-"}}}
-"Neovim{{{ 要見直し
-if has('nvim')
-	Guifont! Consolas:h12
-	Guifont! Cica:h13
-	call GuiWindowMaximized(1)
-	"この方法ならタイトルバーを消せるが、フルスクリーンのみになる
-	"call GuiWindowFullScreen(1)
-	GuiPopupmenu 0
-	GuiTabline 0
-	set pumblend=10
-	map! <S-Insert> <C-R>+
-	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
-	set inccommand=split
-   	set ambiwidth=single
-endif
 "}}}
 "フォント設定{{{
 if has('win32') || has ('win64')
@@ -38,7 +23,6 @@ if has('win32') || has ('win64')
 		set guifont=Cica:h12,Consolas:h12
 		set printfont=Cica:h8,Consolas:h8
 		set renderoptions=type:directx,renmode:5
-		set enc=utf-8
 		source $VIMRUNTIME/delmenu.vim
 		set langmenu=ja_jp.utf-8
 		source $VIMRUNTIME/menu.vim
@@ -67,16 +51,6 @@ if !has('nvim')  && has('kaoriya')
 endif
 "}}}
 "メニューバーツールバー消す{{{
-set guioptions-=T
-set guioptions+=C
-set guioptions-=m
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-set guioptions-=b
-set guioptions-=e
-set showtabline=2
 "}}}
 "gvim関連プラグイン設定読み込み{{{
 "call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})
