@@ -1,5 +1,9 @@
 UsePlugin 'restart.vim'
 
+" 終了時に保存するセッションオプションを設定する{{{
+let g:restart_sessionoptions
+    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+"}}}
 " :Restart 時に変数の定義を行う
 command! MyRestart Restart --cmd "let g:restarted = 1"
 

@@ -5,7 +5,7 @@
 " ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 " ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 22-Sep-2021.
+" Last Change: 11-Oct-2021.
 " Maintainer:  TH
 
 "カラー設定{{{
@@ -19,16 +19,14 @@ colorscheme ayu
 "}}}
 "フォント設定{{{
 if has('win32') || has ('win64')
-	if !has('nvim')
-		set guifont=Cica:h12,Consolas:h12
-		set printfont=Cica:h8,Consolas:h8
-		set renderoptions=type:directx,renmode:5
-		source $VIMRUNTIME/delmenu.vim
-		set langmenu=ja_jp.utf-8
-		source $VIMRUNTIME/menu.vim
-		set antialias
-		set linespace=1
-	endif
+	set guifont=Cica:h12,Consolas:h12
+	set printfont=Cica:h8,Consolas:h8
+	set renderoptions=type:directx,renmode:5
+	source $VIMRUNTIME/delmenu.vim
+	set langmenu=ja_jp.utf-8
+	source $VIMRUNTIME/menu.vim
+	set antialias
+	set linespace=1
 elseif has('kaoriya')
    	set ambiwidth=auto
 "elseif has('mac')
@@ -38,7 +36,7 @@ elseif has('kaoriya')
 endif
 "}}}
 "window size{{{
-if !has('nvim')  && has('kaoriya')
+if has('kaoriya')
 	SM 5
 	"最大化で起動
 	augroup gvim_cmd
@@ -53,7 +51,6 @@ endif
 "メニューバーツールバー消す{{{
 "}}}
 "gvim関連プラグイン設定読み込み{{{
-"call map(sort(split(globpath(&runtimepath, '_gconfig/*.vim'))), {->[execute('exec "so" v:val')]})
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
 function! FindPlugin(name) abort
   return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0

@@ -5,7 +5,7 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 24-Aug-2021.
+" Last Change: 23-Sep-2021.
 " Maintainer: TH
 
 "set{{{
@@ -19,11 +19,7 @@ set shortmess-=S                                 " 検索件数表示
 "pythonインターフェース有効化
 "anacondaで指定すると動作が超絶不安定
 "pynvimのインストール方法謎
-if has('nvim')
-	set inccommand=split
-else
-	set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
-endif
+set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
 "let g:python3_host_prog = '$HOME\AppData\Local\Programs\Python\Python38\python'
 "ステータスライン常時表示
 set laststatus=2
@@ -75,6 +71,16 @@ set undodir=$HOME/.vimbackup
 call s:mkdir(&undodir)
 set undofile
 set noswapfile
+set guioptions-=T
+set guioptions+=C
+set guioptions-=m
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
+set guioptions-=e
+set showtabline=2
 "}}}
 "grep代替{{{
 if executable('pt')
@@ -116,26 +122,16 @@ augroup win_config
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 augroup END
 "}}}
-" 終了時に保存するセッションオプションを設定する{{{
-let g:restart_sessionoptions
-    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
-"}}}
 "vimrcの編集再読み込み{{{
 let $MYSEQRC = expand('$HOME\vimfiles\userautoload\SysSeq.vim')
 let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
 let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
 let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
-if has('nvim')
-	let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.vim')
-	let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
-endif
 
 "編集
 command! Evimrc :e $MYVIMRC
 command! Egvimrc :e $MYGVIMRC
 command! Eplug :e $MYPLUGRC
-command! Etoml :e $HOME\.vim\rc\dein.toml
-command! Eltoml :e $HOME\.vim\rc\dein_lazy.toml
 command! Esysseq :e $MYSEQRC
 
 "保存したら再読み込み
@@ -229,9 +225,7 @@ autocmd VimEnter * call OnVimEnter()
 " プラグインインストール{{{
 silent! call plug#begin('~/vimfiles/plugged')
 " 起動時読込
-Plug 'thinca/vim-singleton'							"   117 起動数を常に1つに
 Plug 'rafi/awesome-vim-colorschemes'				"colorscheme
-Plug 'LeafCage/foldCC'								" フォールドの見た目変更
 Plug 'Yggdroot/indentLine'							" 106 vim-indent-guidesよりこちらが好みindent可視化
 Plug 'tyru/current-func-info.vim'					" カーソル位置関数表示
 Plug 'soramugi/auto-ctags.vim'						" auto ctags
@@ -242,8 +236,6 @@ Plug 'thinca/vim-quickrun'							,  " 116 すぐ実行
 	Plug 'osyo-manga/shabadou.vim'						,
 Plug 'dannyob/quickfixstatus'						,  " カーソルをエラー行に配置したときメッセージ表示
 Plug 'rhysd/clever-f.vim'							,  " fキー強化
-Plug 'haya14busa/incsearch-fuzzy.vim'				,  " 103 一文字ごとにハイライト
-	Plug 'haya14busa/incsearch.vim'					,  " 104 一文字ごとにハイライト
 Plug 'junegunn/vim-easy-align'						,  " 114 テキスト整形
 Plug 'kshenoy/vim-signature'						,  " マーク位置表示
 Plug 'mhinz/vim-signify'							,  " 差分をsignで表示
@@ -255,19 +247,7 @@ Plug 'tpope/vim-fugitive'							,  " 115 git用
 Plug 'mopp/autodirmake.vim' 						,  " dir自動作成
 Plug 'vim-scripts/errormarker.vim'					,  " コンパイラエラー箇所マーク
 Plug 'dstein64/vim-startuptime'						,
-"Plug 'tweekmonster/startuptime.vim'						,
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" lazy load insert
-" LSP関連
-""以下どっちか使うべし
-"Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-""Plug 'lighttiger2505/deoplete-vim-lsp'
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'mattn/vim-lsp-settings'
-""Plug 'mattn/vim-lsp-icons'
-"Plug 'hrsh7th/vim-vsnip'
-"Plug 'hrsh7th/vim-vsnip-integ'
 
 Plug 'mattn/emmet-vim'								, { 'for': ['html', 'css'] }
 Plug 'RobRoseKnows/lark-vim'						, { 'for': ['lark'] } " lark syntax
@@ -311,39 +291,21 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/vimproc.vim'
 
-if has('nvim')
-	"Plug 'neovim/nvim-lspconfig'
-	Plug 'glepnir/lspsaga.nvim'
-  	Plug 'folke/lsp-colors.nvim'
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-	Plug 'nvim-lua/completion-nvim'
-	Plug 'nvim-lua/popup.nvim'
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'hoob3rt/lualine.nvim'
-	Plug 'folke/tokyonight.nvim'
-	Plug 'ChristianChiarulli/dashboard-nvim'
-	Plug 'folke/which-key.nvim'
-	Plug 'akinsho/bufferline.nvim'
-	Plug 'windwp/nvim-autopairs'
-	Plug 'kyazdani42/nvim-tree.lua'
+Plug 'haya14busa/incsearch-fuzzy.vim'				,  " 103 一文字ごとにハイライト
+	Plug 'haya14busa/incsearch.vim'					,  " 104 一文字ごとにハイライト
+Plug 'scrooloose/nerdtree'							" , { 'on': [] } " 108 nerdtree
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	" , { 'on': [] } " nerdtree用シンタックス
+	Plug 'Xuyuanp/nerdtree-git-plugin' 				" , { 'on': [] } " git ステータス表示
+Plug 'itchyny/lightline.vim'						" 107 lightline
+	Plug 'delphinus/lightline-delphinus'
+Plug 'machakann/vim-highlightedyank'				,  " yank文字列ハイライト
+Plug 'markonm/traces.vim'						" 置換時にリアルタイム描画 nvimは標準で入っているらしい
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'tyru/restart.vim'							" 109 esc連打で再起動
+Plug 'jiangmiao/auto-pairs'							" , { 'on': [] }
 
-	Plug 'kyazdani42/nvim-web-devicons'
-else
-	Plug 'scrooloose/nerdtree'							" , { 'on': [] } " 108 nerdtree
-		Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	" , { 'on': [] } " nerdtree用シンタックス
-		Plug 'Xuyuanp/nerdtree-git-plugin' 				" , { 'on': [] } " git ステータス表示
-	Plug 'itchyny/lightline.vim'						" 107 lightline
-		Plug 'delphinus/lightline-delphinus'
-	Plug 'machakann/vim-highlightedyank'				,  " yank文字列ハイライト
-	Plug 'markonm/traces.vim'						" 置換時にリアルタイム描画 nvimは標準で入っているらしい
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-	Plug 'tyru/restart.vim'							" 109 esc連打で再起動
-	Plug 'jiangmiao/auto-pairs'							" , { 'on': [] }
-
-	Plug 'ryanoasis/vim-devicons'						" icon追加 最後に読み込む事
-endif
+Plug 'ryanoasis/vim-devicons'						" icon追加 最後に読み込む事
 
 call plug#end()
 
@@ -399,7 +361,6 @@ augroup END
 "その他の設定ファイル読み込み{{{
 runtime! userautoload/*.vim
 " 各種設定の読み込み
-"call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
 function! FindPlugin(name) abort
   return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0

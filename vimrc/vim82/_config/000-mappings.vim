@@ -205,15 +205,15 @@ augroup last_status
 	autocmd BufReadPost * delmarks!
 augroup END
 " }}}
-augroup run_script
-	autocmd!
-	""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
-	autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
-	autocmd FileType javascript nnoremap <silent><buffer><C-e> :!electron .<CR>
-	"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
-	"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
-	"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
-augroup END
+"augroup run_script
+"	autocmd!
+"	""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
+"	autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
+"	autocmd FileType javascript nnoremap <silent><buffer><C-e> :!electron .<CR>
+"	"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
+"	"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
+"	"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
+"augroup END
 "}}}
 "grep
 nnoremap <C-g> :vim /<C-r><C-w>/jg **<CR>
@@ -250,3 +250,8 @@ if v:version >= 700
     endfunction
 endif
 "}}}
+
+augroup highlight_yank
+    autocmd!
+    au TextyankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
+augroup END

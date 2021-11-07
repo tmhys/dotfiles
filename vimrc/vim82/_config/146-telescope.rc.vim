@@ -9,6 +9,8 @@ nnoremap <silent> [telescope]f <cmd>Telescope find_files<cr>
 nnoremap <silent> [telescope]b <cmd>Telescope buffers<cr>
 nnoremap <silent> [telescope]g <cmd>Telescope live_grep<cr>
 nnoremap <silent> [telescope]t <cmd>Telescope help_tags<cr>
+nnoremap <silent> [telescope]m <cmd>Telescope oldfiles<cr>
+nnoremap <silent> [telescope]v <cmd>Telescope find_files search_dirs=~/dotfiles/vimrc<cr>
 "nnoremap <silent> [telescope]m :<C-u>CtrlPMRUFiles<CR>
 "nnoremap <silent> [telescope]v :<C-u>telescope $HOME/dotfiles/vimrc<CR>
 "nnoremap <silent> [telescope]a :<C-u>CtrlPMixed<CR>
@@ -68,7 +70,8 @@ require('telescope').setup{
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     winblend = 0,
     border = {},
-    borderchars = { '─', '│', '─', '│', '+', '+', '+', '+' },
+    borderchars = { '═', '║', "=", "║", "╔", "╗", "╝", "╚" },
+    --borderchars = { '─', '│', '─', '│', '+', '+', '+', '+' },
     color_devicons = true,
     use_less = true,
     path_display = {},
