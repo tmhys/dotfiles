@@ -1,19 +1,30 @@
-"
-" ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
-" ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
-" ██║   ██║██║██╔████╔██║██████╔╝██║
-" ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
-"  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
-"   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 23-Sep-2021.
+" Last Change: 27-Dec-2021.
 " Maintainer: TH
 
+"不要な機能停止{{{
+let g:loaded_gzip              = 1
+let g:loaded_tar               = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_zip               = 1
+let g:loaded_zipPlugin         = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_2html_plugin      = 1
+let g:loaded_vimball           = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_getscript         = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_netrw             = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
+"}}}
 "set{{{
 set encoding=UTF-8
 scriptencoding utf-8
-if !has('kaoriya')
+set renderoptions=type:directx,renmode:5
+"if !has('kaoriya')
 	let g:vimproc#download_windows_dll = 1
-endif
+"endif
 set shortmess+=I                                 " 起動時のメッセージを消す
 set shortmess-=S                                 " 検索件数表示
 "pythonインターフェース有効化
@@ -53,6 +64,35 @@ set virtualedit=block
 set ignorecase
 set smartcase
 set wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
+set undofile
+set noswapfile
+set guioptions-=T
+set guioptions+=C
+set guioptions-=m
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
+set guioptions-=e
+set showtabline=2
+"color {{{
+set termguicolors
+set background=dark "light dark
+syntax enable
+"}
+"grep代替{{{
+if executable('pt')
+	set grepprg=pt\ --nogroup\
+	set grepformat=%f:%l:%c:%m
+elseif executable('ag')
+	set grepprg=ag\ --nogroup\ -iS
+    set grepformat=%f:%l:%m
+elseif executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+"}}}
 "}}}
 "backup{{{
 " ネストしたディレクトリを作成する関数
@@ -69,30 +109,6 @@ set backupdir=$HOME/.vimbackup
 call s:mkdir(&backupdir)
 set undodir=$HOME/.vimbackup
 call s:mkdir(&undodir)
-set undofile
-set noswapfile
-set guioptions-=T
-set guioptions+=C
-set guioptions-=m
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-set guioptions-=b
-set guioptions-=e
-set showtabline=2
-"}}}
-"grep代替{{{
-if executable('pt')
-	set grepprg=pt\ --nogroup\
-	set grepformat=%f:%l:%c:%m
-elseif executable('ag')
-	set grepprg=ag\ --nogroup\ -iS
-    set grepformat=%f:%l:%m
-elseif executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
 "}}}
 "IME状態に応じたカーソル色設定{{{
 if has('multi_byte_ime')
@@ -123,7 +139,7 @@ augroup win_config
 augroup END
 "}}}
 "vimrcの編集再読み込み{{{
-let $MYSEQRC = expand('$HOME\vimfiles\userautoload\SysSeq.vim')
+"let $MYSEQRC = expand('$HOME\vimfiles\userautoload\SysSeq.vim')
 let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
 let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
 let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
@@ -134,18 +150,32 @@ command! Egvimrc :e $MYGVIMRC
 command! Eplug :e $MYPLUGRC
 command! Esysseq :e $MYSEQRC
 
+"if has('vim_starting')
+"  function s:reload_vimrc() abort
+"    execute printf('source %s', $MYVIMRC)
+"    if has('gui_running')
+"      execute printf('source %s', $MYGVIMRC)
+"    endif
+"    redraw
+"    echo printf('.vimrc/.gvimrc has reloaded (%s).', strftime('%c'))
+"  endfunction
+"endif
+"nmap <silent> <Plug>(my-reload-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
+"nmap <Leader><Leader>r <Plug>(my-reload-vimrc)
 "保存したら再読み込み
 "gui_runningがnvimでは機能しないらしい
-augroup myvimrc
-    autocmd!
-    autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
-				\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
-				"\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif  | LightlineUpdate
-    autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
-				\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-	autocmd BufWritePost $MYSEQRC nested so $MYSEQRC
-augroup END
+"augroup myvimrc
+"    autocmd!
+"    autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
+"				\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
+"				"\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif  | LightlineUpdate
+"    autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
+"				\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+"	autocmd BufWritePost $MYSEQRC nested so $MYSEQRC
+"augroup END
 "}}}
+"--------------------------------------------
+" vim-plug{{{
 " install vim-pulg{{{
 if has('vim_starting')
   set rtp+=~/vimfiles/plugged
@@ -219,7 +249,6 @@ function! OnVimEnter() abort
     endif
   endif
 endfunction
-
 autocmd VimEnter * call OnVimEnter()
 "}}}
 " プラグインインストール{{{
@@ -261,29 +290,28 @@ Plug 'skanehira/preview-markdown.vim'
 " fuzzyfinder{{{
 "" lazy load timer
 Plug 'farmergreg/vim-lastplace'
-Plug 'liuchengxu/vim-clap'										" , { 'on': [] } " Clap
-	Plug 'tamago324/vim-clap-help' 								" , { 'on': [] } " ClapでHelp
-	Plug 'hokorobi/vim-clap-sessions'							" , { 'on': [] }
-Plug 'ctrlpvim/ctrlp.vim'										" , { 'on': [] }
-	Plug 'mattn/ctrlp-matchfuzzy'								" , { 'on': [] }
-	Plug 'mattn/ctrlp-mark'										" , { 'on': [] }
-	Plug 'hara/ctrlp-colorscheme'								" , { 'on': [] }
+"Plug 'liuchengxu/vim-clap'										 , { 'on': [] } " Clap
+"	Plug 'tamago324/vim-clap-help' 								 , { 'on': [] } " ClapでHelp
+"	Plug 'hokorobi/vim-clap-sessions'							 , { 'on': [] }
+Plug 'ctrlpvim/ctrlp.vim'										 , { 'on': [] }
+	Plug 'mattn/ctrlp-matchfuzzy'								 , { 'on': [] }
+	Plug 'mattn/ctrlp-mark'										 , { 'on': [] }
+	Plug 'hara/ctrlp-colorscheme'								 , { 'on': [] }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 "}}}
 
-Plug 'easymotion/vim-easymotion'								" , { 'on': [] } " 132
-Plug 'majutsushi/tagbar'										" , { 'on': [] } " 110 tag一覧表示 vistaに乗り換え検討 Seqのタグが反映されない
-Plug 'osyo-manga/vim-brightest'									" , { 'on': [] } " 131 カーソル下の単語にアンダーライン
+Plug 'easymotion/vim-easymotion'								 , { 'on': [] } " 132
+Plug 'majutsushi/tagbar'										 , { 'on': [] } " 110 tag一覧表示 vistaに乗り換え検討
+Plug 'itchyny/vim-cursorword'									 , { 'on': [] } " 131 カーソル下の単語にアンダーライン
 
 " lazy load hold
-Plug 'tmhys/vim-auto-cursorline'								" , { 'on': [] } " カーソル放置で点滅
+Plug 'tmhys/vim-auto-cursorline'								 , { 'on': [] } " カーソル放置で点滅
 
 " lazy load insert
-Plug 'KazuakiM/vim-qfsigns'										" , { 'on': [] }
-Plug 'KazuakiM/vim-qfstatusline'								" , { 'on': [] }
-Plug 'tpope/vim-surround'										" , { 'on': [] } " 閉じカッコを編集
-"Plug 'kana/vim-smartchr'										" , { 'on': [] } " 118 符号の前後にスペース
+Plug 'KazuakiM/vim-qfsigns'										 , { 'on': [] }
+Plug 'KazuakiM/vim-qfstatusline'								 , { 'on': [] }
+Plug 'tpope/vim-surround'										 , { 'on': [] } " 閉じカッコを編集
 
 
 " Shougoware関連
@@ -293,9 +321,9 @@ Plug 'Shougo/vimproc.vim'
 
 Plug 'haya14busa/incsearch-fuzzy.vim'				,  " 103 一文字ごとにハイライト
 	Plug 'haya14busa/incsearch.vim'					,  " 104 一文字ごとにハイライト
-Plug 'scrooloose/nerdtree'							" , { 'on': [] } " 108 nerdtree
-	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	" , { 'on': [] } " nerdtree用シンタックス
-	Plug 'Xuyuanp/nerdtree-git-plugin' 				" , { 'on': [] } " git ステータス表示
+Plug 'scrooloose/nerdtree'							 , { 'on': [] } " 108 nerdtree
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight' 	 , { 'on': [] } " nerdtree用シンタックス
+	Plug 'Xuyuanp/nerdtree-git-plugin' 				 , { 'on': [] } " git ステータス表示
 Plug 'itchyny/lightline.vim'						" 107 lightline
 	Plug 'delphinus/lightline-delphinus'
 Plug 'machakann/vim-highlightedyank'				,  " yank文字列ハイライト
@@ -303,7 +331,7 @@ Plug 'markonm/traces.vim'						" 置換時にリアルタイム描画 nvimは標
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'tyru/restart.vim'							" 109 esc連打で再起動
-Plug 'jiangmiao/auto-pairs'							" , { 'on': [] }
+Plug 'jiangmiao/auto-pairs'							 , { 'on': [] }
 
 Plug 'ryanoasis/vim-devicons'						" icon追加 最後に読み込む事
 
@@ -318,30 +346,31 @@ augroup load_us_hold
     autocmd CursorHold * call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END
 
-"" Load Event
-"function! s:load_plug(timer)
-"    call plug#load(
-"				\'vim-clap'							,
-"				\'vim-clap-help' 					,
-"				\'vim-clap-sessions'				,
-"				\'ctrlp.vim'						,
-"				\'ctrlp-matchfuzzy'					,
-"				\'ctrlp-mark'						,
-"				\'ctrlp-colorscheme'				,
-"				\'nerdtree'							,
-"				\'vim-nerdtree-syntax-highlight' 	,
-"				\'nerdtree-git-plugin' 				,
-"				\'vim-easymotion'					,
-"				\'tagbar'							,
-"				\'vim-brightest'					,
-"                \ )
-"				"\'deoplete.nvim',
-"	" clap denite ctrlpどれかお好みで　今はctrlpが好きです
-"	call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-"endfunction
-"
-"" 500ミリ秒後にプラグインを読み込む
-"call timer_start(500, function("s:load_plug"))
+" Load Event
+function! s:load_plug(timer)
+    call plug#load(
+				\'ctrlp.vim'						,
+				\'ctrlp-matchfuzzy'					,
+				\'ctrlp-mark'						,
+				\'ctrlp-colorscheme'				,
+				\'nerdtree'							,
+				\'vim-nerdtree-syntax-highlight' 	,
+				\'nerdtree-git-plugin' 				,
+				\'vim-easymotion'					,
+				\'tagbar'							,
+				\'vim-cursorword'					,
+                \ )
+				"\'vim-clap'							,
+				"\'vim-clap-help' 					,
+				"\'vim-clap-sessions'				,
+				"\'vim-brightest'					,
+				"\'deoplete.nvim',
+	" clap denite ctrlpどれかお好みで　今はctrlpが好きです
+	call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+endfunction
+
+" 500ミリ秒後にプラグインを読み込む
+call timer_start(500, function("s:load_plug"))
 
 " Load Event
 augroup load_us_insert
@@ -358,6 +387,7 @@ augroup load_us_insert
     autocmd InsertEnter * call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END
 "}}}
+"}}}
 "その他の設定ファイル読み込み{{{
 runtime! userautoload/*.vim
 " 各種設定の読み込み
@@ -368,3 +398,4 @@ endfunction
 command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
 runtime! _config/*.vim
 "}}}
+colorscheme gruvbox
