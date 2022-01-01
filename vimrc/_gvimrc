@@ -1,60 +1,18 @@
-"
-"  ██████╗ ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
-" ██╔════╝ ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
-" ██║  ███╗██║   ██║██║██╔████╔██║██████╔╝██║
-" ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
-" ╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
-"  ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" Last Change: 11-Oct-2021.
+" Last Change: 27-Dec-2021.
 " Maintainer:  TH
 
-"カラー設定{{{
-"カラー設定はvimrcではなぜか反映されないのでここに書くこと
-syntax enable
-set termguicolors
-set background=dark "light dark
-let ayucolor="dark" "light mirage dark
-colorscheme desert
-colorscheme ayu
-"}}}
-"フォント設定{{{
-if has('win32') || has ('win64')
-	set guifont=Cica:h12,Consolas:h12
-	set printfont=Cica:h8,Consolas:h8
-	set renderoptions=type:directx,renmode:5
-	source $VIMRUNTIME/delmenu.vim
-	set langmenu=ja_jp.utf-8
-	source $VIMRUNTIME/menu.vim
-	set antialias
-	set linespace=1
-elseif has('kaoriya')
-   	set ambiwidth=auto
-"elseif has('mac')
-"	set guifont=Osaka－等幅:h14
-"elseif has('xfontset')
-"	set guifontset=a14,r14,k14
-endif
-"}}}
-"window size{{{
+"colorscheme ayu
+set guifont=Cica:h12,Consolas:h12
+set antialias
+set linespace=1
 if has('kaoriya')
-	SM 5
-	"最大化で起動
-	augroup gvim_cmd
-		autocmd!
-		autocmd GUIEnter * simalt ~x
-		"透過
-		autocmd FocusGained * set transparency=245
-		autocmd FocusLost * set transparency=220
-	augroup end
+	set ambiwidth=auto
 endif
-"}}}
-"メニューバーツールバー消す{{{
-"}}}
-"gvim関連プラグイン設定読み込み{{{
-let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
-function! FindPlugin(name) abort
-  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
-endfunction
-command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
-runtime! _gconfig/*.vim
-"}}}
+""gvim関連プラグイン設定読み込み{{{
+"let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
+"function! FindPlugin(name) abort
+"  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
+"endfunction
+"command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
+"runtime! _gconfig/*.vim
+""}}}
