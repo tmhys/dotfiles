@@ -23,6 +23,8 @@ let g:quickrun_config = {
 \ 	"hook/close_quickfix/enable_exit" : 1,
 \ 	'hook/back_window/enable_exit':           0,
 \ 	'hook/back_window/priority_exit':         1,
+\   'hook/qfsigns_update/enable_exit':   1,
+\   'hook/qfsigns_update/priority_exit': 3,
 \ 	"hook/qfstatusline_update/enable_exit" : 1,
 \ 	"hook/qfstatusline_update/priority_exit" : 4,
 \ 	"hook/echo/enable" : 1,

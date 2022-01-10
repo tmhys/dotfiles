@@ -1,4 +1,4 @@
-" Last Change: 27-Dec-2021.
+" Last Change: 29-Dec-2021.
 " Maintainer: TH
 
 "不要な機能停止{{{
@@ -80,7 +80,7 @@ set showtabline=2
 set termguicolors
 set background=dark "light dark
 syntax enable
-"}
+"}}}
 "grep代替{{{
 if executable('pt')
 	set grepprg=pt\ --nogroup\
@@ -309,8 +309,8 @@ Plug 'itchyny/vim-cursorword'									 , { 'on': [] } " 131 カーソル下の�
 Plug 'tmhys/vim-auto-cursorline'								 , { 'on': [] } " カーソル放置で点滅
 
 " lazy load insert
-Plug 'KazuakiM/vim-qfsigns'										 , { 'on': [] }
-Plug 'KazuakiM/vim-qfstatusline'								 , { 'on': [] }
+"Plug 'KazuakiM/vim-qfsigns'										 , { 'on': [] }
+"Plug 'KazuakiM/vim-qfstatusline'								 , { 'on': [] }
 Plug 'tpope/vim-surround'										 , { 'on': [] } " 閉じカッコを編集
 
 
@@ -377,12 +377,12 @@ augroup load_us_insert
     autocmd!
     autocmd InsertEnter * call plug#load(
 				\'auto-pairs',
-				\'vim-qfsigns',
-				\'vim-qfstatusline',
 				\'vim-surround',
 				\'shabadou.vim',
 				\'vim-smartchr',
                 \ )| autocmd! load_us_insert
+				"\'vim-qfsigns',
+				"\'vim-qfstatusline',
 				"\'deoplete-vim-lsp',
     autocmd InsertEnter * call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END

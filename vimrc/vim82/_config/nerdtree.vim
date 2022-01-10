@@ -63,3 +63,5 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
+
+let g:loaded_nerdtree_fs_menu = 1
