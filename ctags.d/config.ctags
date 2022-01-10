@@ -1,0 +1,7 @@
+--langdef=seq
+--langmap=seq:.seq.s.h
+--regex-seq=/^([A-Za-z0-9_]{1,16})[ \t]*/\1/m,method/
+
+--langdef=toml
+--langmap=toml:.toml
+--regex-seq=/repo='.*'/\1/p,plugin/
