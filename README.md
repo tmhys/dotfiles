@@ -62,5 +62,3 @@ dotfilesをシンボリックリンク
     - tablineプラグインももっといいのほしい
 - windows terminal関連の設定ファイルの追加
 - フォントの追加
-
-- vimvim
