@@ -20,6 +20,8 @@ return require('packer').startup({function()
   use {'jiangmiao/auto-pairs',event = "InsertEnter *",}
   use {'junegunn/vim-easy-align',cmd = "easyalign",}
   use {'simeji/winresizer',cmd="WinResizerStartResize",}
+  use {'b3nj5m1n/kommentary',event = "BufReadPost",
+    config = function() require("my_plugins.kommentary") end,}
   use {'kdheepak/tabline.nvim',event = "BufReadPost",
     config = function() require("my_plugins.tabline") end,}
   --use {'kevinhwang91/nvim-hlslens',event = "BufReadPost",
@@ -47,8 +49,8 @@ return require('packer').startup({function()
      requires = { { "nvim-lua/popup.nvim"}, { "nvim-lua/plenary.nvim"}},}
   use {"nvim-lualine/lualine.nvim" ,
 	 config = function() require("my_plugins.lualine") end,}
-  --use {"romgrk/barbar.nvim", event = "BufWinEnter",
-  --  config = function() require("my_plugins.barbar") end,}
+  use {"romgrk/barbar.nvim", event = "BufWinEnter",
+    config = function() require("my_plugins.barbar") end,}
   use {"kyazdani42/nvim-tree.lua",
 	config = function() require("my_plugins.nvim-tree") end,}
   use {"nvim-treesitter/nvim-treesitter", branch = "0.5-compat", run = ":TSUpdate",}

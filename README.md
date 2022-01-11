@@ -55,10 +55,8 @@ dotfilesをシンボリックリンク
 - keyboardのマッピングファイルもこのリポジトリにアップする
 - masterにひたすら上書きしていく運用を止める
 - nvim
-    - nvim treeのアイコンがうまく表示されない件
-    - nvim treeのキーマップがnerdtreeと違いすぎて把握しきれない件
     - luaのlspが社用PCではうまく動かない件
-    - comment out用プラグインどれか入れたい
     - tablineプラグインももっといいのほしい
+    - cmp sourceを補完時に表示したい
 - windows terminal関連の設定ファイルの追加
 - フォントの追加
