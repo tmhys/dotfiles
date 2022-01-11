@@ -1,7 +1,5 @@
 local vim=vim
 vim.cmd [[packadd packer.nvim]]
--- config　.setupの方式は設定ファイル内で関数化しとく必要あり
--- 直接呼ぶほうが今のところは好み
 return require('packer').startup({function()
   use {'wbthomason/packer.nvim',opt=true}
   use {'lewis6991/impatient.nvim'}
@@ -38,10 +36,7 @@ return require('packer').startup({function()
   use {'osyo-manga/vim-watchdogs', ft={'seq'},
 	 config = function() require("my_plugins.watchdogs") end,
      requires = {"osyo-manga/shabadou.vim",
-                 --"KazuakiM/vim-qfsigns",
                  "Shougo/vimproc.vim"},}
-                 --"cohama/vim-hier",
-                 --"KazuakiM/vim-qfstatusline"},}
 
   use {'tpope/vim-fugitive',event = "BufReadPost",
 	 config = function() require("my_plugins.fugitive") end,}
@@ -77,7 +72,6 @@ return require('packer').startup({function()
          {"hrsh7th/vim-vsnip",after = "nvim-cmp"},
          {"hrsh7th/cmp-nvim-lua",after = "nvim-cmp"},
          { "hrsh7th/cmp-buffer",after = "nvim-cmp" },
-         --"hrsh7th/cmp-calc",
          {"hrsh7th/cmp-path",after = "nvim-cmp"},
          {"quangnguyen30192/cmp-nvim-tags",after = "nvim-cmp"},
          {"tzachar/cmp-tabnine",after = "nvim-cmp",run='powershell ./install.ps1'}--,requires='hrsh7th/nvim-cmp'},
