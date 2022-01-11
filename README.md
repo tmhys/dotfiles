@@ -30,11 +30,17 @@ https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
 # Usage
 
 順番的には
+
 scoop自体のインストール
+
 ↓
+
 scoopを使って各種インストール
+
 ↓
+
 dotfilesをシンボリックリンク
+
 
 で環境構築が一瞬で終わるようにしたい
 
@@ -54,3 +60,5 @@ dotfilesをシンボリックリンク
     - luaのlspが社用PCではうまく動かない件
     - comment out用プラグインどれか入れたい
     - tablineプラグインももっといいのほしい
+- windows terminal関連の設定ファイルの追加
+- フォントの追加
