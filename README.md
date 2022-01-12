@@ -56,7 +56,4 @@ dotfilesをシンボリックリンク
 - masterにひたすら上書きしていく運用を止める
 - nvim
     - luaのlspが社用PCではうまく動かない件
-    - tablineプラグインももっといいのほしい
     - cmp sourceを補完時に表示したい
-- windows terminal関連の設定ファイルの追加
-- フォントの追加
