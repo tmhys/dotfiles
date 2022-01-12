@@ -26,6 +26,7 @@ augroup win_config
 	autocmd VimResized * :wincmd =
 	autocmd VimLeave * cclose
 	autocmd VimLeave	* mks! ~/.vim/session/$DATE.vim
+    "↓これなんやっけ？
 	autocmd BufWritePre * :%s/\s\+$//ge
 	autocmd BufWritePre * :%s/\n\{4,}/\r\r\r/ge
 	autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##ge
@@ -44,6 +45,7 @@ augroup END
 augroup seqedit
 	autocmd!
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+    "autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl set filetype seq " set filetypeにするとなぜかquickrunでエラー
 augroup end
 
 augroup gitspellcheck

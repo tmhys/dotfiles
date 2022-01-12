@@ -80,7 +80,7 @@ return require('packer').startup({function()
     },
     config = function() require("my_plugins.nvim-cmp") end,
     event = "InsertEnter *",}
-  --use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
+  use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
   use { 'soramugi/auto-ctags.vim',event = "BufReadPost",
     config = function() require("my_plugins.auto-ctags") end,}
   use { 'majutsushi/tagbar',event = "BufReadPost",

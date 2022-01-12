@@ -11,9 +11,7 @@
 
 # Requirement
 
-自分の環境
-- windows10
-- XXXXXXXX
+- windowsユーザーです
 
 # Installation
 
@@ -57,3 +55,4 @@ dotfilesをシンボリックリンク
 - nvim
     - luaのlspが社用PCではうまく動かない件
     - cmp sourceを補完時に表示したい
+    - ftdetectの仕様を理解したい
