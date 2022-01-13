@@ -1,8 +1,8 @@
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...)end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
+buf_set_option('omnifunc','v:lua.vim.lsp.omnifunc')
   -- LSPサーバーのフォーマット機能を無効にする
   -- client.resolved_capabilities.document_formatting = false
 
@@ -26,11 +26,25 @@ local on_attach = function(client, bufnr)
   --buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local lsp_installer = require "nvim-lsp-installer"
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  opts.on_attach = on_attach
-  opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  server:setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
-end)
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false ,
+      signs = true,
+      update_in_insert=false,
+      underline = true,
+      --float={
+      --  focusable = false,
+      --}
+      }
+)
+
+vim.cmd([[
+autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil,{focus=false})
+]])
+--autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil,{focus=false,scope="cursor"})

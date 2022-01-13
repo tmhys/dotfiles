@@ -54,12 +54,28 @@ cmp.setup({
       { name = 'nvim_lua' },
 
       --{ name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
+      --{ name = 'ultisnips' }, -- For ultisnips users.
+      --{ name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
-    })
+    }),
+
+    formatting = {
+      format = function(entry, vim_item)
+        vim_item.kind = string.format("%s %s", lspkind.presets.default[vim_item.kind], vim_item.kind)
+        vim_item.menu = ({
+          vsnip='[vsnip]',
+          nvim_lsp='[LSP]',
+          tags='[tags]',
+          treesitter='[TS]',
+          cmp_tabnine='[TN]',
+          nvim_lua='[lua]',
+        })[entry.source.name]
+        return vim_item
+      end
+    }
   })
+
 
 local nvim_lsp = require'lspconfig'
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -71,7 +87,7 @@ nvim_lsp.vimls.setup{ capabilities = capabilities }
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
 	max_lines = 1000;
-	max_num_results = 20;
+	max_num_results = 5;
 	sort = true;
 	run_on_every_keystroke = true;
 	snippet_placeholder = '..';

@@ -45,25 +45,3 @@ require("trouble").setup{
     },
     use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 }
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    --vim.lsp.handlers.hover,{focusable=false},
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false ,
-      signs = true,
-      --update_in_insert=false,
-      --float={
-      --  focusable = false,
-      --}
-      }
-)
-
-vim.cmd([[
-autocmd CursorHold * lua vim.diagnostic.open_float()
-]])
-
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end

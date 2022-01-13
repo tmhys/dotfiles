@@ -11,7 +11,7 @@
 
 # Requirement
 
-- windowsユーザーです
+windowsユーザーです
 
 # Installation
 
@@ -29,16 +29,9 @@ https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
 
 順番的には
 
-scoop自体のインストール
-
-↓
-
-scoopを使って各種インストール
-
-↓
-
-dotfilesをシンボリックリンク
-
+1. scoop自体のインストール
+2. scoopを使って各種インストール
+3. dotfilesをシンボリックリンク
 
 で環境構築が一瞬で終わるようにしたい
 
@@ -51,8 +44,9 @@ dotfilesをシンボリックリンク
 
 # TODO
 - keyboardのマッピングファイルもこのリポジトリにアップする
-- masterにひたすら上書きしていく運用を止める
 - nvim
+    - keymapもautocmdもlua化したいけど
     - luaのlspが社用PCではうまく動かない件
     - cmp sourceを補完時に表示したい
     - ftdetectの仕様を理解したい
+    - packerでインストールしているプラグインの依存関係をはっきりと表記
