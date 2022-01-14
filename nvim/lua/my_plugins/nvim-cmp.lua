@@ -1,89 +1,126 @@
+local cmp = require('cmp')
+local lspkind = require('lspkind')
+
+lspkind.init {
+  with_text = true,
+}
+
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local cmp = require "cmp"
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-
-
 cmp.setup({
-    snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      end,
-    },
-    mapping = {
-      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-	  ["<Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif vim.fn["vsnip#available"](1) == 1 then
-          feedkey("<Plug>(vsnip-expand-or-jump)","")
-        elseif has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-          feedkey("<Plug>(vsnip-jump-prev)","")
-        end
-      end, { "i", "s" }),
-
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-
-    },
-    sources = cmp.config.sources({
-      { name = 'vsnip' }, -- For vsnip users.
-      { name = 'nvim_lsp' },
-      { name = 'tags' },
-      { name = 'treesitter' },
-      { name = 'cmp_tabnine' },
-      { name = 'nvim_lua' },
-
-      --{ name = 'luasnip' }, -- For luasnip users.
-      --{ name = 'ultisnips' }, -- For ultisnips users.
-      --{ name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
+  completion = {
+    completeopt = "menu,menuone,noselect",
+  },
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end,
+    --expand = function(args)
+    --  require('luasnip').lsp_expand(args.body)
+    --end,
+  },
+  mapping = {
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     }),
-
-    formatting = {
-      format = function(entry, vim_item)
-        vim_item.kind = string.format("%s %s", lspkind.presets.default[vim_item.kind], vim_item.kind)
-        vim_item.menu = ({
-          vsnip='[vsnip]',
-          nvim_lsp='[LSP]',
-          tags='[tags]',
-          treesitter='[TS]',
-          cmp_tabnine='[TN]',
-          nvim_lua='[lua]',
-        })[entry.source.name]
-        return vim_item
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
-    }
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      end
+    end, { "i", "s" }),
+  },
+  sorting = {
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'tags' },
+    { name = 'cmp_tabnine' },
+    { name = 'vsnip' }, -- For vsnip users.
+    { name = 'treesitter' },
+  }, {
+    { name = 'path' },
+    { name = 'buffer' },
+  }),
+  formatting = {
+    format = function (entry, vim_item)
+      vim_item.kind = string.format("%s %s", lspkind.presets.default[vim_item.kind], vim_item.kind)
+      vim_item.menu = ({
+        nvim_lsp    = "",
+        nvim_lua    = "",
+        tags        = "ﰠ",
+        cmp_tabnine = " ",
+        vsnip       = "",
+        treesitter  = "",
+        path        = "",
+        buffer      = "﬘",
+--          vsnip='[vsnip]',
+--          nvim_lsp='[LSP]',
+--          tags='[tags]',
+--          treesitter='[TS]',
+--          cmp_tabnine='[TN]',
+      })[entry.source.name]
+
+      return vim_item
+    end,
+  },
+  documentation = {
+    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  },
+  experimental = {
+    ghost_text = true,
+  },
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' },
+    { name = 'nvim_lua' },
   })
+})
 
+-- Setup lspconfig.
+require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local nvim_lsp = require'lspconfig'
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-nvim_lsp.pyright.setup{ capabilities = capabilities }
-nvim_lsp.sumneko_lua.setup{ capabilities = capabilities }
-nvim_lsp.vimls.setup{ capabilities = capabilities }
+-- Auto pairs
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
+-- tabnine
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
 	max_lines = 1000;
@@ -96,11 +133,3 @@ tabnine:setup({
 		-- lua = true
 	};
 })
-
-local lspkind = require('lspkind')
-cmp.setup {
-    formatting = {
-        format = lspkind.cmp_format(),
-    },
-}
-cmp_nvim_lsp.update_capabilities(capabilities)

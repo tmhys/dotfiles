@@ -29,7 +29,7 @@ return require('packer').startup({function()
   use {'tpope/vim-surround',event = "InsertEnter",}
   use {'thinca/vim-qfreplace',cmd = "Qfreplace",}
   use {'jiangmiao/auto-pairs',event = "InsertEnter *",}
-  use {'junegunn/vim-easy-align',cmd = "easyalign",}
+  use {'junegunn/vim-easy-align',}
   use {'simeji/winresizer',cmd="WinResizerStartResize",}
   use {'b3nj5m1n/kommentary',event = "BufReadPost",
     config = function() require("my_plugins.kommentary") end,}
@@ -53,7 +53,7 @@ return require('packer').startup({function()
     config = function() require("my_plugins.tagbar") end,}
   use {'voldikss/vim-translator',event = "BufReadPost",
     config = function() require("my_plugins.vim-translator") end,}
-  use {'skanehira/preview-markdown.vim',ft={'md'},
+  use {'skanehira/preview-markdown.vim',ft={'markdown'},
     config = function() require("my_plugins.preview-markdown") end,}
 
 -- fuzzy finder
@@ -81,20 +81,29 @@ return require('packer').startup({function()
     config = function() require("my_plugins.lspconfig") end,}
 
 -- completion
-  use { "hrsh7th/nvim-cmp",
+  use {
+    'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
+    after = {
+      'vim-vsnip',
+    },
     requires = {
-         {"hrsh7th/cmp-nvim-lsp",after = "nvim-cmp" },
-         {"ray-x/cmp-treesitter",after = "nvim-cmp"},
-         {"hrsh7th/cmp-vsnip",after = "nvim-cmp"},
-         {"hrsh7th/vim-vsnip",after = "nvim-cmp"},
-         {"hrsh7th/cmp-nvim-lua",after = "nvim-cmp"},
-         { "hrsh7th/cmp-buffer",after = "nvim-cmp" },
-         {"hrsh7th/cmp-path",after = "nvim-cmp"},
-         {"quangnguyen30192/cmp-nvim-tags",after = "nvim-cmp"},
-         {"tzachar/cmp-tabnine",after = "nvim-cmp",run='powershell ./install.ps1'}--,requires='hrsh7th/nvim-cmp'},
+      { 'neovim/nvim-lspconfig' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'onsails/lspkind-nvim' },
+      {"hrsh7th/vim-vsnip"},
+      { 'windwp/nvim-autopairs'},--, after= 'nvim-cmp' },
+      {"hrsh7th/cmp-vsnip",after = "nvim-cmp"},
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
+      { 'ray-x/cmp-treesitter', after = 'nvim-cmp' },
+      { "tzachar/cmp-tabnine",after = "nvim-cmp",run='powershell ./install.ps1'},
+      {"quangnguyen30192/cmp-nvim-tags",after = "nvim-cmp"}
     },
     config = function() require("my_plugins.nvim-cmp") end,
-    event = "InsertEnter *",}
+  }
 
 -- others
   use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない

@@ -47,6 +47,5 @@ https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
 - nvim
     - keymapもautocmdもlua化したいけど
     - luaのlspが社用PCではうまく動かない件
-    - cmp sourceを補完時に表示したい
     - ftdetectの仕様を理解したい
     - packerでインストールしているプラグインの依存関係をはっきりと表記
