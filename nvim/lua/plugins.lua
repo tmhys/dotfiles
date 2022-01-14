@@ -48,7 +48,7 @@ return require('packer').startup({function()
   use {'soramugi/auto-ctags.vim',event = 'BufReadPost',
     config = function() require('my_plugins.auto-ctags') end,}
   use {'majutsushi/tagbar',event = 'BufReadPost',
-    config = function() require('myj_plugins.tagbar') end,}
+    config = function() require('my_plugins.tagbar') end,}
   use {'voldikss/vim-translator',event = 'BufReadPost',
     config = function() require('my_plugins.vim-translator') end,}
   use {'skanehira/preview-markdown.vim',ft={'markdown'},
