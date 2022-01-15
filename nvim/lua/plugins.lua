@@ -5,7 +5,7 @@ return require('packer').startup({function()
   use {'wbthomason/packer.nvim',opt=true}
   use {'lewis6991/impatient.nvim'}
   use {'nathom/filetype.nvim'}
-  use {'tjdevries/astronauta.nvim'}--for keymap in lua file
+  use {'tjdevries/astronauta.nvim'}
   use {'dstein64/vim-startuptime',cmd='StartupTime'}
   use {'vim-jp/vimdoc-ja',event = 'BufReadPost'}
 -- colorschemes
@@ -14,11 +14,14 @@ return require('packer').startup({function()
   use {'itchyny/vim-cursorword',event = 'BufReadPost',}
   use {'glepnir/indent-guides.nvim' ,event = 'BufReadPost',}
   use {'mhinz/vim-signify',event = 'BufReadPost',}
-  use {'kshenoy/vim-signature',event = 'BufReadPost',}
+  use {'chentau/marks.nvim',event = 'BufReadPost',
+	 config = function() require('my_plugins.marks') end,}
   use {'nvim-lualine/lualine.nvim' ,
+     requires = {'kyazdani42/nvim-web-devicons'},
 	 config = function() require('my_plugins.lualine') end,}
   use {'romgrk/barbar.nvim', event = 'BufWinEnter',
-    config = function() require('my_plugins.barbar') end,}
+     requires = {'kyazdani42/nvim-web-devicons'},
+     config = function() require('my_plugins.barbar') end,}
   --use {'kevinhwang91/nvim-hlslens',event = 'BufReadPost',
   --  config = function() require('my_plugins.hlslens') end,}
 
@@ -26,14 +29,15 @@ return require('packer').startup({function()
   use {'kraxli/vim-renamer',cmd='Renamer'}
   use {'tpope/vim-surround',event = 'InsertEnter',}
   use {'thinca/vim-qfreplace',cmd = 'Qfreplace',}
-  use {'jiangmiao/auto-pairs',event = 'InsertEnter',}
   use {'junegunn/vim-easy-align',}
+  --use {'jiangmiao/auto-pairs',event = 'InsertEnter',}
   use {'simeji/winresizer',cmd='WinResizerStartResize',}
   use {'b3nj5m1n/kommentary',event = 'BufReadPost',
     config = function() require('my_plugins.kommentary') end,}
-  use{'PHSix/faster.nvim', event = 'BufReadPost',
+  use{'PHSix/faster.nvim', event = 'VimEnter *',
       config = function() require('my_plugins.faster') end,}
-  use {'rhysd/clever-f.vim',event = 'BufReadPost',config = function() require('my_plugins.clever-f') end,}
+  use {'rhysd/clever-f.vim',event = 'BufReadPost',
+    config = function() require('my_plugins.clever-f') end,}
   use {'phaazon/hop.nvim',event = 'BufReadPost',config='v1',
 	config = function() require('my_plugins.hop') end,}
   use {'thinca/vim-quickrun',event = 'BufReadPost',
@@ -59,7 +63,8 @@ return require('packer').startup({function()
 	 config = function() require('my_plugins.telescope').setup() end,
      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},}
   use {'kyazdani42/nvim-tree.lua',
-	config = function() require('my_plugins.nvim-tree') end,}
+     requires = {'kyazdani42/nvim-web-devicons',opt=true},
+	 config = function() require('my_plugins.nvim-tree') end,}
 
   use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate',}
   use {'nvim-treesitter/playground',
@@ -90,7 +95,7 @@ return require('packer').startup({function()
       {'hrsh7th/cmp-nvim-lsp'},
       {'onsails/lspkind-nvim'},
       {'hrsh7th/vim-vsnip'},
-      {'windwp/nvim-autopairs'},--, after= 'nvim-cmp'},
+      {'windwp/nvim-autopairs',},--, after= 'nvim-cmp'},
       {'hrsh7th/cmp-vsnip',after = 'nvim-cmp'},
       {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'},
       {'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
@@ -105,7 +110,7 @@ return require('packer').startup({function()
 
 -- others
   use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
-  use {'kyazdani42/nvim-web-devicons' ,}
+  use {'kyazdani42/nvim-web-devicons'}
 end,
 
 config = {
