@@ -75,9 +75,9 @@ cmp.setup({
         tags        = "[TAG]",
         cmp_tabnine = "[TN]",
         vsnip       = "[SNIP]",
-        treesitter  = "",
-        path        = "",
-        buffer      = "﬘",
+        treesitter  = "[TS]",
+        path        = "[PATH]",
+        buffer      = "[BUFF]",
 
         --nvim_lsp    = "",
         --nvim_lua    = "",

@@ -40,11 +40,12 @@ https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
 
 自分用
 
-プライベートにしてもいいけど、いつか誰かの役に立たないかなあ。
 
 # TODO
 - keyboardのマッピングファイルもこのリポジトリにアップする
 - nvim
+    - 基本方針は新しいluaプラグインに極力置き換え
+    - 起動速度は極力早く
     - keymapもautocmdもlua化したいけど
     - luaのlspが社用PCではうまく動かない件
     - ftdetectの仕様を理解したい
