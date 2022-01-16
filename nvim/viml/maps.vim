@@ -169,7 +169,7 @@ nnoremap <M-j> :cn<CR>
 nnoremap <M-k> :cp<CR>
 " 基本マップ
 "grep
-nnoremap <C-g> :vim /<C-r><C-w>/jg **<CR>
+nnoremap <C-g> :vim /<C-r><C-w>/jg **
 nnoremap <M-g> :vim //jg **<Left><Left><Left><Left><Left><Left>
 "カッコ内操作を便利に(JPキーボード)
 onoremap 8 i(

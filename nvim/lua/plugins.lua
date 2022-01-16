@@ -108,6 +108,18 @@ return require('packer').startup({function()
     config = function() require('my_plugins.nvim-cmp') end,
   }
 
+-- candidate
+  --use {'SmiteshP/nvim-gps'}
+  --use {'Pocco81/HighStr.nvim'}
+  --use {'myusuf3/numbers.vim',
+  --  cmd = {'NumbersToggle', 'NumbersOnOff'},
+  --}
+  use {'edluffy/specs.nvim',
+    event = "VimEnter",
+    config = function() require 'my_plugins.specs' end
+  }
+  use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
+
 -- others
   use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
   use {'kyazdani42/nvim-web-devicons'}
