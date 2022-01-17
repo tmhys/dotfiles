@@ -42,12 +42,6 @@ augroup last_status
 	autocmd BufReadPost * delmarks!
 augroup END
 
-augroup seqedit
-	autocmd!
-    autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
-    "autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl set filetype seq " set filetypeにするとなぜかquickrunでエラー
-augroup end
-
 augroup gitspellcheck
 	autocmd!
     autocmd FileType gitcommit setlocal spell

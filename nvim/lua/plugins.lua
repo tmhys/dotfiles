@@ -43,7 +43,7 @@ return require('packer').startup({function()
   use {'thinca/vim-quickrun',event = 'BufReadPost',
 	 config = function() require('my_plugins.quickrun') end,
      requires = {'Shougo/vimproc.vim'},}
-  use {'osyo-manga/vim-watchdogs', ft={'seq'},
+  use {'osyo-manga/vim-watchdogs',
 	 config = function() require('my_plugins.watchdogs') end,
      requires = {'osyo-manga/shabadou.vim',
                  'Shougo/vimproc.vim'},}
