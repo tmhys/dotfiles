@@ -116,8 +116,7 @@ return require('packer').startup({function()
   --}
   use {'edluffy/specs.nvim',
     event = "VimEnter",
-    config = function() require 'my_plugins.specs' end
-  }
+    config = function() require 'my_plugins.specs' end }
   use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
 
 -- others
