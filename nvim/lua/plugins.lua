@@ -22,8 +22,8 @@ return require('packer').startup({function()
   use {'romgrk/barbar.nvim', event = 'BufWinEnter',
      requires = {'kyazdani42/nvim-web-devicons'},
      config = function() require('my_plugins.barbar') end,}
-  --use {'kevinhwang91/nvim-hlslens',event = 'BufReadPost',
-  --  config = function() require('my_plugins.hlslens') end,}
+  use {'kevinhwang91/nvim-hlslens',event = 'VimEnter',
+    config = function() require('my_plugins.hlslens') end,}
 
 -- useful func
   use {'kraxli/vim-renamer',cmd='Renamer'}
@@ -49,8 +49,12 @@ return require('packer').startup({function()
                  'Shougo/vimproc.vim'},}
   use {'tpope/vim-fugitive',event = 'BufReadPost',
 	 config = function() require('my_plugins.fugitive') end,}
-  use {'soramugi/auto-ctags.vim',event = 'BufReadPost',
-    config = function() require('my_plugins.auto-ctags') end,}
+  --use {'soramugi/auto-ctags.vim',event = 'BufReadPost',
+  --  config = function() require('my_plugins.auto-ctags') end,}
+  use {'jsfaint/gen_tags.vim',
+      --cond = function() return vim.fn.executable('global') == 1 end,
+	config = function() require('my_plugins.gen_tags') end,}
+    --config = function() vim.cmd('source ~/.config/nvim/rc/pluginconfig/gen_tags.vim') end}
   use {'majutsushi/tagbar',event = 'BufReadPost',
     config = function() require('my_plugins.tagbar') end,}
   use {'voldikss/vim-translator',event = 'BufReadPost',
@@ -72,16 +76,26 @@ return require('packer').startup({function()
 
 -- lsp (èáî‘íçà”)
   use {'onsails/lspkind-nvim'             ,
+    event="VimEnter",
     config = function() require('my_plugins.lspkind-nvim') end,}
-  --use {'glepnir/lspsaga.nvim'             ,
-  --  config = function() require('my_plugins.lspsaga') end,}
-  use {'folke/trouble.nvim'             ,
-    config = function() require('my_plugins.trouble') end,}
-  use {'williamboman/nvim-lsp-installer',
-    requires={'neovim/nvim-lspconfig'},
-    config = function() require('my_plugins.lsp-installer') end,}
   use {'neovim/nvim-lspconfig' ,
+    after = 'cmp-nvim-lsp',
     config = function() require('my_plugins.lspconfig') end,}
+  use {'williamboman/nvim-lsp-installer',
+    after = {'nvim-lspconfig', 'lsp_signature.nvim'},
+    config = function() require('my_plugins.lsp-installer') end,}
+  use { 'ray-x/lsp_signature.nvim',
+    after = 'nvim-lspconfig',
+    config = function() require('my_plugins.lsp-signature') end,}
+  use {'weilbith/nvim-lsp-smag', after = 'nvim-lspconfig'}
+
+  use { 'tami5/lspsaga.nvim',
+    after = 'nvim-lsp-installer',
+    config = function() require ('my_plugins.lspsaga') end }
+  use { 'folke/trouble.nvim',
+    requires = {'folke/lsp-colors.nvim'},
+    after = 'nvim-lsp-installer',
+    config = function() require('my_plugins.trouble') end,}
 
 -- completion
   use {
