@@ -56,12 +56,14 @@ cmp.setup({
   sorting = {
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'tags' },
-    { name = 'cmp_tabnine' },
-    { name = 'vsnip' }, -- For vsnip users.
-    { name = 'treesitter' },
+    { name = 'nvim_lsp'   ,max_item_count = 5},
+    { name = 'nvim_lua'   ,max_item_count = 5},
+    { name = 'tags'       ,max_item_count = 5},
+    { name = 'cmp_tabnine',max_item_count = 5},
+    { name = 'spell'      ,max_item_count = 5},
+    { name = 'vsnip'      ,max_item_count = 5}, -- For vsnip users.
+    { name = 'omni'       ,max_item_count = 5},
+    { name = 'treesitter' ,max_item_count = 5},
   }, {
     { name = 'path' },
     { name = 'buffer' },
@@ -78,6 +80,8 @@ cmp.setup({
         treesitter  = "[TS]",
         path        = "[PATH]",
         buffer      = "[BUFF]",
+        omni        = "[OMNI]",
+        spell       = "[spell]",
 
         --nvim_lsp    = "",
         --nvim_lua    = "",

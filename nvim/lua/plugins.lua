@@ -52,9 +52,8 @@ return require('packer').startup({function()
   --use {'soramugi/auto-ctags.vim',event = 'BufReadPost',
   --  config = function() require('my_plugins.auto-ctags') end,}
   use {'jsfaint/gen_tags.vim',
-      --cond = function() return vim.fn.executable('global') == 1 end,
+    --cond = function() return vim.fn.executable('ctags') == 1 end,
 	config = function() require('my_plugins.gen_tags') end,}
-    --config = function() vim.cmd('source ~/.config/nvim/rc/pluginconfig/gen_tags.vim') end}
   use {'majutsushi/tagbar',event = 'BufReadPost',
     config = function() require('my_plugins.tagbar') end,}
   use {'voldikss/vim-translator',event = 'BufReadPost',
@@ -110,6 +109,8 @@ return require('packer').startup({function()
       {'onsails/lspkind-nvim'},
       {'hrsh7th/vim-vsnip'},
       {'windwp/nvim-autopairs',},--, after= 'nvim-cmp'},
+      {'hrsh7th/cmp-omni', after = 'nvim-cmp'},
+      {'f3fora/cmp-spell', after = 'nvim-cmp'},
       {'hrsh7th/cmp-vsnip',after = 'nvim-cmp'},
       {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'},
       {'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
