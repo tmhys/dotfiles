@@ -87,25 +87,6 @@ nnoremap <S-C-Tab> gT
 nnoremap gs :<C-u>vertical wincmd f<CR>
 "最初にヤンクした文字列を繰り返しペースト
 nnoremap <Space>p "0p
-"ディレクトリ自動で移動
-"set autochdir&vim
-""<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
-"command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
-"function! s:ChangeCurrentDir(directory, bang)
-"    if a:directory == ''
-"        lcd %:p:h
-"    else
-"        execute 'lcd' . a:directory
-"    endif
-"    if a:bang == ''
-"        pwd
-"    endif
-"endfunction
-"" Change current directory.
-"nnoremap <silent> <Space>cd :<C-u>CD<CR>
-"}}}
-"com! -nargs=? -complete=dir -bar Cd  exe 'cd'  empty(<q-args>) ? $HOME : <q-args>
-"cnorea <expr> cd  getcmdtype() . getcmdline() ==# ':cd'  ? 'Cd'  : 'cd'
 "カーソル下の単語をハイライトする
 nnoremap <silent> <Space><Space> *N
 "カーソル下の単語をハイライトしてから置換する
@@ -154,16 +135,8 @@ nnoremap <M-k> [c
 nnoremap <M-h> <C-w>hdo
 nnoremap <M-l> <C-w>hdp
 "}}}
-"{{{Quickfix windowトグル
-function! s:toggle_quickfix_window()
-  let _ = winnr('$')
-  cclose
-  if _ == winnr('$')
-  cwindow
-  endif
-endfunction
-nnoremap <silent><M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
-"}}}
+"com! -nargs=? -complete=dir -bar Cd  exe 'cd'  empty(<q-args>) ? $HOME : <q-args>
+"cnorea <expr> cd  getcmdtype() . getcmdline() ==# ':cd'  ? 'Cd'  : 'cd'
 "Quickfix次の項目にジャンプ
 nnoremap <M-j> :cn<CR>
 nnoremap <M-k> :cp<CR>
@@ -190,8 +163,34 @@ let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
 let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
 command! Evimrc :e $MYVIMRC
 command! Egvimrc :e $MYGVIMRC
-"command LoadPacker lua require 'pluginList'
 
 "inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 "inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 "inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
+"{{{Quickfix windowトグル
+function! s:toggle_quickfix_window()
+  let _ = winnr('$')
+  cclose
+  if _ == winnr('$')
+  cwindow
+  endif
+endfunction
+nnoremap <silent><M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
+"}}}
+"ディレクトリ自動で移動
+"set autochdir&vim
+"<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang)
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+    if a:bang == ''
+        pwd
+    endif
+endfunction
+" Change current directory.
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
+"}}}

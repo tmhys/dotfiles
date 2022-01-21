@@ -44,10 +44,11 @@ https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
 # TODO
 - keyboardのマッピングファイルもこのリポジトリにアップする
 - nvim
-    - open_floatがよくわからん
-    - 基本方針は新しいluaプラグインに極力置き換え
-    - 起動速度は極力早く
-    - keymapもautocmdもlua化したいけど
-    - luaのlspが社用PCではうまく動かない件
-    - ftdetectの仕様を理解したい
-    - packerでインストールしているプラグインの依存関係をはっきりと表記
+    - [ ] open_floatがよくわからん　なぜcursorholdで起動しない？
+    - [ ] keymapもautocmdもlua化したいけど
+    - [ ] ftdetectの仕様を理解したい
+    - [ ] nvim treeのキーマップ覚える
+    - [x] packerでインストールしているプラグインの依存関係をはっきりと表記
+    - [x] luaのlspが社用PCではうまく動かない件
+    - [x] 基本方針は新しいluaプラグインに極力置き換え
+    - [x] 起動速度は極力早く

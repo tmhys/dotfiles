@@ -11,6 +11,9 @@ return require('packer').startup({function()
 -- colorschemes
   use {'rafi/awesome-vim-colorschemes',opt=true}
 -- interface
+  use {'edluffy/specs.nvim', event = "VimEnter",
+    config = function() require 'my_plugins.specs' end }
+  use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
   use {'itchyny/vim-cursorword',event = 'BufReadPost',}
   use {'glepnir/indent-guides.nvim' ,event = 'BufReadPost',}
   use {'mhinz/vim-signify',event = 'BufReadPost',}
@@ -49,8 +52,6 @@ return require('packer').startup({function()
                  'Shougo/vimproc.vim'},}
   use {'tpope/vim-fugitive',event = 'BufReadPost',
 	 config = function() require('my_plugins.fugitive') end,}
-  --use {'soramugi/auto-ctags.vim',event = 'BufReadPost',
-  --  config = function() require('my_plugins.auto-ctags') end,}
   use {'jsfaint/gen_tags.vim',
     --cond = function() return vim.fn.executable('ctags') == 1 end,
 	config = function() require('my_plugins.gen_tags') end,}
@@ -73,7 +74,7 @@ return require('packer').startup({function()
   use {'nvim-treesitter/playground',
 	config = function() require('my_plugins.playground') end,}
 
--- lsp (順番注意)
+-- lsp
   use {'onsails/lspkind-nvim'             ,
     event="VimEnter",
     config = function() require('my_plugins.lspkind-nvim') end,}
@@ -88,6 +89,7 @@ return require('packer').startup({function()
     config = function() require('my_plugins.lsp-signature') end,}
   use {'weilbith/nvim-lsp-smag', after = 'nvim-lspconfig'}
 
+--lsp ui
   use { 'tami5/lspsaga.nvim',
     after = 'nvim-lsp-installer',
     config = function() require ('my_plugins.lspsaga') end }
@@ -97,12 +99,8 @@ return require('packer').startup({function()
     config = function() require('my_plugins.trouble') end,}
 
 -- completion
-  use {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    after = {
-      'vim-vsnip',
-    },
+  use { 'hrsh7th/nvim-cmp', event = 'InsertEnter',
+    after = { 'vim-vsnip', },
     requires = {
       {'neovim/nvim-lspconfig'},
       {'hrsh7th/cmp-nvim-lsp'},
@@ -129,10 +127,6 @@ return require('packer').startup({function()
   --use {'myusuf3/numbers.vim',
   --  cmd = {'NumbersToggle', 'NumbersOnOff'},
   --}
-  use {'edluffy/specs.nvim',
-    event = "VimEnter",
-    config = function() require 'my_plugins.specs' end }
-  use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
 
 -- others
   use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
