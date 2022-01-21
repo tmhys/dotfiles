@@ -52,7 +52,7 @@ return require('packer').startup({function()
                  'Shougo/vimproc.vim'},}
   use {'tpope/vim-fugitive',event = 'BufReadPost',
 	 config = function() require('my_plugins.fugitive') end,}
-  use {'jsfaint/gen_tags.vim',
+  use {'jsfaint/gen_tags.vim',event = 'BufReadPost',
     --cond = function() return vim.fn.executable('ctags') == 1 end,
 	config = function() require('my_plugins.gen_tags') end,}
   use {'majutsushi/tagbar',event = 'BufReadPost',
