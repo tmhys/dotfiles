@@ -29,6 +29,7 @@ return require('packer').startup({function()
     config = function() require('my_plugins.hlslens') end,}
 
 -- useful func
+  use {'mhinz/vim-sayonara', cmd='Sayonara' }
   use {'kraxli/vim-renamer',cmd='Renamer'}
   use {'tpope/vim-surround',event = 'InsertEnter',}
   use {'thinca/vim-qfreplace',cmd = 'Qfreplace',}
@@ -61,6 +62,8 @@ return require('packer').startup({function()
     config = function() require('my_plugins.vim-translator') end,}
   use {'skanehira/preview-markdown.vim',ft={'markdown'},
     config = function() require('my_plugins.preview-markdown') end,}
+  use { 'windwp/nvim-autopairs', event = "VimEnter",
+    config = function() require ( 'my_plugins.nvim-autopairs' ) end, }
 
 -- fuzzy finder
   use {'nvim-telescope/telescope.nvim',
