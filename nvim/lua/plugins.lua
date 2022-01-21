@@ -22,9 +22,12 @@ return require('packer').startup({function()
   use {'nvim-lualine/lualine.nvim' ,
      requires = {'kyazdani42/nvim-web-devicons'},
 	 config = function() require('my_plugins.lualine') end,}
-  use {'romgrk/barbar.nvim', event = 'BufWinEnter',
-     requires = {'kyazdani42/nvim-web-devicons'},
-     config = function() require('my_plugins.barbar') end,}
+--  use {'romgrk/barbar.nvim', event = 'BufWinEnter',
+--     requires = {'kyazdani42/nvim-web-devicons'},
+--     config = function() require('my_plugins.barbar') end,}
+  use { 'kdheepak/tabline.nvim',
+    config = function() require ('my_plugins.tabline') end,
+    requires = {'hoob3rt/lualine.nvim', 'kyazdani42/nvim-web-devicons'} }
   use {'kevinhwang91/nvim-hlslens',event = 'VimEnter',
     config = function() require('my_plugins.hlslens') end,}
 
