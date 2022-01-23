@@ -11,6 +11,16 @@ return require('packer').startup({function()
 -- colorschemes
   use {'rafi/awesome-vim-colorschemes',opt=true}
 -- interface
+  --use {
+  --  'dstein64/nvim-scrollview',
+  --  after = colorscheme,
+  --  setup = function() vim.cmd('source ~/.config/nvim/rc/pluginsetup/nvim-scrollview.vim') end,
+  --  config = function() vim.cmd('source ~/.config/nvim/rc/pluginconfig/nvim-scrollview.vim') end
+  --}
+  --use { 'VonHeikemen/fine-cmdline.nvim',
+  --  requires = { 'MunifTanjim/nui.nvim' },
+  --  config = function() require 'my_plugins.fine-cmdline' end }
+  use {'rcarriga/nvim-notify', event = "VimEnter"}
   use {'edluffy/specs.nvim', event = "VimEnter",
     config = function() require 'my_plugins.specs' end }
   use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
@@ -32,6 +42,7 @@ return require('packer').startup({function()
     config = function() require('my_plugins.hlslens') end,}
 
 -- useful func
+  use {'kana/vim-smartchr', event = "VimEnter"}
   use {'mhinz/vim-sayonara', cmd='Sayonara' }
   use {'kraxli/vim-renamer',cmd='Renamer'}
   use {'tpope/vim-surround',event = 'InsertEnter',}

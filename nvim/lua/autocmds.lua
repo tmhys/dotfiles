@@ -47,4 +47,8 @@ augroup gitspellcheck
 	autocmd!
     autocmd FileType gitcommit setlocal spell
 augroup end
+
+augroup officelocal
+  autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+augroup end
 ]])
