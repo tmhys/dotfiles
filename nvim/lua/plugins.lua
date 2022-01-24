@@ -12,32 +12,28 @@ return require('packer').startup({function()
 -- colorschemes
   use {'rafi/awesome-vim-colorschemes',opt=true}
 -- interface
-  use { 'dstein64/nvim-scrollview',
-    after = colorscheme,
+  use { 'dstein64/nvim-scrollview', after = colorscheme,
     config = function() require 'my_plugins.nvim-scrollview' end }
-  --use { 'VonHeikemen/fine-cmdline.nvim',
-  --  requires = { 'MunifTanjim/nui.nvim' },
-  --  config = function() require 'my_plugins.fine-cmdline' end }
   use {'rcarriga/nvim-notify', event = "VimEnter"}
   use {'edluffy/specs.nvim', event = "VimEnter",
     config = function() require 'my_plugins.specs' end }
   use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
   use {'itchyny/vim-cursorword',event = 'BufReadPost',}
-  use { 't9md/vim-quickhl', event = "VimEnter",
-	 config = function() require('my_plugins.vim-quickhl') end,}
+  use { 't9md/vim-quickhl', event = "BufReadPost",
+	 config = function() require 'my_plugins.vim-quickhl' end,}
 
   use {'glepnir/indent-guides.nvim' ,event = 'BufReadPost',}
   use {'mhinz/vim-signify',event = 'BufReadPost',}
   use {'chentau/marks.nvim',event = 'BufReadPost',
-	 config = function() require('my_plugins.marks') end,}
+	 config = function() require 'my_plugins.marks' end,}
   use {'nvim-lualine/lualine.nvim' ,
      requires = {'kyazdani42/nvim-web-devicons'},
-	 config = function() require('my_plugins.lualine') end,}
+	 config = function() require 'my_plugins.lualine' end,}
   use { 'kdheepak/tabline.nvim',
-    config = function() require ('my_plugins.tabline') end,
+    config = function() require 'my_plugins.tabline' end,
     requires = {'hoob3rt/lualine.nvim', 'kyazdani42/nvim-web-devicons'} }
   use {'kevinhwang91/nvim-hlslens',event = 'VimEnter',
-    config = function() require('my_plugins.hlslens') end,}
+    config = function() require 'my_plugins.hlslens' end,}
 
 -- useful func
   use {'kana/vim-smartchr', event = "VimEnter"}
@@ -48,33 +44,35 @@ return require('packer').startup({function()
   use {'junegunn/vim-easy-align',}
   use {'simeji/winresizer',cmd='WinResizerStartResize',}
   use {'b3nj5m1n/kommentary',event = 'BufReadPost',
-    config = function() require('my_plugins.kommentary') end,}
+    config = function() require 'my_plugins.kommentary' end,}
   use{'PHSix/faster.nvim', event = 'VimEnter *',
-      config = function() require('my_plugins.faster') end,}
+      config = function() require 'my_plugins.faster' end,}
+ use { 'unblevable/quick-scope', event = "VimEnter",
+    config = function() require 'my_plugins.quick-scope' end,}
   use {'rhysd/clever-f.vim',event = 'BufReadPost',
-    config = function() require('my_plugins.clever-f') end,}
+    config = function() require 'my_plugins.clever-f' end,}
   use {'phaazon/hop.nvim',event = 'BufReadPost',config='v1',
-	config = function() require('my_plugins.hop') end,}
+	config = function() require 'my_plugins.hop' end,}
   use {'thinca/vim-quickrun',event = 'BufReadPost',
-	 config = function() require('my_plugins.quickrun') end,
+	 config = function() require 'my_plugins.quickrun' end,
      requires = {'Shougo/vimproc.vim'},}
   use {'osyo-manga/vim-watchdogs',
-	 config = function() require('my_plugins.watchdogs') end,
+	 config = function() require 'my_plugins.watchdogs' end,
      requires = {'osyo-manga/shabadou.vim',
                  'Shougo/vimproc.vim'},}
   use {'tpope/vim-fugitive',event = 'BufReadPost',
-	 config = function() require('my_plugins.fugitive') end,}
+	 config = function() require 'my_plugins.fugitive' end,}
   use {'jsfaint/gen_tags.vim',event = 'BufReadPost',
     --cond = function() return vim.fn.executable('ctags') == 1 end,
-	config = function() require('my_plugins.gen_tags') end,}
+	config = function() require 'my_plugins.gen_tags' end,}
   use {'majutsushi/tagbar',event = 'BufReadPost',
-    config = function() require('my_plugins.tagbar') end,}
+    config = function() require 'my_plugins.tagbar' end,}
   use {'voldikss/vim-translator',event = 'BufReadPost',
-    config = function() require('my_plugins.vim-translator') end,}
+    config = function() require 'my_plugins.vim-translator' end,}
   use {'skanehira/preview-markdown.vim',ft={'markdown'},
-    config = function() require('my_plugins.preview-markdown') end,}
+    config = function() require 'my_plugins.preview-markdown' end,}
   use { 'windwp/nvim-autopairs', event = "VimEnter",
-    config = function() require ( 'my_plugins.nvim-autopairs' ) end, }
+    config = function() require 'my_plugins.nvim-autopairs' end, }
 
 -- fuzzy finder
   use {'nvim-telescope/telescope.nvim',
@@ -82,35 +80,35 @@ return require('packer').startup({function()
      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},}
   use {'kyazdani42/nvim-tree.lua',
      requires = {'kyazdani42/nvim-web-devicons',opt=true},
-	 config = function() require('my_plugins.nvim-tree') end,}
+	 config = function() require 'my_plugins.nvim-tree' end,}
 
   use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate',}
   use {'nvim-treesitter/playground',
-	config = function() require('my_plugins.playground') end,}
+	config = function() require 'my_plugins.playground' end,}
 
 -- lsp
   use {'onsails/lspkind-nvim'             ,
     event="VimEnter",
-    config = function() require('my_plugins.lspkind-nvim') end,}
+    config = function() require 'my_plugins.lspkind-nvim' end,}
   use {'neovim/nvim-lspconfig' ,
     after = 'cmp-nvim-lsp',
-    config = function() require('my_plugins.lspconfig') end,}
+    config = function() require 'my_plugins.lspconfig' end,}
   use {'williamboman/nvim-lsp-installer',
     after = {'nvim-lspconfig', 'lsp_signature.nvim'},
-    config = function() require('my_plugins.lsp-installer') end,}
+    config = function() require 'my_plugins.lsp-installer' end,}
   use { 'ray-x/lsp_signature.nvim',
     after = 'nvim-lspconfig',
-    config = function() require('my_plugins.lsp-signature') end,}
+    config = function() require 'my_plugins.lsp-signature' end,}
   use {'weilbith/nvim-lsp-smag', after = 'nvim-lspconfig'}
 
 --lsp ui
   use { 'tami5/lspsaga.nvim',
     after = 'nvim-lsp-installer',
-    config = function() require ('my_plugins.lspsaga') end }
+    config = function() require 'my_plugins.lspsaga' end }
   use { 'folke/trouble.nvim',
     requires = {'folke/lsp-colors.nvim'},
     after = 'nvim-lsp-installer',
-    config = function() require('my_plugins.trouble') end,}
+    config = function() require 'my_plugins.trouble' end,}
 
 -- completion
   use { 'hrsh7th/nvim-cmp', event = 'InsertEnter',
@@ -132,15 +130,13 @@ return require('packer').startup({function()
       {'tzachar/cmp-tabnine',after = 'nvim-cmp',run='powershell ./install.ps1'},
       {'quangnguyen30192/cmp-nvim-tags',after = 'nvim-cmp'}
     },
-    config = function() require('my_plugins.nvim-cmp') end,
+    config = function() require 'my_plugins.nvim-cmp' end,
   }
 
 -- candidate
-  --use {'SmiteshP/nvim-gps'}
-  --use {'Pocco81/HighStr.nvim'}
-  --use {'myusuf3/numbers.vim',
-  --  cmd = {'NumbersToggle', 'NumbersOnOff'},
-  --}
+  --use { 'VonHeikemen/fine-cmdline.nvim',
+  --  requires = { 'MunifTanjim/nui.nvim' },
+  --  config = function() require 'my_plugins.fine-cmdline' end }
 
 -- others
   use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
