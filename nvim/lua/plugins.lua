@@ -11,12 +11,9 @@ return require('packer').startup({function()
 -- colorschemes
   use {'rafi/awesome-vim-colorschemes',opt=true}
 -- interface
-  --use {
-  --  'dstein64/nvim-scrollview',
-  --  after = colorscheme,
-  --  setup = function() vim.cmd('source ~/.config/nvim/rc/pluginsetup/nvim-scrollview.vim') end,
-  --  config = function() vim.cmd('source ~/.config/nvim/rc/pluginconfig/nvim-scrollview.vim') end
-  --}
+  use { 'dstein64/nvim-scrollview',
+    after = colorscheme,
+    config = function() require 'my_plugins.nvim-scrollview' end }
   --use { 'VonHeikemen/fine-cmdline.nvim',
   --  requires = { 'MunifTanjim/nui.nvim' },
   --  config = function() require 'my_plugins.fine-cmdline' end }
@@ -32,9 +29,6 @@ return require('packer').startup({function()
   use {'nvim-lualine/lualine.nvim' ,
      requires = {'kyazdani42/nvim-web-devicons'},
 	 config = function() require('my_plugins.lualine') end,}
---  use {'romgrk/barbar.nvim', event = 'BufWinEnter',
---     requires = {'kyazdani42/nvim-web-devicons'},
---     config = function() require('my_plugins.barbar') end,}
   use { 'kdheepak/tabline.nvim',
     config = function() require ('my_plugins.tabline') end,
     requires = {'hoob3rt/lualine.nvim', 'kyazdani42/nvim-web-devicons'} }
@@ -48,7 +42,6 @@ return require('packer').startup({function()
   use {'tpope/vim-surround',event = 'InsertEnter',}
   use {'thinca/vim-qfreplace',cmd = 'Qfreplace',}
   use {'junegunn/vim-easy-align',}
-  --use {'jiangmiao/auto-pairs',event = 'InsertEnter',}
   use {'simeji/winresizer',cmd='WinResizerStartResize',}
   use {'b3nj5m1n/kommentary',event = 'BufReadPost',
     config = function() require('my_plugins.kommentary') end,}

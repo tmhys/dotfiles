@@ -13,12 +13,14 @@ vnoremap{'za','zf'}
 nnoremap{';',':'}
 vnoremap{';',':'}
 inoremap{'<M-Insert>','<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa'}
-inoremap{'<silent> <CR>','<C-g>u<CR>'}
+--inoremap{'<silent> <CR>','<C-g>u<CR>'}
+vim.api.nvim_set_keymap('i', '<CR>', '<C-g>u<CR>', { noremap = true, silent = true })
 nnoremap{'g<CR>','g;'}
 nnoremap{'x','"_x'}
 nnoremap{'s','"_s'}
 nnoremap{'S','"_S'}
-nnoremap{'<silent> <ESC><ESC>',':<C-u>nohlsearch<CR>'}
+--nnoremap{'<silent> <ESC><ESC>',':<C-u>nohlsearch<CR>'}
+vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':<C-u>nohlsearch<CR>', { noremap = true, silent = true })
 inoremap{'jj','<Esc>'}
 inoremap{'jk','<Esc>'}
 inoremap{'qq','<Esc>'}
@@ -48,7 +50,8 @@ nnoremap{'<C-Tab>','gt'}
 nnoremap{'<S-C-Tab>','gT'}
 nnoremap{'gs',':<C-u>vertical wincmd f<CR>'}
 nnoremap{'<Space>p','"0p'}
-nnoremap{'<silent> <Space><Space>', '*N'}
+--nnoremap{'<silent> <Space><Space>', '*N'}
+vim.api.nvim_set_keymap('n', '<space><space>', '*N', { noremap = true, silent = true })
 nnoremap{'#','<Space><Space>:%s/<C-r>///g<Left><Left>'}
 nnoremap{'<M-3>',':%s/<C-r>"///g<Left><Left>'}
 vnoremap{'#',':s///gc<Left><Left><Left><Left><C-r><C-w><Right>'}
