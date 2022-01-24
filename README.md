@@ -15,15 +15,7 @@ windowsユーザーです
 
 # Installation
 
-シンボリックリンクを使っていい感じにしてください。
-
-例)
-C:\Windows\system32>mklink /D AAAAA BBBBB
-AAAAA:シンボリックリンク先。まだこの時点ではそこに存在しないフォルダ名にすること。
-BBBBB:シンボリックリンク元。ここではdotfiles中の実在フォルダ。
-
-以下のリンクを参考に、もっとまともにgithubを使い込みたい。
-https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
+社用PCの権限ではgit clone後手動でコピペするしかないっぽい
 
 # Usage
 
@@ -45,9 +37,10 @@ https://thom.hateblo.jp/entry/2022/01/09/225345?utm_source=pocket_mylist
 - keyboardのマッピングファイルもこのリポジトリにアップする
 - nvim
     - [ ] open_floatがよくわからん　なぜcursorholdで起動しない？
-    - [ ] keymapもautocmdもlua化したいけど
     - [ ] ftdetectの仕様を理解したい
     - [ ] nvim treeのキーマップ覚える
+    - [ ] watchdocsの乗り換え
+    - [x] keymapもautocmdもlua化したいけど
     - [x] packerでインストールしているプラグインの依存関係をはっきりと表記
     - [x] luaのlspが社用PCではうまく動かない件
     - [x] 基本方針は新しいluaプラグインに極力置き換え

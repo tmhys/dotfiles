@@ -1,13 +1,14 @@
 local vim=vim
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup({function()
--- utility
   use {'wbthomason/packer.nvim',opt=true}
+-- utility
   use {'lewis6991/impatient.nvim'}
   use {'nathom/filetype.nvim'}
   use {'tjdevries/astronauta.nvim'}
   use {'dstein64/vim-startuptime',cmd='StartupTime'}
   use {'vim-jp/vimdoc-ja',event = 'BufReadPost'}
+
 -- colorschemes
   use {'rafi/awesome-vim-colorschemes',opt=true}
 -- interface
@@ -22,6 +23,9 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.specs' end }
   use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
   use {'itchyny/vim-cursorword',event = 'BufReadPost',}
+  use { 't9md/vim-quickhl', event = "VimEnter",
+	 config = function() require('my_plugins.vim-quickhl') end,}
+
   use {'glepnir/indent-guides.nvim' ,event = 'BufReadPost',}
   use {'mhinz/vim-signify',event = 'BufReadPost',}
   use {'chentau/marks.nvim',event = 'BufReadPost',
