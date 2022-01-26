@@ -1,5 +1,4 @@
 vim.cmd[[runtime plugin/astronauta.vim]]
-
 local nnoremap = vim.keymap.nnoremap
 local inoremap = vim.keymap.inoremap
 local cnoremap = vim.keymap.cnoremap

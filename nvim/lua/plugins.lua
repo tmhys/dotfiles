@@ -6,6 +6,8 @@ return require('packer').startup({function()
   use {'lewis6991/impatient.nvim'}
   use {'nathom/filetype.nvim'}
   use {'tjdevries/astronauta.nvim'}
+  use {'antoinemadec/FixCursorHold.nvim',
+    config = function() require 'my_plugins.FixCursorHold' end,}
   use {'dstein64/vim-startuptime',cmd='StartupTime'}
   use {'vim-jp/vimdoc-ja',event = 'BufReadPost'}
 
@@ -21,7 +23,6 @@ return require('packer').startup({function()
   use {'itchyny/vim-cursorword',event = 'BufReadPost',}
   use { 't9md/vim-quickhl', event = "BufReadPost",
 	 config = function() require 'my_plugins.vim-quickhl' end,}
-
   use {'glepnir/indent-guides.nvim' ,event = 'BufReadPost',}
   use {'mhinz/vim-signify',event = 'BufReadPost',}
   use {'chentau/marks.nvim',event = 'BufReadPost',
@@ -47,7 +48,7 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.kommentary' end,}
   use{'PHSix/faster.nvim', event = 'VimEnter *',
       config = function() require 'my_plugins.faster' end,}
- use { 'unblevable/quick-scope', event = "VimEnter",
+ use {'unblevable/quick-scope', event = "VimEnter",
     config = function() require 'my_plugins.quick-scope' end,}
   use {'rhysd/clever-f.vim',event = 'BufReadPost',
     config = function() require 'my_plugins.clever-f' end,}
@@ -71,18 +72,21 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.vim-translator' end,}
   use {'skanehira/preview-markdown.vim',ft={'markdown'},
     config = function() require 'my_plugins.preview-markdown' end,}
+  use {'mechatroner/rainbow_csv',ft={'csv'},}
   use { 'windwp/nvim-autopairs', event = "VimEnter",
     config = function() require 'my_plugins.nvim-autopairs' end, }
 
 -- fuzzy finder
   use {'nvim-telescope/telescope.nvim',
-	 config = function() require('my_plugins.telescope').setup() end,
+     config = function() require('my_plugins.telescope').setup() end,
      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},}
   use {'kyazdani42/nvim-tree.lua',
      requires = {'kyazdani42/nvim-web-devicons',opt=true},
 	 config = function() require 'my_plugins.nvim-tree' end,}
 
   use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate',}
+  use {'p00f/nvim-ts-rainbow',
+	config = function() require 'my_plugins.nvim-ts-rainbow' end,}
   use {'nvim-treesitter/playground',
 	config = function() require 'my_plugins.playground' end,}
 
@@ -100,6 +104,7 @@ return require('packer').startup({function()
     after = 'nvim-lspconfig',
     config = function() require 'my_plugins.lsp-signature' end,}
   use {'weilbith/nvim-lsp-smag', after = 'nvim-lspconfig'}
+  use {'j-hui/fidget.nvim', after = 'nvim-lspconfig'}
 
 --lsp ui
   use { 'tami5/lspsaga.nvim',
@@ -139,7 +144,7 @@ return require('packer').startup({function()
   --  config = function() require 'my_plugins.fine-cmdline' end }
 
 -- others
-  use {'~/seq.vim'} --, ft={'seq'}} -- なぜかファイルタイプを指定するとうまく反映されない
+  use {'~/seq.vim'}
   use {'kyazdani42/nvim-web-devicons'}
 end,
 

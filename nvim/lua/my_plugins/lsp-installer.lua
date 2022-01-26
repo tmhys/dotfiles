@@ -32,6 +32,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  vim.cmd([[ augroup my_lsp
+              autocmd!
+              autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="line"})
+             augroup END
+             ]])
 
   require"lsp_signature".on_attach()
 end
@@ -68,3 +73,12 @@ lsp_installer.on_server_ready(function(server)
   server:setup(opts)
   vim.cmd [[ do User LspAttachBuffers ]]
 end)
+
+
+vim.cmd([[
+augroup my_lsp
+    autocmd!
+    autocmd! CursorHold * lua vim.diagnostic.open_float(0, {focus=false, scope="line"})
+augroup END
+]])
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="line"})]]

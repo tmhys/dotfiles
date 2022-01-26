@@ -16,7 +16,6 @@ augroup myvimrc
 				\nested so $MYVIMRC | lua require'lualine'.setup()
 				"\nested so $MYVIMRC so $MYGVIMRC | endif
     autocmd BufWritePost plugins.lua PackerCompile
-    autocmd FileType lua inoremap 00 --
 augroup END
 
 augroup win_config
@@ -48,7 +47,13 @@ augroup gitspellcheck
     autocmd FileType gitcommit setlocal spell
 augroup end
 
-augroup officelocal
-  autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
-augroup end
+"augroup lua_map
+"	autocmd!
+"    autocmd FileType lua <buffer> inoremap 00 --
+"augroup end
+
+"augroup officelocal
+"  "autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+"augroup end
+
 ]])

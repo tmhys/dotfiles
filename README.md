@@ -36,10 +36,12 @@ windowsユーザーです
 # TODO
 - keyboardのマッピングファイルもこのリポジトリにアップする
 - nvim
-    - [ ] open_floatがよくわからん　なぜcursorholdで起動しない？
+    - [ ] tabキーの挙動がまだよろしくない、普通にタブを入力したいのに補完される
     - [ ] ftdetectの仕様を理解したい
-    - [ ] nvim treeのキーマップ覚える
     - [ ] watchdocsの乗り換え
+    - [ ] PDF2csvついでにspledsheetに展開
+    - [x] nvim treeのキーマップ覚える
+    - [x] open_floatがよくわからん　なぜcursorholdで起動しない？
     - [x] keymapもautocmdもlua化したいけど
     - [x] packerでインストールしているプラグインの依存関係をはっきりと表記
     - [x] luaのlspが社用PCではうまく動かない件
