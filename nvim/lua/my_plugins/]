@@ -1,0 +1,41 @@
+vim.cmd([[
+autocmd! BufWritePost *.s,*.seq,*.h Neomake
+
+"以下を参考に別の言語の環境を作成すること
+"let g:neomake_perl_envperl_maker = {
+"\   'exe'           : './env.sh',
+"\   'args'          : ['perl', '-wc'],
+"\   'errorformat'   : '%E%m at %f line %l%s',
+"\   'postprocess'   : function('neomake#makers#ft#perl#PerlEntryProcess'),
+"\   'buffer_output' : 1,
+"\ }
+"let g:neomake_perl_enabled_makers = ['envperl']
+
+let g:neomake_seq_envseq_maker = {
+\   'exe'           : "SeqCnv_V340",
+\   'args'          : ["-l", "00_Main"],
+\   'errorformat'   : "%WWarning: %f (%l):%m,%EError: %f (%l):%m",
+\   'buffer_output' : 1,
+\ }
+let g:neomake_seq_enabled_makers = ['envseq']
+
+" -  -  -  -  -  -  -  -  -  - "
+  "let g:neomake_open_list = 0
+  let g:neomake_error_sign = {
+  \ 'text': ' ',
+  \ }
+  let g:neomake_warning_sign = {
+  \ 'text': ' ',
+  \ 'texthl': 'Error',
+  \ }
+  let g:neomake_info_sign = {
+  \ 'text': '',
+  \ 'texthl': 'Title',
+  \ }
+  let g:neomake_message_sign = {
+  \ 'text': ' ',
+  \ 'texthl': 'Operator',
+  \ }
+
+"local signs = { Error = " ", Warn = " ", Hint = "", Info = " " }
+]])

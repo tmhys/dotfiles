@@ -2,7 +2,8 @@ local vim=vim
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup({function()
   use {'wbthomason/packer.nvim',opt=true}
--- utility
+-- utility{{{
+  use {'kyazdani42/nvim-web-devicons'}
   use {'lewis6991/impatient.nvim'}
   use {'nathom/filetype.nvim'}
   use {'tjdevries/astronauta.nvim'}
@@ -10,10 +11,13 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.FixCursorHold' end,}
   use {'dstein64/vim-startuptime',cmd='StartupTime'}
   use {'vim-jp/vimdoc-ja',event = 'BufReadPost'}
+--}}}
 
--- colorschemes
+-- colorschemes{{{
   use {'rafi/awesome-vim-colorschemes',opt=true}
--- interface
+--}}}
+
+-- interface{{{
   use { 'dstein64/nvim-scrollview', after = colorscheme,
     config = function() require 'my_plugins.nvim-scrollview' end }
   use {'rcarriga/nvim-notify', event = "VimEnter"}
@@ -35,11 +39,9 @@ return require('packer').startup({function()
     requires = {'hoob3rt/lualine.nvim', 'kyazdani42/nvim-web-devicons'} }
   use {'kevinhwang91/nvim-hlslens',event = 'VimEnter',
     config = function() require 'my_plugins.hlslens' end,}
+--}}}
 
--- useful func
--- ÅZ
-  use {'tweekmonster/braceless.vim', event = "VimEnter",
-    config = function() require 'my_plugins.braceless' end,}
+-- useful func{{{
   use {'kana/vim-smartchr', event = "VimEnter",
     config = function() require 'my_plugins.vim-smartchr' end,}
   use {'mhinz/vim-sayonara', cmd='Sayonara' }
@@ -59,14 +61,24 @@ return require('packer').startup({function()
   use {'phaazon/hop.nvim',event = 'BufReadPost',config='v1',
 	config = function() require 'my_plugins.hop' end,}
 
-  use {'thinca/vim-quickrun',event = 'BufReadPost',
-	 config = function() require 'my_plugins.quickrun' end,
-     requires = {'Shougo/vimproc.vim'},}
-  use {'osyo-manga/vim-watchdogs',
-	 config = function() require 'my_plugins.watchdogs' end,
-     requires = {'osyo-manga/shabadou.vim',
-                 'Shougo/vimproc.vim'},}
+--  use {'thinca/vim-quickrun',event = 'BufReadPost',
+--	 config = function() require 'my_plugins.quickrun' end,
+--     requires = {'Shougo/vimproc.vim'},}
+--  use {'osyo-manga/vim-watchdogs',
+--	 config = function() require 'my_plugins.watchdogs' end,
+--     requires = {'osyo-manga/shabadou.vim',
+--                 'Shougo/vimproc.vim'},}
 
+--}}}
+
+--{{{
+  use {'tweekmonster/braceless.vim', ft={'python'},
+    config = function() require 'my_plugins.braceless' end,}
+  use {'neomake/neomake',  ft={'seq'},
+    config = function() require 'my_plugins.neomake' end,}
+  use {'skywind3000/asyncrun.vim', event = "BufReadPost",
+    config = function() require 'my_plugins.asyncrun' end,}
+--}}}
 
   use {'tpope/vim-fugitive',event = 'BufReadPost',
 	 config = function() require 'my_plugins.fugitive' end,}
@@ -83,21 +95,24 @@ return require('packer').startup({function()
   use { 'windwp/nvim-autopairs', event = "VimEnter",
     config = function() require 'my_plugins.nvim-autopairs' end, }
 
--- fuzzy finder
+-- fuzzy finder{{{
   use {'nvim-telescope/telescope.nvim',
      config = function() require('my_plugins.telescope').setup() end,
      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},}
   use {'kyazdani42/nvim-tree.lua',
      requires = {'kyazdani42/nvim-web-devicons',opt=true},
 	 config = function() require 'my_plugins.nvim-tree' end,}
+--}}}
 
+-- treesitter{{{
   use {'nvim-treesitter/nvim-treesitter', branch = '0.5-compat', run = ':TSUpdate',}
   use {'p00f/nvim-ts-rainbow',
 	config = function() require 'my_plugins.nvim-ts-rainbow' end,}
   use {'nvim-treesitter/playground',
 	config = function() require 'my_plugins.playground' end,}
+--}}}
 
--- lsp
+-- lsp{{{
   use {'onsails/lspkind-nvim'             ,
     event="VimEnter",
     config = function() require 'my_plugins.lspkind-nvim' end,}
@@ -112,8 +127,9 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.lsp-signature' end,}
   use {'weilbith/nvim-lsp-smag', after = 'nvim-lspconfig'}
   use {'j-hui/fidget.nvim', after = 'nvim-lspconfig'}
+--}}}
 
---lsp ui
+--lsp ui{{{
   use { 'tami5/lspsaga.nvim',
     after = 'nvim-lsp-installer',
     config = function() require 'my_plugins.lspsaga' end }
@@ -121,8 +137,9 @@ return require('packer').startup({function()
     requires = {'folke/lsp-colors.nvim'},
     after = 'nvim-lsp-installer',
     config = function() require 'my_plugins.trouble' end,}
+--}}}
 
--- completion
+-- completion{{{
   use { 'hrsh7th/nvim-cmp', event = 'InsertEnter',
     after = { 'vim-vsnip', },
     requires = {
@@ -144,15 +161,16 @@ return require('packer').startup({function()
     },
     config = function() require 'my_plugins.nvim-cmp' end,
   }
+--}}}
 
 -- candidate
   --use { 'VonHeikemen/fine-cmdline.nvim',
   --  requires = { 'MunifTanjim/nui.nvim' },
   --  config = function() require 'my_plugins.fine-cmdline' end }
 
--- others
+-- others{{{
   use {'~/seq.vim'}
-  use {'kyazdani42/nvim-web-devicons'}
+--}}}
 end,
 
 config = {

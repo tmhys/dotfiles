@@ -52,8 +52,8 @@ augroup end
 "    autocmd FileType lua <buffer> inoremap 00 --
 "augroup end
 
-"augroup officelocal
-"  "autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
-"augroup end
+augroup officelocal
+  autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+augroup end
 
 ]])
