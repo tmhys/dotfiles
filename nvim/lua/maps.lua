@@ -81,6 +81,7 @@ onoremap{'{','i{'}
 nnoremap{'cp','ciw<C-r>0<ESC>'}
 nnoremap{'<F3>',':<C-u>setlocal relativenumber!<CR>'}
 nnoremap{'<F4>',':<C-u>set scrollbind!<CR>'}
+nnoremap{'<F12>',':PackerSync<CR>'}
 --tnoremap{'<silent>','<ESC> <C-\><C-n>'}
 vim.cmd([[
 let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')

@@ -37,7 +37,11 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.hlslens' end,}
 
 -- useful func
-  use {'kana/vim-smartchr', event = "VimEnter"}
+-- ÅZ
+  use {'tweekmonster/braceless.vim', event = "VimEnter",
+    config = function() require 'my_plugins.braceless' end,}
+  use {'kana/vim-smartchr', event = "VimEnter",
+    config = function() require 'my_plugins.vim-smartchr' end,}
   use {'mhinz/vim-sayonara', cmd='Sayonara' }
   use {'kraxli/vim-renamer',cmd='Renamer'}
   use {'tpope/vim-surround',event = 'InsertEnter',}
@@ -54,6 +58,7 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.clever-f' end,}
   use {'phaazon/hop.nvim',event = 'BufReadPost',config='v1',
 	config = function() require 'my_plugins.hop' end,}
+
   use {'thinca/vim-quickrun',event = 'BufReadPost',
 	 config = function() require 'my_plugins.quickrun' end,
      requires = {'Shougo/vimproc.vim'},}
@@ -61,6 +66,8 @@ return require('packer').startup({function()
 	 config = function() require 'my_plugins.watchdogs' end,
      requires = {'osyo-manga/shabadou.vim',
                  'Shougo/vimproc.vim'},}
+
+
   use {'tpope/vim-fugitive',event = 'BufReadPost',
 	 config = function() require 'my_plugins.fugitive' end,}
   use {'jsfaint/gen_tags.vim',event = 'BufReadPost',
