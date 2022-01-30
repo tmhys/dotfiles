@@ -4,7 +4,7 @@ require'lualine'.setup {
     theme = 'auto',
     --component_separators = { left = 'ûž±', right = 'ûž³'},
     --section_separators = { left = 'ûž°', right = 'ûž²'},
-    disabled_filetypes = {},
+    disabled_filetypes = {'NvimTree'},
     always_divide_middle = true,
   },
   sections = {

@@ -20,8 +20,8 @@ return require('packer').startup({function()
 -- interface{{{
   use { 'dstein64/nvim-scrollview', after = colorscheme,
     config = function() require 'my_plugins.nvim-scrollview' end }
-  use {'rcarriga/nvim-notify', event = "VimEnter"}
-  use {'edluffy/specs.nvim', event = "VimEnter",
+  use {'rcarriga/nvim-notify', event = "BufReadPost"}
+  use {'edluffy/specs.nvim', event = "BufReadPost",
     config = function() require 'my_plugins.specs' end }
   use {'rinx/nvim-minimap', cmd = {'MinimapOpen'}}
   use {'itchyny/vim-cursorword',event = 'BufReadPost',}
@@ -37,12 +37,12 @@ return require('packer').startup({function()
   use { 'kdheepak/tabline.nvim',
     config = function() require 'my_plugins.tabline' end,
     requires = {'hoob3rt/lualine.nvim', 'kyazdani42/nvim-web-devicons'} }
-  use {'kevinhwang91/nvim-hlslens',event = 'VimEnter',
+  use {'kevinhwang91/nvim-hlslens',event = 'BufReadPost',
     config = function() require 'my_plugins.hlslens' end,}
 --}}}
 
 -- useful func{{{
-  use {'kana/vim-smartchr', event = "VimEnter",
+  use {'kana/vim-smartchr', event = "BufReadPost",
     config = function() require 'my_plugins.vim-smartchr' end,}
   use {'mhinz/vim-sayonara', cmd='Sayonara' }
   use {'kraxli/vim-renamer',cmd='Renamer'}
@@ -52,15 +52,17 @@ return require('packer').startup({function()
   use {'simeji/winresizer',cmd='WinResizerStartResize',}
   use {'b3nj5m1n/kommentary',event = 'BufReadPost',
     config = function() require 'my_plugins.kommentary' end,}
-  use{'PHSix/faster.nvim', event = 'VimEnter *',
+  use{'PHSix/faster.nvim', event = 'BufReadPost *',
       config = function() require 'my_plugins.faster' end,}
- use {'unblevable/quick-scope', event = "VimEnter",
+ use {'unblevable/quick-scope', event = "BufReadPost",
     config = function() require 'my_plugins.quick-scope' end,}
   use {'rhysd/clever-f.vim',event = 'BufReadPost',
     config = function() require 'my_plugins.clever-f' end,}
   use {'phaazon/hop.nvim',event = 'BufReadPost',config='v1',
 	config = function() require 'my_plugins.hop' end,}
+--}}}
 
+--{{{
 --  use {'thinca/vim-quickrun',event = 'BufReadPost',
 --	 config = function() require 'my_plugins.quickrun' end,
 --     requires = {'Shougo/vimproc.vim'},}
@@ -69,15 +71,17 @@ return require('packer').startup({function()
 --     requires = {'osyo-manga/shabadou.vim',
 --                 'Shougo/vimproc.vim'},}
 
---}}}
-
---{{{
+-- quickfixのエンコードよくわからん
   use {'tweekmonster/braceless.vim', ft={'python'},
     config = function() require 'my_plugins.braceless' end,}
   use {'neomake/neomake',  ft={'seq'},
     config = function() require 'my_plugins.neomake' end,}
-  use {'skywind3000/asyncrun.vim', event = "BufReadPost",
+  use {'skywind3000/asyncrun.vim',
     config = function() require 'my_plugins.asyncrun' end,}
+--use {'tpope/vim-dispatch',
+--  config = function() require 'my_plugins.vim-dispatch' end,}
+--use {'kassio/neoterm',
+--  config = function() require 'my_plugins.neoterm' end,}
 --}}}
 
   use {'tpope/vim-fugitive',event = 'BufReadPost',
@@ -92,7 +96,7 @@ return require('packer').startup({function()
   use {'skanehira/preview-markdown.vim',ft={'markdown'},
     config = function() require 'my_plugins.preview-markdown' end,}
   use {'mechatroner/rainbow_csv',ft={'csv'},}
-  use { 'windwp/nvim-autopairs', event = "VimEnter",
+  use { 'windwp/nvim-autopairs', event = "BufReadPost",
     config = function() require 'my_plugins.nvim-autopairs' end, }
 
 -- fuzzy finder{{{
@@ -114,7 +118,7 @@ return require('packer').startup({function()
 
 -- lsp{{{
   use {'onsails/lspkind-nvim'             ,
-    event="VimEnter",
+    event="BufReadPost",
     config = function() require 'my_plugins.lspkind-nvim' end,}
   use {'neovim/nvim-lspconfig' ,
     after = 'cmp-nvim-lsp',

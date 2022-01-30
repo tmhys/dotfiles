@@ -52,8 +52,26 @@ augroup end
 "    autocmd FileType lua <buffer> inoremap 00 --
 "augroup end
 
-augroup officelocal
-  autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
-augroup end
 
+augroup ErrorFormat
+	autocmd!
+    autocmd BufNewFile,BufRead *.py
+        \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+augroup END
+    "autocmd BufNewFile,BufRead *.seq, *.s
+    "    \ set errorformat = %W%>Warning:\ %f\ (%l):%m,%E%>Error:\ %f\ (%l):%m
+        "\ set errorformat = %W%>Warning:\ %f\ (%l):%m,%E%>Error:\ %f\ (%l):%m
+        "\ set errorformat = %WWarning: %f (%l):%m,%EError: %f (%l):%m
+        "\ set errorformat = %WWarning: %f (%l):%m,%EError: %f (%l):%m %C%C%p
+""        "\ set errorformat = %WWarning: \%f\ (%l):%r,%C,%s,%C,%p,%Z,%EError: \%f\ (%l):%r,%C,%s,%C,%p,%Z
+
+augroup officelocal
+	autocmd!
+    autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+    autocmd FileType seq setlocal makeprg=SeqCnv_V340\ -l\ 00_Main
+    "autocmd FileType seq setlocal errorformat =  "%tarning:\ %f\ (%l):%m,%trror:\ %f\ (%l):%m"
+    "autocmd FileType seq setlocal errorformat =  "%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m"
+augroup END
+"set errorformat=%tarning:\ %f\ (%l):%m,%trror:\ %f\ (%l):%m"
+"set errorformat=%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m"
 ]])

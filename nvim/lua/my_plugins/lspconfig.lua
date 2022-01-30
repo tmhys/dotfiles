@@ -19,3 +19,19 @@ vim.diagnostic.config {
     --prefix = "",
     },
 }
+
+---- Windows: %APPDATA%\efm-langserver\config.yaml
+require "lspconfig".efm.setup {
+    init_options = {documentFormatting = true},
+    settings = {
+        rootMarkers = {".git/", ".svn/"},
+        languages = {
+            seq = {
+                {formatCommand = "SeqCnv_V340 -l 00_Main", formatStdin = true}
+            }
+            --lua = {
+            --    {formatCommand = "lua-format -i", formatStdin = true}
+            --}
+        }
+    }
+}
