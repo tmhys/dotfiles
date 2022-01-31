@@ -68,10 +68,5 @@ augroup END
 augroup officelocal
 	autocmd!
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
-    autocmd FileType seq setlocal makeprg=SeqCnv_V340\ -l\ 00_Main
-    "autocmd FileType seq setlocal errorformat =  "%tarning:\ %f\ (%l):%m,%trror:\ %f\ (%l):%m"
-    "autocmd FileType seq setlocal errorformat =  "%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m"
 augroup END
-"set errorformat=%tarning:\ %f\ (%l):%m,%trror:\ %f\ (%l):%m"
-"set errorformat=%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m"
 ]])

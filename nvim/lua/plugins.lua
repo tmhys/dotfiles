@@ -76,9 +76,10 @@ return require('packer').startup({function()
     config = function() require 'my_plugins.braceless' end,}
 --  use {'neomake/neomake',  ft={'seq'},
 --    config = function() require 'my_plugins.neomake' end,}
-  use {'skywind3000/asyncrun.vim',
+  use {'skywind3000/asyncrun.vim',event = 'BufReadPost',
     config = function() require 'my_plugins.asyncrun' end,}
   use {'mh21/errormarker.vim',
+    after = 'asyncrun.vim',
     config = function() require 'my_plugins.errormarker' end,}
 --use {'tpope/vim-dispatch',
 --  config = function() require 'my_plugins.vim-dispatch' end,}
