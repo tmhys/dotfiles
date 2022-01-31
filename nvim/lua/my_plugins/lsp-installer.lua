@@ -63,6 +63,23 @@ local server_configs = {
   -- ["pyright"] = {settings = {python = {pythonPath = "python3"}}}
 }
 
+------ Windows: %APPDATA%\efm-langserver\config.yaml
+--require "lspconfig".efm.setup {
+--    init_options = {documentFormatting = true},
+--    settings = {
+--        rootMarkers = {".git/", ".svn/"},
+--        languages = {
+--            seq = {
+--                {formatCommand = "SeqCnv_V340 -l 00_Main", formatStdin = true}
+--            }
+--            --lua = {
+--            --    {formatCommand = "lua-format -i", formatStdin = true}
+--            --}
+--        }
+--    }
+--}
+
+
 local lsp_installer = require("nvim-lsp-installer")
 
 lsp_installer.on_server_ready(function(server)
