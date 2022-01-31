@@ -9,7 +9,7 @@ require'lualine'.setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff',
+    lualine_b = {'branch', 'diff', 'g:asyncrun_status',
                   {'diagnostics', sources={'nvim_diagnostic', 'coc'}}},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},

@@ -62,7 +62,7 @@ return require('packer').startup({function()
 	config = function() require 'my_plugins.hop' end,}
 --}}}
 
---{{{
+----{{{
 --  use {'thinca/vim-quickrun',event = 'BufReadPost',
 --	 config = function() require 'my_plugins.quickrun' end,
 --     requires = {'Shougo/vimproc.vim'},}
@@ -74,10 +74,12 @@ return require('packer').startup({function()
 -- quickfixのエンコードよくわからん
   use {'tweekmonster/braceless.vim', ft={'python'},
     config = function() require 'my_plugins.braceless' end,}
-  use {'neomake/neomake',  ft={'seq'},
-    config = function() require 'my_plugins.neomake' end,}
+--  use {'neomake/neomake',  ft={'seq'},
+--    config = function() require 'my_plugins.neomake' end,}
   use {'skywind3000/asyncrun.vim',
     config = function() require 'my_plugins.asyncrun' end,}
+  use {'mh21/errormarker.vim',
+    config = function() require 'my_plugins.errormarker' end,}
 --use {'tpope/vim-dispatch',
 --  config = function() require 'my_plugins.vim-dispatch' end,}
 --use {'kassio/neoterm',
