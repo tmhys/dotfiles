@@ -136,7 +136,8 @@ return require('packer').startup({function()
     after = 'nvim-lspconfig',
     config = function() require 'my_plugins.lsp-signature' end,}
   use {'weilbith/nvim-lsp-smag', after = 'nvim-lspconfig'}
-  use {'j-hui/fidget.nvim', after = 'nvim-lspconfig'}
+  use {'j-hui/fidget.nvim', after = 'nvim-lspconfig',
+    config = function() require 'my_plugins.fidget' end,}
 --}}}
 
 --lsp ui{{{
