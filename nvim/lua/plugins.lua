@@ -18,8 +18,8 @@ return require('packer').startup({function()
 --}}}
 
 -- interface{{{
-  use { 'dstein64/nvim-scrollview', after = colorscheme,
-    config = function() require 'my_plugins.nvim-scrollview' end }
+--use { 'dstein64/nvim-scrollview', after = colorscheme,
+--   config = function() require 'my_plugins.nvim-scrollview' end }
   use {'rcarriga/nvim-notify', event = "BufReadPost"}
   use {'edluffy/specs.nvim', event = "BufReadPost",
     config = function() require 'my_plugins.specs' end }
@@ -39,6 +39,9 @@ return require('packer').startup({function()
     requires = {'hoob3rt/lualine.nvim', 'kyazdani42/nvim-web-devicons'} }
   use {'kevinhwang91/nvim-hlslens',event = 'BufReadPost',
     config = function() require 'my_plugins.hlslens' end,}
+  use {'petertriho/nvim-scrollbar',event = 'BufReadPost',
+    after = 'nvim-hlslens',
+	config = function() require 'my_plugins.nvim-scrollbar' end,}
 --}}}
 
 -- useful func{{{

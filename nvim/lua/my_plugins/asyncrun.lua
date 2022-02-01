@@ -6,7 +6,7 @@ augroup MyGroup
     autocmd!
     autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
     autocmd BufNewFile,BufRead *.py noremap <buffer> <Space>r :AsyncRun python  -u %<CR>
-    autocmd FileType seq noremap <buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
-    autocmd BufWritePost,InsertLeave,TextChanged *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main
+    autocmd BufNewFile,BufRead *.seq,*.s noremap <buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
+    autocmd BufWritePost *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main
 augroup END
 ]])
