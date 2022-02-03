@@ -181,6 +181,7 @@ return require('packer').startup({function()
 
 -- others{{{
   use {'~/seq.vim'}
+  use {'lark-parser/vim-lark-syntax'}
 --}}}
 end,
 
