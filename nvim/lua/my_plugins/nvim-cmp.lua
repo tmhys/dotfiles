@@ -1,9 +1,6 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-lspkind.init {
-  with_text = true,
-}
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -82,22 +79,7 @@ cmp.setup({
         buffer      = "[BUFF]",
         omni        = "[OMNI]",
         spell       = "[spell]",
-
-        --nvim_lsp    = "",
-        --nvim_lua    = "",
-        --tags        = "ﰠ",
-        --cmp_tabnine = " ",
-        --vsnip       = "",
-        --treesitter  = "",
-        --path        = "",
-        --buffer      = "﬘",
---          vsnip='[vsnip]',
---          nvim_lsp='[LSP]',
---          tags='[tags]',
---          treesitter='[TS]',
---          cmp_tabnine='[TN]',
       })[entry.source.name]
-
       return vim_item
     end,
   },

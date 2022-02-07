@@ -123,9 +123,9 @@ return require('packer').startup({function()
 --}}}
 
 -- lsp{{{
-  use {'onsails/lspkind-nvim'             ,
-    event="BufReadPost",
-    config = function() require 'my_plugins.lspkind-nvim' end,}
+--use {'onsails/lspkind-nvim'             ,
+--  event="BufReadPost",
+--  config = function() require 'my_plugins.lspkind-nvim' end,}
   use {'neovim/nvim-lspconfig' ,
     after = 'cmp-nvim-lsp',
     config = function() require 'my_plugins.lspconfig' end,}
