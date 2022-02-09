@@ -14,7 +14,6 @@ augroup myvimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
 				\nested so $MYVIMRC | lua require'lualine'.setup()
-				"\nested so $MYVIMRC so $MYGVIMRC | endif
     autocmd BufWritePost plugins.lua PackerCompile
 augroup END
 
@@ -28,7 +27,8 @@ augroup win_config
 	autocmd VimLeave	* mks! ~/.vim/session/$DATE.vim
     "Å´Ç±ÇÍÇ»ÇÒÇ‚Ç¡ÇØÅH
 	autocmd BufWritePre * :%s/\s\+$//ge
-	autocmd BufWritePre * :%s/\n\{4,}/\r\r\r/ge
+	autocmd BufWritePre * :%s/\r//ge
+	autocmd BufWritePre * :%s/\n\{4,}/\n\n\n/ge
 	autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##ge
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
@@ -47,23 +47,12 @@ augroup gitspellcheck
     autocmd FileType gitcommit setlocal spell
 augroup end
 
-"augroup lua_map
-"	autocmd!
-"    autocmd FileType lua <buffer> inoremap 00 --
-"augroup end
-
-
 augroup ErrorFormat
 	autocmd!
     autocmd BufNewFile,BufRead *.py
         \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+        \ foldmethod=indent
 augroup END
-    "autocmd BufNewFile,BufRead *.seq, *.s
-    "    \ set errorformat = %W%>Warning:\ %f\ (%l):%m,%E%>Error:\ %f\ (%l):%m
-        "\ set errorformat = %W%>Warning:\ %f\ (%l):%m,%E%>Error:\ %f\ (%l):%m
-        "\ set errorformat = %WWarning: %f (%l):%m,%EError: %f (%l):%m
-        "\ set errorformat = %WWarning: %f (%l):%m,%EError: %f (%l):%m %C%C%p
-""        "\ set errorformat = %WWarning: \%f\ (%l):%r,%C,%s,%C,%p,%Z,%EError: \%f\ (%l):%r,%C,%s,%C,%p,%Z
 
 augroup officelocal
 	autocmd!

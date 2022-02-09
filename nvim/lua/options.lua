@@ -17,6 +17,7 @@ opt.cursorline     = true -- highlight the current line
 opt.encoding       = 'UTF-8'
 opt.makeencoding   = 'cp932'
 opt.expandtab      = true                -- Use spaces instead of tabs
+opt.fileformats    = 'dos,unix,mac'
 opt.fileencodings  = {'cp932','UTF-8'} -- the encoding written to a file
 opt.ignorecase     = true               -- Ignore case
 opt.inccommand     = 'split'
