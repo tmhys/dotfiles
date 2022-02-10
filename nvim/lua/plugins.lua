@@ -62,12 +62,26 @@ return require("packer").startup({
 			end,
 		})
 		use({
-			"kdheepak/tabline.nvim",
+			"alvarosevilla95/luatab.nvim",
 			config = function()
-				require("my_plugins.tabline")
+				require("my_plugins.luatab")
 			end,
-			requires = { "hoob3rt/lualine.nvim", "kyazdani42/nvim-web-devicons" },
+			requires = { "kyazdani42/nvim-web-devicons" },
 		})
+		use({
+			"SmiteshP/nvim-gps",
+			config = function()
+				require("my_plugins.gps")
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
+		--use({
+		--	"kdheepak/tabline.nvim",
+		--	config = function()
+		--		require("my_plugins.tabline")
+		--	end,
+		--	requires = { "hoob3rt/lualine.nvim", "kyazdani42/nvim-web-devicons" },
+		--})
 		use({
 			"kevinhwang91/nvim-hlslens",
 			event = "BufReadPost",
@@ -162,13 +176,20 @@ return require("packer").startup({
 			end,
 		})
 		use({
-			"jsfaint/gen_tags.vim",
+			"c0r73x/neotags.nvim",
 			event = "BufReadPost",
-			--cond = function() return vim.fn.executable('ctags') == 1 end,
 			config = function()
-				require("my_plugins.gen_tags")
+				require("my_plugins.neotags")
 			end,
-		}) -- tagまだいまいちイケてない
+		})
+		--use({
+		--	"jsfaint/gen_tags.vim",
+		--	event = "BufReadPost",
+		--	--cond = function() return vim.fn.executable('ctags') == 1 end,
+		--	config = function()
+		--		require("my_plugins.gen_tags")
+		--	end,
+		--}) -- tagまだいまいちイケてない
 		use({
 			"majutsushi/tagbar",
 			event = "BufReadPost",
