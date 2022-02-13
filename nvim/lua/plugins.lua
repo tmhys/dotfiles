@@ -175,12 +175,16 @@ return require("packer").startup({
 				require("my_plugins.fugitive")
 			end,
 		})
+		--use({
+		--	"c0r73x/neotags.nvim",
+		--	event = "BufReadPost",
+		--	config = function()
+		--		require("my_plugins.neotags")
+		--	end,
+		--})
 		use({
-			"c0r73x/neotags.nvim",
+			"ludovicchabant/vim-gutentags",
 			event = "BufReadPost",
-			config = function()
-				require("my_plugins.neotags")
-			end,
 		})
 		--use({
 		--	"jsfaint/gen_tags.vim",

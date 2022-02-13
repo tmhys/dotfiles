@@ -38,8 +38,10 @@ windowsユーザーです
 - nvim
     - [ ] tabキーの挙動がまだよろしくない、普通にタブを入力したいのに補完される
     - [ ] ftdetectの仕様を理解したい
-    - [ ] watchdocsの乗り換え
     - [ ] PDF2csvついでにspledsheetに展開
+    - [ ] ctagの設定
+    - [ ] null-lsの設定、改行コードeol
+    - [x] watchdocsの乗り換え
     - [x] nvim treeのキーマップ覚える
     - [x] open_floatがよくわからん　なぜcursorholdで起動しない？
     - [x] keymapもautocmdもlua化したいけど

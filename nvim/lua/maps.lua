@@ -1,87 +1,87 @@
-vim.cmd[[runtime plugin/astronauta.vim]]
+vim.cmd([[runtime plugin/astronauta.vim]])
 local nnoremap = vim.keymap.nnoremap
 local inoremap = vim.keymap.inoremap
 local cnoremap = vim.keymap.cnoremap
 local vnoremap = vim.keymap.vnoremap
 local onoremap = vim.keymap.onoremap
 
-nnoremap{'Q','<Nop>'}
-nnoremap{'gf','gF'}
-nnoremap{'za','za'}
-vnoremap{'za','zf'}
-nnoremap{';',':'}
-vnoremap{';',':'}
-inoremap{'<M-Insert>','<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa'}
+nnoremap({ "Q", "<Nop>" })
+nnoremap({ "gf", "gF" })
+nnoremap({ "za", "za" })
+vnoremap({ "za", "zf" })
+nnoremap({ ";", ":" })
+vnoremap({ ";", ":" })
+inoremap({ "<M-Insert>", "<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa" })
 --inoremap{'<silent> <CR>','<C-g>u<CR>'}
-vim.api.nvim_set_keymap('i', '<CR>', '<C-g>u<CR>', { noremap = true, silent = true })
-nnoremap{'g<CR>','g;'}
-nnoremap{'x','"_x'}
-nnoremap{'s','"_s'}
-nnoremap{'S','"_S'}
+vim.api.nvim_set_keymap("i", "<CR>", "<C-g>u<CR>", { noremap = true, silent = true })
+nnoremap({ "g<CR>", "g;" })
+nnoremap({ "x", '"_x' })
+nnoremap({ "s", '"_s' })
+nnoremap({ "S", '"_S' })
 --nnoremap{'<silent> <ESC><ESC>',':<C-u>nohlsearch<CR>'}
-vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':<C-u>nohlsearch<CR>', { noremap = true, silent = true })
-inoremap{'jj','<Esc>'}
-inoremap{'jk','<Esc>'}
-inoremap{'qq','<Esc>'}
-inoremap{'hhh','<Esc>'}
-inoremap{'lll','<Esc>'}
-inoremap{'kkk','<Esc>'}
-nnoremap{'<C-j>','<C-w>j'}
-nnoremap{'<C-k>','<C-w>k'}
-nnoremap{'<C-l>','<C-w>l'}
-nnoremap{'<C-h>','<C-w>h'}
-nnoremap{'<S-h>','^'}
-nnoremap{'<S-l>','$'}
-vnoremap{'<S-l>','$  '}
-vnoremap{'v','$h'}
-inoremap{'<c-j>','<down>'}
-inoremap{'<c-k>','<up>'}
-inoremap{'<c-h>','<left>'}
-inoremap{'<c-l>','<right>'}
-nnoremap{'<TAB>','%'}
-vnoremap{'<TAB>','%'}
-nnoremap{'<C-Up>','"zdd<Up>"zP'}
-nnoremap{'<C-Down>','"zdd"zp'}
-vnoremap{'<C-Up>','"zx<Up>"zP`[V`]'}
-vnoremap{'<C-Down>','"zx"zp`[V`]'}
-nnoremap{'<Space>tn',':<C-u>tabnew<CR>'}
-nnoremap{'<C-Tab>','gt'}
-nnoremap{'<S-C-Tab>','gT'}
-nnoremap{'gs',':<C-u>vertical wincmd f<CR>'}
-nnoremap{'<Space>p','"0p'}
+vim.api.nvim_set_keymap("n", "<ESC><ESC>", ":<C-u>nohlsearch<CR>", { noremap = true, silent = true })
+inoremap({ "jj", "<Esc>" })
+inoremap({ "jk", "<Esc>" })
+inoremap({ "qq", "<Esc>" })
+inoremap({ "hhh", "<Esc>" })
+inoremap({ "lll", "<Esc>" })
+inoremap({ "kkk", "<Esc>" })
+nnoremap({ "<C-j>", "<C-w>j" })
+nnoremap({ "<C-k>", "<C-w>k" })
+nnoremap({ "<C-l>", "<C-w>l" })
+nnoremap({ "<C-h>", "<C-w>h" })
+nnoremap({ "<S-h>", "^" })
+nnoremap({ "<S-l>", "$" })
+vnoremap({ "<S-l>", "$  " })
+vnoremap({ "v", "$h" })
+inoremap({ "<c-j>", "<down>" })
+inoremap({ "<c-k>", "<up>" })
+inoremap({ "<c-h>", "<left>" })
+inoremap({ "<c-l>", "<right>" })
+nnoremap({ "<TAB>", "%" })
+vnoremap({ "<TAB>", "%" })
+nnoremap({ "<C-Up>", '"zdd<Up>"zP' })
+nnoremap({ "<C-Down>", '"zdd"zp' })
+vnoremap({ "<C-Up>", '"zx<Up>"zP`[V`]' })
+vnoremap({ "<C-Down>", '"zx"zp`[V`]' })
+nnoremap({ "<Space>tn", ":<C-u>tabnew<CR>" })
+nnoremap({ "<C-Tab>", "gt" })
+nnoremap({ "<S-C-Tab>", "gT" })
+nnoremap({ "gs", ":<C-u>vertical wincmd f<CR>" })
+nnoremap({ "<Space>p", '"0p' })
 --nnoremap{'<silent> <Space><Space>', '*N'}
-vim.api.nvim_set_keymap('n', '<space><space>', '*N', { noremap = true, silent = true })
-nnoremap{'#','<Space><Space>:%s/<C-r>///g<Left><Left>'}
-nnoremap{'<M-3>',':%s/<C-r>"///g<Left><Left>'}
-vnoremap{'#',':s///gc<Left><Left><Left><Left><C-r><C-w><Right>'}
-nnoremap{'<Space>o',":<C-u>call append(expand('.'), '')<Cr>j"}
+vim.api.nvim_set_keymap("n", "<space><space>", "*N", { noremap = true, silent = true })
+nnoremap({ "#", "<Space><Space>:%s/<C-r>///g<Left><Left>" })
+nnoremap({ "<M-3>", ':%s/<C-r>"///g<Left><Left>' })
+vnoremap({ "#", ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>" })
+nnoremap({ "<Space>o", ":<C-u>call append(expand('.'), '')<Cr>j" })
 --cnoremap{'<expr>',"j getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'"}
-cnoremap{'<C-h>','<Home>'}
-cnoremap{'<C-l>','<Del>'}
-cnoremap{'<C-l>','<End>'}
-cnoremap{'<C-j>','<Right>'}
-cnoremap{'<C-k>','<Down>'}
-cnoremap{'<C-b>','<S-Left>'}
-cnoremap{'<C-b>','<S-Right>'}
+cnoremap({ "<C-h>", "<Home>" })
+cnoremap({ "<C-l>", "<Del>" })
+cnoremap({ "<C-l>", "<End>" })
+cnoremap({ "<C-j>", "<Right>" })
+cnoremap({ "<C-k>", "<Down>" })
+cnoremap({ "<C-b>", "<S-Left>" })
+cnoremap({ "<C-b>", "<S-Right>" })
 --cnoremap{'<C-o>','<C-\>e(getcmdtype() == '/' <Bar><Bar> getcmdtype() == '?') ? '\<' . getcmdline() . '\>' : getcmdline()<CR>'}
-nnoremap{'<M-j>',']c'}
-nnoremap{'<M-k>','[c'}
-nnoremap{'<M-h>','<C-w>hdo'}
-nnoremap{'<M-l>','<C-w>hdp'}
-nnoremap{'<M-j>',':cn<CR>'}
-nnoremap{'<M-k>',':cp<CR>'}
-nnoremap{'<C-g>',':vim /<C-r><C-w>/jg **'}
-nnoremap{'<M-g>',':vim //jg **<Left><Left><Left><Left><Left><Left>'}
-onoremap{'8','i('}
-onoremap{'2','i"'}
-onoremap{'7',"i'"}
-onoremap{'@',"i`"}
-onoremap{'[','i['}
-onoremap{'{','i{'}
-nnoremap{'cp','ciw<C-r>0<ESC>'}
-nnoremap{'<F3>',':<C-u>setlocal relativenumber!<CR>'}
-nnoremap{'<F4>',':<C-u>set scrollbind!<CR>'}
-nnoremap{'<F12>',':PackerSync<CR>'}
+nnoremap({ "<M-j>", "]c" })
+nnoremap({ "<M-k>", "[c" })
+nnoremap({ "<M-h>", "<C-w>hdo" })
+nnoremap({ "<M-l>", "<C-w>hdp" })
+nnoremap({ "<M-j>", ":cn<CR>" })
+nnoremap({ "<M-k>", ":cp<CR>" })
+nnoremap({ "<C-g>", ":vim /<C-r><C-w>/jg **" })
+nnoremap({ "<M-g>", ":vim //jg **<Left><Left><Left><Left><Left><Left>" })
+onoremap({ "8", "i(" })
+onoremap({ "2", 'i"' })
+onoremap({ "7", "i'" })
+onoremap({ "@", "i`" })
+onoremap({ "[", "i[" })
+onoremap({ "{", "i{" })
+nnoremap({ "cp", "ciw<C-r>0<ESC>" })
+nnoremap({ "<F3>", ":<C-u>setlocal relativenumber!<CR>" })
+nnoremap({ "<F4>", ":<C-u>set scrollbind!<CR>" })
+nnoremap({ "<F12>", ":PackerSync<CR>" })
 --tnoremap{'<silent>','<ESC> <C-\><C-n>'}
 vim.cmd([[
 let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
