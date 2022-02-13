@@ -25,12 +25,12 @@ require'marks'.setup {
   -- default virt_text is "".
   bookmark_0 = {
     sign = "⚑",
-    virt_text = "hello world"
+    virt_text = "bookmark by marks"
   },
   mappings = {
-    set_next = "m,",
-    next = "m]",
-    preview = "m;",
+    set_next = "mm",
+    next = "mn",
+    preview = "mp",
     set_bookmark0 = "m0",
     prev = false -- pass false to disable only this default mapping
   }

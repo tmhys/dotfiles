@@ -84,10 +84,11 @@ nnoremap({ "<F4>", ":<C-u>set scrollbind!<CR>" })
 nnoremap({ "<F12>", ":PackerSync<CR>" })
 --tnoremap{'<silent>','<ESC> <C-\><C-n>'}
 vim.cmd([[
-let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
-let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
-command! Evimrc :e $MYVIMRC
-command! Egvimrc :e $MYGVIMRC
+"なんかコマンドで開くとエラー出るからオフにする
+"let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
+"let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
+"command! Evimrc :e $MYVIMRC
+"command! Egvimrc :e $MYGVIMRC
 
 "{{{Quickfix windowトグル
 function! s:toggle_quickfix_window()

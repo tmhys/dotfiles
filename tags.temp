@@ -1,0 +1,46 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/952bd1e9/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+seq	ctags.d/config.ctags	/^--langdef=seq$/;"	l
+method	ctags.d/config.ctags	/^--regex-seq=\/^([A-Za-z0-9_]{1,16})[ \\t]*\/\\1\/m,method\/$/;"	k	langdef:seq
+toml	ctags.d/config.ctags	/^--langdef=toml$/;"	l
+plugin	ctags.d/config.ctags	/^--regex-seq=\/repo='.*'\/\\1\/p,plugin\/$/;"	k	langdef:toml
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():��ミングチャートを書きたいユニットの名前をここに書く。$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():���に書く。$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():�こに書く。$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():$/;"	f
+modify_content	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def modify_content(content):�名前をここに書く。$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():$/;"	f
+modify_content	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def modify_content(content):$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():$/;"	f
+modify_content	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def modify_content(content):$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
+path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def pa

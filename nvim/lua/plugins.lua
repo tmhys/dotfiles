@@ -49,7 +49,7 @@ return require("packer").startup({
 		use({ "mhinz/vim-signify", event = "BufReadPost" })
 		use({
 			"chentau/marks.nvim",
-			event = "BufReadPost",
+			--event = "BufReadPost",
 			config = function()
 				require("my_plugins.marks")
 			end,
@@ -175,25 +175,10 @@ return require("packer").startup({
 				require("my_plugins.fugitive")
 			end,
 		})
-		--use({
-		--	"c0r73x/neotags.nvim",
-		--	event = "BufReadPost",
-		--	config = function()
-		--		require("my_plugins.neotags")
-		--	end,
-		--})
 		use({
 			"ludovicchabant/vim-gutentags",
 			event = "BufReadPost",
 		})
-		--use({
-		--	"jsfaint/gen_tags.vim",
-		--	event = "BufReadPost",
-		--	--cond = function() return vim.fn.executable('ctags') == 1 end,
-		--	config = function()
-		--		require("my_plugins.gen_tags")
-		--	end,
-		--}) -- tag‚Ü‚¾‚¢‚Ü‚¢‚¿ƒCƒP‚Ä‚È‚¢
 		use({
 			"majutsushi/tagbar",
 			event = "BufReadPost",
@@ -235,7 +220,11 @@ return require("packer").startup({
 		--}}}
 
 		-- treesitter{{{
-		use({ "nvim-treesitter/nvim-treesitter", branch = "0.5-compat", run = ":TSUpdate" })
+		use({ "nvim-treesitter/nvim-treesitter", branch = "0.5-compat", run = ":TSUpdate" ,
+			config = function()
+				require("my_plugins.treesitter")
+			end,
+        })
 		use({
 			"p00f/nvim-ts-rainbow",
 			config = function()
