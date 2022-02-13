@@ -11,7 +11,7 @@ seq	ctags.d/config.ctags	/^--langdef=seq$/;"	l
 method	ctags.d/config.ctags	/^--regex-seq=\/^([A-Za-z0-9_]{1,16})[ \\t]*\/\\1\/m,method\/$/;"	k	langdef:seq
 toml	ctags.d/config.ctags	/^--langdef=toml$/;"	l
 plugin	ctags.d/config.ctags	/^--regex-seq=\/repo='.*'\/\\1\/p,plugin\/$/;"	k	langdef:toml
-main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():��ミングチャートを書きたいユニットの名前をここに書く。$/;"	f
+main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():�こに書く。$/;"	f
 main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
 main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
 main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
@@ -43,4 +43,5 @@ path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def pat
 modify_content	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def modify_content(content):$/;"	f
 main_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def main_unit():$/;"	f
 path_seq	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_seq():$/;"	f
-path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def pa
+path_unit	nvim/.undo/D%%Desktop%Sysmex%OKAJIMA_SCRIPT%for_dev%input.py	/^def path_unit():$/;"	f
+modify_content	nvim/.undo/D%%Desktop%Sysmex%OKA

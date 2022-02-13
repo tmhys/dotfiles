@@ -75,13 +75,6 @@ return require("packer").startup({
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 		})
-		--use({
-		--	"kdheepak/tabline.nvim",
-		--	config = function()
-		--		require("my_plugins.tabline")
-		--	end,
-		--	requires = { "hoob3rt/lualine.nvim", "kyazdani42/nvim-web-devicons" },
-		--})
 		use({
 			"kevinhwang91/nvim-hlslens",
 			event = "BufReadPost",
@@ -296,6 +289,13 @@ return require("packer").startup({
 		--}}}
 
 		-- completion{{{
+            --cmp‚Ìrequires‚Å‹LÚ‚µ‚Ä‚¢‚é‚ªŒÂ•Ê‚Åİ’è•K—v
+		use({
+			"windwp/nvim-autopairs",
+			config = function()
+				require("my_plugins.nvim-autopairs")
+			end,
+		})
 		use({
 			"hrsh7th/nvim-cmp",
 			event = "InsertEnter",
