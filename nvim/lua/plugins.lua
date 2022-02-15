@@ -15,6 +15,12 @@ return require("packer").startup({
 			end,
 		}) -- nvim CursorHold bug fix
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
+		--use({
+		--	"henriquehbr/nvim-startup.lua",
+		--	config = function()
+		--		require("my_plugins.nvim-startup")
+		--	end,
+		--})
 		use({ "vim-jp/vimdoc-ja", event = "BufReadPost" })
 		--}}}
 		-- colorschemes{{{
@@ -213,11 +219,14 @@ return require("packer").startup({
 		--}}}
 
 		-- treesitter{{{
-		use({ "nvim-treesitter/nvim-treesitter", branch = "0.5-compat", run = ":TSUpdate" ,
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			branch = "0.5-compat",
+			run = ":TSUpdate",
 			config = function()
 				require("my_plugins.treesitter")
 			end,
-        })
+		})
 		use({
 			"p00f/nvim-ts-rainbow",
 			config = function()
@@ -289,7 +298,7 @@ return require("packer").startup({
 		--}}}
 
 		-- completion{{{
-            --cmpのrequiresで記載しているが個別で設定必要
+		--cmpのrequiresで記載しているが個別で設定必要
 		use({
 			"windwp/nvim-autopairs",
 			config = function()

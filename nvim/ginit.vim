@@ -1,4 +1,4 @@
-Guifont! PlemolJP Console NF:h11
+Guifont! PlemolJP Console NF:h12
 GuiPopupmenu 0
 GuiTabline 0
 call GuiClipboard()
