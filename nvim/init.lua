@@ -1,5 +1,3 @@
---luaでformatキーマップが有効にならない
-
 require('impatient')
 require("options")
 require("maps")

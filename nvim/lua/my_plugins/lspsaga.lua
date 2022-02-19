@@ -11,6 +11,7 @@ lspsaga.setup { -- defaults ...
   -- code action title icon
   code_action_icon = " ",
   code_action_prompt = {enable = true, sign = true, sign_priority = 40, virtual_text = true},
+--code_action_prompt = {enable = true, sign = true, sign_priority = 40, virtual_text = false},
   finder_definition_icon = "  ",
   finder_reference_icon = "  ",
   max_preview_lines = 10,
@@ -30,13 +31,3 @@ lspsaga.setup { -- defaults ...
   server_filetype_map = {},
   diagnostic_prefix_format = "%d. "
 }
-
---vim.keymap.set("n", "<M-r>", "<cmd>Lspsaga rename<cr>", {silent = true, noremap = true, buffer = 0})
---vim.keymap.set("n", "M", "<cmd>Lspsaga code_action<cr>", {silent = true, noremap = true, buffer = 0})
---vim.keymap.set("x", "M", ":<c-u>Lspsaga range_code_action<cr>", {silent = true, noremap = true, buffer = 0})
---vim.keymap.set("n", "?", "<cmd>Lspsaga hover_doc<cr>", {silent = true, noremap = true, buffer = 0})
-----vim.keymap.set("n", "<M-o>", "<cmd>Lspsaga show_line_diagnostics<cr>", {silent = true, noremap = true, buffer = 0})
---vim.keymap.set("n", "<M-n>", "<cmd>Lspsaga diagnostic_jump_next<cr>", {silent = true, noremap = true, buffer = 0})
---vim.keymap.set("n", "<M-p>", "<cmd>Lspsaga diagnostic_jump_prev<cr>", {silent = true, noremap = true, buffer = 0})
---vim.keymap.set("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
---vim.keymap.set("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")

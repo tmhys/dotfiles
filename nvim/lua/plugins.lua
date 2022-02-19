@@ -121,14 +121,14 @@ return require("packer").startup({
 		})
 		use({
 			"PHSix/faster.nvim",
-			event = "BufReadPost *",
+			event = "BufReadPost",
 			config = function()
 				require("my_plugins.faster")
 			end,
 		}) --acceralate jk
 		use({
 			"unblevable/quick-scope",
-			event = "BufReadPost",
+			--event = "BufReadPost",
 			config = function()
 				require("my_plugins.quick-scope")
 			end,
