@@ -46,7 +46,6 @@ local on_attach = function(client, bufnr)
                     autocmd CursorHold,CursorHoldI * Lspsaga show_line_diagnostics
                augroup END
              ]])
-
 	require("lsp_signature").on_attach()
 end
 
@@ -54,13 +53,18 @@ local server_configs = {
 	["sumneko_lua"] = {
 		settings = {
 			Lua = {
+                --runtime = {
+                ---- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                --version = 'LuaJIT',
+                ---- Setup your lua path
+                --},
 				diagnostics = {
 					-- Get the language server to recognize the 'vim', 'use' global
 					globals = { "vim", "use" },
 				},
 				workspace = {
 					-- Make the server aware of Neovim runtime files
-					-- library = vim.api.nvim_get_runtime_file("", true),
+					--library = vim.api.nvim_get_runtime_file("", true),
 					preloadFileSize = 500,
 				},
 				-- Do not send telemetry data containing a randomized but unique identifier
@@ -97,3 +101,21 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(opts)
 	vim.cmd([[ do User LspAttachBuffers ]])
 end)
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false,
+  severity_sort = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    --source = "always",
+    --header = "",
+    --prefix = "",
+    },
+}
+)

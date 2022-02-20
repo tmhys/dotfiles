@@ -76,6 +76,7 @@ return require("packer").startup({
 		})
 		use({
 			"SmiteshP/nvim-gps",
+			after = "nvim-lspconfig",
 			config = function()
 				require("my_plugins.gps")
 			end,
@@ -121,7 +122,7 @@ return require("packer").startup({
 		})
 		use({
 			"PHSix/faster.nvim",
-			event = "BufReadPost",
+			--event = "BufReadPost",
 			config = function()
 				require("my_plugins.faster")
 			end,
@@ -237,6 +238,13 @@ return require("packer").startup({
 			"nvim-treesitter/playground",
 			config = function()
 				require("my_plugins.playground")
+			end,
+		})
+		use({
+			"theHamsta/nvim-dap-virtual-text",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("my_plugins.nvim-dap-virtual-text")
 			end,
 		})
 		--}}}
