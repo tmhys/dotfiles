@@ -1,5 +1,5 @@
 "echo "keymap is loaded"
-
+nnoremap Q <Nop>
 nnoremap za za
 vnoremap za zf
 "USキーボード
@@ -35,7 +35,6 @@ inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
 "ESCキー連打
 "undiffはkaoriya限定
 if has('kaoriya')
-"nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>:HierClear<CR>
 	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>
 else
 	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
@@ -197,23 +196,7 @@ nnoremap [Mark]n ]`
 nnoremap [Mark]N [`
 " 一覧表示
 nnoremap [Mark]l :<C-u>marks<CR>
-augroup last_status
-	autocmd!
-	" 前回終了位置に移動
-	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
-	" バッファ読み込み時にマークを初期化
-	autocmd BufReadPost * delmarks!
-augroup END
 " }}}
-"augroup run_script
-"	autocmd!
-"	""スクリプト実行{{{ Space-r quickrunで実行可能 不要かも
-"	autocmd FileType python nnoremap <buffer> <C-e> :!python %<CR>
-"	autocmd FileType javascript nnoremap <silent><buffer><C-e> :!electron .<CR>
-"	"autocmd FileType *.rb nnoremap <C-e> :!ruby %<CR>
-"	"autocmd FileType *.pl nnoremap <C-e> :!perl %<CR>
-"	"autocmd FileType *.cs nnoremap <C-e> :!csc /target:winexe %<CR>
-"augroup END
 "}}}
 "grep
 nnoremap <C-g> :vim /<C-r><C-w>/jg **<CR>
@@ -241,17 +224,32 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 tnoremap <silent> <ESC> <C-\><C-n>
 "カレントウィンドウを新規タブで開き直す{{{
-if v:version >= 700
-    nnoremap <M-n> :call OpenNewTab()<CR>
-    function! OpenNewTab()
-        let f = expand("%:p")
-        execute ":q"
-        execute ":tabnew ".f
-    endfunction
-endif
+nnoremap <M-n> :call OpenNewTab()<CR>
+function! OpenNewTab()
+    let f = expand("%:p")
+    execute ":q"
+    execute ":tabnew ".f
+endfunction
 "}}}
+let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
+let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
+let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
 
-augroup highlight_yank
-    autocmd!
-    au TextyankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
-augroup END
+"編集
+command! Evimrc :e $MYVIMRC
+command! Egvimrc :e $MYGVIMRC
+command! Eplug :e $MYPLUGRC
+command! Esysseq :e $MYSEQRC
+
+if has('vim_starting')
+  function s:reload_vimrc() abort
+    execute printf('source %s', $MYVIMRC)
+    if has('gui_running')
+      execute printf('source %s', $MYGVIMRC)
+    endif
+    redraw
+    echo printf('.vimrc/.gvimrc has reloaded (%s).', strftime('%c'))
+  endfunction
+endif
+nmap <silent> <Plug>(my-reload-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
+nmap <Leader><Leader>r <Plug>(my-reload-vimrc)

@@ -31,6 +31,7 @@ augroup win_config
 	autocmd BufWritePre * :%s/\n\{4,}/\n\n\n/ge
 	autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##ge
 	autocmd FileType vim setlocal foldmethod=marker
+	autocmd FileType toml setlocal foldmethod=marker
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 augroup END
 

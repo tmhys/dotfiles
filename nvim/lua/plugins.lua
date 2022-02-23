@@ -108,6 +108,7 @@ return require("packer").startup({
 			end,
 		})
 		use({ "mhinz/vim-sayonara", cmd = "Sayonara" })
+		--use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim" }) --luaファイル中でのvimハイライト うまく動かない
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		use({ "tpope/vim-surround", event = "InsertEnter" })
 		use({ "thinca/vim-qfreplace", cmd = "Qfreplace" })

@@ -1,0 +1,503 @@
+[[plugins]]
+repo = 'wsdjeg/dein-ui.vim'
+on_cmd    = ['DeinUpdate']
+hook_add = '''"{{{
+	nnoremap <F12> DeinUpdate<CR>
+"}}}'''
+
+# colorschemes{{{
+[[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
+on_cmd = ['CtrlPColorscheme']
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
+# filer{{{
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    "curren directoryに合わせて NERDTreeToggle
+    nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+    """bookmark初期表示
+    let g:NERDTreeShowBookmarks=1
+    "lag対策
+    let g:NERDTreeLimitedSyntax = 1
+
+    let NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
+
+    ""NERDTree矢印変更{{{
+    let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+    let g:NERDTreeDirArrows = 1
+    let g:NERDTreeDirArrowExpandable  = '▶'
+    let g:NERDTreeDirArrowCollapsible = '▼'
+    "}}}
+
+    " NERDTreeでルートを変更したらchdirする
+    let g:NERDTreeChDirMode = 2
+
+    " NERDTress File highlighting
+    function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+     exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+     exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+    endfunction
+
+    let g:NERDTreeGitStatusIndicatorMapCustom = {
+        \ "Modified"  : "✹",
+        \ "Staged"    : "✚",
+        \ "Untracked" : "✭",
+        \ "Renamed"   : "➜",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "✖",
+        \ "Dirty"     : "✗",
+        \ "Clean"     : "✔︎",
+        \ "Unknown"   : "?"
+        \ }
+
+    let g:loaded_nerdtree_fs_menu = 1
+
+    augroup NERDTree_CLOSE
+    	autocmd!
+    	"NERDTree以外を閉じたらNERDTreeも閉じる
+    	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    	"autocmd VimLeavePre * NERDTreeClose
+    augroup END
+
+"}}}'''
+
+[[plugins]]
+repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+on_source = ['nerdtree']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+on_source = ['nerdtree']
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    set list listchars=tab:\¦\ "spaceが必要
+	let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar', 'dashboard']
+"}}}'''
+
+# ctags{{{
+[[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+on_cmd = ['TagbarToggle']
+hook_add = '''"{{{
+    "let g:tagbar_ctags_bin = 'C:\ProgramData\chocolatey\bin\ctags.exe'
+    "let g:tagbar_ctags_bin = '$HOME\scoop\shims\ctags.exe'
+    "上記設定をコメントアウトしておかないと何故かうまく行かない
+    "設定ファイルは
+    "$HOME/ctags.d/config.ctags
+    let g:tagbar_visibility_symbols = {
+        \ 'public'    : '+',
+        \ 'protected' : '#',
+        \ 'private'   : '-'
+        \ }
+
+    nmap <F8> :TagbarToggle<CR>
+    let g:tagbar_type_seq = {
+    	\ 'ctagstype' : 'seq',
+    	\ 'kinds' : [
+    		\ 'm:method',
+    		\ 's:svport'
+    	\ ],
+    	\ 'sort' : 0
+    \ }
+    " ctagsの設定ファイルと整合が取れていること
+    let g:tagbar_type_toml = {
+        \ 'ctagstype' : 'toml',
+        \ 'kinds' : [
+            \ 'p:plugin'
+        \ ],
+        \ 'sort' : 0
+    \ }
+"}}}'''
+# }}}
+
+[[plugins]]
+repo = 'blueyed/vim-diminactive'
+on_event = ['BufRead']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'tyru/current-func-info.vim'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'kshenoy/vim-signature'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'mhinz/vim-signify'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'yssl/QFEnter'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    let g:qfenter_keymap = {}
+    let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
+    let g:qfenter_keymap.vopen = ['<Leader><CR>']
+    let g:qfenter_keymap.hopen = ['<Leader><Space>']
+    let g:qfenter_keymap.topen = ['<Leader><Tab>']
+    "let g:qfenter_keymap = {}
+    "let g:qfenter_keymap.vopen = ['<C-v>']
+    "let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+    "let g:qfenter_keymap.topen = ['<C-t>']
+"}}}'''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_cmd = ['Qfreplace']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'kraxli/vim-renamer'
+on_cmd = ['Renamer']
+hook_add = '''"{{{
+"}}}'''
+
+# tester watchdogs{{{
+[[plugins]]
+repo = 'osyo-manga/vim-watchdogs'
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'osyo-manga/shabadou.vim'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'cohama/vim-hier'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'dannyob/quickfixstatus'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
+# search {{{
+[[plugins]]
+repo = 'haya14busa/incsearch-fuzzy.vim'
+on_map = ['<Plug>(incsearch-fuzzy-/)']
+hook_add = '''"{{{
+    map z/ <Plug>(incsearch-fuzzy-/)
+    map z? <Plug>(incsearch-fuzzy-?)
+    map zg/ <Plug>(incsearch-fuzzy-stay)
+"}}}'''
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+on_map = ['<Plug>(incsearch-forward)']
+on_sources = ['incsearch-fuzzy.vim']
+hook_add = '''"{{{
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+"}}}'''
+
+[[plugins]]
+repo = 'markonm/traces.vim'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+
+[[plugins]]
+repo = 'machakann/vim-highlightedyank'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''"{{{
+    " The prefix key.
+    nnoremap    [easymotion]   <Nop>
+    nmap    <M-f> [easymotion]
+
+    " <Leader>f{char} to move to {char}
+    map  [easymotion]f <Plug>(easymotion-bd-f)
+    nmap [easymotion]f <Plug>(easymotion-overwin-f)
+
+    " s{char}{char} to move to {char}{char}
+    nmap [easymotion]s <Plug>(easymotion-overwin-f2)
+    vmap [easymotion]s <Plug>(easymotion-bd-f2)
+
+    " Move to line
+    map  [easymotion]j <Plug>(easymotion-bd-jk)
+    nmap [easymotion]j <Plug>(easymotion-overwin-line)
+
+    " Move to word
+    map  [easymotion]w <Plug>(easymotion-bd-w)
+    nmap [easymotion]w <Plug>(easymotion-overwin-w)
+
+    let g:EasyMotion_do_mapping = 0
+"}}}'''
+
+[[plugins]]
+repo = 'rhysd/accelerated-jK'
+on_map = [
+	'<Plug>(accelerated_jk_gj)',
+	'<Plug>(accelerated_jk_gk)'
+		]
+hook_add = '''"{{{
+    nmap j <Plug>(accelerated_jk_gj)
+    nmap k <Plug>(accelerated_jk_gk)
+"}}}'''
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    let g:clever_f_mark_direct = 1
+"}}}'''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_cmd = ['EasyAlign']
+hook_add = '''"{{{
+    "" Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ea <Plug>(EasyAlign)
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ea <Plug>(EasyAlign)
+
+    let g:easy_align_delimiters = {
+    \ '.': { 'pattern': '\.\{2,}' },
+    \ '"': { 'pattern': '"', 'filter': 'v/^\s*"/', 'ignore_groups': ['String']},
+    \ '%': { 'pattern': '%', 'filter': 'v/^\s*"/', 'ignore_groups': ['String']},
+    \ "'": { 'pattern': "'", 'filter': "v/^\s*'/", 'ignore_groups': ['String']},
+    \ "-": { 'pattern': '-\{2,}'},
+    \ }
+"}}}'''
+
+[[plugins]]
+repo = 'simeji/winresizer'
+on_cmd = ['WinResizerStartResize']
+hook_add = '''"{{{
+    let g:winresizer_start_key = '<M-w>'
+"}}}'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    nnoremap [fugitive]  <Nop>
+    nmap <space>g [fugitive]
+    nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+    nnoremap <silent> [fugitive]a :Gwrite<CR>
+    nnoremap <silent> [fugitive]c :Git commit<CR>
+    nnoremap <silent> [fugitive]p :Git push origin master<CR>
+    nnoremap <silent> [fugitive]b :Gblame<CR>
+    nnoremap <silent> [fugitive]d :Gdiff<CR>
+    nnoremap <silent> [fugitive]m :Gmerge<CR>
+"}}}'''
+
+[[plugins]]
+repo = 'dstein64/vim-startuptime'
+on_cmd = ['StartupTime']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'farmergreg/vim-lastplace'
+on_i = 1
+hook_add = '''"{{{
+"}}}'''
+
+# completion snippet{{{
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_i = 1
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+on_i = 1
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+on_i = 1
+hook_add = '''"{{{
+    let g:auto_ctags_set_tags_option = 1
+    let g:auto_ctags_warn_once = 1
+"}}}'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_i = 1
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
+# fuzzyfinder{{{
+# [[plugins]]
+# repo = 'liuchengxu/vim-clap'										 ", { 'on': [] }
+# [[plugins]]
+# repo = 'tamago324/vim-clap-help' 								 ", { 'on': [] }
+# [[plugins]]
+# repo = 'hokorobi/vim-clap-sessions'							 ", { 'on': [] }
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+# on_event = ['CursorHold']
+on_map = ['<Spaces>f']
+hook_add = '''"{{{
+    " The prefix key.
+    nnoremap    [ctrlp]   <Nop>
+    nmap    <Space>f [ctrlp]
+    "
+    nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurFile<CR>
+    nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
+    nnoremap <silent> [ctrlp]m :<C-u>CtrlPMRUFiles<CR>
+    nnoremap <silent> [ctrlp]v :<C-u>CtrlP $HOME/dotfiles/vimrc<CR>
+    nnoremap <silent> [ctrlp]a :<C-u>CtrlPMixed<CR>
+    nnoremap <silent> [ctrlp]c :<C-u>CtrlPColorscheme<CR>
+    nnoremap <silent> [ctrlp]k :<C-u>CtrlPMark<CR>
+    let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
+    " 遅延再描画
+    let g:ctrlp_lazy_update = 1
+    if v:version  == 802  && has("patch1665")
+    	let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+    endif
+    " CtrlPのウィンドウ最大高さ
+    autocmd VimEnter,VimResized *  let g:ctrlp_match_window = 'max:' . string(min([(&lines/3), 20]) - 1)
+
+    "何故かワークしない
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+      \ }
+    " # lightline.vimで表示しているステータスラインとの衝突を避けるため
+    let g:ctrlp_buffer_func = {
+    	\ 'enter': 'CtrlPEnter',
+    	\ 'exit': 'CtrlPLeave',
+    \ }
+
+    " # ctrlpに入るとき，ステータスラインの表示をoffに
+    function! CtrlPEnter()
+    	set laststatus=0
+    endfunction
+
+    " # ctrlpから出るとき，ステータスラインの表示をonに
+    function! CtrlPLeave()
+    	set laststatus=2
+    endfunction
+"}}}'''
+
+[[plugins]]
+repo = 'mattn/ctrlp-matchfuzzy'
+on_source = ['ctrlp.vim']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'mattn/ctrlp-mark'
+on_source = ['ctrlp.vim']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'hara/ctrlp-colorscheme'
+on_source = ['ctrlp.vim']
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
+[[plugins]]
+repo = 'tyru/restart.vim'
+on_cmd    = ['Restart']
+hook_add = '''"{{{
+    " 終了時に保存するセッションオプションを設定する{{{
+    let g:restart_sessionoptions
+        \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+    "}}}
+    " :Restart 時に変数の定義を行う
+    command! MyRestart Restart --cmd "let g:restarted = 1"
+
+    " この変数を使用して :Restart が行われたかどうかの判定を行う
+    if !exists("g:restarted")
+        let $PATH = $PATH . ";C:/cpp/boost"
+    endif
+
+    nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
+"}}}'''
+
+# specific filetype{{{
+[[plugins]]
+repo = 'RobRoseKnows/lark-vim'
+on_ft = ['lark']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+on_ft = ['toml','lua','vim']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+on_ft = ['toml','lua','vim']
+hook_add = '''"{{{
+"}}}'''
+
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
+on_ft = ['csv']
+hook_add = '''"{{{
+"}}}'''
+# }}}
