@@ -3,6 +3,18 @@ repo = 'vim-jp/vimdoc-ja'
 hook_add = '''"{{{
 "}}}'''
 
+# colorschemes{{{
+[[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
+hook_add = '''"{{{
+	augroup my_colorscheme
+		autocmd!
+		autocmd VimEnter * nested colorscheme ayu
+	augroup END
+"}}}'''
+# }}}
+
+
 # lightline{{{
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -22,19 +34,9 @@ hook_add = '''"{{{
       catch
       endtry
     endfunction
-
     call s:lightline_update()
 
     command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
-
-    augroup LightlineColorscheme
-    	  autocmd!
-    	  "autocmd ColorScheme * call s:lightline_update()
-    	  "autocmd ColorScheme * call lightline#disable()|call lightline#enable()|call s:lightline_update()
-          "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC call s:lightline_update()
-          "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC call lightline#disable()|call lightline#enable()
-    augroup END
-
 
     let g:lightline = {
         \ 'active': {

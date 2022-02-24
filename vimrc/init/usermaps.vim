@@ -242,14 +242,29 @@ command! Eplug :e $MYPLUGRC
 command! Esysseq :e $MYSEQRC
 
 if has('vim_starting')
+  let g:startuptime = reltime()
+  augroup vimrc
+	  autocmd!
+  	  autocmd VimEnter *
+        \ : let g:startuptime = reltime(g:startuptime)
+        \ | redraw
+        \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+  augroup END
+endif
+
+if has('vim_starting')
   function s:reload_vimrc() abort
     execute printf('source %s', $MYVIMRC)
     if has('gui_running')
       execute printf('source %s', $MYGVIMRC)
     endif
     redraw
-    echo printf('.vimrc/.gvimrc has reloaded (%s).', strftime('%c'))
+    echo printf('VIMRC has reloaded (%s).', strftime('%c'))
   endfunction
 endif
 nmap <silent> <Plug>(my-reload-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
-nmap <Leader><Leader>r <Plug>(my-reload-vimrc)
+nmap <Space>R <Plug>(my-reload-vimrc)
+"nmap <Space>R <Plug>(my-reload-vimrc)<Bar>echomsg printf('reloaded in %fms', reltimefloat(g:startuptime) * 1000)<CR>
+
+"nnoremap <Space><C-r>
+"      \ <Cmd>source $MYVIMRC<Bar>nohlsearch<Bar>echomsg 'reloaded!'<CR>

@@ -1,17 +1,10 @@
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 on_cmd    = ['DeinUpdate']
+on_source = ['ctrlp.vim']
 hook_add = '''"{{{
 	nnoremap <F12> DeinUpdate<CR>
 "}}}'''
-
-# colorschemes{{{
-[[plugins]]
-repo = 'rafi/awesome-vim-colorschemes'
-on_cmd = ['CtrlPColorscheme']
-hook_add = '''"{{{
-"}}}'''
-# }}}
 
 # filer{{{
 [[plugins]]
@@ -180,36 +173,115 @@ on_cmd = ['Renamer']
 hook_add = '''"{{{
 "}}}'''
 
-# tester watchdogs{{{
 [[plugins]]
-repo = 'osyo-manga/vim-watchdogs'
+repo = 'skywind3000/asyncrun.vim'
+on_event = ['FocusLost', 'CursorHold']
 hook_add = '''"{{{
+    let g:asyncrun_encs='cp932'
+    "let g:asyncrun_program = get(g:, 'asyncrun_program', {})
+    "let g:asyncrun_program.nice = { opts -> 'nice -5' . opts.cmd }
+    augroup MyGroup
+        autocmd!
+        autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+        autocmd BufNewFile,BufRead *.py noremap <buffer> <Space>r :AsyncRun python  -u %<CR>
+        autocmd BufNewFile,BufRead *.seq,*.s noremap <buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
+        autocmd BufWritePost *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main
+    augroup END
 "}}}'''
 
 [[plugins]]
-repo = 'thinca/vim-quickrun'
-on_event = ['CursorHold']
+repo = 'mh21/errormarker.vim'
+on_source = ['skywind3000/asyncrun.vim']
 hook_add = '''"{{{
+    let g:asyncrun_auto = "make"
+    let g:errormarker_errortext=""
+    let g:errormarker_warningtext=""
 "}}}'''
 
-[[plugins]]
-repo = 'osyo-manga/shabadou.vim'
-on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
-
-[[plugins]]
-repo = 'cohama/vim-hier'
-on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
-
-[[plugins]]
-repo = 'dannyob/quickfixstatus'
-on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
-# }}}
+# # tester watchdogs{{{
+# [[plugins]]
+# repo = 'osyo-manga/vim-watchdogs'
+# on_event = ['FocusLost', 'CursorHold']
+# depends = [
+#   'vim-hier',
+#   'quickfixstatus',
+#   'shabadou.vim',
+#   'vim-quickrun',
+# ]
+# hook_add = '''"{{{
+# 	let g:watchdogs_check_BufWritePost_enables = {
+# 	\   "seq" : 1
+# 	\}
+# 	nnoremap <Space>r :QuickRun<CR>
+#
+# 	nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "<C-c>"
+#
+# 	let g:quickrun_config = {
+# 	\   "_" : {
+# 	\   "outputter/buffer/split" : ":rightbelow 8",
+# 	\   "hook/output_encode/enable" : 1,
+# 	\   "hook/output_encode/encoding" : "sjis",
+# 	\ 	'runner'    : 'vimproc',
+# 	\ 	'runner/vimproc/updatetime' : 40,
+# 	\   "outputter/buffer/close_on_empty" : 1
+# 	\	 },
+# 	\   "seq/watchdogs_checker" : {
+# 	\ 	"hook/close_quickfix/enable_exit" : 1,
+# 	\ 	'hook/back_window/enable_exit':           0,
+# 	\ 	'hook/back_window/priority_exit':         1,
+# 	\   'hook/qfsigns_update/enable_exit':   1,
+# 	\   'hook/qfsigns_update/priority_exit': 3,
+# 	\ 	"hook/qfstatusline_update/enable_exit" : 1,
+# 	\ 	"hook/qfstatusline_update/priority_exit" : 4,
+# 	\ 	"hook/echo/enable" : 1,
+# 	\ 	"hook/echo/output_success": "> Success.",
+# 	\ 	"hook/echo/output_failure": "> Errors Found.",
+# 	\ 	'outputter' : 'error',
+# 	\ 	'outputter/quickfix/open_cmd' : "",
+# 	\ 	'outputter/error/success' : 'quickfix',
+# 	\ 	'outputter/error/error'   : 'quickfix',
+# 	\   "type" : "watchdogs_checker/SeqCnv_V340",
+# 	\	"command" : "SeqCnv_V340",
+# 	\	"cmdopt" : "-l",
+# 	\ 	"exec":"%c 00_Main %o",
+# 	\	"quickfix/errorformat": "%WWarning: %f (%l):%m,%EError: %f (%l):%m",
+# 	\   },
+# 	\}
+#
+# 	augroup my_watchdogs
+# 	  autocmd!
+# 	  autocmd InsertLeave,BufWritePost,TextChanged *.seq,*.s WatchdogsRun
+# 	  autocmd BufRead,BufNewFile *.seq,*.s WatchdogsRun
+# 	augroup END
+# "}}}'''
+# hook_post_source = '''"{{{
+#   call watchdogs#setup(g:quickrun_config)
+# "}}}'''
+#
+# [[plugins]]
+# repo = 'thinca/vim-quickrun'
+# on_event = ['CursorHold']
+# hook_add = '''"{{{
+# "}}}'''
+#
+# [[plugins]]
+# repo = 'osyo-manga/shabadou.vim'
+# on_event = ['CursorHold']
+# hook_add = '''"{{{
+# "}}}'''
+#
+# [[plugins]]
+# repo = 'cohama/vim-hier'
+# on_event = ['CursorHold']
+# hook_add = '''"{{{
+# "}}}'''
+#
+# [[plugins]]
+# repo = 'dannyob/quickfixstatus'
+# on_event = ['CursorHold']
+# hook_add = '''"{{{
+# "}}}'''
+# # }}}
 
 # search {{{
 [[plugins]]
@@ -253,28 +325,31 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+on_map = ['<Plug>(easymotion-overwin-f2)']
 hook_add = '''"{{{
-    " The prefix key.
-    nnoremap    [easymotion]   <Nop>
-    nmap    <M-f> [easymotion]
-
-    " <Leader>f{char} to move to {char}
-    map  [easymotion]f <Plug>(easymotion-bd-f)
-    nmap [easymotion]f <Plug>(easymotion-overwin-f)
-
-    " s{char}{char} to move to {char}{char}
-    nmap [easymotion]s <Plug>(easymotion-overwin-f2)
-    vmap [easymotion]s <Plug>(easymotion-bd-f2)
-
-    " Move to line
-    map  [easymotion]j <Plug>(easymotion-bd-jk)
-    nmap [easymotion]j <Plug>(easymotion-overwin-line)
-
-    " Move to word
-    map  [easymotion]w <Plug>(easymotion-bd-w)
-    nmap [easymotion]w <Plug>(easymotion-overwin-w)
-
-    let g:EasyMotion_do_mapping = 0
+    nmap zz <Plug>(easymotion-overwin-f2)
+    vmap zz <Plug>(easymotion-bd-f2)
+     """ The prefix key.
+     " nnoremap    [easymotion]   <Nop>
+     " nmap    <M-f> [easymotion]
+     "
+     " " <Leader>f{char} to move to {char}
+     " map  [easymotion]f <Plug>(easymotion-bd-f)
+     " nmap [easymotion]f <Plug>(easymotion-overwin-f)
+     "
+     " " s{char}{char} to move to {char}{char}
+     " nmap [easymotion]s <Plug>(easymotion-overwin-f2)
+     " vmap [easymotion]s <Plug>(easymotion-bd-f2)
+     "
+     " " Move to line
+     " map  [easymotion]j <Plug>(easymotion-bd-jk)
+     " nmap [easymotion]j <Plug>(easymotion-overwin-line)
+     "
+     " " Move to word
+     " map  [easymotion]w <Plug>(easymotion-bd-w)
+     " nmap [easymotion]w <Plug>(easymotion-overwin-w)
+     "
+     " let g:EasyMotion_do_mapping = 0
 "}}}'''
 
 [[plugins]]
@@ -293,6 +368,22 @@ repo = 'rhysd/clever-f.vim'
 on_event = ['CursorHold']
 hook_add = '''"{{{
     let g:clever_f_mark_direct = 1
+"}}}'''
+
+[[plugins]]
+repo = 'unblevable/quick-scope'
+on_source = ['ctrlp.vim']
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    nmap <space>qs <plug>(QuickScopeToggle)
+    xmap <space>qs <plug>(QuickScopeToggle)
+    let g:qs_max_chars = 100
+    let g:qs_lazy_highlight = 0
+    let g:qs_delay = 100
+    augroup vimrc_quick_scope
+      autocmd!
+      autocmd FileType nvimtree,nerdtree,buffergator,tagbar,qf,ControlP let b:qs_local_disable=1
+    augroup END
 "}}}'''
 
 [[plugins]]
@@ -385,8 +476,8 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
-# on_event = ['CursorHold']
-on_map = ['<Spaces>f']
+on_event = ['CursorHold']
+#on_map = ['<Spaces>f']
 hook_add = '''"{{{
     " The prefix key.
     nnoremap    [ctrlp]   <Nop>
@@ -414,6 +505,8 @@ hook_add = '''"{{{
       \ 'file': '\v\.(exe|so|dll)$',
       \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
       \ }
+
+  	let g:ctrlp_reuse_window = 'quickfix'
     " # lightline.vimで表示しているステータスラインとの衝突を避けるため
     let g:ctrlp_buffer_func = {
     	\ 'enter': 'CtrlPEnter',
@@ -423,11 +516,13 @@ hook_add = '''"{{{
     " # ctrlpに入るとき，ステータスラインの表示をoffに
     function! CtrlPEnter()
     	set laststatus=0
+		let b:qs_local_disable=1
     endfunction
 
     " # ctrlpから出るとき，ステータスラインの表示をonに
     function! CtrlPLeave()
     	set laststatus=2
+		let b:qs_local_disable=0
     endfunction
 "}}}'''
 

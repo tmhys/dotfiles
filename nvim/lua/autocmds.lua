@@ -59,4 +59,13 @@ augroup officelocal
 	autocmd!
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
 augroup END
+
+" echo message vim start up time
+if has('vim_starting')
+  let g:startuptime = reltime()
+  autocmd user VimEnter *
+        \ : let g:startuptime = reltime(g:startuptime)
+        \ | redraw
+        \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+endif
 ]])

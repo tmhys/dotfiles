@@ -26,10 +26,10 @@ augroup win_config
 	"backupファイルに日付
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 augroup END
-augroup myvimrc
+augroup reload_vimrc
     autocmd!
     "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
-				"\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
+	"			\nested so $MYVIMRC | if has('gui_running') || has('nvim') | so $MYGVIMRC | endif
     "autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
 	"			\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
 augroup END
