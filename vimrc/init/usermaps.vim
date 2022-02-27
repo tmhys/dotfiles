@@ -1,3 +1,5 @@
+"mapclear | mapclear <buffer> | mapclear! | mapclear! <buffer>
+"これでマップリセットできるけどS-Insertまでクリアされるぞ！
 "echo "keymap is loaded"
 nnoremap Q <Nop>
 nnoremap za za
@@ -264,6 +266,7 @@ if has('vim_starting')
 endif
 nmap <silent> <Plug>(my-reload-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
 nmap <Space>R <Plug>(my-reload-vimrc)
+
 "nmap <Space>R <Plug>(my-reload-vimrc)<Bar>echomsg printf('reloaded in %fms', reltimefloat(g:startuptime) * 1000)<CR>
 
 "nnoremap <Space><C-r>

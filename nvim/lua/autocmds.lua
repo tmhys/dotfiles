@@ -14,6 +14,7 @@ augroup myvimrc
     autocmd!
     autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
 				\nested so $MYVIMRC | lua require'lualine'.setup()
+				\|echo printf('VIMRC has reloaded (%s).', strftime('%c'))
     autocmd BufWritePost plugins.lua PackerCompile
 augroup END
 
@@ -63,9 +64,25 @@ augroup END
 " echo message vim start up time
 if has('vim_starting')
   let g:startuptime = reltime()
-  autocmd user VimEnter *
+  augroup vimrc
+	  autocmd!
+  	  autocmd VimEnter *
         \ : let g:startuptime = reltime(g:startuptime)
         \ | redraw
         \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+  augroup END
 endif
+
+if has('vim_starting')
+  function s:reload_vimrc() abort
+    execute printf('source %s', $MYVIMRC)
+    if has('gui_running')
+      execute printf('source %s', $MYGVIMRC)
+    endif
+    redraw
+    echo printf('VIMRC has reloaded (%s).', strftime('%c'))
+  endfunction
+endif
+nmap <silent> <Plug>(my-reload-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
+nmap <Space>R <Plug>(my-reload-vimrc)
 ]])

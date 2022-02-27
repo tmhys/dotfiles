@@ -12,10 +12,15 @@ if &runtimepath !~# '/dein.vim'
 endif
 " }}}
 
+let g:dein#auto_recache = v:true
+let g:dein#lazy_rplugins = v:true
+let g:dein#install_check_diff = v:true
+
 " begin settings {{{
+"if dein#load_state(s:dein_dir)||has('vim_starting')
+"reloadよくわからん
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-
 
   " .toml file
   let s:rc_dir = expand('~/vimfiles')
@@ -26,7 +31,7 @@ if dein#load_state(s:dein_dir)
   let s:toml_lazy = s:rc_dir . '/dein_lazy.toml'
 
   " read toml and cache
-  " �����I�ɂ��̕����v���O�C�����Ƃ�toml�t�@�C�����쐬����ΐݒ�t�@�C������蕪���ł��邩��
+  " 将来的にこの部分プラグインごとにtomlファイルを作成すれば設定ファイルをより分割できるかも
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:toml_lazy, {'lazy': 1})
 

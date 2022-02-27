@@ -7,10 +7,6 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
 hook_add = '''"{{{
-	augroup my_colorscheme
-		autocmd!
-		autocmd VimEnter * nested colorscheme ayu
-	augroup END
 "}}}'''
 # }}}
 
@@ -34,9 +30,15 @@ hook_add = '''"{{{
       catch
       endtry
     endfunction
-    call s:lightline_update()
+
+    "call s:lightline_update()
 
     command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
+
+	augroup LightlineColorscheme
+		  autocmd!
+		  autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
+	augroup END
 
     let g:lightline = {
         \ 'active': {
@@ -251,11 +253,11 @@ repo = 'mattn/vim-lsp-settings'
 hook_add = '''"{{{
 "}}}'''
 
-[[plugins]]
-repo = 'mattn/vim-lsp-icons'
-# on_i = 1
-hook_add = '''"{{{
-"}}}'''
+#[[plugins]]
+#repo = 'mattn/vim-lsp-icons'
+## on_i = 1
+#hook_add = '''"{{{
+#"}}}'''
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'

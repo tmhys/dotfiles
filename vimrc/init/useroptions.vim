@@ -1,20 +1,26 @@
-set nocompatible
-
-let g:loaded_gzip              = 1
-let g:loaded_tar               = 1
-let g:loaded_tarPlugin         = 1
-let g:loaded_zip               = 1
-let g:loaded_zipPlugin         = 1
-let g:loaded_rrhelper          = 1
-let g:loaded_2html_plugin      = 1
-let g:loaded_vimball           = 1
-let g:loaded_vimballPlugin     = 1
-let g:loaded_getscript         = 1
-let g:loaded_getscriptPlugin   = 1
-let g:loaded_netrw             = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
+"適当にオフにしてます、困ったらオンにしてね
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_gzip = 1
+let g:loaded_logiPat = 1
+let g:loaded_matchit = 1
+let g:loaded_matchparen = 1
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
 let g:loaded_netrwFileHandlers = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_rrhelper = 1
+let g:loaded_ruby_provider = 1
+let g:loaded_shada_plugin = 1
+let g:loaded_spellfile_plugin  = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_tutor_mode_plugin = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
 
 let g:did_install_default_menus = 1
 
@@ -36,8 +42,6 @@ set tabstop=4
 set shiftwidth=4
 set number
 set signcolumn=yes
-"dein後に設定する
-"filetype plugin on
 set wildmenu wildmode=full
 set sessionoptions-=blank
 set showmatch
@@ -51,6 +55,7 @@ set smartcase
 set wildignore& wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
 set undofile
 set noswapfile
+set nowrap
 set guioptions&
 set guioptions+=C
 set guioptions-=T
@@ -65,11 +70,15 @@ set guioptions-=e
 set showtabline=2
 set termguicolors
 set background=dark "light dark
-syntax enable
+if has('multi_byte_ime')
+  highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
+  highlight CursorIM guifg=NONE guibg=#ecbcbc
+endif
 if executable('pt')
 	set grepprg=pt\ --nogroup\
 	set grepformat=%f:%l:%c:%m
 endif
+"↓必要です？
 function! s:mkdir(dir)
     if !isdirectory(a:dir)
        " "p" を渡すことでネストしたディレクトリ全てが作成される
@@ -83,7 +92,3 @@ set backupdir=$HOME/.vimbackup
 call s:mkdir(&backupdir)
 set undodir=$HOME/.vimbackup
 call s:mkdir(&undodir)
-if has('multi_byte_ime')
-  highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
-  highlight CursorIM guifg=NONE guibg=#ecbcbc
-endif

@@ -6,6 +6,12 @@ hook_add = '''"{{{
 	nnoremap <F12> DeinUpdate<CR>
 "}}}'''
 
+[[plugins]]
+repo = 'haya14busa/dein-command.vim'
+on_cmd    = ['Dein']
+hook_add = '''"{{{
+"}}}'''
+
 # filer{{{
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -124,7 +130,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'blueyed/vim-diminactive'
-on_event = ['BufRead']
+on_event = ['FocusLost', 'CursorHold','BufAdd']
 hook_add = '''"{{{
 "}}}'''
 
@@ -142,7 +148,8 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
-on_event = ['CursorHold']
+#on_event = ['CursorHold']
+on_event = ['BufReadPost']
 hook_add = '''"{{{
 "}}}'''
 
@@ -382,7 +389,7 @@ hook_add = '''"{{{
     let g:qs_delay = 100
     augroup vimrc_quick_scope
       autocmd!
-      autocmd FileType nvimtree,nerdtree,buffergator,tagbar,qf,ControlP let b:qs_local_disable=1
+      autocmd FileType startuptime,nvimtree,nerdtree,buffergator,tagbar,qf,ControlP let b:qs_local_disable=1
     augroup END
 "}}}'''
 
@@ -579,14 +586,28 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
-on_ft = ['toml','lua','vim']
+on_ft = ['toml','lua']
 hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
-on_ft = ['toml','lua','vim']
+on_ft = ['toml','lua']
 hook_add = '''"{{{
+let g:precious_enable_switchers = {
+	\	"*" : {
+	\		"setfiletype" : 0
+	\	},
+	\	"vim" : {
+	\		"setfiletype" : 1
+	\	},
+	\	"lua" : {
+	\		"setfiletype" : 1
+	\	},
+	\	"toml" : {
+	\		"setfiletype" : 1
+	\	},
+	\}
 "}}}'''
 
 

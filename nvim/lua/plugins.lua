@@ -15,12 +15,6 @@ return require("packer").startup({
 			end,
 		}) -- nvim CursorHold bug fix
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
-		--use({
-		--	"henriquehbr/nvim-startup.lua",
-		--	config = function()
-		--		require("my_plugins.nvim-startup")
-		--	end,
-		--})
 		use({ "vim-jp/vimdoc-ja", event = "BufReadPost" })
 		--}}}
 		-- colorschemes{{{
@@ -102,7 +96,7 @@ return require("packer").startup({
 		-- useful func{{{
 		use({
 			"kana/vim-smartchr",
-			event = "BufReadPost",
+			event = "InsertEnter",
 			config = function()
 				require("my_plugins.vim-smartchr")
 			end,
@@ -112,7 +106,11 @@ return require("packer").startup({
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		use({ "tpope/vim-surround", event = "InsertEnter" })
 		use({ "thinca/vim-qfreplace", cmd = "Qfreplace" })
-		use({ "junegunn/vim-easy-align" })
+		use({ "junegunn/vim-easy-align",cmd = "EasyAlign",
+			config = function()
+				require("my_plugins.vim-easy-align")
+			end,
+        })
 		use({ "simeji/winresizer", cmd = "WinResizerStartResize" })
 		use({
 			"b3nj5m1n/kommentary",
@@ -123,13 +121,14 @@ return require("packer").startup({
 		})
 		use({
 			"PHSix/faster.nvim",
-			--event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.faster")
 			end,
 		}) --acceralate jk
 		use({
 			"unblevable/quick-scope",
+			event = "CursorHold",
 			--event = "BufReadPost",
 			config = function()
 				require("my_plugins.quick-scope")

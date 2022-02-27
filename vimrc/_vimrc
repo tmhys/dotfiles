@@ -1,7 +1,22 @@
-" Last Change: 24-Feb-2022.
-runtime! init/useroptions.vim
-runtime! init/usermaps.vim
-"runtime! init/userplugs.vim
-runtime! init/userdein.vim
-"runtime! init/userjetpack.vim
-runtime! init/userautocmds.vim
+" Last Change: 25-Feb-2022.
+set nocompatible
+set all&
+abclear
+comclear
+autocmd!
+
+source $HOME/vimfiles/init/useroptions.vim
+source $HOME/vimfiles/init/usermaps.vim
+source $HOME/vimfiles/init/userautocmds.vim
+source $HOME/vimfiles/init/userdein.vim
+colorscheme ayu
+
+
+if empty(get(g:, 'colors_name', ''))
+  colorscheme desert
+endif
+
+"最後に設定するらしい
+filetype plugin indent on
+syntax enable
+"echo ('aaaaaa')

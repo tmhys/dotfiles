@@ -6,6 +6,6 @@ let g:qs_lazy_highlight = 0
 let g:qs_delay = 100
 augroup vimrc_quick_scope
   autocmd!
-  autocmd FileType nvimtree,nerdtree,buffergator,tagbar,qf let b:qs_local_disable=1
+  autocmd FileType startuptime,ControlP,nvimtree,nerdtree,buffergator,tagbar,qf let b:qs_local_disable=1
 augroup END
 ]])
