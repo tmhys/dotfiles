@@ -183,20 +183,20 @@ hook_add = '''"{{{
 "}}}'''
 #}}}
 
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-hook_post_update = '''"{{{
-  if has('win32')
-    let cmd = 'tools\\update-dll-mingw'
-  elseif has('win32unix') " for Cygwin
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
-    let cmd = 'gmake'
-  else
-    let cmd = 'make'
-  endif
-  let g:dein#plugin.build = cmd
-"}}}'''
+#[[plugins]]
+#repo = 'Shougo/vimproc.vim'
+#hook_post_update = '''"{{{
+#  if has('win32')
+#    let cmd = 'tools\\update-dll-mingw'
+#  elseif has('win32unix') " for Cygwin
+#    let cmd = 'make -f make_cygwin.mak'
+#  elseif executable('gmake')
+#    let cmd = 'gmake'
+#  else
+#    let cmd = 'make'
+#  endif
+#  let g:dein#plugin.build = cmd
+#"}}}'''
 
 # lsp{{{
 [[plugins]]
@@ -271,6 +271,74 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 hook_add = '''"{{{
 "}}}'''
 # }}}
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+#on_map = ['<Spaces>f']
+hook_add = '''"{{{
+    " The prefix key.
+    nnoremap    [ctrlp]   <Nop>
+    nmap    <Space>f [ctrlp]
+    "
+    nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurFile<CR>
+    nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
+    nnoremap <silent> [ctrlp]m :<C-u>CtrlPMRUFiles<CR>
+    nnoremap <silent> [ctrlp]v :<C-u>CtrlP $HOME/dotfiles/vimrc<CR>
+    nnoremap <silent> [ctrlp]a :<C-u>CtrlPMixed<CR>
+    nnoremap <silent> [ctrlp]c :<C-u>CtrlPColorscheme<CR>
+    nnoremap <silent> [ctrlp]k :<C-u>CtrlPMark<CR>
+    let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
+    " 遅延再描画
+    let g:ctrlp_lazy_update = 1
+    if v:version  == 802  && has("patch1665")
+    	let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+    endif
+    " CtrlPのウィンドウ最大高さ
+    autocmd VimEnter,VimResized *  let g:ctrlp_match_window = 'max:' . string(min([(&lines/3), 20]) - 1)
+
+    "何故かワークしない
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+      \ }
+
+  	let g:ctrlp_reuse_window = 'quickfix'
+    " # lightline.vimで表示しているステータスラインとの衝突を避けるため
+    let g:ctrlp_buffer_func = {
+    	\ 'enter': 'CtrlPEnter',
+    	\ 'exit': 'CtrlPLeave',
+    \ }
+
+    " # ctrlpに入るとき，ステータスラインの表示をoffに
+    function! CtrlPEnter()
+    	set laststatus=0
+		let b:qs_local_disable=1
+    endfunction
+
+    " # ctrlpから出るとき，ステータスラインの表示をonに
+    function! CtrlPLeave()
+    	set laststatus=2
+		let b:qs_local_disable=0
+    endfunction
+"}}}'''
+
+[[plugins]]
+repo = 'mattn/ctrlp-matchfuzzy'
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'mattn/ctrlp-mark'
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
+repo = 'hara/ctrlp-colorscheme'
+hook_add = '''"{{{
+"}}}'''
+# }}}
+
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 # on_source = ['lightline.vim']

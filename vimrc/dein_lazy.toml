@@ -43,15 +43,15 @@ hook_add = '''"{{{
     endfunction
 
     let g:NERDTreeGitStatusIndicatorMapCustom = {
-        \ "Modified"  : "✹",
-        \ "Staged"    : "✚",
-        \ "Untracked" : "✭",
-        \ "Renamed"   : "➜",
+        \ "Modified"  : "✹ ",
+        \ "Staged"    : "✚ ",
+        \ "Untracked" : "✭ ",
+        \ "Renamed"   : "➜ ",
         \ "Unmerged"  : "═",
-        \ "Deleted"   : "✖",
-        \ "Dirty"     : "✗",
-        \ "Clean"     : "✔︎",
-        \ "Unknown"   : "?"
+        \ "Deleted"   : "✖ ",
+        \ "Dirty"     : "✗ ",
+        \ "Clean"     : "✔︎ ",
+        \ "Unknown"   : "? "
         \ }
 
     let g:loaded_nerdtree_fs_menu = 1
@@ -481,75 +481,19 @@ hook_add = '''"{{{
 # [[plugins]]
 # repo = 'hokorobi/vim-clap-sessions'							 ", { 'on': [] }
 
-[[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
-on_event = ['CursorHold']
-#on_map = ['<Spaces>f']
-hook_add = '''"{{{
-    " The prefix key.
-    nnoremap    [ctrlp]   <Nop>
-    nmap    <Space>f [ctrlp]
-    "
-    nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurFile<CR>
-    nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
-    nnoremap <silent> [ctrlp]m :<C-u>CtrlPMRUFiles<CR>
-    nnoremap <silent> [ctrlp]v :<C-u>CtrlP $HOME/dotfiles/vimrc<CR>
-    nnoremap <silent> [ctrlp]a :<C-u>CtrlPMixed<CR>
-    nnoremap <silent> [ctrlp]c :<C-u>CtrlPColorscheme<CR>
-    nnoremap <silent> [ctrlp]k :<C-u>CtrlPMark<CR>
-    let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
-    " 遅延再描画
-    let g:ctrlp_lazy_update = 1
-    if v:version  == 802  && has("patch1665")
-    	let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
-    endif
-    " CtrlPのウィンドウ最大高さ
-    autocmd VimEnter,VimResized *  let g:ctrlp_match_window = 'max:' . string(min([(&lines/3), 20]) - 1)
-
-    "何故かワークしない
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-      \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-      \ }
-
-  	let g:ctrlp_reuse_window = 'quickfix'
-    " # lightline.vimで表示しているステータスラインとの衝突を避けるため
-    let g:ctrlp_buffer_func = {
-    	\ 'enter': 'CtrlPEnter',
-    	\ 'exit': 'CtrlPLeave',
-    \ }
-
-    " # ctrlpに入るとき，ステータスラインの表示をoffに
-    function! CtrlPEnter()
-    	set laststatus=0
-		let b:qs_local_disable=1
-    endfunction
-
-    " # ctrlpから出るとき，ステータスラインの表示をonに
-    function! CtrlPLeave()
-    	set laststatus=2
-		let b:qs_local_disable=0
-    endfunction
-"}}}'''
-
-[[plugins]]
-repo = 'mattn/ctrlp-matchfuzzy'
-on_source = ['ctrlp.vim']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
-on_source = ['ctrlp.vim']
+on_cmd=['CtrlPMark']
 hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
 repo = 'hara/ctrlp-colorscheme'
-on_source = ['ctrlp.vim']
+on_cmd = ['CtrlPColorscheme']
 hook_add = '''"{{{
 "}}}'''
+
 # }}}
 
 [[plugins]]

@@ -1,5 +1,4 @@
 " Last Change: 25-Feb-2022.
-set nocompatible
 set all&
 abclear
 comclear
@@ -9,14 +8,12 @@ source $HOME/vimfiles/init/useroptions.vim
 source $HOME/vimfiles/init/usermaps.vim
 source $HOME/vimfiles/init/userautocmds.vim
 source $HOME/vimfiles/init/userdein.vim
+
 colorscheme ayu
-
-
 if empty(get(g:, 'colors_name', ''))
   colorscheme desert
 endif
 
 "最後に設定するらしい
 filetype plugin indent on
-syntax enable
-"echo ('aaaaaa')
+syntax on

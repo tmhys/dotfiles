@@ -1,18 +1,12 @@
 " Last Change: 23-Feb-2022.
 " Maintainer:  TH
 
-"colorscheme ayu
 set guifont=Cica:h12,Consolas:h12
+set renderoptions=type:directx,renmode:5
 set antialias
 set linespace=1
 if has('kaoriya')
 	set ambiwidth=auto
+else
+	set ambiwidth=double
 endif
-""gvim関連プラグイン設定読み込み{{{
-"let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
-"function! FindPlugin(name) abort
-"  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
-"endfunction
-"command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
-"runtime! _gconfig/*.vim
-""}}}
