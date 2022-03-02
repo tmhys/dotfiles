@@ -253,11 +253,11 @@ repo = 'mattn/vim-lsp-settings'
 hook_add = '''"{{{
 "}}}'''
 
-#[[plugins]]
-#repo = 'mattn/vim-lsp-icons'
-## on_i = 1
-#hook_add = '''"{{{
-#"}}}'''
+[[plugins]]
+repo = 'mattn/vim-lsp-icons'
+# on_i = 1
+hook_add = '''"{{{
+"}}}'''
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'

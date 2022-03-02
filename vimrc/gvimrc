@@ -1,5 +1,4 @@
 " Last Change: 23-Feb-2022.
-" Maintainer:  TH
 
 set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
@@ -10,3 +9,10 @@ if has('kaoriya')
 else
 	set ambiwidth=double
 endif
+
+colorscheme ayu
+if empty(get(g:, 'colors_name', ''))
+  colorscheme desert
+endif
+
+syntax on

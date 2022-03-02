@@ -27,6 +27,12 @@ if dein#load_state(s:dein_dir)
   if !isdirectory(s:rc_dir)
     call mkdir(s:rc_dir, 'p')
   endif
+
+  let s:dein_plug = expand('~/vimfiles/dein_plug')
+  if !isdirectory(s:rc_dir)
+    call mkdir(s:rc_dir, 'p')
+  endif
+
   let s:toml = s:rc_dir . '/dein.toml'
   let s:toml_lazy = s:rc_dir . '/dein_lazy.toml'
 
@@ -34,6 +40,50 @@ if dein#load_state(s:dein_dir)
   " 将来的にこの部分プラグインごとにtomlファイルを作成すれば設定ファイルをより分割できるかも
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:toml_lazy, {'lazy': 1})
+
+  "" プラグインごとにtoml めんどくせ
+  "call dein#load_toml(s:dein_plug.'dein.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'nerdtree.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'indentLine.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'ctags.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-diminactive.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'current-func-info.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-signature.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-signify.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'quickfix.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-renamer.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'asyncrun.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'incsearch.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'trace.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-highlightedyank.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-cursorword.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-easymotion.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'accelerated-jk.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'clever-f.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'quick-scope.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-easy-align.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'winresizer.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-fugitive.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-startuptime.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-lastplace.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-vsnip.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-vsnip.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'auto-pairs.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-surround.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'ctrlp_sub.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'restart.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'lark-vim.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'vim-toml.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'context_filetype.toml', {'lazy': 1})
+  "call dein#load_toml(s:dein_plug.'rainbow_csv.toml', {'lazy': 1})
+
+  "call dein#load_toml(s:dein_plug.'vimdoc-ja.toml', {'lazy': 0})
+  "call dein#load_toml(s:dein_plug.'colorscheme.toml', {'lazy': 0})
+  "call dein#load_toml(s:dein_plug.'lightline.toml', {'lazy': 0})
+  "call dein#load_toml(s:dein_plug.'lsp.toml', {'lazy': 0})
+  "call dein#load_toml(s:dein_plug.'ctrlp.toml', {'lazy': 0})
+  "call dein#load_toml(s:dein_plug.'vim-devicons.toml', {'lazy': 0})
+
 
   " end settings
   call dein#end()
