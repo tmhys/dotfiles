@@ -14,5 +14,3 @@ colorscheme ayu
 if empty(get(g:, 'colors_name', ''))
   colorscheme desert
 endif
-
-syntax on

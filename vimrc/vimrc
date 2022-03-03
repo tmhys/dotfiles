@@ -10,5 +10,12 @@ source $HOME/vimfiles/init/usermaps.vim
 source $HOME/vimfiles/init/userautocmds.vim
 source $HOME/vimfiles/init/userdein.vim
 
+if !has("gui_running")
+	colorscheme ayu
+	if empty(get(g:, 'colors_name', ''))
+	  colorscheme desert
+	endif
+endif
 "最後に設定するらしい
 filetype plugin indent on
+syntax on
