@@ -35,17 +35,16 @@ hook_add = '''"{{{
 
     command! -bar LightlineUpdate    call lightline#init()| call lightline#colorscheme()| call lightline#update()
 
-	augroup LightlineColorscheme
-		  autocmd!
-		  autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
-	augroup END
 
     let g:lightline = {
         \ 'active': {
-    	\   'right': [['lineinfo'],['percent'],[ 'qfstatusline', 'fileformat','fileencoding','filetype']],
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'fugitive','dir', 'filename' ],
-    	\			  ['currenttag']]
+    	\			  ['currenttag']],
+    	\   'right': [['lineinfo'],
+		\			  ['percent'],
+        \             ['qfstatusline', 'fileformat','fileencoding', 'filetype'],
+		\			  ['lsp_errors', 'lsp_warnings', 'lsp_ok']]
         \ },
         \ 'component_function': {
         \   'fugitive': 'LightLineFugitive',
@@ -54,37 +53,29 @@ hook_add = '''"{{{
         \   'modified': 'LightLineModified',
         \   'filename': 'LightLineFilename',
         \   'filetype': 'LightLineFiletype',
+        \   'fileicon': 'LightLineFileicon',
         \   'fileformat': 'LightLineFileformat',
     	\	'currenttag': 'LightLineCurrentTag',
     	\   'percent': 'MyLightLinePercent',
     	\   'lineinfo': 'MyLightLineLineInfo'
         \ },
-    	\ 'component_expand': {'qfstatusline': 'qfstatusline#Update'},
-    	\ 'component_type':   {'qfstatusline': 'error'},
+    	\ 'component_expand': {
+	    \ 'lsp_warnings': 'LightlineLSPWarnings',
+      	\ 'lsp_errors':   'LightlineLSPErrors',
+      	\ 'lsp_ok':       'LightlineLSPOk',
+		\ 'qfstatusline': 'qfstatusline#Update'
+		\ },
+    	\ 'component_type':   {
+		\ 'lsp_warnings': 'warning',
+      	\ 'lsp_errors':   'error',
+      	\ 'lsp_ok':       'middle',
+		\ 'qfstatusline': 'error'
+		\ },
         \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
     	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
         \ }
 
     let g:Qfstatusline#UpdateCmd = function('lightline#update')
-
-
-    ""mode短縮形{{{
-    "let g:lightline = {
-    "      \ 'mode_map': {
-    "        \ 'n' : 'N',
-    "        \ 'i' : 'I',
-    "        \ 'R' : 'R',
-    "        \ 'v' : 'V',
-    "        \ 'V' : 'VL',
-    "        \ "\<C-v>": 'VB',
-    "        \ 'c' : 'C',
-    "        \ 's' : 'S',
-    "        \ 'S' : 'SL',
-    "        \ "\<C-s>": 'SB',
-    "        \ 't': 'T',
-    "        \ },
-    "      \ }
-    ""      }}}
 
     function! LightLineModified()
         if &filetype == "help"
@@ -135,21 +126,46 @@ hook_add = '''"{{{
       return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
     endfunction
 
-    function! LightLineFileformat()
-      return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    function! LightLineFileicon()
+      return winwidth(0) > 70 ? (strlen(&filetype) ?   WebDevIconsGetFileTypeSymbol(): '') : ''
     endfunction
+
+    function! LightLineFileformat()
+      return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol()) : ''
+    endfunction
+
+    "function! LightLineFileformat()
+    "  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+    "endfunction
 
     if !empty(globpath(&rtp, 'autoload/tagbar.vim'))
     	function! LightLineCurrentTag()
     	  return tagbar#currenttag('%s', '')
     	endfunction
     endif
+
     if !empty(globpath(&rtp, 'autoload/vista.vim'))
     	function! LightLineCurrentTag() abort
     	  return get(b:, 'vista_nearest_method_or_function', '')
     	endfunction
     	autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
     endif
+
+	function! LightlineLSPWarnings() abort
+	  let l:counts = lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
+	  return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
+	endfunction
+
+	function! LightlineLSPErrors() abort
+	  let l:counts = lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
+	  return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
+	endfunction
+
+	function! LightlineLSPOk() abort
+	  let l:counts =  lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
+	  let l:total = l:counts.error + l:counts.warning
+	  return l:total == 0 ? 'OK' : ''
+	endfunction
 
     "右上にworking directory
     let g:lightline.tabline = {'right': [['cd']]}
@@ -171,6 +187,12 @@ hook_add = '''"{{{
         return ''
       endif
     endfunction
+
+	augroup MyLightline
+		autocmd!
+		autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
+	  	autocmd User lsp_diagnostics_updated call lightline#update()
+	augroup END
 "}}}'''
 depends  = [
     'delphinus/lightline-delphinus',
@@ -230,21 +252,21 @@ hook_add = '''"{{{
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
     inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-    "let g:lsp_signs_error = {'text': '❌'}
-    let g:lsp_signs_error = {'text': ''}
-    "let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
-    let g:lsp_signs_warning = {'text': '', 'icon': '/path/to/some/icon'}
+    let g:lsp_signs_error = {'text': '❌'}
+    "let g:lsp_signs_error = {'text': ''}
+    let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
+    "let g:lsp_signs_warning = {'text': '', 'icon': '/path/to/some/icon'}
     "let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'}
-    "let g:lsp_signs_hint = {'text': '💡'}
-    let g:lsp_signs_hint = {'text': ''}
-    "let g:lsp_diagnostics_signs_error            = {'text': '❌'}
-    "let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
-    "let g:lsp_diagnostics_signs_information      = {'text': '❓'}
-    "let g:lsp_diagnostics_signs_hint             = {'text': '💡'}
-    let g:lsp_diagnostics_signs_error            = {'text': ''}
-    let g:lsp_diagnostics_signs_warning          = {'text': ''}
-    let g:lsp_diagnostics_signs_information      = {'text': ''}
-    let g:lsp_diagnostics_signs_hint             = {'text': ''}
+    let g:lsp_signs_hint = {'text': '💡'}
+    "let g:lsp_signs_hint = {'text': ''}
+    let g:lsp_diagnostics_signs_error            = {'text': '❌'}
+    let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
+    let g:lsp_diagnostics_signs_information      = {'text': '❓'}
+    let g:lsp_diagnostics_signs_hint             = {'text': '💡'}
+    "let g:lsp_diagnostics_signs_error            = {'text': ''}
+    "let g:lsp_diagnostics_signs_warning          = {'text': ''}
+    "let g:lsp_diagnostics_signs_information      = {'text': ''}
+    "let g:lsp_diagnostics_signs_hint             = {'text': ''}
 "}}}'''
 
 [[plugins]]
@@ -253,11 +275,11 @@ repo = 'mattn/vim-lsp-settings'
 hook_add = '''"{{{
 "}}}'''
 
-[[plugins]]
-repo = 'mattn/vim-lsp-icons'
-# on_i = 1
-hook_add = '''"{{{
-"}}}'''
+#[[plugins]]
+#repo = 'mattn/vim-lsp-icons'
+## on_i = 1
+#hook_add = '''"{{{
+#"}}}'''
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'

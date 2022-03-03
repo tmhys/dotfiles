@@ -423,19 +423,25 @@ hook_add = '''"{{{
     let g:winresizer_start_key = '<M-w>'
 "}}}'''
 
+#[[plugins]]
+#repo = 'lambdalisue/gina.vim'
+#on_event = ['CursorHold']
+#hook_add = '''"{{{
+#"}}}'''
+
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 on_event = ['CursorHold']
 hook_add = '''"{{{
     nnoremap [fugitive]  <Nop>
     nmap <space>g [fugitive]
-    nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
-    nnoremap <silent> [fugitive]a :Gwrite<CR>
+    nnoremap <silent> [fugitive]s :Git status<CR>
+    nnoremap <silent> [fugitive]a :Git add .<CR>
     nnoremap <silent> [fugitive]c :Git commit<CR>
     nnoremap <silent> [fugitive]p :Git push origin master<CR>
-    nnoremap <silent> [fugitive]b :Gblame<CR>
-    nnoremap <silent> [fugitive]d :Gdiff<CR>
-    nnoremap <silent> [fugitive]m :Gmerge<CR>
+    nnoremap <silent> [fugitive]b :Git blame<CR>
+    nnoremap <silent> [fugitive]d :Git diff<CR>
+    nnoremap <silent> [fugitive]m :Git merge<CR>
 "}}}'''
 
 [[plugins]]
