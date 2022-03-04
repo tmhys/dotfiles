@@ -55,6 +55,7 @@ hook_add = '''"{{{
         \   'filetype': 'LightLineFiletype',
         \   'fileicon': 'LightLineFileicon',
         \   'fileformat': 'LightLineFileformat',
+		\	'fileencoding': 'LightlineFileencoding',
     	\	'currenttag': 'LightLineCurrentTag',
     	\   'percent': 'MyLightLinePercent',
     	\   'lineinfo': 'MyLightLineLineInfo'
@@ -90,17 +91,27 @@ hook_add = '''"{{{
     endfunction
 
     function! LightLineDir()
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      else
         return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
                     \ ('' != expand('%:p:h:t') ? expand('%:p:h:t') : '') .
                     \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
     endfunction
 
+	function! LightlineFileencoding()
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      else
+	    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+	endfunction
+
     function! LightLineReadonly()
-        if &filetype == "help"
+	  	if &filetype == "help"
             return ""
         elseif &readonly
             return ""
-        else
+		elseif &ft == 'nerdtree' || &ft == 'tagbar'
             return ""
         endif
     endfunction
@@ -114,7 +125,10 @@ hook_add = '''"{{{
     endfunction
 
     function! LightLineFilename()
-        return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+	    if &ft == 'nerdtree' || &ft == 'tagbar'
+          return ''
+	    else
+          return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
     	        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
             	\  &ft == 'unite' ? unite#get_status_string() :
             	\  &ft == 'vimshell' ? vimshell#get_status_string() :
@@ -123,14 +137,23 @@ hook_add = '''"{{{
     endfunction
 
     function! LightLineFiletype()
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      else
       return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
     endfunction
 
     function! LightLineFileicon()
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      else
       return winwidth(0) > 70 ? (strlen(&filetype) ?   WebDevIconsGetFileTypeSymbol(): '') : ''
     endfunction
 
     function! LightLineFileformat()
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      else
       return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol()) : ''
     endfunction
 
@@ -138,18 +161,19 @@ hook_add = '''"{{{
     "  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
     "endfunction
 
-    if !empty(globpath(&rtp, 'autoload/tagbar.vim'))
-    	function! LightLineCurrentTag()
-    	  return tagbar#currenttag('%s', '')
-    	endfunction
-    endif
+    function! LightLineCurrentTag()
+	  if !empty(globpath(&rtp, 'autoload/tagbar.vim'))
+    	return tagbar#currenttag('%s', '')
+	  else
+	  	return ''
+    endfunction
 
-    if !empty(globpath(&rtp, 'autoload/vista.vim'))
-    	function! LightLineCurrentTag() abort
-    	  return get(b:, 'vista_nearest_method_or_function', '')
-    	endfunction
-    	autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-    endif
+    "if !empty(globpath(&rtp, 'autoload/vista.vim'))
+    "	function! LightLineCurrentTag() abort
+    "	  return get(b:, 'vista_nearest_method_or_function', '')
+    "	endfunction
+    "	autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+    "endif
 
 	function! LightlineLSPWarnings() abort
 	  let l:counts = lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
@@ -173,19 +197,17 @@ hook_add = '''"{{{
 
     "NERDTreeで表示省略
     function! MyLightLinePercent()
-      if &ft !=? 'nerdtree' || &ft !=? 'tagbar'
-        return line('.') * 100 / line('$') . '%'
-      else
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
-      endif
+      else
+        return line('.') * 100 / line('$') . '%'
     endfunction
 
     function! MyLightLineLineInfo()
-      if &ft !=? 'nerdtree' || &ft !=? 'tagbar'
-        return line('.').':'. col('.')
-      else
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
-      endif
+      else
+        return line('.').':'. col('.')
     endfunction
 
 	augroup MyLightline
