@@ -43,7 +43,7 @@ hook_add = '''"{{{
     	\			  ['currenttag']],
     	\   'right': [['lineinfo'],
 		\			  ['qfstatusline', 'fileformat','fileencoding','percent'],
-		\			  ['lsp_errors', 'lsp_warnings', 'lsp_ok']]
+		\			  ['asyncrun_e','asyncrun_s', 'lsp_errors', 'lsp_warnings', 'lsp_ok']]
         \ },
         \ 'component_function': {
         \   'fugitive': 'FugitiveHead',
@@ -59,12 +59,16 @@ hook_add = '''"{{{
     	\   'lineinfo': 'MyLightLineLineInfo'
         \ },
     	\ 'component_expand': {
+	    \ 'asyncrun_e': 'LightLineAsyncrun_e',
+	    \ 'asyncrun_s': 'LightLineAsyncrun_s',
 	    \ 'lsp_warnings': 'LightlineLSPWarnings',
       	\ 'lsp_errors':   'LightlineLSPErrors',
       	\ 'lsp_ok':       'LightlineLSPOk',
 		\ 'qfstatusline': 'qfstatusline#Update'
 		\ },
     	\ 'component_type':   {
+	    \ 'asyncrun_e': 'error',
+	    \ 'asyncrun_s': 'middle',
 		\ 'lsp_warnings': 'warning',
       	\ 'lsp_errors':   'error',
       	\ 'lsp_ok':       'middle',
@@ -110,6 +114,25 @@ hook_add = '''"{{{
       else
         return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
                     \ ('' != expand('%:p:h:t') ? expand('%:p:h:t') : '')
+    endfunction
+
+    "function! LightLineAsyncrun()
+	"  if &ft == 'seq'
+    "    return '%{g:asyncrun_status}'
+    "  else
+    "    return ''
+    "endfunction
+    function! LightLineAsyncrun_e()
+	  if &ft == 'seq'&&g:asyncrun_status=='failure'
+        return '%{g:asyncrun_status}'
+      else
+        return ''
+    endfunction
+    function! LightLineAsyncrun_s()
+	  if &ft == 'seq'&&g:asyncrun_status!='failure'
+        return '%{g:asyncrun_status}'
+      else
+        return ''
     endfunction
 
 	function! LightlineFileencoding()
@@ -187,16 +210,19 @@ hook_add = '''"{{{
     "endif
 
 	function! LightlineLSPWarnings() abort
+	  if &ft != 'seq'
 	  let l:counts = lsp#get_buffer_diagnostics_counts()
 	  return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
 	endfunction
 
 	function! LightlineLSPErrors() abort
+	  if &ft != 'seq'
 	  let l:counts = lsp#get_buffer_diagnostics_counts()
 	  return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
 	endfunction
 
 	function! LightlineLSPOk() abort
+	  if &ft != 'seq'
 	  let l:counts =  lsp#get_buffer_diagnostics_counts()
 	  let l:total = l:counts.error + l:counts.warning
 	  return l:total == 0 ? 'OK' : ''

@@ -26,6 +26,26 @@ augroup win_config
 	"backupファイルに日付
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 augroup END
+
+augroup gitspellcheck
+	autocmd!
+    autocmd FileType gitcommit setlocal spell
+augroup end
+
+augroup ErrorFormat
+	autocmd!
+    autocmd BufNewFile,BufRead *.py
+        \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+        \ foldmethod=indent
+
+    autocmd FileType seq setlocal errorformat=%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m,%C%.%#,%+Z%p^,%-G%.%#
+augroup END
+
+augroup officelocal
+	autocmd!
+    autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+augroup END
+
 "augroup reload_vimrc
 "    autocmd!
 "    "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim

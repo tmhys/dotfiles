@@ -194,7 +194,7 @@ hook_add = '''"{{{
     "let g:asyncrun_program.nice = { opts -> 'nice -5' . opts.cmd }
     augroup MyGroup
         autocmd!
-        autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+        "autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
         autocmd BufNewFile,BufRead *.py noremap <buffer> <Space>r :AsyncRun python  -u %<CR>
         autocmd BufNewFile,BufRead *.seq,*.s noremap <buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
         autocmd BufWritePost *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main
@@ -203,12 +203,15 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'mh21/errormarker.vim'
+on_event = ['FocusLost', 'CursorHold']
 on_source = ['skywind3000/asyncrun.vim']
 hook_add = '''"{{{
+	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:RemoveErrorMarkers<CR>
     let g:asyncrun_auto = "make"
-    let g:errormarker_errortext=""
-    let g:errormarker_warningtext=""
+    let g:errormarker_errortext="❌"
+    let g:errormarker_warningtext="⚠️"
 "}}}'''
+
 
 # # tester watchdogs{{{
 # [[plugins]]
@@ -572,4 +575,10 @@ repo = 'mechatroner/rainbow_csv'
 on_ft = ['csv']
 hook_add = '''"{{{
 "}}}'''
+
+# [[plugins]]
+# repo = '~/seq.vim'
+# on_ft = ['seq']
+# hook_add = '''"{{{
+# "}}}'''
 # }}}
