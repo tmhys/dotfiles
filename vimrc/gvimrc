@@ -10,7 +10,8 @@ else
 	set ambiwidth=double
 endif
 
-colorscheme ayu
+let ayucolor='light'
+colorscheme onedark
 if empty(get(g:, 'colors_name', ''))
   colorscheme desert
 endif

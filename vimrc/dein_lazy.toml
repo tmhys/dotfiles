@@ -432,6 +432,7 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 on_event = ['CursorHold']
+#on_source = ['lightline.vim']
 hook_add = '''"{{{
     nnoremap [fugitive]  <Nop>
     nmap <space>g [fugitive]
