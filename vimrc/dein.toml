@@ -14,7 +14,7 @@ hook_add = '''"{{{
 # lightline{{{
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_add = '''"{{{
+hook_add = '''"
     function! s:lightline_update()
       if !exists('g:loaded_lightline')
     	    return
@@ -152,13 +152,17 @@ hook_add = '''"{{{
         endif
     endfunction
 
-"    function! LightLineFugitive()
-"        if exists("*fugitive#head")
-"            let = fugitive#head()
-"            return strlen(_) ? ''._ : ''
-"        endif
-"        return ''
-"    endfunction
+    "function! LightLineFugitive()
+	"  if &ft == 'nerdtree' || &ft == 'tagbar'
+	"	  return ''
+	"  elseif
+    "    "if exists("*fugitive#head")
+    "    "    let = fugitive#head()
+    "    "    return strlen(_) ? ''._ : ''
+    "    "endif
+    "    return ' %FugitiveHead()'
+    "  endif
+    "endfunction
 
     function! LightLineFilename()
 	    if &ft == 'nerdtree' || &ft == 'tagbar'
@@ -210,22 +214,31 @@ hook_add = '''"{{{
     "endif
 
 	function! LightlineLSPWarnings() abort
-	  if &ft != 'seq'
-	  let l:counts = lsp#get_buffer_diagnostics_counts()
-	  return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
+	  if &ft != 'seq'||ft != 'nerdtree' || &ft != 'tagbar'
+	  	let l:counts = lsp#get_buffer_diagnostics_counts()
+	  	return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
+	  elseif
+		return ''
+	  endif
 	endfunction
 
 	function! LightlineLSPErrors() abort
-	  if &ft != 'seq'
-	  let l:counts = lsp#get_buffer_diagnostics_counts()
-	  return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
+	  if &ft != 'seq'||ft != 'nerdtree' || &ft != 'tagbar'
+	    let l:counts = lsp#get_buffer_diagnostics_counts()
+	    return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
+	  elseif
+		return ''
+	  endif
 	endfunction
 
 	function! LightlineLSPOk() abort
-	  if &ft != 'seq'
-	  let l:counts =  lsp#get_buffer_diagnostics_counts()
-	  let l:total = l:counts.error + l:counts.warning
-	  return l:total == 0 ? 'OK' : ''
+	  if &ft != 'seq'||ft != 'nerdtree' || &ft != 'tagbar'
+	    let l:counts =  lsp#get_buffer_diagnostics_counts()
+	    let l:total = l:counts.error + l:counts.warning
+	    return l:total == 0 ? 'OK' : ''
+	  elseif
+		return ''
+	  endif
 	endfunction
 
     "右上にworking directory
@@ -252,7 +265,7 @@ hook_add = '''"{{{
 		autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
 	  	autocmd User lsp_diagnostics_updated call lightline#update()
 	augroup END
-"}}}'''
+"'''
 depends  = [
     'delphinus/lightline-delphinus',
     'ryanoasis/vim-devicons'
