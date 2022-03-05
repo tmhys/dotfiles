@@ -42,13 +42,11 @@ hook_add = '''"{{{
         \             [ 'fugitive','dir', 'filename'],
     	\			  ['currenttag']],
     	\   'right': [['lineinfo'],
-		\			  ['percent'],
-        \             ['qfstatusline', 'fileformat','fileencoding'],
+		\			  ['qfstatusline', 'fileformat','fileencoding','percent'],
 		\			  ['lsp_errors', 'lsp_warnings', 'lsp_ok']]
         \ },
         \ 'component_function': {
         \   'fugitive': 'FugitiveHead',
-        \   'dir': 'LightLineDir',
         \   'readonly': 'LightLineReadonly',
         \   'modified': 'LightLineModified',
         \   'filename': 'LightLineFilename',
@@ -75,6 +73,9 @@ hook_add = '''"{{{
         \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
     	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
         \ }
+
+        "   'dir': 'LightLineDir',
+
         "   'mode': 'raw',
         "   'fugitive': 'raw',
         "   'dir'	  : 'raw',
@@ -186,17 +187,17 @@ hook_add = '''"{{{
     "endif
 
 	function! LightlineLSPWarnings() abort
-	  let l:counts = lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
+	  let l:counts = lsp#get_buffer_diagnostics_counts()
 	  return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
 	endfunction
 
 	function! LightlineLSPErrors() abort
-	  let l:counts = lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
+	  let l:counts = lsp#get_buffer_diagnostics_counts()
 	  return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
 	endfunction
 
 	function! LightlineLSPOk() abort
-	  let l:counts =  lsp#ui#vim#diagnostics#get_buffer_diagnostics_counts()
+	  let l:counts =  lsp#get_buffer_diagnostics_counts()
 	  let l:total = l:counts.error + l:counts.warning
 	  return l:total == 0 ? 'OK' : ''
 	endfunction
