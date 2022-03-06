@@ -3,17 +3,17 @@ repo = 'vim-jp/vimdoc-ja'
 hook_add = '''"{{{
 "}}}'''
 
-# colorschemes{{{
+# colorschemes{{
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
 hook_add = '''"{{{
 "}}}'''
-# }}}
+# }}
 
-# lightline{{{
+# lightline{{
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-hook_add = '''"
+hook_add = '''"{{{
     function! s:lightline_update()
       if !exists('g:loaded_lightline')
     	    return
@@ -157,7 +157,7 @@ hook_add = '''"
 	  else
         let s:branch = FugitiveHead()
         if len(s:branch) > 0
-          return " " . s:branch " powerline branch glyph prepended when on actual branch
+          return "" . s:branch " powerline branch glyph prepended when on actual branch
         else
           "return "detached HEAD " . FugitiveHead(7)
           return ""
@@ -279,7 +279,7 @@ hook_add = '''"
 		autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
 	  	autocmd User lsp_diagnostics_updated call lightline#update()
 	augroup END
-"'''
+"}}}'''
 depends  = [
     'delphinus/lightline-delphinus',
     'ryanoasis/vim-devicons'
@@ -289,24 +289,9 @@ depends  = [
 repo = 'delphinus/lightline-delphinus'
 hook_add = '''"{{{
 "}}}'''
-#}}}
+#}}
 
-#[[plugins]]
-#repo = 'Shougo/vimproc.vim'
-#hook_post_update = '''"{{{
-#  if has('win32')
-#    let cmd = 'tools\\update-dll-mingw'
-#  elseif has('win32unix') " for Cygwin
-#    let cmd = 'make -f make_cygwin.mak'
-#  elseif executable('gmake')
-#    let cmd = 'gmake'
-#  else
-#    let cmd = 'make'
-#  endif
-#  let g:dein#plugin.build = cmd
-#"}}}'''
-
-# lsp{{{
+# lsp{{
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 # on_i = 1
@@ -361,12 +346,6 @@ repo = 'mattn/vim-lsp-settings'
 hook_add = '''"{{{
 "}}}'''
 
-#[[plugins]]
-#repo = 'mattn/vim-lsp-icons'
-## on_i = 1
-#hook_add = '''"{{{
-#"}}}'''
-
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
 # on_i = 1
@@ -378,7 +357,7 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 # on_i = 1
 hook_add = '''"{{{
 "}}}'''
-# }}}
+# }}
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
