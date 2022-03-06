@@ -10,7 +10,6 @@ hook_add = '''"{{{
 "}}}'''
 # }}}
 
-
 # lightline{{{
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -39,14 +38,14 @@ hook_add = '''"
     let g:lightline = {
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'fugitive','dir', 'filename'],
+        \             ['fugitive', 'dir', 'filename'],
     	\			  ['currenttag']],
     	\   'right': [['lineinfo'],
-		\			  ['qfstatusline', 'fileformat','fileencoding','percent'],
+		\			  ['filetype','qfstatusline', 'fileformat','fileencoding','percent'],
 		\			  ['asyncrun_e','asyncrun_s', 'lsp_errors', 'lsp_warnings', 'lsp_ok']]
         \ },
         \ 'component_function': {
-        \   'fugitive': 'FugitiveHead',
+        \   'fugitive': 'LightLineFugitive',
         \   'readonly': 'LightLineReadonly',
         \   'modified': 'LightLineModified',
         \   'filename': 'LightLineFilename',
@@ -96,7 +95,7 @@ hook_add = '''"
 
     let g:Qfstatusline#UpdateCmd = function('lightline#update')
 
-    function! LightLineModified()
+    function! LightLineModified() abort
         if &filetype == "help"
             return ""
         elseif &modified
@@ -108,7 +107,7 @@ hook_add = '''"
         endif
     endfunction
 
-    function! LightLineDir()
+    function! LightLineDir() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
@@ -122,27 +121,27 @@ hook_add = '''"
     "  else
     "    return ''
     "endfunction
-    function! LightLineAsyncrun_e()
+    function! LightLineAsyncrun_e() abort
 	  if &ft == 'seq'&&g:asyncrun_status=='failure'
         return '%{g:asyncrun_status}'
       else
         return ''
     endfunction
-    function! LightLineAsyncrun_s()
+    function! LightLineAsyncrun_s() abort
 	  if &ft == 'seq'&&g:asyncrun_status!='failure'
         return '%{g:asyncrun_status}'
       else
         return ''
     endfunction
 
-	function! LightlineFileencoding()
+	function! LightlineFileencoding() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
 	    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
 	endfunction
 
-    function! LightLineReadonly()
+    function! LightLineReadonly() abort
 	  	if &filetype == "help"
             return ""
         elseif &readonly
@@ -152,43 +151,56 @@ hook_add = '''"
         endif
     endfunction
 
-    "function! LightLineFugitive()
-	"  if &ft == 'nerdtree' || &ft == 'tagbar'
-	"	  return ''
-	"  elseif
-    "    "if exists("*fugitive#head")
-    "    "    let = fugitive#head()
-    "    "    return strlen(_) ? ''._ : ''
-    "    "endif
-    "    return ' %FugitiveHead()'
-    "  endif
+    function! LightLineFugitive() abort
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+	    return ''
+	  else
+        let s:branch = FugitiveHead()
+        if len(s:branch) > 0
+          return " " . s:branch " powerline branch glyph prepended when on actual branch
+        else
+          "return "detached HEAD " . FugitiveHead(7)
+          return ""
+      endif
+    endfun
+
+    "function! LightLineFugitive() abort
+	"  "if &ft == 'nerdtree' || &ft == 'tagbar'
+	"  "    return ''
+	"  "elseif
+    "  "  "if exists("*fugitive#head")
+    "  "  "    let = fugitive#head()
+    "  "  "    return strlen(_) ? ''._ : ''
+    "  "  "endif
+    "    return FugitiveHead
+    "  "endif
     "endfunction
 
-    function! LightLineFilename()
+    function! LightLineFilename() abort
 	    if &ft == 'nerdtree' || &ft == 'tagbar'
           return ''
 	    else
           return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-            	\ ('' != LightLineFileicon() ? ' ' . LightLineFileicon() : '').
             	\ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
             	\ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
     endfunction
+            	" ('' != LightLineFileicon() ? ' ' . LightLineFileicon() : '').
 
-    function! LightLineFiletype()
+    function! LightLineFiletype() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
       return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
     endfunction
 
-    function! LightLineFileicon()
+    function! LightLineFileicon() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
       return winwidth(0) > 70 ? (strlen(&filetype) ?   WebDevIconsGetFileTypeSymbol(): '') : ''
     endfunction
 
-    function! LightLineFileformat()
+    function! LightLineFileformat() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
@@ -199,7 +211,7 @@ hook_add = '''"
     "  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()): ''
     "endfunction
 
-    function! LightLineCurrentTag()
+    function! LightLineCurrentTag() abort
 	  if !empty(globpath(&rtp, 'autoload/tagbar.vim'))
     	return tagbar#currenttag('%s', '')
 	  else
@@ -214,29 +226,31 @@ hook_add = '''"
     "endif
 
 	function! LightlineLSPWarnings() abort
-	  if &ft != 'seq'||ft != 'nerdtree' || &ft != 'tagbar'
+	  if &ft != 'seq' || &ft != 'nerdtree' || &ft != 'tagbar'
 	  	let l:counts = lsp#get_buffer_diagnostics_counts()
 	  	return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
-	  elseif
+	  else
 		return ''
 	  endif
 	endfunction
 
 	function! LightlineLSPErrors() abort
-	  if &ft != 'seq'||ft != 'nerdtree' || &ft != 'tagbar'
+	  if &ft != 'seq'|| &ft != 'nerdtree' || &ft != 'tagbar'
 	    let l:counts = lsp#get_buffer_diagnostics_counts()
 	    return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
-	  elseif
+	  else
 		return ''
 	  endif
 	endfunction
 
 	function! LightlineLSPOk() abort
-	  if &ft != 'seq'||ft != 'nerdtree' || &ft != 'tagbar'
+	  if &ft !=?  'seq'|| &ft !=?  'nerdtree' || &ft !=?  'tagbar'
 	    let l:counts =  lsp#get_buffer_diagnostics_counts()
 	    let l:total = l:counts.error + l:counts.warning
 	    return l:total == 0 ? 'OK' : ''
-	  elseif
+	  elseif &ft == 'nerdtree' || &ft == 'tagbar'
+		return ''
+	  else
 		return ''
 	  endif
 	endfunction
@@ -246,14 +260,14 @@ hook_add = '''"
     let g:lightline.component = {'cd': '%.35(%{fnamemodify(getcwd(), ":~")}%)'}
 
     "NERDTreeで表示省略
-    function! MyLightLinePercent()
+    function! MyLightLinePercent() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
         return line('.') * 100 / line('$') . '%'
     endfunction
 
-    function! MyLightLineLineInfo()
+    function! MyLightLineLineInfo() abort
 	  if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else

@@ -1,3 +1,85 @@
+require'nvim-tree'.setup {
+  disable_netrw        = false,
+  hijack_netrw         = true,
+  open_on_setup        = false,
+  ignore_buffer_on_setup = false,
+  ignore_ft_on_setup   = {},
+  hijack_directories   = {
+    enable = true,
+    auto_open = true,
+  },
+  auto_close           = false,
+  auto_reload_on_write = true,
+  open_on_tab          = false,
+  hijack_cursor        = false,
+  update_cwd           = false,
+  hijack_unnamed_buffer_when_opening = false,
+  diagnostics          = {
+    enable = false,
+    show_on_dirs = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
+  },
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = true,
+    ignore_list = {}
+  },
+  system_open = {
+    cmd  = nil,
+    args = {}
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
+  },
+  view = {
+    width = 30,
+    height = 30,
+    side = 'left',
+    preserve_window_proportions = false,
+    number = false,
+    relativenumber = false,
+    signcolumn = "yes",
+    mappings = {
+      custom_only = false,
+      list = {}
+    }
+  },
+  filters = {
+    dotfiles = false,
+    custom = {".git",".svn","*.dat","*.dbg","*.exe","tags","proc.seq"}
+  },
+  trash = {
+    cmd = "trash",
+    require_confirm = true,
+  },
+  actions = {
+    change_dir = {
+      enable = true,
+      global = false,
+    },
+    open_file = {
+  quit_on_open = false,
+  resize_window = false,
+  window_picker = {
+    enable = false,
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+    exclude = {
+      filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
+      buftype  = { "nofile", "terminal", "help", },
+    }
+  }
+    },
+  }
+}
+
+
 --vim.g.nvim_tree_quit_on_open = 1 --0 by default, closes the tree when you open a file
 vim.g.nvim_tree_indent_markers = 1 --0 by default, this option shows indent markers when folders are open
 vim.g.nvim_tree_git_hl = 1 --0 by default, will enable file highlight for git attributes (can be used without the icons).
@@ -69,67 +151,67 @@ vim.g.nvim_tree_icons = {
      }
 
 
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
-require'nvim-tree'.setup {
-  disable_netrw       = true,
-  hijack_netrw        = true,
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  auto_close          = false,
-  open_on_tab         = false,
-  hijack_cursor       = false,
-  update_cwd          = false,
-  update_to_buf_dir   = {
-    enable = true,
-    auto_open = true,
-  },
-  diagnostics = {
-    enable = false,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    }
-  },
-  update_focused_file = {
-    enable      = true,
-    update_cwd  = true,
-    ignore_list = {}
-  },
-  system_open = {
-    cmd  = nil,
-    args = {}
-  },
-  filters = {
-    dotfiles = false,
-    custom = {".git",".svn","*.dat","*.dbg","*.exe","tags","proc.seq"}
-  },
-  git = {
-    enable = true,
-    ignore = true,
-    timeout = 500,
-  },
-  view = {
-    width = 30,
-    height = 30,
-    hide_root_folder = false,
-    side = 'left',
-    auto_resize = false,
-    mappings = {
-      custom_only = false,
-      list = {}
-    },
-    number = false,
-    relativenumber = false,
-    signcolumn = "yes"
-  },
-  trash = {
-    cmd = "trash",
-    require_confirm = true
-  }
-}
+---- following options are the default
+---- each of these are documented in `:help nvim-tree.OPTION_NAME`
+--require'nvim-tree'.setup {
+--  disable_netrw       = true,
+--  hijack_netrw        = true,
+--  open_on_setup       = false,
+--  ignore_ft_on_setup  = {},
+--  auto_close          = false,
+--  open_on_tab         = false,
+--  hijack_cursor       = false,
+--  update_cwd          = false,
+--  update_to_buf_dir   = {
+--    enable = true,
+--    auto_open = true,
+--  },
+--  diagnostics = {
+--    enable = false,
+--    icons = {
+--      hint = "",
+--      info = "",
+--      warning = "",
+--      error = "",
+--    }
+--  },
+--  update_focused_file = {
+--    enable      = true,
+--    update_cwd  = true,
+--    ignore_list = {}
+--  },
+--  system_open = {
+--    cmd  = nil,
+--    args = {}
+--  },
+--  filters = {
+--    dotfiles = false,
+--    custom = {".git",".svn","*.dat","*.dbg","*.exe","tags","proc.seq"}
+--  },
+--  git = {
+--    enable = true,
+--    ignore = true,
+--    timeout = 500,
+--  },
+--  view = {
+--    width = 30,
+--    height = 30,
+--    hide_root_folder = false,
+--    side = 'left',
+--    auto_resize = false,
+--    mappings = {
+--      custom_only = false,
+--      list = {}
+--    },
+--    number = false,
+--    relativenumber = false,
+--    signcolumn = "yes"
+--  },
+--  trash = {
+--    cmd = "trash",
+--    require_confirm = true
+--  }
+--}
 
 
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeFindFileToggle<CR>', { noremap = true, silent = true })
