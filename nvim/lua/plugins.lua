@@ -15,7 +15,7 @@ return require("packer").startup({
 			end,
 		}) -- nvim CursorHold bug fix
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
-		use({ "vim-jp/vimdoc-ja", event = "BufReadPost" })
+		use({ "vim-jp/vimdoc-ja", event = "CursorHold" })
 		--}}}
 		-- colorschemes{{{
 		use({ "rafi/awesome-vim-colorschemes", opt = true })
@@ -24,32 +24,32 @@ return require("packer").startup({
 		-- interface{{{
 		use({
 			"rcarriga/nvim-notify",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.nvim-notify")
 			end,
 		})
 		use({
 			"edluffy/specs.nvim",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.specs")
 			end,
 		}) -- カーソル移動が見やすくなるやつ
 		use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
-		use({ "itchyny/vim-cursorword", event = "BufReadPost" })
+		use({ "itchyny/vim-cursorword", event = "CursorHold" })
 		use({
 			"t9md/vim-quickhl",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.vim-quickhl")
 			end,
 		}) --カーソル下の単語ハイライトしまくれるやつ
-		use({ "glepnir/indent-guides.nvim", event = "BufReadPost" })
-		use({ "mhinz/vim-signify", event = "BufReadPost" })
+		use({ "glepnir/indent-guides.nvim", event = "CursorHold" })
+		use({ "mhinz/vim-signify", event = "CursorHold" })
 		use({
 			"chentau/marks.nvim",
-			--event = "BufReadPost",
+			--event = "CursorHold",
 			config = function()
 				require("my_plugins.marks")
 			end,
@@ -78,14 +78,14 @@ return require("packer").startup({
 		})
 		use({
 			"kevinhwang91/nvim-hlslens",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.hlslens")
 			end,
 		})
 		use({
 			"petertriho/nvim-scrollbar",
-			event = "BufReadPost",
+			event = "CursorHold",
 			after = "nvim-hlslens",
 			config = function()
 				require("my_plugins.nvim-scrollbar")
@@ -114,7 +114,7 @@ return require("packer").startup({
 		use({ "simeji/winresizer", cmd = "WinResizerStartResize" })
 		use({
 			"b3nj5m1n/kommentary",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.kommentary")
 			end,
@@ -129,21 +129,21 @@ return require("packer").startup({
 		use({
 			"unblevable/quick-scope",
 			event = "CursorHold",
-			--event = "BufReadPost",
+			--event = "CursorHold",
 			config = function()
 				require("my_plugins.quick-scope")
 			end,
 		}) --ユニーク文字ハイライト
 		use({
 			"rhysd/clever-f.vim",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.clever-f")
 			end,
 		})
 		use({
 			"phaazon/hop.nvim",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = "v1",
 			config = function()
 				require("my_plugins.hop")
@@ -154,7 +154,7 @@ return require("packer").startup({
 		----{{{
 		use({
 			"skywind3000/asyncrun.vim",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.asyncrun")
 			end,
@@ -170,25 +170,25 @@ return require("packer").startup({
 
 		use({
 			"tpope/vim-fugitive",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.fugitive")
 			end,
 		})
 		use({
 			"ludovicchabant/vim-gutentags",
-			event = "BufReadPost",
+			event = "CursorHold",
 		})
 		use({
 			"majutsushi/tagbar",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.tagbar")
 			end,
 		})
 		use({
 			"voldikss/vim-translator",
-			event = "BufReadPost",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.vim-translator")
 			end,

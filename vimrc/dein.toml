@@ -341,6 +341,22 @@ hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
+repo = 'tpope/vim-fugitive'
+#on_event = ['CursorHold']
+#on_source = ['lightline.vim']
+hook_add = '''"{{{
+    nnoremap [fugitive]  <Nop>
+    nmap <space>g [fugitive]
+    nnoremap <silent> [fugitive]s :Git status<CR>
+    nnoremap <silent> [fugitive]a :Git add .<CR>
+    nnoremap <silent> [fugitive]c :Git commit<CR>
+    nnoremap <silent> [fugitive]p :Git push origin master<CR>
+    nnoremap <silent> [fugitive]b :Git blame<CR>
+    nnoremap <silent> [fugitive]d :Git diff<CR>
+    nnoremap <silent> [fugitive]m :Git merge<CR>
+"}}}'''
+
+[[plugins]]
 repo = 'mattn/vim-lsp-settings'
 # on_i = 1
 hook_add = '''"{{{

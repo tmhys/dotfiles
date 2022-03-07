@@ -27,6 +27,7 @@ let g:did_install_default_menus = 1
 
 set encoding=UTF-8
 scriptencoding utf-8
+set fileencodings=cp932,sjis,utf-8
 set renderoptions=type:directx,renmode:5
 set shortmess+=I
 set shortmess-=S

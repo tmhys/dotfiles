@@ -38,10 +38,9 @@ if dein#load_state(s:dein_dir)
 
   " read toml and cache
   " 将来的にこの部分プラグインごとにtomlファイルを作成すれば設定ファイルをより分割できるかも
+  "call dein#add('$HOME/seq.vim')
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:toml_lazy, {'lazy': 1})
-  "call dein#add('~/seq.vim',{})
-  "call dein#local('~',{},['seq.vim'])
 
   "" プラグインごとにtoml めんどくせ
   "call dein#load_toml(s:dein_plug.'dein.toml', {'lazy': 1})

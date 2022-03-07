@@ -212,23 +212,6 @@ hook_add = '''"{{{
     let g:errormarker_warningtext="⚠️"
 "}}}'''
 
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-on_event = ['CursorHold']
-#on_source = ['lightline.vim']
-hook_add = '''"{{{
-    nnoremap [fugitive]  <Nop>
-    nmap <space>g [fugitive]
-    nnoremap <silent> [fugitive]s :Git status<CR>
-    nnoremap <silent> [fugitive]a :Git add .<CR>
-    nnoremap <silent> [fugitive]c :Git commit<CR>
-    nnoremap <silent> [fugitive]p :Git push origin master<CR>
-    nnoremap <silent> [fugitive]b :Git blame<CR>
-    nnoremap <silent> [fugitive]d :Git diff<CR>
-    nnoremap <silent> [fugitive]m :Git merge<CR>
-"}}}'''
-
-
 # search {{
 [[plugins]]
 repo = 'haya14busa/incsearch-fuzzy.vim'
@@ -271,31 +254,26 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-on_map = ['<Plug>(easymotion-overwin-f2)']
+on_event = ['CursorHold']
 hook_add = '''"{{{
-    nmap zz <Plug>(easymotion-overwin-f2)
-    vmap zz <Plug>(easymotion-bd-f2)
-     """ The prefix key.
-     " nnoremap    [easymotion]   <Nop>
-     " nmap    <M-f> [easymotion]
-     "
-     " " <Leader>f{char} to move to {char}
-     " map  [easymotion]f <Plug>(easymotion-bd-f)
-     " nmap [easymotion]f <Plug>(easymotion-overwin-f)
-     "
-     " " s{char}{char} to move to {char}{char}
-     " nmap [easymotion]s <Plug>(easymotion-overwin-f2)
-     " vmap [easymotion]s <Plug>(easymotion-bd-f2)
-     "
-     " " Move to line
-     " map  [easymotion]j <Plug>(easymotion-bd-jk)
-     " nmap [easymotion]j <Plug>(easymotion-overwin-line)
-     "
-     " " Move to word
-     " map  [easymotion]w <Plug>(easymotion-bd-w)
-     " nmap [easymotion]w <Plug>(easymotion-overwin-w)
-     "
-     " let g:EasyMotion_do_mapping = 0
+
+     "" <Leader>f{char} to move to {char}
+     "map  zf <Plug>(easymotion-bd-f)
+     "nmap zf <Plug>(easymotion-overwin-f)
+
+     "" s{char}{char} to move to {char}{char}
+     "nmap zs <Plug>(easymotion-overwin-f2)
+     "vmap zs <Plug>(easymotion-bd-f2)
+
+     " Move to line
+     map  zj <Plug>(easymotion-bd-jk)
+     nmap zj <Plug>(easymotion-overwin-line)
+
+     " Move to word
+     map  zz <Plug>(easymotion-bd-w)
+     nmap zz <Plug>(easymotion-overwin-w)
+
+     let g:EasyMotion_do_mapping = 0
 "}}}'''
 
 [[plugins]]
