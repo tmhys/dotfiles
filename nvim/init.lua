@@ -4,4 +4,5 @@ require("maps")
 require("autocmds")
 require("plugins")
 --vim.cmd("let ayucolor = 'mirage'")
+
 vim.cmd("colorscheme atom")

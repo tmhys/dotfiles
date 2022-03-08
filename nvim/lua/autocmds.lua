@@ -29,7 +29,7 @@ augroup win_config
     "Å´Ç±ÇÍÇ»ÇÒÇ‚Ç¡ÇØÅH
 	autocmd BufWritePre * :%s/\s\+$//ge
 	autocmd BufWritePre * :%s/\r//ge
-	autocmd BufWritePre * :%s/\n\{4,}/\n\n\n/ge
+	autocmd BufWritePre * :%s/\n\{4,}/\r\r\r/ge
 	autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##ge
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType toml setlocal foldmethod=marker
