@@ -4,11 +4,6 @@ set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
 set linespace=1
-if has('kaoriya')
-	set ambiwidth=auto
-else
-	set ambiwidth=double
-endif
 
 let ayucolor='light'
 colorscheme onedark

@@ -74,6 +74,11 @@ set guioptions-=b
 set guioptions-=e
 set showtabline=2
 set termguicolors
+if has('kaoriya')
+	set ambiwidth=auto
+else
+	set ambiwidth=double
+endif
 set background=dark "light dark
 if executable('pt')
 	set grepprg=pt\ --nogroup\
