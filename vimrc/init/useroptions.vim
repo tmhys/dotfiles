@@ -29,6 +29,7 @@ set encoding=UTF-8
 scriptencoding utf-8
 set fileencodings=cp932,sjis,utf-8
 set renderoptions=type:directx,renmode:5
+"set fileformats = dos,unix,mac
 set shortmess+=I
 set shortmess-=S
 set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
@@ -36,7 +37,7 @@ set laststatus=2
 set cmdheight=2
 set completeopt=menuone
 set lazyredraw
-set updatetime=700
+set updatetime=250
 set autoindent
 set autoread
 "set expandtab
@@ -46,6 +47,7 @@ set number
 set signcolumn=yes
 set wildmenu wildmode=full
 set sessionoptions-=blank
+set cursorline
 set showmatch
 set matchtime=1
 set scrolloff=10
@@ -58,6 +60,7 @@ set wildignore& wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
 set undofile
 set noswapfile
 set nowrap
+set sidescrolloff=8
 set guioptions&
 set guioptions+=C
 set guioptions-=T
@@ -72,15 +75,12 @@ set guioptions-=e
 set showtabline=2
 set termguicolors
 set background=dark "light dark
-if has('multi_byte_ime')
-  highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
-  highlight CursorIM guifg=NONE guibg=#ecbcbc
-endif
 if executable('pt')
 	set grepprg=pt\ --nogroup\
 	set grepformat=%f:%l:%c:%m
 endif
-"↓必要です？
+
+"{{{ backupdirなどなければ作る
 function! s:mkdir(dir)
     if !isdirectory(a:dir)
        " "p" を渡すことでネストしたディレクトリ全てが作成される
@@ -94,3 +94,4 @@ set backupdir=$HOME/.vimbackup
 call s:mkdir(&backupdir)
 set undodir=$HOME/.vimbackup
 call s:mkdir(&undodir)
+"}}}

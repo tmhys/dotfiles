@@ -172,7 +172,7 @@ au FileType qf nnoremap <S-CR> <C-w><CR><C-w>L
 "Quickfix次の項目にジャンプ
 nnoremap <M-j> :cn<CR>
 nnoremap <M-k> :cp<CR>
-" マーク設定 : {{{
+" マーク設定 : {{{ mark使わん気がする
 " 基本マップ
 nnoremap [Mark] <Nop>
 nmap m [Mark]
