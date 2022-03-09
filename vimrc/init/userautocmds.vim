@@ -1,10 +1,10 @@
-augroup last_status
-	autocmd!
-	" 前回終了位置に移動
-	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
-	" バッファ読み込み時にマークを初期化
-	autocmd BufReadPost * delmarks!
-augroup END
+"augroup last_status
+"	autocmd!
+"	" 前回終了位置に移動
+"	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
+"	" バッファ読み込み時にマークを初期化
+"	autocmd BufReadPost * delmarks!
+"augroup END
 augroup win_config
 	autocmd!
 	"Quickfixウィンドウ開く

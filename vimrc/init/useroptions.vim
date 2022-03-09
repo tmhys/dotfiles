@@ -28,7 +28,6 @@ let g:did_install_default_menus = 1
 set encoding=UTF-8
 scriptencoding utf-8
 set fileencodings=cp932,sjis,utf-8
-set renderoptions=type:directx,renmode:5
 "set fileformats = dos,unix,mac
 set shortmess+=I
 set shortmess-=S
@@ -40,6 +39,7 @@ set lazyredraw
 set updatetime=250
 set autoindent
 set autoread
+set clipboard+=unnamed
 "set expandtab
 set tabstop=4
 set shiftwidth=4
