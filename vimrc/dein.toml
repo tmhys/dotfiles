@@ -45,6 +45,7 @@ hook_add = '''"{{{
 		\			  ['asyncrun_e','asyncrun_s', 'lsp_errors', 'lsp_warnings', 'lsp_ok']]
         \ },
         \ 'component_function': {
+        \   'mode': 'LightLinemode',
         \   'fugitive': 'LightLineFugitive',
         \   'readonly': 'LightLineReadonly',
         \   'modified': 'LightLineModified',
@@ -105,6 +106,15 @@ hook_add = '''"{{{
         else
             return ""
         endif
+    endfunction
+
+    function! LightLinemode() abort
+	  if &ft == 'nerdtree'
+        return 'NERDTREE'
+	elseif &ft == 'tagbar'
+        return 'TAGBAR'
+      else
+		return lightline#mode()
     endfunction
 
     function! LightLineDir() abort
@@ -244,12 +254,12 @@ hook_add = '''"{{{
 	endfunction
 
 	function! LightlineLSPOk() abort
-	  if &ft !=?  'seq'|| &ft !=?  'nerdtree' || &ft !=?  'tagbar'
+	  if &ft == 'nerdtree' || &ft == 'tagbar'
+		return ''
+	  elseif &ft !=? 'seq'
 	    let l:counts =  lsp#get_buffer_diagnostics_counts()
 	    let l:total = l:counts.error + l:counts.warning
 	    return l:total == 0 ? 'OK' : ''
-	  elseif &ft == 'nerdtree' || &ft == 'tagbar'
-		return ''
 	  else
 		return ''
 	  endif
