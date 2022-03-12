@@ -38,7 +38,7 @@ augroup ErrorFormat
         \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
         \ foldmethod=indent
 
-    autocmd FileType seq setlocal errorformat=%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m,%C%.%#,%+Z%p^,%-G%.%#
+    "autocmd FileType seq setlocal errorformat=%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m,%C%.%#,%+Z%p^,%-G%.%#
 augroup END
 
 augroup officelocal

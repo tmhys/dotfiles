@@ -1,5 +1,5 @@
 " install dir {{{
-let s:dein_dir = expand('~/.cache/dein')
+let s:dein_dir = expand('~/vimfiles/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " }}}
 
@@ -38,7 +38,7 @@ if dein#load_state(s:dein_dir)
 
   " read toml and cache
   " 将来的にこの部分プラグインごとにtomlファイルを作成すれば設定ファイルをより分割できるかも
-  "call dein#add('$HOME/seq.vim')
+  call dein#add('~/vimfiles/localplugins/seq.vim', {'lazy': 0})
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:toml_lazy, {'lazy': 1})
 
