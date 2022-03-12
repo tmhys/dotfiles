@@ -1,10 +1,3 @@
-"augroup last_status
-"	autocmd!
-"	" 前回終了位置に移動
-"	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
-"	" バッファ読み込み時にマークを初期化
-"	autocmd BufReadPost * delmarks!
-"augroup END
 augroup win_config
 	autocmd!
 	"Quickfixウィンドウ開く
@@ -37,8 +30,6 @@ augroup ErrorFormat
     autocmd BufNewFile,BufRead *.py
         \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
         \ foldmethod=indent
-
-    "autocmd FileType seq setlocal errorformat=%WWarning:\ %f\ (%l):%m,%EError:\ %f\ (%l):%m,%C%.%#,%+Z%p^,%-G%.%#
 augroup END
 
 augroup officelocal
@@ -46,16 +37,17 @@ augroup officelocal
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
 augroup END
 
-"augroup reload_vimrc
-"    autocmd!
-"    "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
-"    autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
-"				\:nested so $MYVIMRC
-"				\| if has('gui_running')
-"					\|| has('nvim')
-"					\| so $MYGVIMRC
-"				\| endif
-"				\|echo printf('VIMRC has reloaded (%s).', strftime('%c'))
-"    "autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
-"	"			\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
-"augroup END
+augroup reload_vimrc
+    autocmd!
+    "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
+    autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
+				\:nested so $MYVIMRC
+				\|endif
+				\|redraw
+				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
+				"| if has('gui_running')
+				"|| has('nvim')
+				"| so $MYGVIMRC
+    "autocmd BufWritePost  /_config/*.vim,/_gconfig/*.vim
+	"			\nested call map(sort(split(globpath(&runtimepath, '_config/*.vim'))), {->[execute('exec "so" v:val')]})
+augroup END
