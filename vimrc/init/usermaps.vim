@@ -238,6 +238,7 @@ inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 tnoremap <silent> <ESC> <C-\><C-n>
 "カレントウィンドウを新規タブで開き直す{{{
 nnoremap <M-n> :call OpenNewTab()<CR>
+
 function! OpenNewTab()
     let f = expand("%:p")
     execute ":q"

@@ -19,7 +19,8 @@ let g:dein#install_check_diff = v:true
 " begin settings {{{
 "if dein#load_state(s:dein_dir)||has('vim_starting')
 "reloadよくわからん
-if dein#load_state(s:dein_dir)
+"if dein#load_state(s:dein_dir)
+if dein#min#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   " .toml file
