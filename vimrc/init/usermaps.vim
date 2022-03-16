@@ -1,5 +1,16 @@
-"mapclear | mapclear <buffer> | mapclear! | mapclear! <buffer>
+mapclear | mapclear <buffer> | mapclear! | mapclear! <buffer>
 "これでマップリセットできるけどS-Insertまでクリアされるぞ！
+"リセットで困るのはS-Insertぐらいなので自力でマップする
+inoremap <S-Insert> <ESC>"*pi
+
+vnoremap <C-X> "*d
+vnoremap <C-Del> "*d
+vnoremap <S-Del> "*d
+vnoremap <C-Insert> "*y
+vnoremap <S-Insert> "-d"*P
+nnoremap <S-Insert> "*P
+
+
 "echo "keymap is loaded"
 nnoremap Q <Nop>
 nnoremap za za
@@ -115,7 +126,7 @@ nnoremap <M-3> :%s/<C-r>"///g<Left><Left>
 "選択範囲内で置換
 vnoremap # :s///gc<Left><Left><Left><Left>
 "1行挿入する
-nnoremap <Space>o :<C-u>call append(expand('.'), '')<Cr>j
+nnoremap <silent><Space>o :<C-u>call append(expand('.'), '')<Cr>j
 "改行する
 "nnoremap <M-o> i<CR><ESC>
 if !has('nvim')
@@ -165,7 +176,7 @@ function! s:toggle_quickfix_window()
   cwindow
   endif
 endfunction
-nnoremap <M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
+nnoremap <silent><M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
 "}}}
 "QuickFix 横画面分割で結果を表示
 au FileType qf nnoremap <S-CR> <C-w><CR><C-w>L
@@ -253,21 +264,3 @@ if has('vim_starting')
         \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
   augroup END
 endif
-
-"if has('vim_starting')
-"  function s:reload_vimrc() abort
-"    execute printf('source %s', $MYVIMRC)
-"    if has('gui_running')
-"      execute printf('source %s', $MYGVIMRC)
-"    endif
-"    redraw
-"    echo printf('VIMRC has reloaded (%s).', strftime('%c'))
-"  endfunction
-"endif
-"nmap <silent> <Plug>(my-reload-vimrc) :<C-u>call <SID>reload_vimrc()<CR>
-"nmap <Space>R <Plug>(my-reload-vimrc)
-
-"nmap <Space>R <Plug>(my-reload-vimrc)<Bar>echomsg printf('reloaded in %fms', reltimefloat(g:startuptime) * 1000)<CR>
-
-"nnoremap <Space><C-r>
-"      \ <Cmd>source $MYVIMRC<Bar>nohlsearch<Bar>echomsg 'reloaded!'<CR>

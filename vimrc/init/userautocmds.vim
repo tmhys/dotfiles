@@ -1,5 +1,20 @@
+augroup last_status
+	autocmd!
+	" 前回終了位置に移動
+	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
+	" バッファ読み込み時にマークを初期化
+	autocmd BufReadPost * delmarks!
+augroup END
+
+
 augroup win_config
 	autocmd!
+
+	"" 色はお使いのカラースキームに合わせて
+	""blueyed/vim-diminactive代替
+	"autocmd ColorScheme * highlight NormalNC guifg=#a0a0a0 guibg=#121212
+	"autocmd WinEnter,BufWinEnter * setlocal wincolor=
+	"autocmd WinLeave * setlocal wincolor=NormalNC
 	"Quickfixウィンドウ開く
 	autocmd QuickFixCmdPost *grep* cwindow
 	"qfウィンドウを常に最下部で開く
@@ -8,11 +23,19 @@ augroup win_config
 	autocmd VimResized * :wincmd =
 	"session保存時クイックフィックス閉じる
 	autocmd VimLeave * cclose
-	autocmd VimLeave	* mks! ~/.vim/session/$DATE.vim
+	autocmd VimLeave * mks! ~/.vim/session/$DATE.vim
 	"文末スペース / 連続改行削除
-	autocmd BufWritePre * :%s/\s\+$//ge
-	autocmd BufWritePre * :%s/\n\{4,}/\r\r\r/ge
-	autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##ge
+	autocmd BufWritePre * call s:remove_dust()
+
+	function! s:remove_dust()
+  	  let l:cursor = getpos(".")
+	  keeppatterns %s/\s\+$//ge
+	  keeppatterns %s/\n\{4,}/\r\r\r/ge
+	  keeppatterns %s#\($\n\s*\)\+\%$##ge
+  	  call setpos(".", cursor)
+  	  unlet l:cursor
+  	endfunction
+
 	"折りたたみ設定
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType toml setlocal foldmethod=marker
@@ -40,11 +63,13 @@ augroup END
 augroup reload_vimrc
     autocmd!
     "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
-    autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
+    "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
+				":nested so $MYVIMRC
+    autocmd BufWritePost  $HOME/vimfiles/*,$HOME/dotfiles/vimrc/*,
 				\:nested so $MYVIMRC
-				\|endif
 				\|redraw
 				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
+
 				"| if has('gui_running')
 				"|| has('nvim')
 				"| so $MYGVIMRC

@@ -137,6 +137,7 @@ hook_add = '''"{{{
 repo = 'blueyed/vim-diminactive'
 on_event = ['FocusLost', 'CursorHold','BufAdd']
 hook_add = '''"{{{
+"let g:diminactive_use_syntax = 1
 "}}}'''
 
 [[plugins]]
@@ -443,7 +444,7 @@ on_cmd    = ['Restart']
 hook_add = '''"{{{
     " 終了時に保存するセッションオプションを設定する{{{
     let g:restart_sessionoptions
-        \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+        \ = 'winsize,winpos,blank,buffers,curdir,folds,help,localoptions,tabpages'
     "}}}
     " :Restart 時に変数の定義を行う
     command! MyRestart Restart --cmd "let g:restarted = 1"

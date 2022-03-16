@@ -1,4 +1,4 @@
-" Last Change: 08-Mar-2022.
+" Last Change: 17-Mar-2022.
 
 set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
@@ -11,10 +11,27 @@ if empty(get(g:, 'colors_name', ''))
   colorscheme desert
 endif
 
+"起動時のウィンドウサイズ
+let g:save_window_file = expand('~/.vimwinpos')
+augroup SaveWindow
+  autocmd!
+  autocmd VimLeavePre * call s:save_window()
+  function! s:save_window()
+    let options = [
+      \ 'set columns=' . &columns,
+      \ 'set lines=' . &lines,
+      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+      \ ]
+    call writefile(options, g:save_window_file)
+  endfunction
+augroup END
+
+if filereadable(g:save_window_file)
+  execute 'source' g:save_window_file
+endif
+
 "gvim限定 colorscheme後に書くこと
 if has('multi_byte_ime')
-  "highlight Cursor guifg=NONE guibg=Green
-  "highlight CursorIM guifg=NONE guibg=Purple
   highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
   highlight CursorIM guifg=NONE guibg=#ecbcbc
 endif

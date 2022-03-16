@@ -1,3 +1,6 @@
+"オプション全リセット→なぜかプラグインまで読み込まなくなる
+"set all&
+
 "適当にオフにしてます、困ったらオンにしてね
 let g:loaded_getscript = 1
 let g:loaded_getscriptPlugin = 1
@@ -22,7 +25,6 @@ let g:loaded_vimballPlugin = 1
 let g:loaded_zip = 1
 let g:loaded_zipPlugin = 1
 let g:no_vimrc_example=1
-
 let g:did_install_default_menus = 1
 
 set encoding=UTF-8
@@ -40,6 +42,7 @@ set updatetime=250
 set autoindent
 set autoread
 set clipboard+=unnamed
+set nopaste
 "set expandtab
 set tabstop=4
 set shiftwidth=4
