@@ -12,7 +12,8 @@ if &runtimepath !~# '/dein.vim'
 endif
 " }}}
 
-let g:dein#auto_recache = v:true
+"let g:dein#auto_recache = v:true
+let g:dein#auto_recache = !has('win32')
 let g:dein#lazy_rplugins = v:true
 let g:dein#install_check_diff = v:true
 
@@ -21,8 +22,6 @@ let g:dein#install_check_diff = v:true
 "reloadよくわからん
 "if dein#load_state(s:dein_dir)
 if dein#min#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
   " .toml file
   let s:rc_dir = expand('~/vimfiles')
   if !isdirectory(s:rc_dir)
@@ -34,8 +33,32 @@ if dein#min#load_state(s:dein_dir)
     call mkdir(s:rc_dir, 'p')
   endif
 
+  "let s:init_dir = expand('~/vimfiles/init/')
+  "if !isdirectory(s:rc_dir)
+  "  call mkdir(s:rc_dir, 'p')
+  "endif
+
   let s:toml = s:rc_dir . '/dein.toml'
   let s:toml_lazy = s:rc_dir . '/dein_lazy.toml'
+
+
+  " dein inline_vimrcs setting.{{{
+
+  "let g:dein#inline_vimrcs = ['useroptions.vim',
+  "  		  \'usermaps.vim',
+  "  		  \'userautocmds.vim']
+
+  "if has('gui_running')
+  "    call add(g:dein#inline_vimrcs, 'gnvim.vim'))
+  "endif
+
+  "call map(g:dein#inline_vimrcs, { _, val -> s:init_dir .. val })
+
+  " }}}
+
+
+  call dein#begin(s:dein_dir)
+
 
   " read toml and cache
   " 将来的にこの部分プラグインごとにtomlファイルを作成すれば設定ファイルをより分割できるかも
@@ -43,7 +66,7 @@ if dein#min#load_state(s:dein_dir)
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:toml_lazy, {'lazy': 1})
 
-  "" プラグインごとにtoml めんどくせ
+  "" プラグインごとにtoml めんどくせ{{{
   "call dein#load_toml(s:dein_plug.'dein.toml', {'lazy': 1})
   "call dein#load_toml(s:dein_plug.'nerdtree.toml', {'lazy': 1})
   "call dein#load_toml(s:dein_plug.'indentLine.toml', {'lazy': 1})
@@ -85,6 +108,7 @@ if dein#min#load_state(s:dein_dir)
   "call dein#load_toml(s:dein_plug.'lsp.toml', {'lazy': 0})
   "call dein#load_toml(s:dein_plug.'ctrlp.toml', {'lazy': 0})
   "call dein#load_toml(s:dein_plug.'vim-devicons.toml', {'lazy': 0})
+  "}}}
 
 
   " end settings

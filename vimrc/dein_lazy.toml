@@ -279,6 +279,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'rhysd/accelerated-jK'
+on_event = ['CursorHold']
 on_map = [
 	'<Plug>(accelerated_jk_gj)',
 	'<Plug>(accelerated_jk_gk)'
@@ -427,12 +428,18 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
 on_cmd=['CtrlPMark']
+merged = false
+overwrite = true
+lazy = false
 hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
 repo = 'hara/ctrlp-colorscheme'
 on_cmd = ['CtrlPColorscheme']
+merged = false
+overwrite = true
+lazy = false
 hook_add = '''"{{{
 "}}}'''
 

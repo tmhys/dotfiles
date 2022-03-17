@@ -65,7 +65,7 @@ augroup reload_vimrc
     "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC,.vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,ginit.vim,init.vim,_config/*.vim,_gconfig/*.vim
     "autocmd BufWritePost $MYVIMRC,$MYGVIMMRC
 				":nested so $MYVIMRC
-    autocmd BufWritePost  $HOME/vimfiles/*,$HOME/dotfiles/vimrc/*,
+    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$MYVIMRC
 				\:nested so $MYVIMRC
 				\|redraw
 				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
