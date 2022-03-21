@@ -12,6 +12,14 @@ on_cmd    = ['Dein']
 hook_add = '''"{{{
 "}}}'''
 
+# colorschemes{{
+[[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
+on_event = ['ColorSchemePre']
+hook_add = '''"{{{
+"}}}'''
+# }}
+
 # filer{{
 [[plugins]]
 #repo = 'scrooloose/nerdtree'
@@ -362,9 +370,15 @@ on_i = 1
 hook_add = '''"{{{
 "}}}'''
 
+# [[plugins]]
+# repo = 'cohama/lexima.vim'
+# on_i = 1
+# hook_add = '''"{{{
+# "}}}'''
+
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
-on_i = 1
+on_event = ['CursorHold']
 hook_add = '''"{{{
     let g:auto_ctags_set_tags_option = 1
     let g:auto_ctags_warn_once = 1
@@ -372,6 +386,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+on_event = ['CursorHold']
 on_i = 1
 hook_add = '''"{{{
 "}}}'''
@@ -446,6 +461,12 @@ hook_add = '''"{{{
 # }}
 
 [[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
+[[plugins]]
 repo = 'tyru/restart.vim'
 on_cmd    = ['Restart']
 hook_add = '''"{{{
@@ -510,8 +531,10 @@ on_ft = ['csv']
 hook_add = '''"{{{
 "}}}'''
 
-# [[plugins]]
-# repo = '~/seq.vim'
-# on_ft = ['seq']
-# hook_add = '''"{{{
-# "}}}'''
+# lsp{{{
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+on_ft = ['vim','python','lua']
+hook_add = '''"{{{
+"}}}'''
+# }}}

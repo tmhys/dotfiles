@@ -341,7 +341,7 @@ return require("packer").startup({
 		--}}}
 
 		-- others{{{
-		use({ "~/seq.vim" })
+		--use({ "~/seq.vim" })
 		use({ "lark-parser/vim-lark-syntax" , ft = { "toml" }})
 		--}}}
 	end,

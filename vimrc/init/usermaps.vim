@@ -1,4 +1,4 @@
-mapclear | mapclear <buffer> | mapclear! | mapclear! <buffer>
+"mapclear | mapclear <buffer> | mapclear! | mapclear! <buffer>
 "これでマップリセットできるけどS-Insertまでクリアされるぞ！
 "リセットで困るのはS-Insertぐらいなので自力でマップする
 inoremap <S-Insert> <ESC>"*pi

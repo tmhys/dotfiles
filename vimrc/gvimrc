@@ -1,4 +1,4 @@
-" Last Change: 17-Mar-2022.
+" Last Change: 21-Mar-2022.
 
 set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
@@ -6,7 +6,7 @@ set antialias
 set linespace=1
 
 let ayucolor='light'
-colorscheme onedark
+colorscheme ayu
 if empty(get(g:, 'colors_name', ''))
   colorscheme desert
 endif
