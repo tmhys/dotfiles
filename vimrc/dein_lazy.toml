@@ -9,18 +9,14 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'haya14busa/dein-command.vim'
 on_cmd    = ['Dein']
-hook_add = '''"{{{
-"}}}'''
 
-# colorschemes{{
+# colorschemes{{{
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
 on_event = ['ColorSchemePre']
-hook_add = '''"{{{
-"}}}'''
-# }}
+# }}}
 
-# filer{{
+# filer{{{
 [[plugins]]
 #repo = 'scrooloose/nerdtree'
 repo = 'preservim/nerdtree'
@@ -81,15 +77,11 @@ hook_post_source = '''"{{{
 [[plugins]]
 repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
 on_source = ['nerdtree']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
 on_source = ['nerdtree']
-hook_add = '''"{{{
-"}}}'''
-# }}
+# }}}
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -103,8 +95,6 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'soramugi/auto-ctags.vim'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
@@ -151,21 +141,15 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'tyru/current-func-info.vim'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'kshenoy/vim-signature'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
 #on_event = ['CursorHold']
 on_event = ['BufReadPost']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'yssl/QFEnter'
@@ -185,14 +169,10 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'thinca/vim-qfreplace'
 on_cmd = ['Qfreplace']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'kraxli/vim-renamer'
 on_cmd = ['Renamer']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'skywind3000/asyncrun.vim'
@@ -221,7 +201,7 @@ hook_add = '''"{{{
     let g:errormarker_warningtext="⚠️"
 "}}}'''
 
-# search {{
+# search {{{
 [[plugins]]
 repo = 'haya14busa/incsearch-fuzzy.vim'
 on_map = ['<Plug>(incsearch-fuzzy-/)']
@@ -244,22 +224,16 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'markonm/traces.vim'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
-# }}
+# }}}
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
@@ -348,33 +322,23 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'farmergreg/vim-lastplace'
 on_i = 1
-hook_add = '''"{{{
-"}}}'''
 
 # completion snippet{{
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
 on_i = 1
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
 on_i = 1
-hook_add = '''"{{{
-"}}}'''
 
 # [[plugins]]
 # repo = 'cohama/lexima.vim'
 # on_i = 1
-# hook_add = '''"{{{
-# "}}}'''
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
@@ -386,10 +350,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_event = ['CursorHold']
 on_i = 1
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'kana/vim-smartchr'
@@ -446,8 +407,6 @@ on_cmd=['CtrlPMark']
 merged = false
 overwrite = true
 lazy = false
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'hara/ctrlp-colorscheme'
@@ -455,16 +414,12 @@ on_cmd = ['CtrlPColorscheme']
 merged = false
 overwrite = true
 lazy = false
-hook_add = '''"{{{
-"}}}'''
 
 # }}
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'tyru/restart.vim'
@@ -489,20 +444,14 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'RobRoseKnows/lark-vim'
 on_ft = ['lark']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 on_ft = ['toml','lua']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -528,20 +477,14 @@ let g:precious_enable_switchers = {
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
 on_ft = ['csv']
-hook_add = '''"{{{
-"}}}'''
 
 # lsp{{{
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 on_ft = ['vim','python','lua']
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 on_event = ['CursorHold']
-hook_add = '''"{{{
-"}}}'''
 
 # }}}

@@ -285,8 +285,6 @@ depends  = [
 
 [[plugins]]
 repo = 'delphinus/lightline-delphinus'
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -358,25 +356,17 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'mattn/ctrlp-matchfuzzy'
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
-hook_add = '''"{{{
-"}}}'''
 
 [[plugins]]
 repo = 'hara/ctrlp-colorscheme'
-hook_add = '''"{{{
-"}}}'''
 # }}}
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 # on_source = ['lightline.vim']
-hook_add = '''"{{{
-"}}}'''
 
 # lsp{{{
 [[plugins]]
@@ -428,6 +418,4 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
-hook_add = '''"{{{
-"}}}'''
 # }}}
