@@ -40,14 +40,12 @@ augroup my_autocmd
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
 augroup END
 
-"augroup reload_vimrc
-"    autocmd!
-"    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$MYVIMRC
-"				\:nested so $MYVIMRC
-"				\|redraw
-"				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
-"
-"				"| if has('gui_running')
-"				"|| has('nvim')
-"				"| so $MYGVIMRC
-"augroup END
+augroup reload_vimrc
+    autocmd!
+    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$HOME/vimrc/init/*.vim,$MYVIMRC
+				\:nested source $MYVIMRC
+				\|if has('gui_running') |source $MYGVIMRC |endif
+				\|if exists('g:loaded_webdevicons') | call webdevicons#refresh() | endif
+				\|redraw
+				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
+augroup END

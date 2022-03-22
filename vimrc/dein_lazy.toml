@@ -537,4 +537,11 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 on_ft = ['vim','python','lua']
 hook_add = '''"{{{
 "}}}'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+"}}}'''
+
 # }}}

@@ -55,7 +55,8 @@ endif
 "jj,kkでEcs
 inoremap jj <Esc>
 inoremap jk <Esc>
-"inoremap oo <Esc>
+inoremap oo <Esc>
+
 inoremap qq <Esc>
 inoremap hhh <Esc>
 inoremap lll <Esc>

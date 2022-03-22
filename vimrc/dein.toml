@@ -427,11 +427,6 @@ hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
-repo = 'mattn/vim-lsp-settings'
-hook_add = '''"{{{
-"}}}'''
-
-[[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
 hook_add = '''"{{{
 "}}}'''

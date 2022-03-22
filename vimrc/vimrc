@@ -1,4 +1,4 @@
-" Last Change: 21-Mar-2022.
+" Last Change: 22-Mar-2022.
 
 source $HOME/vimfiles/init/useroptions.vim
 source $HOME/vimfiles/init/usermaps.vim
@@ -7,9 +7,6 @@ source $HOME/vimfiles/init/userdein.vim
 
 if !has("gui_running")
 	colorscheme onedark
-	if empty(get(g:, 'colors_name', ''))
-	  colorscheme desert
-	endif
 endif
 
 filetype plugin indent on
