@@ -1,8 +1,10 @@
+"↓これプラグインのキーマップまでリセットされる
 "mapclear | mapclear <buffer> | mapclear! | mapclear! <buffer>
-"これでマップリセットできるけどS-Insertまでクリアされるぞ！
-"リセットで困るのはS-Insertぐらいなので自力でマップする
-inoremap <S-Insert> <ESC>"*pi
+"↓これならリセットされないけどなんか挙動変、CR→AutoPairsReturn
+"mapclear!
 
+"clipboard関連
+inoremap <S-Insert> <ESC>"*pa
 vnoremap <C-X> "*d
 vnoremap <C-Del> "*d
 vnoremap <S-Del> "*d
@@ -10,9 +12,8 @@ vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "-d"*P
 nnoremap <S-Insert> "*P
 
-
-"echo "keymap is loaded"
 nnoremap Q <Nop>
+"折りたたみ設定
 nnoremap za za
 vnoremap za zf
 "USキーボード
@@ -21,30 +22,28 @@ vnoremap ; :
 "tagjump 複数候補
 nnoremap <C-]> g<C-]>
 inoremap <C-]> <ESC>g<C-]>
-"githubリポジトリplugコピペ時に改行しちゃうので力技で修正
-inoremap <M-Insert> <C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa
+""githubリポジトリplugコピペ時に改行しちゃうので力技で修正
+"inoremap <M-Insert> <C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa
 "command line window
 "nnoremap : q:a
 "nnoremap / q/a
 " https://twitter.com/uvrub/status/1341036672364945408
 inoremap <silent> <CR> <C-g>u<CR>
-" for masui special.
+"for masui special.
 noremap g<CR> g;
-"Quickfixウインドウと干渉する
-"nnoremap <CR> :<C-u>w<CR>
 "行末までヤンク
 nnoremap Y y$
 "xとsでヤンクしない
 nnoremap x "_x
 nnoremap s "_s
 nnoremap S "_S
-"<F6>タイムスタンプを挿入
-nnoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR><ESC>
-inoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR>
-nnoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by <ESC>
-inoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by
-nnoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by <ESC>
-inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
+""<F6>タイムスタンプを挿入
+"nnoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR><ESC>
+"inoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR>
+"nnoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by <ESC>
+"inoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by
+"nnoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by <ESC>
+"inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
 "ESCキー連打
 "undiffはkaoriya限定
 if has('kaoriya')
@@ -52,11 +51,10 @@ if has('kaoriya')
 else
 	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 endif
-"jj,kkでEcs
+"連打でesc
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap oo <Esc>
-
 inoremap qq <Esc>
 inoremap hhh <Esc>
 inoremap lll <Esc>
@@ -155,14 +153,6 @@ cnoremap <C-b> <S-Right>
 "検索時の / のエスケープを簡単に入力
 cnoremap <C-o> <C-\>e(getcmdtype() == '/' <Bar><Bar> getcmdtype() == '?') ? '\<' . getcmdline() . '\>' : getcmdline()<CR>
 "}}}
-""括弧補完{{{
-"inoremap { {}<ESC>i
-"inoremap [ []<ESC>i
-"inoremap ( ()<ESC>i
-"inoremap < <><ESC>i
-""inoremap * **<ESC>i
-"inoremap ' ''<ESC>i
-""}}}
 ""VDsplitをWinmergeライクに{{{
 nnoremap <M-j> ]c
 nnoremap <M-k> [c
@@ -228,33 +218,24 @@ nnoremap cp ciw<C-r>0<ESC>
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
-"seq内では有効にしたいが…
-"for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-"  exec "imap " . k . " " . k . "<C-N><C-P>"
-"endfor
-"leximaと重複注意
+
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 tnoremap <silent> <ESC> <C-\><C-n>
+
 "カレントウィンドウを新規タブで開き直す{{{
 nnoremap <M-n> :call OpenNewTab()<CR>
-
 function! OpenNewTab()
     let f = expand("%:p")
     execute ":q"
     execute ":tabnew ".f
 endfunction
 "}}}
-let $MYPLUGRC =expand('$VIMRUNTIME\userautoload\Plugins.vim')
-let $MYCONFIG =expand('$VIMRUNTIME\_config\*.vim')
-let $MYGCONFIG =expand('$VIMRUNTIME\_gconfig\*.vim')
 
 "編集
 command! Evimrc :e $MYVIMRC
 command! Egvimrc :e $MYGVIMRC
-command! Eplug :e $MYPLUGRC
-command! Esysseq :e $MYSEQRC
 
 if has('vim_starting')
   let g:startuptime = reltime()
