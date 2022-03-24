@@ -1,4 +1,4 @@
-" Last Change: 22-Mar-2022.
+" Last Change: 24-Mar-2022.
 
 set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
@@ -6,7 +6,7 @@ set antialias
 set linespace=1
 
 let ayucolor='dark'
-colorscheme ayu
+colorscheme onedark
 
 "起動時のウィンドウサイズ
 let g:save_window_file = expand('~/.vimwinpos')
@@ -22,7 +22,6 @@ augroup SaveWindow
     call writefile(options, g:save_window_file)
   endfunction
 augroup END
-
 if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif

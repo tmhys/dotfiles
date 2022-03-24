@@ -3,7 +3,30 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
+----disable
+-- Do not source the default filetype.vim
+vim.g.did_install_default_menus = 1
+vim.g.did_install_syntax_menu   = 1
+vim.g.did_indent_on             = 1
+vim.g.did_load_filetypes        = 1
+vim.g.did_load_ftplugin         = 1
+vim.g.loaded_2html_plugin       = 1
+vim.g.loaded_gzip               = 1
+vim.g.loaded_man                = 1
+vim.g.loaded_matchit            = 1
+vim.g.loaded_matchparen         = 1
+vim.g.loaded_netrwPlugin        = 1
+vim.g.loaded_remote_plugins     = 1
+vim.g.loaded_shada_plugin       = 1
+vim.g.loaded_spellfile_plugin   = 1
+vim.g.loaded_tarPlugin          = 1
+vim.g.loaded_tutor_mode_plugin  = 1
+vim.g.loaded_zipPlugin          = 1
+vim.g.skip_loading_mswin        = 1
+vim.g.loaded_clipboard_provider = 1
+
 opt.encoding       = 'UTF-8'
+--doubleにすると表示が変
 opt.ambiwidth      = 'single'
 opt.autoindent     = true
 opt.autoread       = true
@@ -18,15 +41,13 @@ opt.cursorline     = true -- highlight the current line
 opt.makeencoding   = 'cp932'
 opt.expandtab      = true                -- Use spaces instead of tabs
 opt.fileformats    = 'dos,unix,mac'
-opt.fileencodings  = {'cp932','UTF-8'} -- the encoding written to a file
+opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
 opt.ignorecase     = true               -- Ignore case
-opt.inccommand     = 'split'
 opt.laststatus     = 2
 opt.lazyredraw     = true
 opt.matchtime      = 1
 opt.matchpairs     = vim.bo.matchpairs .. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝"--only vimrc option
 opt.number         = true                   -- Show line numbers
-opt.pumblend       = 10
 opt.scrolloff      = 10                   -- Lines of context
 opt.shiftwidth     = 4
 opt.showmatch      = true
@@ -70,28 +91,10 @@ opt.shortmess 	   = vim.o.shortmess
                 		.. "I"
                 		--.. "F" -- Don't print a message when opening a file
                 		--.. "c" -- silence insert mode completion messages
+-- only nvim
+opt.inccommand     = 'split'
+opt.pumblend       = 10
 
-----disable
--- Do not source the default filetype.vim
-vim.g.did_install_default_menus = 1
-vim.g.did_install_syntax_menu   = 1
-vim.g.did_indent_on             = 1
-vim.g.did_load_filetypes        = 1
-vim.g.did_load_ftplugin         = 1
-vim.g.loaded_2html_plugin       = 1
-vim.g.loaded_gzip               = 1
-vim.g.loaded_man                = 1
-vim.g.loaded_matchit            = 1
-vim.g.loaded_matchparen         = 1
-vim.g.loaded_netrwPlugin        = 1
-vim.g.loaded_remote_plugins     = 1
-vim.g.loaded_shada_plugin       = 1
-vim.g.loaded_spellfile_plugin   = 1
-vim.g.loaded_tarPlugin          = 1
-vim.g.loaded_tutor_mode_plugin  = 1
-vim.g.loaded_zipPlugin          = 1
-vim.g.skip_loading_mswin        = 1
-vim.g.loaded_clipboard_provider = 1
 
 opt.wildignore = {
   ".DS_Store", ".git", ".svn", ".hg",

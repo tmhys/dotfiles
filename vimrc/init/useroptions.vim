@@ -34,16 +34,20 @@ set encoding=UTF-8
 scriptencoding utf-8
 set fileencodings=cp932,sjis,utf-8
 "set fileformats = dos,unix,mac
+"Vimの開始時に挨拶メッセージを表示しない
+set shortmess+=c
 set shortmess+=I
+"検索時に検索件数メッセージを表示しない。例えば "[1/5]"
 set shortmess-=S
 set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
 set laststatus=2
 set cmdheight=2
-set completeopt=menuone
+set completeopt=menuone,menu,noselect
 set lazyredraw
 set updatetime=250
 set autoindent
 set autoread
+set smartindent
 set clipboard+=unnamed
 set nopaste
 "set expandtab
@@ -66,7 +70,10 @@ set wildignore& wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
 set undofile
 set noswapfile
 set nowrap
+set noshowmode
+set shiftround
 set sidescrolloff=8
+set pumheight=20
 set guioptions&
 set guioptions+=C
 set guioptions-=T
