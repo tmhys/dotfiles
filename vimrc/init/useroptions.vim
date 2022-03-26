@@ -29,6 +29,7 @@ let g:loaded_gtags              = v:true
 let g:did_install_default_menus = v:true
 let g:loaded_gtags_cscope       = v:true
 let g:loaded_man                = v:true
+let g:skip_defaults_vim         = v:true
 
 set encoding=UTF-8
 scriptencoding utf-8

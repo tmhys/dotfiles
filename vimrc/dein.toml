@@ -274,7 +274,8 @@ hook_add = '''"{{{
 
 	augroup MyLightline
 		autocmd!
-		autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
+		""autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
+		autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update() | LightlineUpdate
 	  	autocmd User lsp_diagnostics_updated call lightline#update()
 	augroup END
 "}}}'''

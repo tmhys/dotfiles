@@ -57,5 +57,16 @@ augroup reload_vimrc
 				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
 augroup END
 
+if has('vim_starting')
+  let g:startuptime = reltime()
+  augroup vimrc
+	  autocmd!
+  	  autocmd VimEnter *
+        \ : let g:startuptime = reltime(g:startuptime)
+        \ | redraw
+        \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+  augroup END
+endif
+
 
 ]])

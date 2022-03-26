@@ -1,17 +1,18 @@
+function! s:remove_dust()
+  let l:cursor = getpos(".")
+  keeppatterns %s/\s\+$//ge
+  keeppatterns %s/\n\{4,}/\r\r\r/ge
+  keeppatterns %s#\($\n\s*\)\+\%$##ge
+  call setpos(".", cursor)
+  unlet l:cursor
+endfunction
+
 augroup my_autocmd
 	autocmd!
 	"backupファイルに日付
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 	"文末スペース / 連続改行削除
 	autocmd BufWritePre * call s:remove_dust()
-	function! s:remove_dust()
-  	  let l:cursor = getpos(".")
-	  keeppatterns %s/\s\+$//ge
-	  keeppatterns %s/\n\{4,}/\r\r\r/ge
-	  keeppatterns %s#\($\n\s*\)\+\%$##ge
-  	  call setpos(".", cursor)
-  	  unlet l:cursor
-  	endfunction
 	" 前回終了位置に移動
 	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
 	" バッファ読み込み時にマークを初期化
@@ -38,6 +39,8 @@ augroup my_autocmd
         \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
         \ foldmethod=indent
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
+    autocmd BufNewFile,BufRead *.toml setfiletype toml
+    autocmd BufNewFile,BufRead *.lark setfiletype lark
 augroup END
 
 augroup reload_vimrc
@@ -49,3 +52,14 @@ augroup reload_vimrc
 				\|redraw
 				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
 augroup END
+
+if has('vim_starting')
+  let g:startuptime = reltime()
+  augroup vimrc
+	  autocmd!
+  	  autocmd VimEnter *
+        \ : let g:startuptime = reltime(g:startuptime)
+        \ | redraw
+        \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+  augroup END
+endif

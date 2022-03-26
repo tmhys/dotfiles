@@ -442,7 +442,7 @@ hook_add = '''"{{{
 
 # specific filetype{{
 [[plugins]]
-repo = 'RobRoseKnows/lark-vim'
+repo = 'lark-parser/vim-lark-syntax'
 on_ft = ['lark']
 
 [[plugins]]

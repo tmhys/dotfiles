@@ -1,4 +1,4 @@
-" Last Change: 22-Mar-2022.
+" Last Change: 26-Mar-2022.
 
 source $HOME/vimfiles/init/useroptions.vim
 source $HOME/vimfiles/init/usermaps.vim
@@ -10,4 +10,5 @@ if !has("gui_running")
 endif
 
 filetype plugin indent on
-syntax on
+"何故か２重で読み込まれてる↓こちらをオフにする
+"syntax on

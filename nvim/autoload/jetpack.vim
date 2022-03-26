@@ -231,7 +231,7 @@ function! jetpack#bundle() abort
   let unbundle = s:pkgs
   if g:jetpack#optimization >= 1
     let bundle = filter(copy(s:pkgs), 's:match(v:val["pathname"], s:srcdir()) && !get(v:val, "opt") && !has_key(v:val, "do")')
-    let unbundle = filter(copy(s:pkgs), 's:match(v:val["pathname"], s:srcdir()) && (get(v:val, "opt") || has_key(v:val, "do"))') 
+    let unbundle = filter(copy(s:pkgs), 's:match(v:val["pathname"], s:srcdir()) && (get(v:val, "opt") || has_key(v:val, "do"))')
   endif
 
   call delete(s:optdir(), 'rf')

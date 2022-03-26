@@ -128,4 +128,4 @@ if len(s:removed_plugins) > 0
 endif
 " }}}
 
-filetype plugin on
+"filetype plugin on

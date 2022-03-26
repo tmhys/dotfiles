@@ -201,6 +201,7 @@ return require("packer").startup({
 			end,
 		})
 		use({ "mechatroner/rainbow_csv", ft = { "csv" } })
+		use({ "lark-parser/vim-lark-syntax" , ft = { "lark" }})
 
 		-- fuzzy finder{{{
 		use({
@@ -313,6 +314,7 @@ return require("packer").startup({
 				require("my_plugins.nvim-autopairs")
 			end,
 		})
+		use({ "hrsh7th/vim-vsnip", event = "InsertEnter" })
 		use({
 			"hrsh7th/nvim-cmp",
 			event = "InsertEnter",
@@ -340,10 +342,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-		-- others{{{
-		--use({ "~/seq.vim" })
-		use({ "lark-parser/vim-lark-syntax" , ft = { "toml" }})
-		--}}}
+		---- others{{{
+		----use({ "~/seq.vim" })
+		----}}}
 	end,
 
 	config = {
