@@ -312,6 +312,7 @@ hook_add = '''"{{{
     nnoremap    [ctrlp]   <Nop>
     nmap    <Space>f [ctrlp]
     "
+	""let g:ctrlp_line_prefix= '> '
     nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurFile<CR>
     nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
     nnoremap <silent> [ctrlp]m :<C-u>CtrlPMRUFiles<CR>
