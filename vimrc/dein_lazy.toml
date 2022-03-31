@@ -327,19 +327,6 @@ on_cmd = ['StartupTime']
 repo = 'farmergreg/vim-lastplace'
 on_i = 1
 
-# completion snippet{{
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip'
-on_i = 1
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-on_i = 1
-
-# [[plugins]]
-# repo = 'cohama/lexima.vim'
-# on_i = 1
-
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
 on_event = ['CursorHold']
@@ -439,6 +426,10 @@ hook_add = '''"{{{
 
     nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
 "}}}'''
+
+[[plugins]]
+repo = 'DanilaMihailov/beacon.nvim'
+on_event = ['CursorHold']
 
 # specific filetype{{
 [[plugins]]

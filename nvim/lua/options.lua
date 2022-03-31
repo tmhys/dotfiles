@@ -89,6 +89,7 @@ opt.splitright     = true               -- Put new windows right of current only
 opt.title          = true -- set the title of window to the value of the titlestring only init.lua option
 opt.shortmess 	   = vim.o.shortmess
                 		.. "I"
+                		.. "c" -- silence insert mode completion messages
                 		--.. "F" -- Don't print a message when opening a file
                 		--.. "c" -- silence insert mode completion messages
 -- only nvim

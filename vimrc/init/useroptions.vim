@@ -43,7 +43,7 @@ set shortmess-=S
 set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
 set laststatus=2
 set cmdheight=2
-set completeopt=menuone,menu,noselect
+set completeopt=menuone,noselect
 set lazyredraw
 set updatetime=250
 set autoindent

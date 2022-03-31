@@ -219,9 +219,9 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
 
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+"inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 tnoremap <silent> <ESC> <C-\><C-n>
 
 "カレントウィンドウを新規タブで開き直す{{{

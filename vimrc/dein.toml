@@ -397,9 +397,9 @@ hook_add = '''"{{{
     let g:asyncomplete_popup_delay      = 1
     let g:lsp_text_edit_enabled         = 0
 
-    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+    "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    "inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
     let g:lsp_signs_error                    = {'text': '❌'}
     "let g:lsp_signs_error                   = {'text': ''}
@@ -420,4 +420,60 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+hook_add = '''"{{{
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'allowlist': ['*'],
+    \ 'blocklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+"}}}'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+# on_i = 1
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+# on_i = 1
+	# let g:asyncomplete_auto_popup = 0
+	#
+	# function! s:check_back_space() abort
+	#     let col = col('.') - 1
+	#     return !col || getline('.')[col - 1]  =~ '\s'
+	# endfunction
+	# inoremap <silent><expr> <TAB>
+	#   \ pumvisible() ? "\<C-n>" :
+	#   \ <SID>check_back_space() ? "\<TAB>" :
+	#   \ asyncomplete#force_refresh()
+hook_add = '''"{{{
+	"imapでマッピングしないとsnippet展開後のtabキーの挙動が変、いまいちよくわ
+	"からん
+    imap <expr> <Tab>  pumvisible() ? "\<C-n>" :
+				\vsnip#available(1)   ? '<Plug>(vsnip-expand-or-jump)':
+				\"\<Tab>"
+
+    imap <expr> <S-Tab> pumvisible() ? "\<C-p>" :
+				\vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      :
+				\"\<S-Tab>"
+
+    smap <expr> <Tab> pumvisible() ? "\<C-n>" :
+				\vsnip#available(1)   ? '<Plug>(vsnip-expand-or-jump)':
+				\"\<Tab>"
+
+    smap <expr> <S-Tab> pumvisible() ? "\<C-p>" :
+				\vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      :
+				\"\<S-Tab>"
+
+    imap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+	imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+"}}}'''
+
 # }}}
