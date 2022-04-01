@@ -397,9 +397,9 @@ hook_add = '''"{{{
     let g:asyncomplete_popup_delay      = 1
     let g:lsp_text_edit_enabled         = 0
 
-    "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-    "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    "inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
     let g:lsp_signs_error                    = {'text': '❌'}
     "let g:lsp_signs_error                   = {'text': ''}
@@ -431,6 +431,21 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ 'config': {
     \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+"}}}'''
+
+[[plugins]]
+repo = 'hotoolong/asyncomplete-tabnine.vim'
+build = 'powershell.exe .\install.ps1'
+hook_add = '''"{{{
+  call asyncomplete#register_source(asyncomplete#sources#tabnine#get_source_options({
+    \ 'name': 'tabnine',
+    \ 'allowlist': ['*'],
+    \ 'completor': function('asyncomplete#sources#tabnine#completor'),
+    \ 'config': {
+    \   'line_limit': 1000,
+    \   'max_num_result': 20,
     \  },
     \ }))
 "}}}'''
