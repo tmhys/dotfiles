@@ -13,8 +13,8 @@ augroup my_autocmd
 	autocmd BufWritePre * let &bex = '.' .strftime("%Y%m%d_%H%M%S")
 	"文末スペース / 連続改行削除
 	autocmd BufWritePre * call s:remove_dust()
-	" 前回終了位置に移動
-	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
+	" 前回終了位置に移動 vim-lastplaceで代用しているつもり
+	"autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line('$') | exe 'normal g`"' | endif
 	" バッファ読み込み時にマークを初期化
 	autocmd BufReadPost * delmarks!
 	"" 色はお使いのカラースキームに合わせて

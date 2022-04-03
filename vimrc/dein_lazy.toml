@@ -1,7 +1,9 @@
+###########
+# dein
+###########
 [[plugins]]
 repo = 'wsdjeg/dein-ui.vim'
 on_cmd    = ['DeinUpdate']
-on_source = ['ctrlp.vim']
 hook_add = '''"{{{
 	nnoremap <F12> DeinUpdate<CR>
 "}}}'''
@@ -10,15 +12,17 @@ hook_add = '''"{{{
 repo = 'haya14busa/dein-command.vim'
 on_cmd    = ['Dein']
 
-# colorschemes{{{
+###########
+# colorschemes
+###########
 [[plugins]]
 repo = 'rafi/awesome-vim-colorschemes'
 on_event = ['ColorSchemePre']
-# }}}
 
-# filer{{{
+###########
+# filer
+###########
 [[plugins]]
-#repo = 'scrooloose/nerdtree'
 repo = 'preservim/nerdtree'
 on_event = ['CursorHold']
 hook_add = '''"{{{
@@ -73,7 +77,6 @@ hook_post_source = '''"{{{
 	endif
 "}}}'''
 
-
 [[plugins]]
 repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
 on_source = ['nerdtree']
@@ -81,17 +84,10 @@ on_source = ['nerdtree']
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
 on_source = ['nerdtree']
-# }}}
 
-[[plugins]]
-repo = 'Yggdroot/indentLine'
-on_event = ['CursorHold']
-hook_add = '''"{{{
-    set list listchars=tab:\¦\ "spaceが必要
-	let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar', 'dashboard']
-"}}}'''
-
-# ctags{{
+###########
+# ctags
+###########
 [[plugins]]
 repo = 'soramugi/auto-ctags.vim'
 on_event = ['CursorHold']
@@ -129,18 +125,24 @@ hook_add = '''"{{{
         \ 'sort' : 0
     \ }
 "}}}'''
-# }}
 
+###########
+# interface
+###########
 [[plugins]]
-repo = 'blueyed/vim-diminactive'
-on_event = ['FocusLost', 'CursorHold','BufAdd']
+repo = 'Yggdroot/indentLine'
+on_event = ['CursorHold']
 hook_add = '''"{{{
-"let g:diminactive_use_syntax = 1
+    set list listchars=tab:\¦\ "spaceが必要
+	let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar', 'dashboard']
 "}}}'''
 
 [[plugins]]
-repo = 'tyru/current-func-info.vim'
-on_event = ['CursorHold']
+repo = 'blueyed/vim-diminactive'
+on_event = ['FocusLost']
+hook_add = '''"{{{
+"let g:diminactive_use_syntax = 1
+"}}}'''
 
 [[plugins]]
 repo = 'kshenoy/vim-signature'
@@ -148,10 +150,26 @@ on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
-#on_event = ['CursorHold']
 on_event = ['BufReadPost']
 
 [[plugins]]
+# カーソルジャンプ時の描画
+repo = 'DanilaMihailov/beacon.nvim'
+on_event = ['CursorHold']
+
+[[plugins]]
+repo = 'machakann/vim-highlightedyank'
+on_event = ['CursorHold']
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+on_event = ['CursorHold']
+
+###########
+# quickfix
+###########
+[[plugins]]
+# 直前のウィンドウで開く
 repo = 'yssl/QFEnter'
 on_event = ['CursorHold']
 hook_add = '''"{{{
@@ -167,133 +185,13 @@ hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
+# 一括リネーム
 repo = 'thinca/vim-qfreplace'
 on_cmd = ['Qfreplace']
 
-[[plugins]]
-repo = 'kraxli/vim-renamer'
-on_cmd = ['Renamer']
-
-[[plugins]]
-repo = 'skywind3000/asyncrun.vim'
-on_event = ['FocusLost', 'CursorHold']
-hook_add = '''"{{{
-    let g:asyncrun_encs='cp932'
-    "let g:asyncrun_program = get(g:, 'asyncrun_program', {})
-    "let g:asyncrun_program.nice = { opts -> 'nice -5' . opts.cmd }
-    augroup MyGroup
-        autocmd!
-        "autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
-        autocmd BufNewFile,BufRead *.py noremap <buffer> <Space>r :AsyncRun python  -u %<CR>
-        autocmd BufNewFile,BufRead *.seq,*.s noremap <buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
-        autocmd BufWritePost *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main
-    augroup END
-"}}}'''
-
-[[plugins]]
-repo = 'mh21/errormarker.vim'
-on_event = ['FocusLost', 'CursorHold']
-on_source = ['skywind3000/asyncrun.vim']
-hook_add = '''"{{{
-	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:RemoveErrorMarkers<CR>
-    let g:asyncrun_auto = "make"
-    let g:errormarker_errortext="❌"
-    let g:errormarker_warningtext="⚠️"
-"}}}'''
-
-# search {{{
-[[plugins]]
-repo = 'haya14busa/incsearch-fuzzy.vim'
-on_map = ['<Plug>(incsearch-fuzzy-/)']
-hook_add = '''"{{{
-    map z/ <Plug>(incsearch-fuzzy-/)
-    map z? <Plug>(incsearch-fuzzy-?)
-    map zg/ <Plug>(incsearch-fuzzy-stay)
-"}}}'''
-
-[[plugins]]
-repo = 'haya14busa/incsearch.vim'
-on_map = ['<Plug>(incsearch-forward)']
-on_sources = ['incsearch-fuzzy.vim']
-hook_add = '''"{{{
-    map /  <Plug>(incsearch-forward)
-    map ?  <Plug>(incsearch-backward)
-    map g/ <Plug>(incsearch-stay)
-"}}}'''
-
-[[plugins]]
-repo = 'markonm/traces.vim'
-on_event = ['CursorHold']
-
-
-[[plugins]]
-repo = 'machakann/vim-highlightedyank'
-on_event = ['CursorHold']
-
-[[plugins]]
-repo = 'itchyny/vim-cursorword'
-on_event = ['CursorHold']
-# }}}
-
-[[plugins]]
-repo = 'easymotion/vim-easymotion'
-on_event = ['CursorHold']
-hook_add = '''"{{{
-
-     "" <Leader>f{char} to move to {char}
-     "map  zf <Plug>(easymotion-bd-f)
-     "nmap zf <Plug>(easymotion-overwin-f)
-
-     "" s{char}{char} to move to {char}{char}
-     "nmap zs <Plug>(easymotion-overwin-f2)
-     "vmap zs <Plug>(easymotion-bd-f2)
-
-     " Move to line
-     map  zj <Plug>(easymotion-bd-jk)
-     nmap zj <Plug>(easymotion-overwin-line)
-
-     " Move to word
-     map  zz <Plug>(easymotion-bd-w)
-     nmap zz <Plug>(easymotion-overwin-w)
-
-     let g:EasyMotion_do_mapping = 0
-"}}}'''
-
-[[plugins]]
-repo = 'rhysd/accelerated-jK'
-on_event = ['CursorHold']
-on_map = [
-	'<Plug>(accelerated_jk_gj)',
-	'<Plug>(accelerated_jk_gk)'
-		]
-hook_add = '''"{{{
-    nmap j <Plug>(accelerated_jk_gj)
-    nmap k <Plug>(accelerated_jk_gk)
-"}}}'''
-
-[[plugins]]
-repo = 'rhysd/clever-f.vim'
-on_event = ['CursorHold']
-hook_add = '''"{{{
-    let g:clever_f_mark_direct = 1
-"}}}'''
-
-[[plugins]]
-repo = 'unblevable/quick-scope'
-on_source = ['ctrlp.vim']
-on_event = ['CursorHold']
-hook_add = '''"{{{
-    nmap <space>qs <plug>(QuickScopeToggle)
-    xmap <space>qs <plug>(QuickScopeToggle)
-    let g:qs_max_chars = 100
-    let g:qs_lazy_highlight = 0
-    let g:qs_delay = 100
-    augroup vimrc_quick_scope
-      autocmd!
-      autocmd FileType startuptime,nvimtree,nerdtree,buffergator,tagbar,qf,ControlP let b:qs_local_disable=1
-    augroup END
-"}}}'''
-
+###########
+# tool
+###########
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_cmd = ['EasyAlign']
@@ -320,13 +218,157 @@ hook_add = '''"{{{
 "}}}'''
 
 [[plugins]]
+repo = 'kraxli/vim-renamer'
+on_cmd = ['Renamer']
+
+[[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
 [[plugins]]
-repo = 'farmergreg/vim-lastplace'
-on_i = 1
+repo = 'vim-jp/vimdoc-ja'
+on_event = ['CursorHold']
 
+[[plugins]]
+repo = 'tyru/restart.vim'
+on_cmd    = ['Restart']
+hook_add = '''"{{{
+    " 終了時に保存するセッションオプションを設定する{{{
+    let g:restart_sessionoptions
+        \ = 'winsize,winpos,blank,buffers,curdir,folds,help,localoptions,tabpages'
+    "}}}
+    " :Restart 時に変数の定義を行う
+    command! MyRestart Restart --cmd "let g:restarted = 1"
+
+    " この変数を使用して :Restart が行われたかどうかの判定を行う
+    if !exists("g:restarted")
+        let $PATH = $PATH . ";C:/cpp/boost"
+    endif
+
+    nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
+"}}}'''
+
+###########
+# runner
+###########
+[[plugins]]
+repo = 'skywind3000/asyncrun.vim'
+on_cmd    = ['AsyncRun']
+hook_add = '''"{{{
+    let g:asyncrun_encs='cp932'
+    "let g:asyncrun_program = get(g:, 'asyncrun_program', {})
+    "let g:asyncrun_program.nice = { opts -> 'nice -5' . opts.cmd }
+    augroup MyGroup
+        autocmd!
+        "autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+        autocmd BufNewFile,BufRead *.py noremap <buffer> <Space>r :AsyncRun python  -u %<CR>
+        autocmd BufNewFile,BufRead *.seq,*.s noremap <buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
+        autocmd BufWritePost *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main
+    augroup END
+"}}}'''
+
+[[plugins]]
+repo = 'mh21/errormarker.vim'
+on_source = ['asyncrun.vim']
+hook_add = '''"{{{
+	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:RemoveErrorMarkers<CR>
+    let g:asyncrun_auto = "make"
+    let g:errormarker_errortext="❌"
+    let g:errormarker_warningtext="⚠️"
+"}}}'''
+
+###########
+# search
+###########
+[[plugins]]
+repo = 'haya14busa/incsearch-fuzzy.vim'
+on_map = ['<Plug>']
+hook_add = '''"{{{
+    map z/ <Plug>(incsearch-fuzzy-/)
+    map z? <Plug>(incsearch-fuzzy-?)
+    map zg/ <Plug>(incsearch-fuzzy-stay)
+"}}}'''
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+on_map = ['<Plug>']
+on_sources = ['incsearch-fuzzy.vim']
+hook_add = '''"{{{
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
+"}}}'''
+
+[[plugins]]
+repo = 'markonm/traces.vim'
+on_event = ['CursorHold']
+
+###########
+# motion
+###########
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map = ['<Plug>']
+hook_add = '''"{{{
+
+     "" <Leader>f{char} to move to {char}
+     "map  zf <Plug>(easymotion-bd-f)
+     "nmap zf <Plug>(easymotion-overwin-f)
+
+     "" s{char}{char} to move to {char}{char}
+     "nmap zs <Plug>(easymotion-overwin-f2)
+     "vmap zs <Plug>(easymotion-bd-f2)
+
+     " Move to line
+     map  zj <Plug>(easymotion-bd-jk)
+     nmap zj <Plug>(easymotion-overwin-line)
+
+     " Move to word
+     map  zz <Plug>(easymotion-bd-w)
+     nmap zz <Plug>(easymotion-overwin-w)
+
+     let g:EasyMotion_do_mapping = 0
+"}}}'''
+
+[[plugins]]
+repo = 'rhysd/accelerated-jK'
+on_map = [ # {{{
+	'<Plug>(accelerated_jk_gj)',
+	'<Plug>(accelerated_jk_gk)'
+		]# }}}
+hook_add = '''"{{{
+    nmap j <Plug>(accelerated_jk_gj)
+    nmap k <Plug>(accelerated_jk_gk)
+"}}}'''
+
+[[plugins]]
+# f連打
+repo = 'rhysd/clever-f.vim'
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    let g:clever_f_mark_direct = 1
+"}}}'''
+
+[[plugins]]
+# 固有文字ハイライト
+repo = 'unblevable/quick-scope'
+on_source = ['ctrlp.vim']
+on_event = ['CursorHold']
+hook_add = '''"{{{
+    nmap <space>qs <plug>(QuickScopeToggle)
+    xmap <space>qs <plug>(QuickScopeToggle)
+    let g:qs_max_chars = 100
+    let g:qs_lazy_highlight = 0
+    let g:qs_delay = 100
+    augroup vimrc_quick_scope
+      autocmd!
+      autocmd FileType startuptime,nvimtree,nerdtree,buffergator,tagbar,qf,ControlP let b:qs_local_disable=1
+    augroup END
+"}}}'''
+
+###########
+# complete
+###########
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
 on_event = ['CursorHold']
@@ -337,7 +379,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_i = 1
+on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'kana/vim-smartchr'
@@ -377,17 +419,10 @@ hook_add = '''"{{{
     " if文直後の(は自動で間に空白を入れる
     "inoremap <expr> ( search('\<\if\%#', 'bcn')? ' (': '('
 "}}}'''
-# }}
 
-# fuzzyfinder{{
-# [[plugins]]
-# repo = 'liuchengxu/vim-clap'										 ", { 'on': [] }
-# [[plugins]]
-# repo = 'tamago324/vim-clap-help' 								 ", { 'on': [] }
-# [[plugins]]
-# repo = 'hokorobi/vim-clap-sessions'							 ", { 'on': [] }
-
-
+###########
+# fuzzyfinde
+###########
 [[plugins]]
 repo = 'mattn/ctrlp-mark'
 on_cmd=['CtrlPMark']
@@ -402,36 +437,9 @@ merged = false
 overwrite = true
 lazy = false
 
-# }}
-
-[[plugins]]
-repo = 'vim-jp/vimdoc-ja'
-on_event = ['CursorHold']
-
-[[plugins]]
-repo = 'tyru/restart.vim'
-on_cmd    = ['Restart']
-hook_add = '''"{{{
-    " 終了時に保存するセッションオプションを設定する{{{
-    let g:restart_sessionoptions
-        \ = 'winsize,winpos,blank,buffers,curdir,folds,help,localoptions,tabpages'
-    "}}}
-    " :Restart 時に変数の定義を行う
-    command! MyRestart Restart --cmd "let g:restarted = 1"
-
-    " この変数を使用して :Restart が行われたかどうかの判定を行う
-    if !exists("g:restarted")
-        let $PATH = $PATH . ";C:/cpp/boost"
-    endif
-
-    nnoremap <silent> <ESC><ESC><ESC><ESC> :<C-u>Restart<CR>
-"}}}'''
-
-[[plugins]]
-repo = 'DanilaMihailov/beacon.nvim'
-on_event = ['CursorHold']
-
-# specific filetype{{
+###########
+# specific filetype
+###########
 [[plugins]]
 repo = 'lark-parser/vim-lark-syntax'
 on_ft = ['lark']
@@ -464,12 +472,13 @@ let g:precious_enable_switchers = {
 	\}
 "}}}'''
 
-
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
 on_ft = ['csv']
 
-# lsp{{{
+###########
+# lsp
+###########
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 on_ft = ['vim','python','lua']
@@ -477,5 +486,3 @@ on_ft = ['vim','python','lua']
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
 on_event = ['CursorHold']
-
-# }}}
