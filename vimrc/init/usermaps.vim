@@ -3,6 +3,7 @@
 "↓これならリセットされないけどなんか挙動変、CR→AutoPairsReturn
 "mapclear!
 
+nnoremap Q <Nop>
 "clipboard関連
 inoremap <S-Insert> <ESC>"*pa
 vnoremap <C-X> "*d
@@ -11,8 +12,6 @@ vnoremap <S-Del> "*d
 vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "-d"*P
 nnoremap <S-Insert> "*P
-
-nnoremap Q <Nop>
 "折りたたみ設定
 nnoremap za za
 vnoremap za zf
@@ -22,11 +21,6 @@ vnoremap ; :
 "tagjump 複数候補
 nnoremap <C-]> g<C-]>
 inoremap <C-]> <ESC>g<C-]>
-""githubリポジトリplugコピペ時に改行しちゃうので力技で修正
-"inoremap <M-Insert> <C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa
-"command line window
-"nnoremap : q:a
-"nnoremap / q/a
 " https://twitter.com/uvrub/status/1341036672364945408
 inoremap <silent> <CR> <C-g>u<CR>
 "for masui special.
@@ -37,14 +31,6 @@ nnoremap Y y$
 nnoremap x "_x
 nnoremap s "_s
 nnoremap S "_S
-""<F6>タイムスタンプを挿入
-"nnoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR><ESC>
-"inoremap <F6> <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR>
-"nnoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by <ESC>
-"inoremap <F6>a <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> appended by
-"nnoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by <ESC>
-"inoremap <F6>m <ESC>a<C-R>=strftime("%Y/%m/%d %H:%M")<CR> modified by
-"ESCキー連打
 "undiffはkaoriya限定
 if has('kaoriya')
 	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>
@@ -64,19 +50,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
-" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
-" acceleratedと干渉する
-"nnoremap j gj
-"nnoremap k gk
 "S-h,S-lで行頭、行末
 nnoremap <S-h> ^
 nnoremap <S-l> $
 vnoremap <S-l> $  " 矩形選択モード時のカーソル移動
 " vを二回で行末まで選択
 vnoremap v $h
-"" 検索後にジャンプした際に検索単語を画面中央に持ってくる
-"nnoremap n nzz
-"nnoremap N Nzz
 "インサートモードでも移動
 inoremap <c-j> <down>
 inoremap <c-k> <up>
@@ -95,12 +74,10 @@ vnoremap <C-Down> "zx"zp`[V`]
 noremap <Space>tn :<C-u>tabnew<CR>
 nnoremap <C-Tab> gt
 nnoremap <S-C-Tab> gT
-""縦分割版gf
+"縦分割版gf
 nnoremap gs :<C-u>vertical wincmd f<CR>
 "最初にヤンクした文字列を繰り返しペースト
 nnoremap <Space>p "0p
-"ディレクトリ自動で移動
-"set autochdir&vim
 "<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
 command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
 function! s:ChangeCurrentDir(directory, bang)
@@ -127,7 +104,6 @@ vnoremap # :s///gc<Left><Left><Left><Left>
 "1行挿入する
 nnoremap <silent><Space>o :<C-u>call append(expand('.'), '')<Cr>j
 "改行する
-"nnoremap <M-o> i<CR><ESC>
 if !has('nvim')
 	"ESCで確実にIMEオフ
 	inoremap <silent><ESC> <ESC>:set iminsert=0<CR>
@@ -219,9 +195,6 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 "同期スクロールトグル
 nnoremap <F4> :<C-u>set scrollbind!<CR>
 
-"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-"inoremap <expr><CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 tnoremap <silent> <ESC> <C-\><C-n>
 
 "カレントウィンドウを新規タブで開き直す{{{

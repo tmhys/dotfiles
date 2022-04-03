@@ -1,6 +1,9 @@
 "オプション全リセット→なぜかプラグインまで読み込まなくなる
 "set all&
 
+""""""""""""""""""""""""""""""""""""""""
+" 不要な機能無効化
+""""""""""""""""""""""""""""""""""""""""
 "適当にオフにしてます、困ったらオンにしてね
 let g:loaded_getscript          = v:true
 let g:loaded_getscriptPlugin    = v:true
@@ -31,75 +34,97 @@ let g:loaded_gtags_cscope       = v:true
 let g:loaded_man                = v:true
 let g:skip_defaults_vim         = v:true
 
+""""""""""""""""""""""""""""""""""""""""
+" 文字コード
+""""""""""""""""""""""""""""""""""""""""
 set encoding=UTF-8
 scriptencoding utf-8
 set fileencodings=cp932,sjis,utf-8
 "set fileformats = dos,unix,mac
+
+""""""""""""""""""""""""""""""""""""""""
+" 開始メッセージ
+""""""""""""""""""""""""""""""""""""""""
 "Vimの開始時に挨拶メッセージを表示しない
 set shortmess+=c
 set shortmess+=I
 "検索時に検索件数メッセージを表示しない。例えば "[1/5]"
 set shortmess-=S
-set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
+
+""""""""""""""""""""""""""""""""""""""""
+" 見た目関連
+""""""""""""""""""""""""""""""""""""""""
+set showtabline=2
+set nowrap
 set laststatus=2
 set cmdheight=2
-set completeopt=menuone,noselect
-set lazyredraw
-set updatetime=250
-set autoindent
-set autoread
-set smartindent
-set clipboard+=unnamed
-set nopaste
-"set expandtab
-set tabstop=4
-set shiftwidth=4
 set number
-set signcolumn=yes
-set wildmenu wildmode=full
-set sessionoptions-=blank
 set cursorline
-set showmatch
-set matchtime=1
+set tabstop=4
 set scrolloff=10
-set backspace& backspace=indent,eol,start
-set matchpairs& matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
-set virtualedit=block
-set ignorecase
-set smartcase
-set wildignore& wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
-set undofile
-set noswapfile
-set nowrap
+set signcolumn=yes
 set noshowmode
-set shiftround
 set sidescrolloff=8
 set pumheight=20
-set guioptions&
-set guioptions+=C
-set guioptions-=T
-set guioptions+=C
-set guioptions-=m
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-set guioptions-=b
-set guioptions-=e
-set showtabline=2
 set termguicolors
+set background=dark "light dark
 if has('kaoriya')
 	set ambiwidth=auto
 else
 	set ambiwidth=double
 endif
-set background=dark "light dark
-if executable('pt')
-	set grepprg=pt\ --nogroup\
-	set grepformat=%f:%l:%c:%m
+
+""""""""""""""""""""""""""""""""""""""""
+" インデント
+""""""""""""""""""""""""""""""""""""""""
+set autoindent
+" autoindentもセットでオンすること
+set smartindent
+" インデント時のスペース
+set shiftwidth=4
+set shiftround
+
+""""""""""""""""""""""""""""""""""""""""
+" クリップボード
+""""""""""""""""""""""""""""""""""""""""
+set clipboard+=unnamed
+set nopaste
+set wildmenu wildmode=full
+set sessionoptions-=blank
+
+""""""""""""""""""""""""""""""""""""""""
+" カッコ
+""""""""""""""""""""""""""""""""""""""""
+set showmatch
+set matchtime=1
+set matchpairs& matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝
+
+""""""""""""""""""""""""""""""""""""""""
+" GUI
+""""""""""""""""""""""""""""""""""""""""
+if has("gui_running")
+	set guioptions&
+	set guioptions+=C
+	set guioptions-=T
+	set guioptions+=C
+	set guioptions-=m
+	set guioptions-=r
+	set guioptions-=R
+	set guioptions-=l
+	set guioptions-=L
+	set guioptions-=b
+	set guioptions-=e
 endif
 
-"{{{ backupdirなどなければ作る
+""""""""""""""""""""""""""""""""""""""""
+" バックアップ
+""""""""""""""""""""""""""""""""""""""""
+"set expandtab
+set undofile
+set noswapfile
+set backup
+set writebackup
+" backupdirなどなければ作る{
 function! s:mkdir(dir)
     if !isdirectory(a:dir)
        " "p" を渡すことでネストしたディレクトリ全てが作成される
@@ -107,10 +132,26 @@ function! s:mkdir(dir)
     endif
 endfunction
 let $DATE = strftime("%Y%m%d_%H%M%S")
-set backup
-set writebackup
 set backupdir=$HOME/.vimbackup
-call s:mkdir(&backupdir)
 set undodir=$HOME/.vimbackup
+call s:mkdir(&backupdir)
 call s:mkdir(&undodir)
-"}}}
+"}
+
+""""""""""""""""""""""""""""""""""""""""
+" その他
+""""""""""""""""""""""""""""""""""""""""
+set pythonthreedll=$HOME\vimfiles\python-3.8.3-embed-amd64\python38.dll
+set completeopt=menuone,noselect
+set lazyredraw
+set updatetime=250
+set autoread
+set virtualedit=block
+set backspace& backspace=indent,eol,start
+set ignorecase
+set smartcase
+set wildignore& wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
+if executable('pt')
+	set grepprg=pt\ --nogroup\
+	set grepformat=%f:%l:%c:%m
+endif
