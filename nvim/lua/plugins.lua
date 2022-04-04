@@ -3,7 +3,9 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
 	function()
 		use({ "wbthomason/packer.nvim", opt = true })
+        ---------------
 		-- utility{{{
+        ---------------
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "lewis6991/impatient.nvim" })
 		use({ "nathom/filetype.nvim" })
@@ -17,11 +19,15 @@ return require("packer").startup({
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 		use({ "vim-jp/vimdoc-ja", event = "CursorHold" })
 		--}}}
+        ---------------
 		-- colorschemes{{{
+        ---------------
 		use({ "rafi/awesome-vim-colorschemes", opt = true })
 		--}}}
 
+        ---------------
 		-- interface{{{
+        ---------------
 		use({
 			"rcarriga/nvim-notify",
 			event = "CursorHold",
@@ -93,7 +99,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
 		-- useful func{{{
+        ---------------
 		use({
 			"kana/vim-smartchr",
 			event = "InsertEnter",
@@ -151,7 +159,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
 		----{{{
+        ---------------
 		use({
 			"skywind3000/asyncrun.vim",
 			event = "CursorHold",
@@ -203,7 +213,9 @@ return require("packer").startup({
 		use({ "mechatroner/rainbow_csv", ft = { "csv" } })
 		use({ "lark-parser/vim-lark-syntax" , ft = { "lark" }})
 
+        ---------------
 		-- fuzzy finder{{{
+        ---------------
 		use({
 			"nvim-telescope/telescope.nvim",
 			config = function()
@@ -220,7 +232,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
 		-- treesitter{{{
+        ---------------
 		use({
 			"nvim-treesitter/nvim-treesitter",
 			branch = "0.5-compat",
@@ -250,7 +264,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
 		-- lsp{{{
+        ---------------
 		use({
 			"neovim/nvim-lspconfig",
 			after = "cmp-nvim-lsp",
@@ -288,7 +304,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
 		--lsp ui{{{
+        ---------------
 		use({
 			"tami5/lspsaga.nvim",
 			after = "nvim-lsp-installer",
@@ -306,7 +324,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
 		-- completion{{{
+        ---------------
 		--cmp‚Ìrequires‚Å‹LÚ‚µ‚Ä‚¢‚é‚ªŒÂ•Ê‚Åİ’è•K—v
 		use({
 			"windwp/nvim-autopairs",

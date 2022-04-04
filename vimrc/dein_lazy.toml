@@ -25,6 +25,10 @@ on_event = ['ColorSchemePre']
 [[plugins]]
 repo = 'preservim/nerdtree'
 on_event = ['CursorHold']
+depends  = [# {{{
+	'tiagofumo/vim-nerdtree-syntax-highlight',
+	'Xuyuanp/nerdtree-git-plugin'
+    ]# }}}
 hook_add = '''"{{{
     "curren directoryに合わせて NERDTreeToggle
     nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"

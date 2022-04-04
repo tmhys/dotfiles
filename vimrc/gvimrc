@@ -1,11 +1,10 @@
-" Last Change: 02-Apr-2022.
+" Last Change: 04-Apr-2022.
 
 set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
 set linespace=1
 
-let ayucolor='dark'
 colorscheme iceberg
 
 "起動時のウィンドウサイズ
@@ -26,7 +25,8 @@ if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
 
-"gvim限定 colorscheme後に書くこと
+"gvim限定IMEの状態でカーソルカラー変更
+"colorscheme後に書くこと
 if has('multi_byte_ime')
   highlight Cursor guifg=#000d18 guibg=#8faf9f gui=bold
   highlight CursorIM guifg=NONE guibg=#ecbcbc

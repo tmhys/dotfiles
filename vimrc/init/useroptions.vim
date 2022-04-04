@@ -5,6 +5,7 @@
 " 不要な機能無効化
 """"""""""""""""""""""""""""""""""""""""
 "適当にオフにしてます、困ったらオンにしてね
+"本当にオフになっているんだろうか
 let g:loaded_getscript          = v:true
 let g:loaded_getscriptPlugin    = v:true
 let g:loaded_gzip               = v:true
@@ -54,20 +55,20 @@ set shortmess-=S
 """"""""""""""""""""""""""""""""""""""""
 " 見た目関連
 """"""""""""""""""""""""""""""""""""""""
-set showtabline=2
-set nowrap
-set laststatus=2
-set cmdheight=2
-set number
-set cursorline
-set tabstop=4
-set scrolloff=10
-set signcolumn=yes
-set noshowmode
-set sidescrolloff=8
-set pumheight=20
-set termguicolors
 set background=dark "light dark
+set cmdheight=2
+set cursorline
+set laststatus=2
+set noshowmode
+set nowrap
+set number
+set pumheight=20
+set scrolloff=10
+set showtabline=2
+set sidescrolloff=8
+set signcolumn=yes
+set tabstop=4
+set termguicolors
 if has('kaoriya')
 	set ambiwidth=auto
 else
