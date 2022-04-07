@@ -10,3 +10,4 @@ if !has("gui_running")
 endif
 
 filetype plugin indent on
+syntax on

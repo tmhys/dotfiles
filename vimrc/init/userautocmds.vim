@@ -40,6 +40,7 @@ augroup my_autocmd
         \ foldmethod=indent
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
     autocmd BufNewFile,BufRead *.toml setfiletype toml
+    autocmd BufNewFile,BufRead *.csv setfiletype csv
     autocmd BufNewFile,BufRead *.lark setfiletype lark
 augroup END
 

@@ -3,7 +3,9 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
-----disable
+---------------
+--disable
+---------------
 -- Do not source the default filetype.vim
 vim.g.did_install_default_menus = 1
 vim.g.did_install_syntax_menu   = 1
@@ -25,6 +27,9 @@ vim.g.loaded_zipPlugin          = 1
 vim.g.skip_loading_mswin        = 1
 vim.g.loaded_clipboard_provider = 1
 
+---------------
+--
+---------------
 opt.encoding       = 'UTF-8'
 --doubleにすると表示が変
 opt.ambiwidth      = 'single'
@@ -35,7 +40,6 @@ opt.backup         = true
 opt.backspace      = "indent,eol,start"
 opt.backupdir      = vim.fn.stdpath('config')..'/.undo'
 opt.cmdheight      = 2
---opt.completeopt    = 'menu,menuone,noinsert'
 opt.completeopt    = 'menu,menuone,noselect'
 opt.cursorline     = true -- highlight the current line
 opt.makeencoding   = 'cp932'

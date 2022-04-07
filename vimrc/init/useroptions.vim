@@ -55,7 +55,7 @@ set shortmess-=S
 """"""""""""""""""""""""""""""""""""""""
 " 見た目関連
 """"""""""""""""""""""""""""""""""""""""
-set background=dark "light dark
+set background=light "light dark
 set cmdheight=2
 set cursorline
 set laststatus=2
