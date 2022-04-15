@@ -46,7 +46,31 @@ local sections_1 = {
 	lualine_b = { { "filetype", icon_only = true }, { "filename" } },
 	--lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
     lualine_c = { { gps.get_location, cond = gps.is_available } },
-	lualine_x = { "require'lsp-status'.status()", "diagnostics" },
+	lualine_x = { "require'lsp-status'.status()", "diagnostics" ,
+	--lualine_x = { "diagnostics" ,
+    symbols = {
+  error = "E",
+  hint = "H",
+  info = "I",
+  warn = "W"
+},
+        --symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
+	--lualine_x = {
+    --    "diagnostics",
+    --sources = {'nvim_lsp'},
+    --sections = {'error', 'warn', 'info', 'hint'},
+    --diagnostics_color = {
+    --        -- Same values as the general color option can be used here.
+    --        error = 'DiagnosticError', -- Changes diagnostics' error color.
+    --        warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
+    --        info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
+    --        hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
+    --      },
+    --      symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+    --      colored = true,           -- Displays diagnostics status in color if set to true.
+    --      update_in_insert = false, -- Update diagnostics in insert mode.
+    --      always_visible = false,   -- Show diagnostics even if there are none.
+    },
 	lualine_y = { "branch", "diff", "g:asyncrun_status" },
 	lualine_z = { "location" },
 }

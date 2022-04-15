@@ -1,9 +1,11 @@
-" Last Change: 05-Apr-2022.
+" Last Change: 11-Apr-2022.
 
 set guifont=Cica:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
-set linespace=1
+if !has('win32')
+	set linespace=1
+endif
 
 colorscheme iceberg
 

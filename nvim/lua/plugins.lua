@@ -9,13 +9,14 @@ return require("packer").startup({
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "lewis6991/impatient.nvim" })
 		use({ "nathom/filetype.nvim" })
-		use({ "tjdevries/astronauta.nvim" })
+		--use({ "tjdevries/astronauta.nvim" })
+        -- nvim CursorHold bug fix
 		use({
 			"antoinemadec/FixCursorHold.nvim",
 			config = function()
 				require("my_plugins.FixCursorHold")
 			end,
-		}) -- nvim CursorHold bug fix
+		})
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 		use({ "vim-jp/vimdoc-ja", event = "CursorHold" })
 		--}}}
@@ -35,22 +36,24 @@ return require("packer").startup({
 				require("my_plugins.nvim-notify")
 			end,
 		})
+        -- カーソル移動が見やすくなるやつ
 		use({
 			"edluffy/specs.nvim",
 			event = "CursorHold",
 			config = function()
 				require("my_plugins.specs")
 			end,
-		}) -- カーソル移動が見やすくなるやつ
+		})
 		use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
 		use({ "itchyny/vim-cursorword", event = "CursorHold" })
+        --カーソル下の単語ハイライトしまくれるやつ
 		use({
 			"t9md/vim-quickhl",
 			event = "CursorHold",
 			config = function()
 				require("my_plugins.vim-quickhl")
 			end,
-		}) --カーソル下の単語ハイライトしまくれるやつ
+		})
 		use({ "glepnir/indent-guides.nvim", event = "CursorHold" })
 		use({ "mhinz/vim-signify", event = "CursorHold" })
 		use({
@@ -63,6 +66,7 @@ return require("packer").startup({
 		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
+			--requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/lsp-status.nvim" },
 			config = function()
 				require("my_plugins.lualine")
 			end,
@@ -109,8 +113,6 @@ return require("packer").startup({
 				require("my_plugins.vim-smartchr")
 			end,
 		})
-		use({ "mhinz/vim-sayonara", cmd = "Sayonara" })
-		--use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim" }) --luaファイル中でのvimハイライト うまく動かない
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		use({ "tpope/vim-surround", event = "InsertEnter" })
 		use({ "thinca/vim-qfreplace", cmd = "Qfreplace" })
@@ -127,13 +129,15 @@ return require("packer").startup({
 				require("my_plugins.kommentary")
 			end,
 		})
+        --acceralate jk
 		use({
 			"PHSix/faster.nvim",
 			event = "CursorHold",
 			config = function()
 				require("my_plugins.faster")
 			end,
-		}) --acceralate jk
+		})
+        --ユニーク文字ハイライト
 		use({
 			"unblevable/quick-scope",
 			event = "CursorHold",
@@ -141,7 +145,7 @@ return require("packer").startup({
 			config = function()
 				require("my_plugins.quick-scope")
 			end,
-		}) --ユニーク文字ハイライト
+		})
 		use({
 			"rhysd/clever-f.vim",
 			event = "CursorHold",
@@ -160,7 +164,7 @@ return require("packer").startup({
 		--}}}
 
         ---------------
-		----{{{
+		--code runner{{{
         ---------------
 		use({
 			"skywind3000/asyncrun.vim",
@@ -178,6 +182,9 @@ return require("packer").startup({
 		})
 		--}}}
 
+        ---------------
+		--git{{{
+        ---------------
 		use({
 			"tpope/vim-fugitive",
 			event = "CursorHold",
@@ -185,6 +192,11 @@ return require("packer").startup({
 				require("my_plugins.fugitive")
 			end,
 		})
+		--}}}
+
+        ---------------
+		--tags{{{
+        ---------------
 		use({
 			"ludovicchabant/vim-gutentags",
 			event = "CursorHold",
@@ -196,13 +208,11 @@ return require("packer").startup({
 				require("my_plugins.tagbar")
 			end,
 		})
-		use({
-			"voldikss/vim-translator",
-			event = "CursorHold",
-			config = function()
-				require("my_plugins.vim-translator")
-			end,
-		})
+		--}}}
+
+        ---------------
+		--filetype specific{{{
+        ---------------
 		use({
 			"skanehira/preview-markdown.vim",
 			ft = { "markdown" },
@@ -212,6 +222,8 @@ return require("packer").startup({
 		})
 		use({ "mechatroner/rainbow_csv", ft = { "csv" } })
 		use({ "lark-parser/vim-lark-syntax" , ft = { "lark" }})
+		use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim" , ft = {'lua', 'toml'}})
+		--}}}
 
         ---------------
 		-- fuzzy finder{{{
@@ -249,12 +261,14 @@ return require("packer").startup({
 				require("my_plugins.nvim-ts-rainbow")
 			end,
 		})
+        --いる？
 		use({
 			"nvim-treesitter/playground",
 			config = function()
 				require("my_plugins.playground")
 			end,
 		})
+        --いる？
 		use({
 			"theHamsta/nvim-dap-virtual-text",
 			requires = { "mfussenegger/nvim-dap" },
@@ -360,6 +374,22 @@ return require("packer").startup({
 				require("my_plugins.nvim-cmp")
 			end,
 		})
+		--}}}
+
+        ---------------
+		--??? {{{
+        ---------------
+        --便利さがわからんのでコメントアウト
+		--use({ "mhinz/vim-sayonara", cmd = "Sayonara" })
+
+		--use({
+		--	"voldikss/vim-translator",
+		--	event = "CursorHold",
+		--	config = function()
+		--		require("my_plugins.vim-translator")
+		--	end,
+		--})
+
 		--}}}
 
 		---- others{{{

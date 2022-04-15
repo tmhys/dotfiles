@@ -2,9 +2,9 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     disable = {
-      'lua',
-      'ruby',
-      'toml',
+    --'lua',
+    --'ruby',
+    --'toml',
       'c_sharp',
       'seq',
     }

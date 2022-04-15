@@ -6,6 +6,9 @@
 """"""""""""""""""""""""""""""""""""""""
 "適当にオフにしてます、困ったらオンにしてね
 "本当にオフになっているんだろうか
+"vimrc_example.vimの中身の以下もコメントアウトしてます
+"	source $VIMRUNTIME/defaults.vim
+
 let g:loaded_getscript          = v:true
 let g:loaded_getscriptPlugin    = v:true
 let g:loaded_gzip               = v:true
@@ -59,12 +62,12 @@ set background=light "light dark
 set cmdheight=2
 set cursorline
 set laststatus=2
+set showtabline=2
 set noshowmode
 set nowrap
 set number
 set pumheight=20
 set scrolloff=10
-set showtabline=2
 set sidescrolloff=8
 set signcolumn=yes
 set tabstop=4

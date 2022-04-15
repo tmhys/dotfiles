@@ -1,4 +1,4 @@
-vim.cmd([[runtime plugin/astronauta.vim]])
+--vim.cmd([[runtime plugin/astronauta.vim]])
 local nnoremap = vim.keymap.nnoremap
 local inoremap = vim.keymap.inoremap
 local cnoremap = vim.keymap.cnoremap
@@ -83,6 +83,8 @@ nnoremap({ "<F3>", ":<C-u>setlocal relativenumber!<CR>" })
 nnoremap({ "<F4>", ":<C-u>set scrollbind!<CR>" })
 nnoremap({ "<F12>", ":PackerSync<CR>" })
 --tnoremap{'<silent>','<ESC> <C-\><C-n>'}
+
+
 vim.cmd([[
 "なんかコマンドで開くとエラー出るからオフにする
 let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')

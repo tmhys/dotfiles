@@ -26,11 +26,37 @@ vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.loaded_zipPlugin          = 1
 vim.g.skip_loading_mswin        = 1
 vim.g.loaded_clipboard_provider = 1
+vim.g.loaded_getscript         = 1
+vim.g.loaded_getscriptPlugin   = 1
+vim.g.loaded_logiPat           = 1
+vim.g.loaded_netrwFileHandlers = 1
+vim.g.loaded_netrwSettings     = 1
+vim.g.loaded_rplugin           = 1
+vim.g.loaded_rrhelper          = 1
+vim.g.loaded_spec              = 1
+vim.g.loaded_tar               = 1
+vim.g.loaded_vimball           = 1
+vim.g.loaded_vimballPlugin     = 1
+vim.g.loaded_zip               = 1
+vim.g.load_black               = 1
+vim.g.loaded_fzf               = 1
+vim.g.loaded_gtags             = 1
+vim.g.loaded_gtags_cscope      = 1
+vim.g.loaded_node_provider     = 0
+vim.g.loaded_perl_provider     = 0
+vim.g.loaded_python3_provider  = 0
+vim.g.loaded_python_provider   = 0
+vim.g.loaded_pythonx_provider  = 0
+vim.g.loaded_ruby_provider     = 0
+vim.g.do_filetype_lua          = 1
+vim.g.did_load_filetypes       = 0
 
 ---------------
 --
 ---------------
 opt.encoding       = 'UTF-8'
+opt.fileformats    = 'dos,unix,mac'
+opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
 --doubleにすると表示が変
 opt.ambiwidth      = 'single'
 opt.autoindent     = true
@@ -44,8 +70,6 @@ opt.completeopt    = 'menu,menuone,noselect'
 opt.cursorline     = true -- highlight the current line
 opt.makeencoding   = 'cp932'
 opt.expandtab      = true                -- Use spaces instead of tabs
-opt.fileformats    = 'dos,unix,mac'
-opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
 opt.ignorecase     = true               -- Ignore case
 opt.laststatus     = 2
 opt.lazyredraw     = true
