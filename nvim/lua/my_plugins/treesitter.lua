@@ -9,5 +9,6 @@ require'nvim-treesitter.configs'.setup {
       'seq',
     }
   },
-  ensure_installed = 'all',
+  ensure_installed = { "typescript", "vim", "lua", "python", "toml" },
+--ensure_installed = 'all',
 }

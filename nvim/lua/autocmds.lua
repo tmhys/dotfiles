@@ -48,6 +48,7 @@ augroup my_autocmd
     autocmd BufNewFile,BufRead *.toml setfiletype toml
     autocmd BufNewFile,BufRead *.csv setfiletype csv
     autocmd BufNewFile,BufRead *.lark setfiletype lark
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 augroup END
 
 augroup reload_vimrc

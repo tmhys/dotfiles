@@ -1,38 +1,3 @@
---require'lualine'.setup {
---  options = {
---    icons_enabled = true,
---    theme = 'auto',
---    --component_separators = { left = 'ûž±', right = 'ûž³'},
---    --section_separators = { left = 'ûž°', right = 'ûž²'},
---    disabled_filetypes = {'NvimTree'},
---    always_divide_middle = true,
---    fmt = string.lower,
---  },
---  sections = {
---    lualine_a = {
---        { 'mode', fmt = function(str) return str:sub(1,1) end } },
---    --lualine_a = {'mode'},
---    lualine_b = {'branch', 'diff', 'g:asyncrun_status',
---                  {'diagnostics', sources={'nvim_diagnostic', 'coc'}}},
---    lualine_c = {'filename'},
---    lualine_x = {'encoding', 'fileformat', 'filetype'},
---    lualine_y = {'progress'},
---    lualine_z = {'location'}
---  },
---  inactive_sections = {
---    lualine_a = {},
---    lualine_b = {},
---    lualine_c = {'filename'},
---    lualine_x = {'location'},
---    lualine_y = {},
---    lualine_z = {}
---  },
---  tabline = {},
---  extensions = {}
---}
-
-local gps = require("nvim-gps")
-
 local function is_available_gps()
 	local ok, _ = pcall(require, "nvim-gps")
 	if not ok then
@@ -44,16 +9,16 @@ end
 local sections_1 = {
 	lualine_a = { "mode" },
 	lualine_b = { { "filetype", icon_only = true }, { "filename" } },
-	--lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
-    lualine_c = { { gps.get_location, cond = gps.is_available } },
+	lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
+    --lualine_c = { { gps.get_location, cond = gps.is_available } },
 	lualine_x = { "require'lsp-status'.status()", "diagnostics" ,
-	--lualine_x = { "diagnostics" ,
-    symbols = {
-  error = "E",
-  hint = "H",
-  info = "I",
-  warn = "W"
-},
+--	--lualine_x = { "diagnostics" ,
+--    symbols = {
+--  error = "E",
+--  hint = "H",
+--  info = "I",
+--  warn = "W"
+--},
         --symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
 	--lualine_x = {
     --    "diagnostics",
