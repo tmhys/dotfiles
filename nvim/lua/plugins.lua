@@ -11,14 +11,14 @@ return require("packer").startup({
 		use({ "nathom/filetype.nvim" })
 		--use({ "tjdevries/astronauta.nvim" })
         -- nvim CursorHold bug fix
-		use({
-			"antoinemadec/FixCursorHold.nvim",
-			config = function()
-				require("my_plugins.FixCursorHold")
-			end,
-		})
+		--use({
+		--	"antoinemadec/FixCursorHold.nvim",
+		--	config = function()
+		--		require("my_plugins.FixCursorHold")
+		--	end,
+		--})
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
-		use({ "vim-jp/vimdoc-ja", event = "CursorHold" })
+		use({ "vim-jp/vimdoc-ja", event = "BufEnter" })
 		--}}}
         ---------------
 		-- colorschemes{{{
@@ -29,9 +29,15 @@ return require("packer").startup({
         ---------------
 		-- interface{{{
         ---------------
+		use({ "kevinhwang91/nvim-bqf", ft = "qf" })
+		use({ "mvllow/modes.nvim",
+             config = function()
+				require("my_plugins.modes")
+             end,
+         })
 		use({
 			"rcarriga/nvim-notify",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.nvim-notify")
 			end,
@@ -39,26 +45,26 @@ return require("packer").startup({
         -- カーソル移動が見やすくなるやつ
 		use({
 			"edluffy/specs.nvim",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.specs")
 			end,
 		})
 		use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
-		use({ "itchyny/vim-cursorword", event = "CursorHold" })
+		use({ "itchyny/vim-cursorword", event = "BufEnter" })
         --カーソル下の単語ハイライトしまくれるやつ
 		use({
 			"t9md/vim-quickhl",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.vim-quickhl")
 			end,
 		})
-		use({ "glepnir/indent-guides.nvim", event = "CursorHold" })
-		use({ "mhinz/vim-signify", event = "CursorHold" })
+		use({ "glepnir/indent-guides.nvim", event = "BufEnter" })
+		use({ "mhinz/vim-signify", event = "BufEnter" })
 		use({
 			"chentau/marks.nvim",
-			--event = "CursorHold",
+			--event = "BufEnter",
 			config = function()
 				require("my_plugins.marks")
 			end,
@@ -88,14 +94,14 @@ return require("packer").startup({
 		})
 		use({
 			"kevinhwang91/nvim-hlslens",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.hlslens")
 			end,
 		})
 		use({
 			"petertriho/nvim-scrollbar",
-			--event = "CursorHold",
+			--event = "BufEnter",
 			after = "nvim-hlslens",
 			config = function()
 				require("my_plugins.nvim-scrollbar")
@@ -116,6 +122,11 @@ return require("packer").startup({
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		use({ "tpope/vim-surround", event = "InsertEnter" })
 		use({ "thinca/vim-qfreplace", ft = "qf" })
+		use({ "gabrielpoca/replacer.nvim",ft = "qf" ,
+			config = function()
+				require("my_plugins.replacer")
+			end,
+        })
 		use({ "junegunn/vim-easy-align",cmd = "EasyAlign",
 			config = function()
 				require("my_plugins.vim-easy-align")
@@ -124,7 +135,7 @@ return require("packer").startup({
 		use({ "simeji/winresizer", cmd = "WinResizerStartResize" })
 		use({
 			"b3nj5m1n/kommentary",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.kommentary")
 			end,
@@ -132,7 +143,7 @@ return require("packer").startup({
         --acceralate jk
 		use({
 			"PHSix/faster.nvim",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.faster")
 			end,
@@ -140,22 +151,22 @@ return require("packer").startup({
         --ユニーク文字ハイライト
 		use({
 			"unblevable/quick-scope",
-			event = "CursorHold",
-			--event = "CursorHold",
+			event = "BufEnter",
+			--event = "BufEnter",
 			config = function()
 				require("my_plugins.quick-scope")
 			end,
 		})
 		use({
 			"rhysd/clever-f.vim",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.clever-f")
 			end,
 		})
 		use({
 			"phaazon/hop.nvim",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = "v1",
 			config = function()
 				require("my_plugins.hop")
@@ -168,7 +179,7 @@ return require("packer").startup({
         ---------------
 		use({
 			"skywind3000/asyncrun.vim",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.asyncrun")
 			end,
@@ -187,7 +198,7 @@ return require("packer").startup({
         ---------------
 		use({
 			"tpope/vim-fugitive",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.fugitive")
 			end,
@@ -199,11 +210,11 @@ return require("packer").startup({
         ---------------
 		use({
 			"ludovicchabant/vim-gutentags",
-			event = "CursorHold",
+			event = "BufEnter",
 		})
 		use({
 			"majutsushi/tagbar",
-			event = "CursorHold",
+			event = "BufEnter",
 			config = function()
 				require("my_plugins.tagbar")
 			end,
@@ -358,11 +369,8 @@ return require("packer").startup({
 			--event = "InsertEnter",
 			after = { "vim-vsnip" },
 			requires = {
-				{ "neovim/nvim-lspconfig" },
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "onsails/lspkind-nvim" },
-				{ "hrsh7th/vim-vsnip" },
-				{ "windwp/nvim-autopairs" },
 				{ "hrsh7th/cmp-omni", after = "nvim-cmp" },
 				{ "f3fora/cmp-spell", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
@@ -383,8 +391,8 @@ return require("packer").startup({
 --	use({
 --		"hrsh7th/nvim-cmp",
 --		requires = {
---			{ "L3MON4D3/LuaSnip", opt = true, event = "VimEnter" },
---			{ "windwp/nvim-autopairs", opt = true, event = "VimEnter" },
+--			{ "L3MON4D3/LuaSnip", opt = true, event = "BufEnter" },
+--			{ "windwp/nvim-autopairs", opt = true, event = "BufEnter" },
 --		},
 --		after = { "lspkind-nvim", "LuaSnip", "nvim-autopairs" },
 --		config = function()
@@ -393,7 +401,7 @@ return require("packer").startup({
 --	})
 --	use({
 --		"onsails/lspkind-nvim",
---		event = "VimEnter",
+--		event = "BufEnter",
 --		config = function()
 --			require("rc/pluginconfig/lspkind-nvim")
 --		end,
@@ -432,29 +440,14 @@ return require("packer").startup({
 		--??? {{{
         ---------------
 		use({ "lfilho/cosco.vim", event = "InsertEnter" })
-		use({ "jghauser/mkdir.nvim", event = "CursorHold" })
-		use({ "stevearc/stickybuf.nvim", event = "CursorHold" })
-		--use({ "gbprod/yanky.nvim ", event = "CursorHold" })
-		use({ "mvllow/modes.nvim",
-             config = function()
-				require("my_plugins.modes")
-             end,
-         })
-        use({ 'rmagatti/auto-session',
-              event = "CursorHold",
-          config = function()
-            require('auto-session').setup {
-              log_level = 'info',
-              auto_session_suppress_dirs = {'~/', '~/Projects'},
-            }
-          end
-        })
-		use({ "kevinhwang91/nvim-bqf", ft = "qf" })
-		use({ "gabrielpoca/replacer.nvim",ft = "qf" ,
-			config = function()
-				require("my_plugins.replacer")
-			end,
-        })
+		use({ "jghauser/mkdir.nvim", event = "BufEnter" })
+		use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
+		--use({ "gbprod/yanky.nvim ", event = "BufEnter" })
+        --use({ 'rmagatti/auto-session', --event = "BufEnter",
+		--	config = function()
+		--		require("my_plugins.auto-session")
+		--	end,
+        --})
         --use({ "nvim-telescope/telescope-frecency.nvim" })
 
         --便利さがわからんのでコメントアウト
@@ -462,7 +455,7 @@ return require("packer").startup({
 
 		--use({
 		--	"voldikss/vim-translator",
-		--	event = "CursorHold",
+		--	event = "BufEnter",
 		--	config = function()
 		--		require("my_plugins.vim-translator")
 		--	end,

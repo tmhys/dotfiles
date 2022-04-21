@@ -27,7 +27,6 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l" ,{noremap = true, silent =true})
-vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("n", "<F3>", ":<C-u>setlocal relativenumber!<CR>" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("n", "<F4>", ":<C-u>set scrollbind!<CR>" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("n", "<M-3>", ':%s/<C-r>"///g<Left><Left>' ,{noremap = true, silent =true})
@@ -72,6 +71,12 @@ vim.api.nvim_set_keymap("v", "<TAB>", "%" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("v", "v", "$h" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("v", "za", "zf" ,{noremap = true, silent =true})
 
+
+vim.api.nvim_create_user_command("PackerInstall", "packadd packer.nvim | require'packers'.install()", {force = true})
+vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'packers'.update()", {force = true})
+vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", {force = true})
+vim.api.nvim_create_user_command("PackerClean", "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()", {force = true})
+vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>" ,{noremap = true, silent =true})
 
 ----vim.cmd([[runtime plugin/astronauta.vim]])
 --local nnoremap = vim.keymap.nnoremap
@@ -160,8 +165,9 @@ vim.api.nvim_set_keymap("v", "za", "zf" ,{noremap = true, silent =true})
 ----tnoremap{'<silent>','<ESC> <C-\><C-n>'}
 
 
+--vim.api.nvim_create_user_command("Evimrc", "silent! e $HOME\AppData\Local\nvim\init.lua", {force = true})
+
 vim.cmd([[
-"なんかコマンドで開くとエラー出るからオフにする
 let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
 let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
 command! Evimrc :silent! e $MYVIMRC

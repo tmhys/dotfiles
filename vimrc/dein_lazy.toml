@@ -24,7 +24,7 @@ on_event = ['ColorSchemePre']
 ###########
 [[plugins]]
 repo = 'preservim/nerdtree'
-on_event = ['CursorHold']
+on_event = ['BufRead']
 # depends  = [# {{{
 # 	'tiagofumo/vim-nerdtree-syntax-highlight',
 # 	'Xuyuanp/nerdtree-git-plugin'
@@ -94,7 +94,7 @@ on_source = ['nerdtree']
 ###########
 [[plugins]]
 repo = 'soramugi/auto-ctags.vim'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
@@ -135,7 +135,7 @@ hook_add = '''"{{{
 ###########
 [[plugins]]
 repo = 'Yggdroot/indentLine'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 hook_add = '''"{{{
     set list listchars=tab:\¦\ "spaceが必要
 	let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar', 'dashboard']
@@ -150,7 +150,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'kshenoy/vim-signature'
-on_event = ['CursorHold']
+on_event = ['BuhEnter']
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
@@ -159,15 +159,15 @@ on_event = ['BufReadPost']
 [[plugins]]
 # カーソルジャンプ時の描画
 repo = 'DanilaMihailov/beacon.nvim'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 ###########
 # quickfix
@@ -175,7 +175,7 @@ on_event = ['CursorHold']
 [[plugins]]
 # 直前のウィンドウで開く
 repo = 'yssl/QFEnter'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 hook_add = '''"{{{
     let g:qfenter_keymap = {}
     let g:qfenter_keymap.open = ['<CR>', '<2-LeftMouse>']
@@ -231,7 +231,7 @@ on_cmd = ['StartupTime']
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'tyru/restart.vim'
@@ -305,7 +305,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'markonm/traces.vim'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 ###########
 # motion
@@ -348,7 +348,7 @@ hook_add = '''"{{{
 [[plugins]]
 # f連打
 repo = 'rhysd/clever-f.vim'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 hook_add = '''"{{{
     let g:clever_f_mark_direct = 1
 "}}}'''
@@ -357,7 +357,7 @@ hook_add = '''"{{{
 # 固有文字ハイライト
 repo = 'unblevable/quick-scope'
 on_source = ['ctrlp.vim']
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 hook_add = '''"{{{
     nmap <space>qs <plug>(QuickScopeToggle)
     xmap <space>qs <plug>(QuickScopeToggle)
@@ -375,7 +375,7 @@ hook_add = '''"{{{
 ###########
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 hook_add = '''"{{{
     let g:auto_ctags_set_tags_option = 1
     let g:auto_ctags_warn_once = 1
@@ -383,7 +383,7 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_event = ['CursorHold']
+on_event = ['BufEnter']
 
 [[plugins]]
 repo = 'kana/vim-smartchr'
@@ -489,4 +489,4 @@ on_ft = ['vim','python','lua']
 
 [[plugins]]
 repo = 'mattn/vim-lsp-settings'
-on_event = ['CursorHold']
+on_event = ['BufEnter']

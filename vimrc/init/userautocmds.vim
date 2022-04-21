@@ -54,6 +54,7 @@ augroup reload_vimrc
 				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
 augroup END
 
+"lazy loadでVinEnterを指定していると２重で実行されてしまう
 if has('vim_starting')
   let g:startuptime = reltime()
   augroup vimrc

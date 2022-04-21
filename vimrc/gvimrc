@@ -1,13 +1,13 @@
-" Last Change: 11-Apr-2022.
+" Last Change: 19-Apr-2022.
 
-set guifont=Cica:h12,Consolas:h12
+set guifont=Cica:h13,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
 if !has('win32')
 	set linespace=1
 endif
 
-colorscheme iceberg
+colorscheme onedark
 
 let g:save_window_file = expand('~/.vimwinpos')
 augroup SaveWindow
