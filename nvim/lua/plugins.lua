@@ -18,7 +18,7 @@ return require("packer").startup({
 		--	end,
 		--})
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
-		use({ "vim-jp/vimdoc-ja", event = "BufEnter" })
+		use({ "vim-jp/vimdoc-ja", event = "VimEnter" })
 		--}}}
         ---------------
 		-- colorschemes{{{
@@ -29,7 +29,11 @@ return require("packer").startup({
         ---------------
 		-- interface{{{
         ---------------
-		use({ "kevinhwang91/nvim-bqf", ft = "qf" })
+		use({ "kevinhwang91/nvim-bqf", ft = "qf",
+             config = function()
+				require("my_plugins.nvim-bqf")
+             end,
+         })
 		use({ "mvllow/modes.nvim",
              config = function()
 				require("my_plugins.modes")
@@ -37,7 +41,7 @@ return require("packer").startup({
          })
 		use({
 			"rcarriga/nvim-notify",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.nvim-notify")
 			end,
@@ -45,26 +49,32 @@ return require("packer").startup({
         -- カーソル移動が見やすくなるやつ
 		use({
 			"edluffy/specs.nvim",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.specs")
 			end,
 		})
 		use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
-		use({ "itchyny/vim-cursorword", event = "BufEnter" })
+		use({ "itchyny/vim-cursorword", event = "VimEnter" })
         --カーソル下の単語ハイライトしまくれるやつ
 		use({
 			"t9md/vim-quickhl",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.vim-quickhl")
 			end,
 		})
-		use({ "glepnir/indent-guides.nvim", event = "BufEnter" })
-		use({ "mhinz/vim-signify", event = "BufEnter" })
+        use({
+	    	"lukas-reineke/indent-blankline.nvim",
+	    	event = "VimEnter",
+	    	config = function()
+	    		require("my_plugins.indent-blankline")
+	    	end,
+	    })
+		use({ "mhinz/vim-signify", event = "VimEnter" })
 		use({
 			"chentau/marks.nvim",
-			--event = "BufEnter",
+			--event = "VimEnter",
 			config = function()
 				require("my_plugins.marks")
 			end,
@@ -94,14 +104,14 @@ return require("packer").startup({
 		})
 		use({
 			"kevinhwang91/nvim-hlslens",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.hlslens")
 			end,
 		})
 		use({
 			"petertriho/nvim-scrollbar",
-			--event = "BufEnter",
+			--event = "VimEnter",
 			after = "nvim-hlslens",
 			config = function()
 				require("my_plugins.nvim-scrollbar")
@@ -121,7 +131,7 @@ return require("packer").startup({
 		})
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		use({ "tpope/vim-surround", event = "InsertEnter" })
-		use({ "thinca/vim-qfreplace", ft = "qf" })
+		--use({ "thinca/vim-qfreplace", ft = "qf" })
 		use({ "gabrielpoca/replacer.nvim",ft = "qf" ,
 			config = function()
 				require("my_plugins.replacer")
@@ -135,7 +145,7 @@ return require("packer").startup({
 		use({ "simeji/winresizer", cmd = "WinResizerStartResize" })
 		use({
 			"b3nj5m1n/kommentary",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.kommentary")
 			end,
@@ -143,7 +153,7 @@ return require("packer").startup({
         --acceralate jk
 		use({
 			"PHSix/faster.nvim",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.faster")
 			end,
@@ -151,22 +161,22 @@ return require("packer").startup({
         --ユニーク文字ハイライト
 		use({
 			"unblevable/quick-scope",
-			event = "BufEnter",
-			--event = "BufEnter",
+			event = "VimEnter",
+			--event = "VimEnter",
 			config = function()
 				require("my_plugins.quick-scope")
 			end,
 		})
 		use({
 			"rhysd/clever-f.vim",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.clever-f")
 			end,
 		})
 		use({
 			"phaazon/hop.nvim",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = "v1",
 			config = function()
 				require("my_plugins.hop")
@@ -179,7 +189,7 @@ return require("packer").startup({
         ---------------
 		use({
 			"skywind3000/asyncrun.vim",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.asyncrun")
 			end,
@@ -198,7 +208,7 @@ return require("packer").startup({
         ---------------
 		use({
 			"tpope/vim-fugitive",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.fugitive")
 			end,
@@ -210,11 +220,11 @@ return require("packer").startup({
         ---------------
 		use({
 			"ludovicchabant/vim-gutentags",
-			event = "BufEnter",
+			event = "VimEnter",
 		})
 		use({
 			"majutsushi/tagbar",
-			event = "BufEnter",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.tagbar")
 			end,
@@ -391,8 +401,8 @@ return require("packer").startup({
 --	use({
 --		"hrsh7th/nvim-cmp",
 --		requires = {
---			{ "L3MON4D3/LuaSnip", opt = true, event = "BufEnter" },
---			{ "windwp/nvim-autopairs", opt = true, event = "BufEnter" },
+--			{ "L3MON4D3/LuaSnip", opt = true, event = "VimEnter" },
+--			{ "windwp/nvim-autopairs", opt = true, event = "VimEnter" },
 --		},
 --		after = { "lspkind-nvim", "LuaSnip", "nvim-autopairs" },
 --		config = function()
@@ -401,7 +411,7 @@ return require("packer").startup({
 --	})
 --	use({
 --		"onsails/lspkind-nvim",
---		event = "BufEnter",
+--		event = "VimEnter",
 --		config = function()
 --			require("rc/pluginconfig/lspkind-nvim")
 --		end,
@@ -440,10 +450,10 @@ return require("packer").startup({
 		--??? {{{
         ---------------
 		use({ "lfilho/cosco.vim", event = "InsertEnter" })
-		use({ "jghauser/mkdir.nvim", event = "BufEnter" })
-		use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
-		--use({ "gbprod/yanky.nvim ", event = "BufEnter" })
-        --use({ 'rmagatti/auto-session', --event = "BufEnter",
+		use({ "jghauser/mkdir.nvim", event = "VimEnter" })
+		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
+		--use({ "gbprod/yanky.nvim ", event = "VimEnter" })
+        --use({ 'rmagatti/auto-session', --event = "VimEnter",
 		--	config = function()
 		--		require("my_plugins.auto-session")
 		--	end,
@@ -455,7 +465,7 @@ return require("packer").startup({
 
 		--use({
 		--	"voldikss/vim-translator",
-		--	event = "BufEnter",
+		--	event = "VimEnter",
 		--	config = function()
 		--		require("my_plugins.vim-translator")
 		--	end,
