@@ -348,6 +348,9 @@ repo = 'mattn/ctrlp-mark'
 repo = 'hara/ctrlp-colorscheme'
 
 [[plugins]]
+repo = 'mattn/vim-ctrlp-syntax-highlight'
+
+[[plugins]]
 repo = 'ryanoasis/vim-devicons'
 
 ###########

@@ -38,6 +38,7 @@ augroup my_autocmd
     autocmd BufNewFile,BufRead *.py
         \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
         \ foldmethod=indent
+	" 以下のファイルタイプ設定ほんまに必要？
     autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
     autocmd BufNewFile,BufRead *.toml setfiletype toml
     autocmd BufNewFile,BufRead *.csv setfiletype csv
