@@ -1,4 +1,9 @@
-local vim = vim
+vim.api.nvim_create_user_command("PackerInstall", "packadd packer.nvim | require'packers'.install()", {force = true})
+vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'packers'.update()", {force = true})
+vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", {force = true})
+vim.api.nvim_create_user_command("PackerClean", "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()", {force = true})
+vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>" ,{noremap = true, silent =true})
+
 vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
 	function()
