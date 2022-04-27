@@ -1,6 +1,6 @@
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
+local fn  = vim.fn    -- to call Vim functions e.g. fn.bufnr()
+local g   = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
 ---------------
@@ -47,8 +47,8 @@ vim.g.loaded_python3_provider   = 0
 vim.g.loaded_python_provider    = 0
 vim.g.loaded_pythonx_provider   = 0
 vim.g.loaded_ruby_provider      = 0
-vim.g.do_filetype_lua           = 1
-vim.g.did_load_filetypes        = 1
+--vim.g.do_filetype_lua           = 1
+--vim.g.did_load_filetypes        = 1
 
 ---------------
 --
@@ -59,7 +59,7 @@ opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
 opt.ambiwidth      = 'single' --doubleにすると表示が変
 opt.autoindent     = true
 opt.autoread       = true
-opt.background     = "dark"
+opt.background     = "light"
 opt.backup         = true
 opt.backspace      = "indent,eol,start"
 opt.backupdir      = vim.fn.stdpath('config')..'/.undo'
