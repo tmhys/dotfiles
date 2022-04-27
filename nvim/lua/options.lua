@@ -10,7 +10,6 @@ local opt = vim.opt  -- to set options
 vim.g.did_install_default_menus = 1
 vim.g.did_install_syntax_menu   = 1
 vim.g.did_indent_on             = 1
---vim.g.did_load_filetypes        = 1
 vim.g.did_load_ftplugin         = 1
 vim.g.loaded_2html_plugin       = 1
 vim.g.loaded_gzip               = 1
@@ -26,30 +25,30 @@ vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.loaded_zipPlugin          = 1
 vim.g.skip_loading_mswin        = 1
 vim.g.loaded_clipboard_provider = 1
-vim.g.loaded_getscript         = 1
-vim.g.loaded_getscriptPlugin   = 1
-vim.g.loaded_logiPat           = 1
-vim.g.loaded_netrwFileHandlers = 1
-vim.g.loaded_netrwSettings     = 1
-vim.g.loaded_rplugin           = 1
-vim.g.loaded_rrhelper          = 1
-vim.g.loaded_spec              = 1
-vim.g.loaded_tar               = 1
-vim.g.loaded_vimball           = 1
-vim.g.loaded_vimballPlugin     = 1
-vim.g.loaded_zip               = 1
-vim.g.load_black               = 1
-vim.g.loaded_fzf               = 1
-vim.g.loaded_gtags             = 1
-vim.g.loaded_gtags_cscope      = 1
-vim.g.loaded_node_provider     = 0
-vim.g.loaded_perl_provider     = 0
-vim.g.loaded_python3_provider  = 0
-vim.g.loaded_python_provider   = 0
-vim.g.loaded_pythonx_provider  = 0
-vim.g.loaded_ruby_provider     = 0
-vim.g.do_filetype_lua          = 1
---vim.g.did_load_filetypes       = 0
+vim.g.loaded_getscript          = 1
+vim.g.loaded_getscriptPlugin    = 1
+vim.g.loaded_logiPat            = 1
+vim.g.loaded_netrwFileHandlers  = 1
+vim.g.loaded_netrwSettings      = 1
+vim.g.loaded_rplugin            = 1
+vim.g.loaded_rrhelper           = 1
+vim.g.loaded_spec               = 1
+vim.g.loaded_tar                = 1
+vim.g.loaded_vimball            = 1
+vim.g.loaded_vimballPlugin      = 1
+vim.g.loaded_zip                = 1
+vim.g.load_black                = 1
+vim.g.loaded_fzf                = 1
+vim.g.loaded_gtags              = 1
+vim.g.loaded_gtags_cscope       = 1
+vim.g.loaded_node_provider      = 0
+vim.g.loaded_perl_provider      = 0
+vim.g.loaded_python3_provider   = 0
+vim.g.loaded_python_provider    = 0
+vim.g.loaded_pythonx_provider   = 0
+vim.g.loaded_ruby_provider      = 0
+vim.g.do_filetype_lua           = 1
+vim.g.did_load_filetypes        = 1
 
 ---------------
 --
@@ -57,8 +56,7 @@ vim.g.do_filetype_lua          = 1
 opt.encoding       = 'UTF-8'
 opt.fileformats    = 'dos,unix,mac'
 opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
---doubleにすると表示が変
-opt.ambiwidth      = 'single'
+opt.ambiwidth      = 'single' --doubleにすると表示が変
 opt.autoindent     = true
 opt.autoread       = true
 opt.background     = "dark"
@@ -120,11 +118,6 @@ opt.shortmess 	   = vim.o.shortmess
                 		.. "c" -- silence insert mode completion messages
                 		--.. "F" -- Don't print a message when opening a file
                 		--.. "c" -- silence insert mode completion messages
--- only nvim
-opt.inccommand     = 'split'
-opt.pumblend       = 10
-
-
 opt.wildignore = {
   ".DS_Store", ".git", ".svn", ".hg",
   "*.a", "*.o", "*.obj", "*.out",
@@ -134,7 +127,6 @@ opt.wildignore = {
   "__pycache__", "*.pyc", "*pycache*",
   "*.tar", "*.gz", "*.bz2", "*.zstd", "*.xz", "*.zip",
   '*.ttf', '*.otf', '*.woff', '*.woff2', '*.eot'}
-
 opt.sessionoptions = opt.sessionoptions
               - "blank"        -- Don't save empty windows in the session
               - "buffers"      -- Don't save hidden buffers into the session
@@ -142,6 +134,10 @@ opt.sessionoptions = opt.sessionoptions
               - "options"      -- Don't save any vim options (this list)
               - "globals"      -- Ignore any g:-variables
               + "localoptions" -- Include buffer local overrides             + "tabpages"     -- This session is for all tabs, not individual ones
-
-
 opt.hidden         = true                   -- Enable background buffers only init.lua option
+
+---------------
+-- nvim only
+---------------
+opt.inccommand     = 'split'
+opt.pumblend       = 10

@@ -8,7 +8,7 @@ require'nvim-tree'.setup {
     enable = true,
     auto_open = true,
   },
-  auto_close           = false,
+--auto_close           = false,
   auto_reload_on_write = true,
   open_on_tab          = false,
   hijack_cursor        = false,

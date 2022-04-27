@@ -1,9 +1,15 @@
+---------------
+-- packer comand & keymap
+---------------
 vim.api.nvim_create_user_command("PackerInstall", "packadd packer.nvim | require'packers'.install()", {force = true})
 vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'packers'.update()", {force = true})
 vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", {force = true})
 vim.api.nvim_create_user_command("PackerClean", "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()", {force = true})
 vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>" ,{noremap = true, silent =true})
 
+---------------
+-- plugins
+---------------
 vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
 	function()
@@ -13,7 +19,7 @@ return require("packer").startup({
         ---------------
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "lewis6991/impatient.nvim" })
-		use({ "nathom/filetype.nvim" })
+		--use({ "nathom/filetype.nvim" })
 		--use({ "tjdevries/astronauta.nvim" })
         -- nvim CursorHold bug fix
 		--use({
@@ -28,7 +34,36 @@ return require("packer").startup({
         ---------------
 		-- colorschemes{{{
         ---------------
-		use({ "rafi/awesome-vim-colorschemes", opt = true })
+		--use({ "rafi/awesome-vim-colorschemes", opt = true })
+		use({ "sainnhe/gruvbox-material",
+            --opt = true
+        })
+		use({ "Mofiqul/dracula.nvim",
+            --opt = true
+        })
+		use({ "rose-pine/neovim",
+            --opt = true
+        })
+        use({
+            'rose-pine/neovim',
+            as = 'rose-pine',
+            tag = 'v1.*',
+        })
+		use({ "catppuccin/nvim",
+            --opt = true
+        })
+		use({ "navarasu/onedark.nvim",
+            --opt = true
+        })
+		use({ "Th3Whit3Wolf/one-nvim",
+            --opt = true
+        })
+		use({ "folke/tokyonight.nvim",
+            --opt = true
+        })
+		use({ "Mofiqul/vscode.nvim",
+            --opt = true
+        })
 		--}}}
 
         ---------------
@@ -37,6 +72,12 @@ return require("packer").startup({
 		use({ "kevinhwang91/nvim-bqf", ft = "qf",
              config = function()
 				require("my_plugins.nvim-bqf")
+             end,
+         })
+		use({ "sunjon/Shade.nvim",
+			event = "VimEnter",
+             config = function()
+				require("my_plugins.Shade")
              end,
          })
 		use({ "mvllow/modes.nvim",
@@ -64,7 +105,8 @@ return require("packer").startup({
         --カーソル下の単語ハイライトしまくれるやつ
 		use({
 			"t9md/vim-quickhl",
-			event = "VimEnter",
+			event = "BufReadPost",
+			--event = "VimEnter",
 			config = function()
 				require("my_plugins.vim-quickhl")
 			end,

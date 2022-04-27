@@ -2,29 +2,6 @@ local groupname = "vimrc_vimrc"
 
 vim.api.nvim_create_augroup(groupname, { clear = true })
 
---人の設定からコピペ{{{
---vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
---	group = groupname,
---	pattern = "*",
---	callback = function()
---		if vim.o.nu and vim.fn.mode() ~= "i" then
---			vim.o.rnu = true
---		end
---	end,
---	once = false,
---})
---vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
---	group = groupname,
---	pattern = "*",
---	callback = function()
---		if vim.o.nu then
---			vim.o.rnu = false
---		end
---	end,
---	once = false,
---})
------}}}
-
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = groupname,
 	pattern = { "qf" },
@@ -112,40 +89,32 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	once = false,
 })
 
+--人の設定からコピペ{{{
+--vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+--	group = groupname,
+--	pattern = "*",
+--	callback = function()
+--		if vim.o.nu and vim.fn.mode() ~= "i" then
+--			vim.o.rnu = true
+--		end
+--	end,
+--	once = false,
+--})
+--vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+--	group = groupname,
+--	pattern = "*",
+--	callback = function()
+--		if vim.o.nu then
+--			vim.o.rnu = false
+--		end
+--	end,
+--	once = false,
+--})
+-----}}}
 
+
+-- 以下は残骸
 --vim.cmd([[
---"command! PackerInstall packadd packer.nvim | lua require'packers'.install()
---"command! PackerUpdate packadd packer.nvim | lua require'packers'.update()
---"command! PackerSync packadd packer.nvim | lua require'packers'.sync()
---"command! PackerClean packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()
---
---
---"augroup my_autocmd
---"	autocmd!
---"	autocmd BufReadPost * delmarks!
---"	"Quickfixウィンドウグレップで自動で開く
---"	"autocmd QuickFixCmdPost *grep* cwindow
---"	"ウィンドウを常に等分割
---"	"autocmd VimResized * :wincmd =
---"	"session保存時クイックフィックス閉じる
---"	"autocmd VimLeave * cclose
---"	"autocmd VimLeave * mks! ~/.vim/session/$DATE.vim
---"	"qfウィンドウを常に最下部で開く
---"	"autocmd FileType qf wincmd J
---"	"折りたたみ設定
---"	"autocmd FileType vim setlocal foldmethod=marker
---"	"autocmd FileType toml setlocal foldmethod=marker
---"    "autocmd FileType gitcommit setlocal spell
---"    autocmd BufNewFile,BufRead *.py
---"        \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
---"        \ foldmethod=indent
---"    "autocmd BufNewFile,BufRead *.seq,*.s,*.h,*.tbl setfiletype seq
---"    "autocmd BufNewFile,BufRead *.toml setfiletype toml
---"    "autocmd BufNewFile,BufRead *.csv setfiletype csv
---"    "autocmd BufNewFile,BufRead *.lark setfiletype lark
---"    "autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
---"augroup END
---"
 --""augroup reload_vimrc
 --""    autocmd!
 --""    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$HOME/vimrc/init/*.vim,$MYVIMRC
