@@ -41,9 +41,6 @@ return require("packer").startup({
 		use({ "Mofiqul/dracula.nvim",
             --opt = true
         })
-		use({ "rose-pine/neovim",
-            --opt = true
-        })
         use({
             'rose-pine/neovim',
             as = 'rose-pine',
@@ -236,7 +233,7 @@ return require("packer").startup({
         ---------------
 		use({
 			"skywind3000/asyncrun.vim",
-			--event = "VimEnter", --lazy load できない？
+			event = "VimEnter", --lazy load できない？
 			config = function()
                 --vim.api.nvim_set_keymap("n", "<Space>r", "<Cmd>AsyncRun python  -u %<CR>" ,{noremap = true, silent =true})--これはさすがにワークする
 				require("my_plugins.asyncrun")
@@ -484,7 +481,7 @@ return require("packer").startup({
 		--}}}
 
 		---- others{{{
-		----use({ "~/seq.vim" })
+		use({ "~/vimfiles/localplugins/seq.vim" })
 		----}}}
 	end,
 

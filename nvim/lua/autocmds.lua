@@ -83,8 +83,26 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()
         vim.cmd([[
             setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-            foldmethod=indent
+            setlocal foldmethod=indent
         ]])
+	end,
+	once = false,
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	group = groupname,
+	pattern = { "*.py" },
+	callback = function()
+        vim.cmd([[ setfiletype seq ]])
+	end,
+	once = false,
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	group = groupname,
+	pattern = { "*.seq","*.s","*.h","*.tbl" },
+	callback = function()
+        vim.cmd([[ setfiletype seq ]])
 	end,
 	once = false,
 })

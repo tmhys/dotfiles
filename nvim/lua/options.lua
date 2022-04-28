@@ -47,8 +47,8 @@ vim.g.loaded_python3_provider   = 0
 vim.g.loaded_python_provider    = 0
 vim.g.loaded_pythonx_provider   = 0
 vim.g.loaded_ruby_provider      = 0
---vim.g.do_filetype_lua           = 1
---vim.g.did_load_filetypes        = 1
+vim.g.do_filetype_lua           = 1
+vim.g.did_load_filetypes        = 0
 
 ---------------
 --
@@ -59,7 +59,7 @@ opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
 opt.ambiwidth      = 'single' --doubleにすると表示が変
 opt.autoindent     = true
 opt.autoread       = true
-opt.background     = "light"
+opt.background     = "dark" --"dark" or "light"
 opt.backup         = true
 opt.backspace      = "indent,eol,start"
 opt.backupdir      = vim.fn.stdpath('config')..'/.undo'
