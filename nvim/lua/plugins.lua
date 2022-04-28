@@ -1,11 +1,15 @@
 ---------------
 -- packer comand & keymap
 ---------------
-vim.api.nvim_create_user_command("PackerInstall", "packadd packer.nvim | require'packers'.install()", {force = true})
-vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'packers'.update()", {force = true})
-vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", {force = true})
-vim.api.nvim_create_user_command("PackerClean", "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()", {force = true})
-vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>" ,{noremap = true, silent =true})
+vim.api.nvim_create_user_command("PackerInstall", "packadd packer.nvim | require'packers'.install()", { force = true })
+vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'packers'.update()", { force = true })
+vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", { force = true })
+vim.api.nvim_create_user_command(
+	"PackerClean",
+	"packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()",
+	{ force = true }
+)
+vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>", { noremap = true, silent = true })
 
 ---------------
 -- plugins
@@ -14,14 +18,14 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
 	function()
 		use({ "wbthomason/packer.nvim", opt = true })
-        ---------------
+		---------------
 		-- utility{{{
-        ---------------
+		---------------
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "lewis6991/impatient.nvim" })
 		--use({ "nathom/filetype.nvim" })
 		--use({ "tjdevries/astronauta.nvim" })
-        -- nvim CursorHold bug fix
+		-- nvim CursorHold bug fix
 		--use({
 		--	"antoinemadec/FixCursorHold.nvim",
 		--	config = function()
@@ -31,62 +35,72 @@ return require("packer").startup({
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 		use({ "vim-jp/vimdoc-ja", event = "VimEnter" })
 		--}}}
-        ---------------
+		---------------
 		-- colorschemes{{{
-        ---------------
+		---------------
 		use({ "rafi/awesome-vim-colorschemes", opt = true })
-		use({ "sainnhe/gruvbox-material",
-            --opt = true
-        })
-		use({ "Mofiqul/dracula.nvim",
-            --opt = true
-        })
-        use({
-            'rose-pine/neovim',
-            as = 'rose-pine',
-            tag = 'v1.*',
-             config = function()
+		use({
+			"sainnhe/gruvbox-material",
+			--opt = true
+		})
+		use({
+			"Mofiqul/dracula.nvim",
+			--opt = true
+		})
+		use({
+			"rose-pine/neovim",
+			as = "rose-pine",
+			tag = "v1.*",
+			config = function()
 				require("my_plugins.rose-pine")
-             end,
-        })
-        use({
-        	"catppuccin/nvim",
-        	as = "catppuccin"
-        })
-		use({ "navarasu/onedark.nvim",
-            --opt = true
-        })
-		use({ "Th3Whit3Wolf/one-nvim",
-            --opt = true
-        })
-		use({ "folke/tokyonight.nvim",
-            --opt = true
-        })
-		use({ "Mofiqul/vscode.nvim",
-            --opt = true
-        })
+			end,
+		})
+		use({
+			"catppuccin/nvim",
+			as = "catppuccin",
+		})
+		use({
+			"navarasu/onedark.nvim",
+			--opt = true
+		})
+		use({
+			"Th3Whit3Wolf/one-nvim",
+			--opt = true
+		})
+		use({
+			"folke/tokyonight.nvim",
+			--opt = true
+		})
+		use({
+			"Mofiqul/vscode.nvim",
+			--opt = true
+		})
 		--}}}
 
-        ---------------
+		---------------
 		-- interface{{{
-        ---------------
-		use({ "kevinhwang91/nvim-bqf", ft = "qf",
-             config = function()
+		---------------
+		use({
+			"kevinhwang91/nvim-bqf",
+			ft = "qf",
+			config = function()
 				require("my_plugins.nvim-bqf")
-             end,
-         })
-		use({ "sunjon/Shade.nvim",
+			end,
+		})
+		use({
+			"sunjon/Shade.nvim",
 			event = "VimEnter",
-             config = function()
+			config = function()
 				require("my_plugins.Shade")
-             end,
-         })
-		use({ "mvllow/modes.nvim",
+			end,
+		})
+		use({
+			"mvllow/modes.nvim",
 			event = "VimEnter",
-             config = function()
+			config = function()
 				require("my_plugins.modes")
-             end,
-         })
+			end,
+		})
 		use({
 			"rcarriga/nvim-notify",
 			event = "VimEnter",
@@ -94,7 +108,7 @@ return require("packer").startup({
 				require("my_plugins.nvim-notify")
 			end,
 		})
-        -- カーソル移動が見やすくなるやつ
+		-- カーソル移動が見やすくなるやつ
 		use({
 			"edluffy/specs.nvim",
 			event = "VimEnter",
@@ -103,14 +117,14 @@ return require("packer").startup({
 			end,
 		})
 		use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
-		use({"xiyaowong/nvim-cursorword", event = "VimEnter" })
-        use({
-	    	"lukas-reineke/indent-blankline.nvim",
-	    	event = "VimEnter",
-	    	config = function()
-	    		require("my_plugins.indent-blankline")
-	    	end,
-	    })
+		use({ "xiyaowong/nvim-cursorword", event = "CursorHold" })
+		use({
+			"lukas-reineke/indent-blankline.nvim",
+			event = "VimEnter",
+			config = function()
+				require("my_plugins.indent-blankline")
+			end,
+		})
 		use({ "mhinz/vim-signify", event = "VimEnter" })
 		use({
 			"chentau/marks.nvim",
@@ -159,9 +173,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		-- useful func{{{
-        ---------------
+		---------------
 		use({
 			"kana/vim-smartchr",
 			event = "InsertEnter",
@@ -172,21 +186,27 @@ return require("packer").startup({
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		use({ "tpope/vim-surround", event = "InsertEnter" })
 		--use({ "thinca/vim-qfreplace", ft = "qf" })
-		use({ "gabrielpoca/replacer.nvim",ft = "qf" ,
+		use({
+			"gabrielpoca/replacer.nvim",
+			ft = "qf",
 			config = function()
 				require("my_plugins.replacer")
 			end,
-        })
-		use({ "junegunn/vim-easy-align",cmd = "EasyAlign",
+		})
+		use({
+			"junegunn/vim-easy-align",
+			cmd = "EasyAlign",
 			config = function()
 				require("my_plugins.vim-easy-align")
 			end,
-        })
-		use({ "simeji/winresizer", cmd = "WinResizerStartResize",
-            setup = function()
-                vim.api.nvim_set_keymap('n', '<M-w>', '<Cmd>WinResizerStartResize<CR>',{noremap = true})
-            end
-        })
+		})
+		use({
+			"simeji/winresizer",
+			cmd = "WinResizerStartResize",
+			setup = function()
+				vim.api.nvim_set_keymap("n", "<M-w>", "<Cmd>WinResizerStartResize<CR>", { noremap = true })
+			end,
+		})
 		use({
 			"b3nj5m1n/kommentary",
 			event = "VimEnter",
@@ -194,7 +214,7 @@ return require("packer").startup({
 				require("my_plugins.kommentary")
 			end,
 		})
-        --acceralate jk
+		--acceralate jk
 		use({
 			"PHSix/faster.nvim",
 			event = "VimEnter",
@@ -202,7 +222,7 @@ return require("packer").startup({
 				require("my_plugins.faster")
 			end,
 		})
-        --ユニーク文字ハイライト
+		--ユニーク文字ハイライト
 		use({
 			"unblevable/quick-scope",
 			event = "VimEnter",
@@ -228,14 +248,14 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		--code runner{{{
-        ---------------
+		---------------
 		use({
 			"skywind3000/asyncrun.vim",
 			event = "VimEnter", --lazy load できない？
 			config = function()
-                --vim.api.nvim_set_keymap("n", "<Space>r", "<Cmd>AsyncRun python  -u %<CR>" ,{noremap = true, silent =true})--これはさすがにワークする
+				--vim.api.nvim_set_keymap("n", "<Space>r", "<Cmd>AsyncRun python  -u %<CR>" ,{noremap = true, silent =true})--これはさすがにワークする
 				require("my_plugins.asyncrun")
 			end,
 		})
@@ -248,9 +268,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		--git{{{
-        ---------------
+		---------------
 		use({
 			"tpope/vim-fugitive",
 			event = "VimEnter",
@@ -260,9 +280,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		--tags{{{
-        ---------------
+		---------------
 		use({
 			"ludovicchabant/vim-gutentags",
 			event = "VimEnter",
@@ -276,9 +296,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		--filetype specific{{{
-        ---------------
+		---------------
 		use({
 			"skanehira/preview-markdown.vim",
 			ft = { "markdown" },
@@ -287,13 +307,13 @@ return require("packer").startup({
 			end,
 		})
 		use({ "mechatroner/rainbow_csv", ft = { "csv" } })
-		use({ "lark-parser/vim-lark-syntax" , ft = { "lark" }})
-		use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim" , ft = {'lua', 'toml'}})
+		use({ "lark-parser/vim-lark-syntax", ft = { "lark" } })
+		use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim", ft = { "lua", "toml" } })
 		--}}}
 
-        ---------------
+		---------------
 		-- fuzzy finder{{{
-        ---------------
+		---------------
 		use({
 			"nvim-telescope/telescope.nvim",
 			config = function()
@@ -311,9 +331,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		-- treesitter{{{
-        ---------------
+		---------------
 		use({
 			"nvim-treesitter/nvim-treesitter",
 			branch = "0.5-compat",
@@ -329,7 +349,7 @@ return require("packer").startup({
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 		})
-        --いる？
+		--いる？
 		use({
 			"nvim-treesitter/playground",
 			config = function()
@@ -337,7 +357,7 @@ return require("packer").startup({
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 		})
-        --いる？
+		--いる？
 		use({
 			"theHamsta/nvim-dap-virtual-text",
 			requires = { "mfussenegger/nvim-dap" },
@@ -347,9 +367,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		-- lsp{{{
-        ---------------
+		---------------
 		use({
 			"neovim/nvim-lspconfig",
 			after = "cmp-nvim-lsp",
@@ -387,9 +407,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		--lsp ui{{{
-        ---------------
+		---------------
 		use({
 			"tami5/lspsaga.nvim",
 			after = "nvim-lsp-installer",
@@ -407,9 +427,9 @@ return require("packer").startup({
 		})
 		--}}}
 
-        ---------------
+		---------------
 		-- completion{{{
-        ---------------
+		---------------
 		--cmpのrequiresで記載しているが個別で設定必要
 		use({
 			"windwp/nvim-autopairs",
@@ -443,23 +463,22 @@ return require("packer").startup({
 		})
 		--}}}
 
-
-        ---------------
+		---------------
 		--??? {{{
-        ---------------
+		---------------
 		use({ "lfilho/cosco.vim", event = "InsertEnter" })
 		use({ "jghauser/mkdir.nvim", event = "VimEnter" })
 		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
 		--use({ "gbprod/yanky.nvim ", event = "VimEnter" })
-        --use({ 'rmagatti/auto-session', --event = "VimEnter",
+		--use({ 'rmagatti/auto-session', --event = "VimEnter",
 		--	config = function()
 		--		require("my_plugins.auto-session")
 		--	end,
-        --})
-        --use({ "nvim-telescope/telescope-frecency.nvim" })
+		--})
+		--use({ "nvim-telescope/telescope-frecency.nvim" })
 
-        --便利さがわからんのでコメントアウト
-        ----カーソル下の単語ハイライトしまくれるやつ
+		--便利さがわからんのでコメントアウト
+		----カーソル下の単語ハイライトしまくれるやつ
 		--use({
 		--	"t9md/vim-quickhl",
 		--	event = "BufReadPost",
