@@ -40,13 +40,13 @@ return require("packer").startup({
 		---------------
 		use({ "rafi/awesome-vim-colorschemes", opt = true })
 		use({
-			"sainnhe/gruvbox-material",
-			--opt = true
+			"EdenEast/nightfox.nvim",
+			config = function()
+				require("my_plugins.nightfox")
+			end,
 		})
-		use({
-			"Mofiqul/dracula.nvim",
-			--opt = true
-		})
+		use({ "sainnhe/gruvbox-material" })
+		use({ "Mofiqul/dracula.nvim" })
 		use({
 			"rose-pine/neovim",
 			as = "rose-pine",
@@ -55,26 +55,11 @@ return require("packer").startup({
 				require("my_plugins.rose-pine")
 			end,
 		})
-		use({
-			"catppuccin/nvim",
-			as = "catppuccin",
-		})
-		use({
-			"navarasu/onedark.nvim",
-			--opt = true
-		})
-		use({
-			"Th3Whit3Wolf/one-nvim",
-			--opt = true
-		})
-		use({
-			"folke/tokyonight.nvim",
-			--opt = true
-		})
-		use({
-			"Mofiqul/vscode.nvim",
-			--opt = true
-		})
+		use({ "catppuccin/nvim", as = "catppuccin" })
+		use({ "navarasu/onedark.nvim" })
+		use({ "Th3Whit3Wolf/one-nvim" })
+		use({ "folke/tokyonight.nvim" })
+		use({ "Mofiqul/vscode.nvim" })
 		--}}}
 
 		---------------
@@ -322,6 +307,8 @@ return require("packer").startup({
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
 
+		--use({ "nvim-telescope/telescope-packer.nvim", requires = { "nvim-telescope/telescope.nvim" } })
+
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -469,6 +456,11 @@ return require("packer").startup({
 		use({ "lfilho/cosco.vim", event = "InsertEnter" })
 		use({ "jghauser/mkdir.nvim", event = "VimEnter" })
 		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
+
+		--{{{textobjectŠÖ˜A
+		--use({ "mfussenegger/nvim-treehopper", event = "VimEnter" })
+		--}}}
+
 		--use({ "gbprod/yanky.nvim ", event = "VimEnter" })
 		--use({ 'rmagatti/auto-session', --event = "VimEnter",
 		--	config = function()

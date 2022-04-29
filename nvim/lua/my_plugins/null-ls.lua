@@ -19,7 +19,6 @@ require("null-ls").setup({
 	        augroup LspFormatting
 	            autocmd!
 	            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-	            "autocmd BufWritePre * :%s/\r//ge
 	        augroup END
 	        ]])
 		end
