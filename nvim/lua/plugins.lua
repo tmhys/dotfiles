@@ -23,15 +23,6 @@ return require("packer").startup({
 		---------------
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "lewis6991/impatient.nvim" })
-		--use({ "nathom/filetype.nvim" })
-		--use({ "tjdevries/astronauta.nvim" })
-		-- nvim CursorHold bug fix
-		--use({
-		--	"antoinemadec/FixCursorHold.nvim",
-		--	config = function()
-		--		require("my_plugins.FixCursorHold")
-		--	end,
-		--})
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 		use({ "vim-jp/vimdoc-ja", event = "VimEnter" })
 		--}}}
@@ -121,7 +112,6 @@ return require("packer").startup({
 		use({
 			"nvim-lualine/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
-			--requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/lsp-status.nvim" },
 			config = function()
 				require("my_plugins.lualine")
 			end,
@@ -238,9 +228,8 @@ return require("packer").startup({
 		---------------
 		use({
 			"skywind3000/asyncrun.vim",
-			event = "VimEnter", --lazy load ‚Å‚«‚È‚¢H
+			event = "VimEnter",
 			config = function()
-				--vim.api.nvim_set_keymap("n", "<Space>r", "<Cmd>AsyncRun python  -u %<CR>" ,{noremap = true, silent =true})--‚±‚ê‚Í‚³‚·‚ª‚Éƒ[ƒN‚·‚é
 				require("my_plugins.asyncrun")
 			end,
 		})

@@ -70,7 +70,7 @@ cmp.setup({
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[LUA]",
 				tags = "[TAG]",
-				cmp_tabnine = "[TN]",
+				cmp_tabnine = "[TabNnine]",
 				vsnip = "[SNIP]",
 				treesitter = "[TS]",
 				path = "[PATH]",
