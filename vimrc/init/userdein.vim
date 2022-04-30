@@ -98,7 +98,6 @@ if dein#min#load_state(s:dein_dir)
   "call dein#load_toml(s:dein_plug.'vim-toml.toml', {'lazy': 1})
   "call dein#load_toml(s:dein_plug.'context_filetype.toml', {'lazy': 1})
   "call dein#load_toml(s:dein_plug.'rainbow_csv.toml', {'lazy': 1})
-
   "call dein#load_toml(s:dein_plug.'vimdoc-ja.toml', {'lazy': 0})
   "call dein#load_toml(s:dein_plug.'colorscheme.toml', {'lazy': 0})
   "call dein#load_toml(s:dein_plug.'lightline.toml', {'lazy': 0})
@@ -106,7 +105,6 @@ if dein#min#load_state(s:dein_dir)
   "call dein#load_toml(s:dein_plug.'ctrlp.toml', {'lazy': 0})
   "call dein#load_toml(s:dein_plug.'vim-devicons.toml', {'lazy': 0})
   "}}}
-
 
   " end settings
   call dein#end()

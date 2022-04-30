@@ -228,6 +228,9 @@ on_cmd = ['Renamer']
 [[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
+hook_add = '''"{{{
+	nnoremap <F2> :StartupTime<CR>
+"}}}'''
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
