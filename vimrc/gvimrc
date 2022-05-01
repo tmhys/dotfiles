@@ -7,7 +7,7 @@ if !has('win32')
 	set linespace=1
 endif
 
-colorscheme iceberg
+colorscheme ayu
 
 let g:save_window_file = expand('~/.vimwinpos')
 augroup SaveWindow

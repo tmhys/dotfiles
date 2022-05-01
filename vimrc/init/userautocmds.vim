@@ -60,7 +60,7 @@ if has('vim_starting')
   let g:startuptime = reltime()
   augroup vimrc
 	  autocmd!
-  	  autocmd VimEnter *
+  	  autocmd VimEnter * ++once
         \ : let g:startuptime = reltime(g:startuptime)
         \ | redraw
         \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)

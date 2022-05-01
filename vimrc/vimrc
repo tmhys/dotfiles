@@ -6,7 +6,7 @@ source $HOME/vimfiles/init/userautocmds.vim
 source $HOME/vimfiles/init/userdein.vim
 
 if !has("gui_running")
-	colorscheme iceberg
+	colorscheme ayu
 endif
 
 filetype plugin indent on

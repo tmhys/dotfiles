@@ -130,6 +130,13 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 })
 --}}}
 
+--vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--	group = groupname,
+--	pattern = { "*" },
+--	callback = function()
+--	end,
+--	once = false,
+--})
 
 -- 以下は残骸
 vim.cmd([[
@@ -143,15 +150,16 @@ vim.cmd([[
 ""				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
 ""augroup END
 "
-""lazy loadでVimEnterを指定していると２重で実行されてしまう
+"lazy loadでVimEnterを指定していると２重で実行されてしまう
 if has('vim_starting')
   let g:startuptime = reltime()
   augroup vimrc
 	  autocmd!
-  	  autocmd VimEnter *
+  	  autocmd VimEnter * ++once
         \ : let g:startuptime = reltime(g:startuptime)
         \ | redraw
         \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
   augroup END
 endif
+
 ]])
