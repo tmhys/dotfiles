@@ -37,23 +37,9 @@ windowsユーザーです
 - keyboardのマッピングファイルもこのリポジトリにアップする
 - nvim
     - [ ] tabキーの挙動がまだよろしくない、普通にタブを入力したいのに補完される
-    - [ ] ftdetectの仕様を理解したい
-    - [ ] PDF2csvついでにspledsheetに展開
-    - [ ] ctagの設定
     - [ ] null-lsの設定、改行コードeol
-    - [x] watchdocsの乗り換え
-    - [x] nvim treeのキーマップ覚える
-    - [x] open_floatがよくわからん　なぜcursorholdで起動しない？
-    - [x] keymapもautocmdもlua化したいけど
-    - [x] packerでインストールしているプラグインの依存関係をはっきりと表記
-    - [x] luaのlspが社用PCではうまく動かない件
-    - [x] 基本方針は新しいluaプラグインに極力置き換え
-    - [x] 起動速度は極力早く
 
 # MEMO
-quickrun, asyncrunはプログラムランナー→単に実行するためのプラグイン
-watchdogs, neomakeはリンター、コンパイル通る？どこがエラー？みたいなことを表示できる。→基本的にはLSPで対応できる
-という理解でいいんだろうか
-asyncrunはpython実行にはいい感じ
-ただエラーフォーマットがうまく読み込めない
-neomakeはエラーフォーマットは良いが、文字化け
+nvimは極力luaプラグインを使う。
+設定もlua化する。
+起動時間は頑張って短くする。
