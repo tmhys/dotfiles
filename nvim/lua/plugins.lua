@@ -442,7 +442,15 @@ return require("packer").startup({
 		---------------
 		--??? {{{
 		---------------
-		use({ "lfilho/cosco.vim", event = "InsertEnter" })
+		use({
+			"lfilho/cosco.vim",
+			ekvent = "InsertEnter",
+			--requires = { "tpope/vim-repeat " },
+			config = function()
+				require("my_plugins.cosco")
+			end,
+		})
+		use({ "tpope/vim-repeat", event = "VimEnter" })
 		use({ "jghauser/mkdir.nvim", event = "VimEnter" })
 		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
 

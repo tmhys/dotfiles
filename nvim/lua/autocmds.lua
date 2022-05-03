@@ -130,36 +130,33 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 })
 --}}}
 
---vim.api.nvim_create_autocmd({ "VimEnter" }, {
---	group = groupname,
---	pattern = { "*" },
---	callback = function()
---	end,
---	once = false,
---})
+--startuptime を以下の形式に変換したい
+if vim.fn.has('vim_starting')  == 1 then
+    vim.g.startuptime = vim.fn.reltime()
+    vim.api.nvim_create_autocmd({ "VimEnter" }, {
+    	group = groupname,
+    	pattern = { "*" },
+    	callback = function()
+        vim.cmd([[
+            let g:startuptime = reltime(g:startuptime)
+            redraw
+            echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+        ]])
+    	end,
+    	once = true,
+    })
+end
+
 
 -- 以下は残骸
-vim.cmd([[
-""augroup reload_vimrc
-""    autocmd!
-""    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$HOME/vimrc/init/*.vim,$MYVIMRC
-""				\:nested source $MYVIMRC
-""				\|if has('gui_running') |source $MYGVIMRC |endif
-""				\|if exists('g:loaded_webdevicons') | call webdevicons#refresh() | endif
-""				\|redraw
-""				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
-""augroup END
-"
-"lazy loadでVimEnterを指定していると２重で実行されてしまう
-if has('vim_starting')
-  let g:startuptime = reltime()
-  augroup vimrc
-	  autocmd!
-  	  autocmd VimEnter * ++once
-        \ : let g:startuptime = reltime(g:startuptime)
-        \ | redraw
-        \ | echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
-  augroup END
-endif
-
-]])
+--vim.cmd([[
+--""augroup reload_vimrc
+--""    autocmd!
+--""    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$HOME/vimrc/init/*.vim,$MYVIMRC
+--""				\:nested source $MYVIMRC
+--""				\|if has('gui_running') |source $MYGVIMRC |endif
+--""				\|if exists('g:loaded_webdevicons') | call webdevicons#refresh() | endif
+--""				\|redraw
+--""				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
+--""augroup END
+--]])
