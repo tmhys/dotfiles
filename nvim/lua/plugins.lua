@@ -57,6 +57,14 @@ return require("packer").startup({
 		-- interface{{{
 		---------------
 		use({
+			"goolord/alpha-nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
+			config = function()
+				--require("alpha").setup(require("alpha.themes.dashboard").config)
+				require("my_plugins.alpha-nvim")
+			end,
+		})
+		use({
 			"kevinhwang91/nvim-bqf",
 			ft = "qf",
 			config = function()
@@ -123,14 +131,14 @@ return require("packer").startup({
 			end,
 			requires = { "kyazdani42/nvim-web-devicons" },
 		})
-		use({
-			"SmiteshP/nvim-gps",
-			after = "nvim-treesitter",
-			config = function()
-				require("my_plugins.gps")
-			end,
-			requires = "nvim-treesitter/nvim-treesitter",
-		})
+		--use({
+		--	"SmiteshP/nvim-gps",
+		--	after = "nvim-treesitter",
+		--	config = function()
+		--		require("my_plugins.gps")
+		--	end,
+		--	requires = "nvim-treesitter/nvim-treesitter",
+		--})
 		use({
 			"kevinhwang91/nvim-hlslens",
 			event = "VimEnter",
@@ -310,37 +318,37 @@ return require("packer").startup({
 		---------------
 		-- treesitter{{{
 		---------------
-		use({
-			"nvim-treesitter/nvim-treesitter",
-			branch = "0.5-compat",
-			run = ":TSUpdate",
-			config = function()
-				require("my_plugins.treesitter")
-			end,
-		})
-		use({
-			"p00f/nvim-ts-rainbow",
-			config = function()
-				require("my_plugins.nvim-ts-rainbow")
-			end,
-			requires = "nvim-treesitter/nvim-treesitter",
-		})
-		--いる？
-		use({
-			"nvim-treesitter/playground",
-			config = function()
-				require("my_plugins.playground")
-			end,
-			requires = "nvim-treesitter/nvim-treesitter",
-		})
-		--いる？
-		use({
-			"theHamsta/nvim-dap-virtual-text",
-			requires = { "mfussenegger/nvim-dap" },
-			config = function()
-				require("my_plugins.nvim-dap-virtual-text")
-			end,
-		})
+		--use({
+		--	"nvim-treesitter/nvim-treesitter",
+		--	branch = "0.5-compat",
+		--	run = ":TSUpdate",
+		--	config = function()
+		--		require("my_plugins.treesitter")
+		--	end,
+		--})
+		--use({
+		--	"p00f/nvim-ts-rainbow",
+		--	config = function()
+		--		require("my_plugins.nvim-ts-rainbow")
+		--	end,
+		--	requires = "nvim-treesitter/nvim-treesitter",
+		--})
+		----いる？
+		--use({
+		--	"nvim-treesitter/playground",
+		--	config = function()
+		--		require("my_plugins.playground")
+		--	end,
+		--	requires = "nvim-treesitter/nvim-treesitter",
+		--})
+		----いる？
+		--use({
+		--	"theHamsta/nvim-dap-virtual-text",
+		--	requires = { "mfussenegger/nvim-dap" },
+		--	config = function()
+		--		require("my_plugins.nvim-dap-virtual-text")
+		--	end,
+		--})
 		--}}}
 
 		---------------
@@ -502,3 +510,11 @@ return require("packer").startup({
 		},
 	},
 })
+
+--local my_packer = {}
+--
+--my_packer.count_plugins = function()
+--	return get_table_size(_G.packer_plugins)
+--end
+--
+--return my_packer

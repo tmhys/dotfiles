@@ -89,15 +89,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	once = false,
 })
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	group = groupname,
-	pattern = { "*.py" },
-	callback = function()
-        vim.cmd([[ setfiletype seq ]])
-	end,
-	once = false,
-})
-
+--{{{filetype関連　いる？
+--vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--	group = groupname,
+--	pattern = { "*.py" },
+--	callback = function()
+--        vim.cmd([[ setfiletype python ]])
+--	end,
+--	once = false,
+--})
+--
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	group = groupname,
 	pattern = { "*.seq","*.s","*.h","*.tbl" },
@@ -106,6 +107,34 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	end,
 	once = false,
 })
+--
+--vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--	group = groupname,
+--	pattern = { "*.vim" },
+--	callback = function()
+--        vim.cmd([[ setfiletype vim ]])
+--	end,
+--	once = false,
+--})
+--
+--vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--	group = groupname,
+--	pattern = { "*.lua" },
+--	callback = function()
+--        vim.cmd([[ setfiletype lua ]])
+--	end,
+--	once = false,
+--})
+--
+--vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+--	group = groupname,
+--	pattern = { "*.toml" },
+--	callback = function()
+--        vim.cmd([[ setfiletype toml ]])
+--	end,
+--	once = false,
+--})
+--}}}
 
 --人の設定からコピペ{{{
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
