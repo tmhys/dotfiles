@@ -467,11 +467,18 @@ return require("packer").startup({
 		--}}}
 
 		--use({ "gbprod/yanky.nvim ", event = "VimEnter" })
-		--use({ 'rmagatti/auto-session', --event = "VimEnter",
+		--use({
+		--	"rmagatti/auto-session", --event = "VimEnter",
 		--	config = function()
 		--		require("my_plugins.auto-session")
 		--	end,
 		--})
+        use({
+	    	"Shatur/neovim-session-manager",
+	    	config = function()
+	    		require("my_plugins.neovim-session-manager")
+	    	end,
+	    })
 		--use({ "nvim-telescope/telescope-frecency.nvim" })
 
 		--便利さがわからんのでコメントアウト
@@ -510,11 +517,3 @@ return require("packer").startup({
 		},
 	},
 })
-
---local my_packer = {}
---
---my_packer.count_plugins = function()
---	return get_table_size(_G.packer_plugins)
---end
---
---return my_packer
