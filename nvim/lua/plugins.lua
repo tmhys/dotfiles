@@ -473,12 +473,12 @@ return require("packer").startup({
 		--		require("my_plugins.auto-session")
 		--	end,
 		--})
-        use({
-	    	"Shatur/neovim-session-manager",
-	    	config = function()
-	    		require("my_plugins.neovim-session-manager")
-	    	end,
-	    })
+		use({
+			"Shatur/neovim-session-manager",
+			config = function()
+				require("my_plugins.neovim-session-manager")
+			end,
+		})
 		--use({ "nvim-telescope/telescope-frecency.nvim" })
 
 		--便利さがわからんのでコメントアウト

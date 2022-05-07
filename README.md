@@ -16,6 +16,7 @@ windowsユーザーです
 # Installation
 
 社用PCの権限ではgit clone後手動でコピペするしかないっぽい
+メンドクセ
 
 # Usage
 
@@ -30,7 +31,7 @@ windowsユーザーです
 
 # Note
 
-自分用
+自分用です。
 
 
 # TODO
@@ -38,6 +39,7 @@ windowsユーザーです
 - nvim
     - [ ] tabキーの挙動がまだよろしくない、普通にタブを入力したいのに補完される
     - [ ] null-lsの設定、改行コードeol
+    - [ ] treesitterのエラーが気になりすぎるので一旦コメントアウトしてます
 
 # MEMO
 nvimは極力luaプラグインを使う。

@@ -56,7 +56,7 @@ set shortmess+=I
 set shortmess-=S
 
 """"""""""""""""""""""""""""""""""""""""
-" 見た目関連
+" UI関連
 """"""""""""""""""""""""""""""""""""""""
 set background=light "light dark
 set cmdheight=2

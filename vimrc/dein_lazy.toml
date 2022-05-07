@@ -160,6 +160,7 @@ on_event = ['BufReadPost']
 # カーソルジャンプ時の描画
 repo = 'DanilaMihailov/beacon.nvim'
 on_event = ['BufEnter']
+if   = ''' has('gui_running')'''
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'
