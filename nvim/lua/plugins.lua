@@ -461,6 +461,17 @@ return require("packer").startup({
 		use({ "tpope/vim-repeat", event = "VimEnter" })
 		use({ "jghauser/mkdir.nvim", event = "VimEnter" })
 		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
+		use({
+			"Shatur/neovim-session-manager",
+			config = function()
+				require("my_plugins.neovim-session-manager")
+			end,
+		})
+		use({ "sentriz/vim-print-debug", event = "VimEnter",
+			config = function()
+				require("my_plugins.vim-print-debug")
+			end,
+		})
 
 		--{{{textobject関連
 		--use({ "mfussenegger/nvim-treehopper", event = "VimEnter" })
@@ -473,12 +484,6 @@ return require("packer").startup({
 		--		require("my_plugins.auto-session")
 		--	end,
 		--})
-		use({
-			"Shatur/neovim-session-manager",
-			config = function()
-				require("my_plugins.neovim-session-manager")
-			end,
-		})
 		--use({ "nvim-telescope/telescope-frecency.nvim" })
 
 		--便利さがわからんのでコメントアウト
