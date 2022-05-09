@@ -467,7 +467,9 @@ return require("packer").startup({
 				require("my_plugins.neovim-session-manager")
 			end,
 		})
-		use({ "sentriz/vim-print-debug", event = "VimEnter",
+		use({
+			"sentriz/vim-print-debug",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.vim-print-debug")
 			end,
@@ -506,10 +508,41 @@ return require("packer").startup({
 		--	end,
 		--})
 
+		--use({
+		--	"andymass/vim-matchup",
+		--	event = "VimEnter",
+		--	config = function()
+		--		require("my_plugins.vim-matchup")
+		--	end,
+		--})
+
 		--}}}
 
 		---- others{{{
 		use({ "~/vimfiles/localplugins/seq.vim" })
+		----}}}
+
+		---------------
+		--Comment {{{
+		---------------
+		use({
+			"numToStr/Comment.nvim",
+			event = "VimEnter",
+			config = function()
+				require("my_plugins.Comment")
+			end,
+		})
+		--use({
+		--	"s1n7ax/nvim-comment-frame",
+		--	event = "VimEnter",
+		--	requires = {
+		--		{ "nvim-treesitter" },
+		--	},
+		--	config = function()
+		--		require("my_plugins.nvim-comment-frame")
+		--	end,
+		--})
+
 		----}}}
 	end,
 

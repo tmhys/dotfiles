@@ -104,5 +104,5 @@ endfunction
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 "}}}
-noremap! <silent> <S-Insert> <ESC>:set noautoindent nosmartindent<CR>i<C-R>+<ESC>:set autoindent smartindent<CR>
+noremap! <silent> <S-Insert> <ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>
 ]])
