@@ -131,14 +131,14 @@ return require("packer").startup({
 			end,
 			requires = { "kyazdani42/nvim-web-devicons" },
 		})
-		--use({
-		--	"SmiteshP/nvim-gps",
-		--	after = "nvim-treesitter",
-		--	config = function()
-		--		require("my_plugins.gps")
-		--	end,
-		--	requires = "nvim-treesitter/nvim-treesitter",
-		--})
+		use({
+			"SmiteshP/nvim-gps",
+			after = "nvim-treesitter",
+			config = function()
+				require("my_plugins.gps")
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
 		use({
 			"kevinhwang91/nvim-hlslens",
 			event = "VimEnter",
@@ -318,21 +318,21 @@ return require("packer").startup({
 		---------------
 		-- treesitter{{{
 		---------------
-		--use({
-		--	"nvim-treesitter/nvim-treesitter",
-		--	branch = "0.5-compat",
-		--	run = ":TSUpdate",
-		--	config = function()
-		--		require("my_plugins.treesitter")
-		--	end,
-		--})
-		--use({
-		--	"p00f/nvim-ts-rainbow",
-		--	config = function()
-		--		require("my_plugins.nvim-ts-rainbow")
-		--	end,
-		--	requires = "nvim-treesitter/nvim-treesitter",
-		--})
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			branch = "0.5-compat",
+			run = ":TSUpdate",
+			config = function()
+				require("my_plugins.treesitter")
+			end,
+		})
+		use({
+			"p00f/nvim-ts-rainbow",
+			config = function()
+				require("my_plugins.nvim-ts-rainbow")
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
 		----Ç¢ÇÈÅH
 		--use({
 		--	"nvim-treesitter/playground",
@@ -532,16 +532,16 @@ return require("packer").startup({
 				require("my_plugins.Comment")
 			end,
 		})
-		--use({
-		--	"s1n7ax/nvim-comment-frame",
-		--	event = "VimEnter",
-		--	requires = {
-		--		{ "nvim-treesitter" },
-		--	},
-		--	config = function()
-		--		require("my_plugins.nvim-comment-frame")
-		--	end,
-		--})
+		use({
+			"s1n7ax/nvim-comment-frame",
+			event = "VimEnter",
+			requires = {
+				{ "nvim-treesitter" },
+			},
+			config = function()
+				require("my_plugins.nvim-comment-frame")
+			end,
+		})
 
 		----}}}
 	end,

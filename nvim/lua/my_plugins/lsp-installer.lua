@@ -1,3 +1,4 @@
+local groupname = "vimrc_vimrc"
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use an on_attach function to only map the following keys
@@ -41,11 +42,19 @@ local on_attach = function(client, bufnr)
 	--buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 	--buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 	buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-	vim.cmd([[ augroup my_lsp
-                    autocmd!
-                    autocmd CursorHold,CursorHoldI * Lspsaga show_line_diagnostics
-               augroup END
-             ]])
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    	group = groupname,
+    	pattern = "*",
+    	callback = function()
+            vim.cmd([[Lspsaga show_line_diagnostics]])
+    	end,
+    	once = false,
+    })
+	--vim.cmd([[ augroup my_lsp
+    --                autocmd!
+    --                autocmd CursorHold,CursorHoldI * Lspsaga show_line_diagnostics
+    --           augroup END
+    --         ]])
 	require("lsp_signature").on_attach()
 end
 
@@ -77,6 +86,7 @@ local server_configs = {
 
 local lsp_installer = require("nvim-lsp-installer")
 
+--**************************************************************
 lsp_installer.on_server_ready(function(server)
 	local opts = { capabilities = capabilities, on_attach = on_attach }
 	if server_configs[server.name] then
@@ -85,6 +95,7 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(opts)
 	vim.cmd([[ do User LspAttachBuffers ]])
 end)
+--**************************************************************
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 vim.lsp.diagnostic.on_publish_diagnostics, {
