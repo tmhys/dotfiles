@@ -71,13 +71,14 @@ return require("packer").startup({
 				require("my_plugins.nvim-bqf")
 			end,
 		})
-		use({
-			"sunjon/Shade.nvim",
-			event = "VimEnter",
-			config = function()
-				require("my_plugins.Shade")
-			end,
-		})
+        --winclose関連のバグが気になるのでオフにする
+		--use({
+		--	"sunjon/Shade.nvim",
+		--	event = "VimEnter",
+		--	config = function()
+		--		require("my_plugins.Shade")
+		--	end,
+		--})
 		use({
 			"mvllow/modes.nvim",
 			event = "VimEnter",
