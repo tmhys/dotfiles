@@ -127,3 +127,4 @@ endif
 " }}}
 
 "filetype plugin on
+source $HOME/vimfiles/init/deinupdate.vim

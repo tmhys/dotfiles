@@ -5,7 +5,8 @@
 repo = 'wsdjeg/dein-ui.vim'
 on_cmd    = ['DeinUpdate']
 hook_add = '''"{{{
-	nnoremap <F12> :DeinUpdate<CR>
+	"nnoremap <F12> :DeinUpdate<CR>
+	nnoremap <F12> :call dein#check_update(v:true)<CR>
 "}}}'''
 
 [[plugins]]

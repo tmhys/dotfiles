@@ -5,3 +5,4 @@ after/
 tags.lock
 tags.temp
 nvim/plugin/packer_compiled.lua
+vimrc/init/deinupdate.vim

@@ -52,6 +52,8 @@ g.did_load_filetypes        = 0
 ---------------
 --
 ---------------
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 opt.encoding       = 'UTF-8'
 opt.fileformats    = 'dos,unix,mac'
 opt.fileencodings  = {'cp932','sjis','UTF-8'} -- the encoding written to a file
@@ -69,7 +71,7 @@ opt.makeencoding   = 'cp932'
 opt.expandtab      = true                -- Use spaces instead of tabs
 opt.ignorecase     = true               -- Ignore case
 opt.laststatus     = 2
-opt.lazyredraw     = true
+--opt.lazyredraw     = true
 opt.matchtime      = 1
 opt.matchpairs     = vim.bo.matchpairs .. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝"--only vimrc option
 opt.number         = true                   -- Show line numbers
@@ -112,20 +114,74 @@ opt.spelllang      = "en" --only init.lua option
 opt.splitbelow     = true               -- Put new windows below current only init.lua option
 opt.splitright     = true               -- Put new windows right of current only init.lua option
 opt.title          = true -- set the title of window to the value of the titlestring only init.lua option
-opt.shortmess 	   = vim.o.shortmess
-                		.. "I"
-                		.. "c" -- silence insert mode completion messages
-                		--.. "F" -- Don't print a message when opening a file
-                		--.. "c" -- silence insert mode completion messages
+vim.o.errorbells   = false-- ビープ音除去
+vim.o.visualbell   = false-- ビープ音除去
+--opt.shortmess 	   = vim.o.shortmess
+--                		.. "I"
+--                		.. "c" -- silence insert mode completion messages
+--                		--.. "F" -- Don't print a message when opening a file
+--                		--.. "c" -- silence insert mode completion messages
+vim.opt.shortmess = {
+  A = true, -- ignore annoying swap file messages
+--F = true, -- Don't give file info when editing a file, NOTE: this breaks autocommand messages
+  I = true,
+  O = true, -- file-read message overwrites previous
+  T = true, -- truncate non-file messages in middle
+  W = true, -- Don't show [w] or written when writing
+  c = true,-- silence insert mode completion messages
+  f = true, -- (file x of x) instead of just (x of x
+  o = true, -- file-read message overwrites previous
+  s = true,
+  t = true, -- truncate file messages at start
+}
+vim.opt.fillchars = {
+	horiz = "━",
+	horizup = "┻",
+	horizdown = "┳",
+	vert = "┃",
+	vertleft = "┫",
+	vertright = "┣",
+	verthoriz = "╋",
+}
+
 opt.wildignore = {
-  ".DS_Store", ".git", ".svn", ".hg",
-  "*.a", "*.o", "*.obj", "*.out",
-  "*.so", "*.dll", "*.exe", "*.bin",
-  "*~", "*.swp", "*.tmp",
-  "*.bmp", "*.gif", "*.ico", "*.jpg", "*.jpeg", "*.png",
-  "__pycache__", "*.pyc", "*pycache*",
-  "*.tar", "*.gz", "*.bz2", "*.zstd", "*.xz", "*.zip",
-  '*.ttf', '*.otf', '*.woff', '*.woff2', '*.eot'}
+  ".DS_Store",
+  ".git",
+  ".svn",
+  ".hg",
+  "*.a",
+  "*.o",
+  "*.obj",
+  "*.out",
+  "*.so",
+  "*.dll",
+  "*.exe",
+  "*.bin",
+  "*~",
+  "*.swp",
+  "*.tmp",
+  "*.bmp",
+  "*.gif",
+  "*.ico",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "__pycache__",
+  "*.pyc",
+  "*pycache*",
+  "*.tar",
+  "*.gz",
+  "*.bz2",
+  "*.zstd",
+  "*.xz",
+  "*.zip",
+  '*.ttf',
+  '*.otf',
+  '*.woff',
+  '*.woff2',
+  '*.eot'
+}
+
 opt.sessionoptions = opt.sessionoptions
               - "blank"        -- Don't save empty windows in the session
               - "buffers"      -- Don't save hidden buffers into the session

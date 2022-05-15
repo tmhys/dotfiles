@@ -112,7 +112,7 @@ return require("packer").startup({
 		})
 		use({ "mhinz/vim-signify", event = "VimEnter" })
 		use({
-			"chentau/marks.nvim",
+			"chentoast/marks.nvim",
 			event = "VimEnter",
 			config = function()
 				require("my_plugins.marks")
