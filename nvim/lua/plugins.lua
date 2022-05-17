@@ -71,6 +71,14 @@ return require("packer").startup({
 				require("my_plugins.nvim-bqf")
 			end,
 		})
+		use({
+			"drmingdrmer/vim-toggle-quickfix",
+			--ft = "qf",
+			event = "VimEnter",
+			config = function()
+				require("my_plugins.vim-toggle-quickfix")
+			end,
+		})
         --winclose関連のバグが気になるのでオフにする
 		--use({
 		--	"sunjon/Shade.nvim",

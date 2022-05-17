@@ -69,40 +69,45 @@ vim.api.nvim_set_keymap("v", "<S-l>", "$  " ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("v", "<TAB>", "%" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("v", "v", "$h" ,{noremap = true, silent =true})
 vim.api.nvim_set_keymap("v", "za", "zf" ,{noremap = true, silent =true})
+vim.api.nvim_set_keymap("n", "<S-Insert>", "<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>" ,{noremap = true, silent =true})
+vim.api.nvim_set_keymap("n", "<Space>cd", ":cd  %:h<CR>" ,{noremap = true, silent =false})
 
+vim.api.nvim_create_user_command("Evimrc", ":e $HOME/AppData/Local/nvim/init.lua", { force = true })
+vim.api.nvim_create_user_command("Egvimrc", ":e $HOME/AppData/Local/nvim/ginit.vim", { force = true })
 -- 以下もそのうちlua化します
-vim.cmd([[
-let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
-let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
-command! Evimrc :silent! e $MYVIMRC
-command! Egvimrc :silent! e $MYGVIMRC
-
-"{{{Quickfix windowトグル
-function! s:toggle_quickfix_window()
-  let _ = winnr('$')
-  cclose
-  if _ == winnr('$')
-  cwindow
-  endif
-endfunction
-nnoremap <silent><M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
-"}}}
-"ディレクトリ自動で移動
-"set autochdir&vim
-"<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
-command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
-function! s:ChangeCurrentDir(directory, bang)
-    if a:directory == ''
-        lcd %:p:h
-    else
-        execute 'lcd' . a:directory
-    endif
-    if a:bang == ''
-        pwd
-    endif
-endfunction
-" Change current directory.
-nnoremap <silent> <Space>cd :<C-u>CD<CR>
-"}}}
-noremap! <silent> <S-Insert> <ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>
-]])
+--vim.cmd([[
+--""<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
+--"function! s:ChangeCurrentDir(directory, bang)
+--"    if a:directory == ''
+--"        lcd %:p:h
+--"    else
+--"        execute 'lcd' . a:directory
+--"    endif
+--"    if a:bang == ''
+--"        pwd
+--"    endif
+--"endfunction
+--"command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+--"" Change current directory.
+--"nnoremap <silent> <Space>cd :<C-u>CD<CR>
+--""}}}
+--
+--
+--"let $MYVIMRC =expand('$HOME\AppData\Local\nvim\init.lua')
+--"let $MYGVIMRC =expand('$HOME\AppData\Local\nvim\ginit.vim')
+--"command! Evimrc :silent! e $MYVIMRC
+--"command! Egvimrc :silent! e $MYGVIMRC
+--"ディレクトリ自動で移動
+--"set autochdir&vim
+--"noremap! <silent> <S-Insert> <ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>
+--""{{{Quickfix windowトグル
+--"function! s:toggle_quickfix_window()
+--"  let _ = winnr('$')
+--"  cclose
+--"  if _ == winnr('$')
+--"  cwindow
+--"  endif
+--"endfunction
+--"nnoremap <silent><M-q> :<C-u>call <SID>toggle_quickfix_window()<CR>
+--""}}}
+--]])

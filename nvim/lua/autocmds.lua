@@ -52,9 +52,17 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 --Quickfixウィンドウグレップで自動で開く
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
 	group = groupname,
-	pattern = "*grep*",
+    pattern = { "lmake", "lgrep", "lgrepadd", "lvimgrep", "lvimgrepadd" },
 	callback = function()
         vim.cmd([[cwindow]])
+	end,
+	once = false,
+})
+vim.api.nvim_create_autocmd({ "QuickfixCmdPost" }, {
+	group = groupname,
+	pattern = { "lmake", "lgrep", "lgrepadd", "lvimgrep", "lvimgrepadd" },
+	callback = function()
+		vim.cmd([[lwin]])
 	end,
 	once = false,
 })
