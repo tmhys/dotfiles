@@ -18,9 +18,9 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
 	function()
 		use({ "wbthomason/packer.nvim", opt = true })
-		---------------
-		-- utility{{{
-		---------------
+		-----------------
+		---- utility{{{
+		-----------------
 		use({ "kyazdani42/nvim-web-devicons" })
 		use({ "lewis6991/impatient.nvim" })
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
@@ -34,23 +34,23 @@ return require("packer").startup({
 			"EdenEast/nightfox.nvim",
 			config = function()
 				require("my_plugins.nightfox")
-			end,
+			end, event = "ColorSchemePre"
 		})
-		use({ "sainnhe/gruvbox-material" })
-		use({ "Mofiqul/dracula.nvim" })
+		use({ "sainnhe/gruvbox-material" , event = "ColorSchemePre"})
+		use({ "Mofiqul/dracula.nvim" , event = "ColorSchemePre"})
 		use({
 			"rose-pine/neovim",
 			as = "rose-pine",
 			tag = "v1.*",
 			config = function()
 				require("my_plugins.rose-pine")
-			end,
+			end, event = "ColorSchemePre"
 		})
-		use({ "catppuccin/nvim", as = "catppuccin" })
-		use({ "navarasu/onedark.nvim" })
-		use({ "Th3Whit3Wolf/one-nvim" })
-		use({ "folke/tokyonight.nvim" })
-		use({ "Mofiqul/vscode.nvim" })
+		use({ "catppuccin/nvim", as = "catppuccin" , event = "ColorSchemePre"})
+		use({ "navarasu/onedark.nvim" , event = "ColorSchemePre"})
+		use({ "Th3Whit3Wolf/one-nvim" , event = "ColorSchemePre"})
+		use({ "folke/tokyonight.nvim" , event = "ColorSchemePre"})
+		use({ "Mofiqul/vscode.nvim" , event = "ColorSchemePre"})
 		--}}}
 
 		---------------
@@ -59,6 +59,7 @@ return require("packer").startup({
 		use({
 			"goolord/alpha-nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
+            event = "VimEnter",
 			config = function()
 				--require("alpha").setup(require("alpha.themes.dashboard").config)
 				require("my_plugins.alpha-nvim")
@@ -218,7 +219,6 @@ return require("packer").startup({
 		use({
 			"unblevable/quick-scope",
 			event = "VimEnter",
-			--event = "VimEnter",
 			config = function()
 				require("my_plugins.quick-scope")
 			end,
@@ -320,6 +320,10 @@ return require("packer").startup({
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = function()
 				require("my_plugins.nvim-tree")
+			end,
+			cmd = "NvimTreeFindFileToggle",
+			setup = function()
+				vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
 			end,
 		})
 		--}}}
@@ -426,6 +430,7 @@ return require("packer").startup({
 		--cmpÇÃrequiresÇ≈ãLç⁄ÇµÇƒÇ¢ÇÈÇ™å¬ï Ç≈ê›íËïKóv
 		use({
 			"windwp/nvim-autopairs",
+			--event = "InsertEnter",
 			config = function()
 				require("my_plugins.nvim-autopairs")
 			end,
@@ -461,7 +466,7 @@ return require("packer").startup({
 		---------------
 		use({
 			"lfilho/cosco.vim",
-			ekvent = "InsertEnter",
+			event = "InsertEnter",
 			--requires = { "tpope/vim-repeat " },
 			config = function()
 				require("my_plugins.cosco")
@@ -472,6 +477,7 @@ return require("packer").startup({
 		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
 		use({
 			"Shatur/neovim-session-manager",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.neovim-session-manager")
 			end,
