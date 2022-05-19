@@ -81,13 +81,14 @@ return require("packer").startup({
 			end,
 		})
         --winclose関連のバグが気になるのでオフにする
-		--use({
-		--	"sunjon/Shade.nvim",
-		--	event = "VimEnter",
-		--	config = function()
-		--		require("my_plugins.Shade")
-		--	end,
-		--})
+		use({
+			"sunjon/Shade.nvim",
+			--event = "VimEnter",
+        	opt = true,
+			config = function()
+				require("my_plugins.Shade")
+			end,
+		})
 		use({
 			"mvllow/modes.nvim",
 			event = "VimEnter",
@@ -97,7 +98,8 @@ return require("packer").startup({
 		})
 		use({
 			"rcarriga/nvim-notify",
-			event = "VimEnter",
+			--event = "VimEnter",
+        	opt = true,
 			config = function()
 				require("my_plugins.nvim-notify")
 			end,
@@ -280,9 +282,12 @@ return require("packer").startup({
 		})
 		use({
 			"majutsushi/tagbar",
-			event = "VimEnter",
 			config = function()
 				require("my_plugins.tagbar")
+			end,
+			cmd = "TagbarToggle",
+			setup = function()
+				vim.api.nvim_set_keymap("n", "<F8>", "<Cmd>TagbarToggle<CR>", { noremap = true })
 			end,
 		})
 		--}}}
@@ -309,6 +314,20 @@ return require("packer").startup({
 			"nvim-telescope/telescope.nvim",
 			config = function()
 				require("my_plugins.telescope").setup()
+			end,
+			cmd = "Telescope",
+			setup = function()
+                vim.api.nvim_set_keymap('n', '<Space>ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>f<Space>', '<cmd>Telescope<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fg', '<cmd>Telescope live_grep<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>ft', '<cmd>Telescope tags<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fm', '<cmd>Telescope oldfiles<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fq', '<cmd>Telescope quickfix<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fc', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fv', '<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>', { noremap = true, silent = true })
+                vim.api.nvim_set_keymap('n', '<Space>fd', '<cmd>Telescope find_files search_dirs=~/dotfiles<CR>', { noremap = true, silent = true })
 			end,
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
