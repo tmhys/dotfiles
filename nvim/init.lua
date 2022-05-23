@@ -1,10 +1,11 @@
---require('impatient')
+local impatient_ok, impatient = pcall(require, "impatient")
+if impatient_ok then impatient.enable_profile() end
 require("options")
 require("maps")
 require("autocmds")
 require("plugins")
 vim.cmd("colorscheme ayu")
---vim.cmd("let ayucolor = 'light'")
+vim.cmd("let ayucolor = 'light'")
 --vim.cmd("colorscheme ayu")
 --vim.cmd('colorscheme rose-pine')
 --vim.cmd('colorscheme catppuccin')
