@@ -51,6 +51,7 @@ return require("packer").startup({
 		use({ "Th3Whit3Wolf/one-nvim" , event = "ColorSchemePre"})
 		use({ "folke/tokyonight.nvim" , event = "ColorSchemePre"})
 		use({ "Mofiqul/vscode.nvim" , event = "ColorSchemePre"})
+		use({ "rebelot/kanagawa.nvim" , event = "ColorSchemePre"})
 		--}}}
 
 		---------------
@@ -83,8 +84,7 @@ return require("packer").startup({
         --winclose関連のバグが気になるのでオフにする
 		use({
 			"sunjon/Shade.nvim",
-			--event = "VimEnter",
-        	opt = true,
+			event = "WinNew",
 			config = function()
 				require("my_plugins.Shade")
 			end,
@@ -576,9 +576,8 @@ return require("packer").startup({
 				require("my_plugins.nvim-comment-frame")
 			end,
 		})
-
 		----}}}
-	end,
+    end,
 
 	config = {
 		compile_path = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua",
