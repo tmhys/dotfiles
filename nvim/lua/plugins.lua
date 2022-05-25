@@ -76,12 +76,11 @@ return require("packer").startup({
 		use({
 			"drmingdrmer/vim-toggle-quickfix",
 			--ft = "qf",
-			event = "VimEnter",
+			event = "QuickFixCmdPre",
 			config = function()
 				require("my_plugins.vim-toggle-quickfix")
 			end,
 		})
-        --winclose関連のバグが気になるのでオフにする
 		use({
 			"sunjon/Shade.nvim",
 			event = "WinNew",
@@ -91,7 +90,7 @@ return require("packer").startup({
 		})
 		use({
 			"mvllow/modes.nvim",
-			event = "VimEnter",
+			event = "ModeChanged",
 			config = function()
 				require("my_plugins.modes")
 			end,
@@ -107,7 +106,7 @@ return require("packer").startup({
 		-- カーソル移動が見やすくなるやつ
 		use({
 			"edluffy/specs.nvim",
-			event = "VimEnter",
+			event = "BufRead",
 			config = function()
 				require("my_plugins.specs")
 			end,
@@ -116,7 +115,7 @@ return require("packer").startup({
 		use({ "xiyaowong/nvim-cursorword", event = "CursorHold" })
 		use({
 			"lukas-reineke/indent-blankline.nvim",
-			event = "VimEnter",
+			event = "BufRead",
 			config = function()
 				require("my_plugins.indent-blankline")
 			end,
@@ -124,7 +123,7 @@ return require("packer").startup({
 		use({ "mhinz/vim-signify", event = "VimEnter" })
 		use({
 			"chentoast/marks.nvim",
-			event = "VimEnter",
+			event = "CursorHold",
 			config = function()
 				require("my_plugins.marks")
 			end,
@@ -202,13 +201,6 @@ return require("packer").startup({
 				vim.api.nvim_set_keymap("n", "<M-w>", "<Cmd>WinResizerStartResize<CR>", { noremap = true })
 			end,
 		})
-		use({
-			"b3nj5m1n/kommentary",
-			event = "VimEnter",
-			config = function()
-				require("my_plugins.kommentary")
-			end,
-		})
 		--acceralate jk
 		use({
 			"PHSix/faster.nvim",
@@ -234,7 +226,7 @@ return require("packer").startup({
 		})
 		use({
 			"phaazon/hop.nvim",
-			event = "VimEnter",
+			event = "BufRead",
 			config = "v1",
 			config = function()
 				require("my_plugins.hop")
@@ -352,7 +344,8 @@ return require("packer").startup({
 		---------------
 		use({
 			"nvim-treesitter/nvim-treesitter",
-			branch = "0.5-compat",
+            event = "CursorHold",
+			--branch = "0.5-compat",
 			run = ":TSUpdate",
 			config = function()
 				require("my_plugins.treesitter")
@@ -364,6 +357,7 @@ return require("packer").startup({
 				require("my_plugins.nvim-ts-rainbow")
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
+			-- after = "nvim-treesitter/nvim-treesitter",
 		})
 		----いる？
 		--use({
@@ -446,19 +440,11 @@ return require("packer").startup({
 		---------------
 		-- completion{{{
 		---------------
-		--cmpのrequiresで記載しているが個別で設定必要
-		use({
-			"windwp/nvim-autopairs",
-			--event = "InsertEnter",
-			config = function()
-				require("my_plugins.nvim-autopairs")
-			end,
-		})
 		use({ "hrsh7th/vim-vsnip", event = "InsertEnter" })
 
 		use({
 			"hrsh7th/nvim-cmp",
-			--event = "InsertEnter",
+			 event = "InsertEnter",
 			after = { "vim-vsnip" },
 			requires = {
 				{ "hrsh7th/cmp-nvim-lsp" },
@@ -476,6 +462,17 @@ return require("packer").startup({
 			},
 			config = function()
 				require("my_plugins.nvim-cmp")
+			end,
+		})
+
+		--cmpのrequiresで記載しているが個別で設定必要
+		use({
+			"windwp/nvim-autopairs",
+			--event = "InsertEnter",
+            --event = 'InsertEnter',
+            after = 'nvim-cmp',
+			config = function()
+				require("my_plugins.nvim-autopairs")
 			end,
 		})
 		--}}}
@@ -576,6 +573,13 @@ return require("packer").startup({
 				require("my_plugins.nvim-comment-frame")
 			end,
 		})
+		--use({
+		--	"b3nj5m1n/kommentary",
+		--	event = "VimEnter",
+		--	config = function()
+		--		require("my_plugins.kommentary")
+		--	end,
+		--})
 		----}}}
     end,
 
