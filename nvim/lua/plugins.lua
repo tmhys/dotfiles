@@ -106,7 +106,7 @@ return require("packer").startup({
 		-- ƒJ[ƒ\ƒ‹ˆÚ“®‚ªŒ©‚â‚·‚­‚È‚é‚â‚Â
 		use({
 			"edluffy/specs.nvim",
-			event = "BufRead",
+			event = "CursorMoved",
 			config = function()
 				require("my_plugins.specs")
 			end,
@@ -130,6 +130,7 @@ return require("packer").startup({
 		})
 		use({
 			"nvim-lualine/lualine.nvim",
+			event = "VimEnter",
 			requires = { "kyazdani42/nvim-web-devicons" },
 			config = function()
 				require("my_plugins.lualine")
@@ -137,6 +138,7 @@ return require("packer").startup({
 		})
 		use({
 			"alvarosevilla95/luatab.nvim",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.luatab")
 			end,
@@ -227,7 +229,11 @@ return require("packer").startup({
 		use({
 			"phaazon/hop.nvim",
 			event = "BufRead",
-			config = "v1",
+			branch = "v1",
+			-- cmd = "zz",
+			-- setup = function()
+   --              vim.api.nvim_set_keymap('n', 'zz', "<cmd>lua require'hop'.hint_words()<CR>", {})
+			-- end,
 			config = function()
 				require("my_plugins.hop")
 			end,
