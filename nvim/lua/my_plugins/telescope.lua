@@ -53,7 +53,8 @@ require('telescope').setup{
 --  },
     --borderchars = { '═', '║', "=", "║", "╔", "╗", "╝", "╚" },
     --borderchars = { '─', '│', '─', '│', '+', '+', '+', '+' },
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
     use_less = true,
     path_display = {},
@@ -67,17 +68,17 @@ require('telescope').setup{
   }
   }
 
---vim.api.nvim_set_keymap('n', '<Space>f', '<telescope>', {})
-vim.api.nvim_set_keymap('n', '<Space>ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>f<Space>', '<cmd>Telescope<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fg', '<cmd>Telescope live_grep<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>ft', '<cmd>Telescope tags<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fm', '<cmd>Telescope oldfiles<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fq', '<cmd>Telescope quickfix<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fc', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fv', '<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Space>fd', '<cmd>Telescope find_files search_dirs=~/dotfiles<CR>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<Leaderr>f', '<telescope>', {})
+vim.api.nvim_set_keymap('n', '<Leaderr>ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>f<Leaderr>', '<cmd>Telescope<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fg', '<cmd>Telescope live_grep<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>ft', '<cmd>Telescope tags<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fm', '<cmd>Telescope oldfiles<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fq', '<cmd>Telescope quickfix<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fc', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fv', '<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leaderr>fd', '<cmd>Telescope find_files search_dirs=~/dotfiles<CR>', { noremap = true, silent = true })
 end
 return M

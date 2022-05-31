@@ -35,11 +35,11 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 local remove_dust = function()
-  local cursor = vim.fn.getpos(".")
-  vim.cmd([[keeppatterns %s/\s\+$//ge]])
-  vim.cmd([[keeppatterns %s/\n\{4,}/\r\r\r/ge]])
-  vim.cmd([[keeppatterns %s#\($\n\s*\)\+\%$##ge]])
-  vim.fn.setpos(".", cursor)
+	local cursor = vim.fn.getpos(".")
+	vim.cmd([[keeppatterns %s/\s\+$//ge]])
+	vim.cmd([[keeppatterns %s/\n\{4,}/\r\r\r/ge]])
+	vim.cmd([[keeppatterns %s#\($\n\s*\)\+\%$##ge]])
+	vim.fn.setpos(".", cursor)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -52,9 +52,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 --Quickfixウィンドウグレップで自動で開く
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
 	group = groupname,
-    pattern = { "lmake", "lgrep", "lgrepadd", "lvimgrep", "lvimgrepadd" },
+	pattern = { "lmake", "lgrep", "lgrepadd", "lvimgrep", "lvimgrepadd" },
 	callback = function()
-        vim.cmd([[cwindow]])
+		vim.cmd([[cwindow]])
 	end,
 	once = false,
 })
@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	group = groupname,
 	pattern = "*",
 	callback = function()
-        vim.cmd([[wincmd=]])
+		vim.cmd([[wincmd=]])
 	end,
 	once = false,
 })
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = groupname,
 	pattern = { "vim", "toml" },
 	callback = function()
-        vim.cmd([[setlocal foldmethod=marker]])
+		vim.cmd([[setlocal foldmethod=marker]])
 	end,
 	once = false,
 })
@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = groupname,
 	pattern = "python",
 	callback = function()
-        vim.cmd([[
+		vim.cmd([[
             setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
             setlocal foldmethod=indent
         ]])
@@ -109,9 +109,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 --
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	group = groupname,
-	pattern = { "*.seq","*.s","*.h","*.tbl" },
+	pattern = { "*.seq", "*.s", "*.h", "*.tbl" },
 	callback = function()
-        vim.cmd([[ setfiletype seq ]])
+		vim.cmd([[ setfiletype seq ]])
 	end,
 	once = false,
 })
@@ -167,33 +167,18 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 })
 --}}}
 
---startuptime を以下の形式に変換したい
-if vim.fn.has('vim_starting')  == 1 then
-    vim.g.startuptime = vim.fn.reltime()
-    vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    	group = groupname,
-    	pattern = { "*" },
-    	callback = function()
-        vim.cmd([[
+if vim.fn.has("vim_starting") == 1 then
+	vim.g.startuptime = vim.fn.reltime()
+	vim.api.nvim_create_autocmd({ "VimEnter" }, {
+		group = groupname,
+		pattern = { "*" },
+		callback = function()
+			vim.cmd([[
             let g:startuptime = reltime(g:startuptime)
             redraw
             echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
         ]])
-    	end,
-    	once = true,
-    })
+		end,
+		once = true,
+	})
 end
-
-
--- 以下は残骸
---vim.cmd([[
---""augroup reload_vimrc
---""    autocmd!
---""    autocmd BufWritePost $HOME/vimfiles/*,$HOME/vimfiles/init/*.vim,$HOME/vimrc/init/*.vim,$MYVIMRC
---""				\:nested source $MYVIMRC
---""				\|if has('gui_running') |source $MYGVIMRC |endif
---""				\|if exists('g:loaded_webdevicons') | call webdevicons#refresh() | endif
---""				\|redraw
---""				\|echomsg printf('VIMRC has reloaded (%s).', strftime('%c'))
---""augroup END
---]])

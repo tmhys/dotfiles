@@ -34,24 +34,26 @@ return require("packer").startup({
 			"EdenEast/nightfox.nvim",
 			config = function()
 				require("my_plugins.nightfox")
-			end, event = "ColorSchemePre"
+			end,
+			event = "ColorSchemePre",
 		})
-		use({ "sainnhe/gruvbox-material" , event = "ColorSchemePre"})
-		use({ "Mofiqul/dracula.nvim" , event = "ColorSchemePre"})
+		use({ "sainnhe/gruvbox-material", event = "ColorSchemePre" })
+		use({ "Mofiqul/dracula.nvim", event = "ColorSchemePre" })
 		use({
 			"rose-pine/neovim",
 			as = "rose-pine",
 			tag = "v1.*",
 			config = function()
 				require("my_plugins.rose-pine")
-			end, event = "ColorSchemePre"
+			end,
+			event = "ColorSchemePre",
 		})
-		use({ "catppuccin/nvim", as = "catppuccin" , event = "ColorSchemePre"})
-		use({ "navarasu/onedark.nvim" , event = "ColorSchemePre"})
-		use({ "Th3Whit3Wolf/one-nvim" , event = "ColorSchemePre"})
-		use({ "folke/tokyonight.nvim" , event = "ColorSchemePre"})
-		use({ "Mofiqul/vscode.nvim" , event = "ColorSchemePre"})
-		use({ "rebelot/kanagawa.nvim" , event = "ColorSchemePre"})
+		use({ "catppuccin/nvim", as = "catppuccin", event = "ColorSchemePre" })
+		use({ "navarasu/onedark.nvim", event = "ColorSchemePre" })
+		use({ "Th3Whit3Wolf/one-nvim", event = "ColorSchemePre" })
+		use({ "folke/tokyonight.nvim", event = "ColorSchemePre" })
+		use({ "Mofiqul/vscode.nvim", event = "ColorSchemePre" })
+		use({ "rebelot/kanagawa.nvim", event = "ColorSchemePre" })
 		--}}}
 
 		---------------
@@ -60,10 +62,17 @@ return require("packer").startup({
 		use({
 			"goolord/alpha-nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
-            event = "VimEnter",
+			event = "VimEnter",
 			config = function()
 				--require("alpha").setup(require("alpha.themes.dashboard").config)
 				require("my_plugins.alpha-nvim")
+			end,
+		})
+		use({
+			"folke/which-key.nvim",
+			event = "VimEnter",
+			config = function()
+				require("my_plugins.which-key")
 			end,
 		})
 		use({
@@ -81,13 +90,14 @@ return require("packer").startup({
 				require("my_plugins.vim-toggle-quickfix")
 			end,
 		})
-		use({
-			"sunjon/Shade.nvim",
-			event = "WinNew",
-			config = function()
-				require("my_plugins.Shade")
-			end,
-		})
+		-- タブを閉じたりするとエラーが出る
+		-- use({
+		-- 	"sunjon/Shade.nvim",
+		-- 	event = "WinNew",
+		-- 	config = function()
+		-- 		require("my_plugins.Shade")
+		-- 	end,
+		-- })
 		use({
 			"mvllow/modes.nvim",
 			event = "ModeChanged",
@@ -98,7 +108,7 @@ return require("packer").startup({
 		use({
 			"rcarriga/nvim-notify",
 			--event = "VimEnter",
-        	opt = true,
+			opt = true,
 			config = function()
 				require("my_plugins.nvim-notify")
 			end,
@@ -232,7 +242,7 @@ return require("packer").startup({
 			branch = "v1",
 			-- cmd = "zz",
 			-- setup = function()
-   --              vim.api.nvim_set_keymap('n', 'zz', "<cmd>lua require'hop'.hint_words()<CR>", {})
+			--              vim.api.nvim_set_keymap('n', 'zz', "<cmd>lua require'hop'.hint_words()<CR>", {})
 			-- end,
 			config = function()
 				require("my_plugins.hop")
@@ -315,17 +325,67 @@ return require("packer").startup({
 			end,
 			cmd = "Telescope",
 			setup = function()
-                vim.api.nvim_set_keymap('n', '<Space>ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>f<Space>', '<cmd>Telescope<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fb', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fg', '<cmd>Telescope live_grep<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>ft', '<cmd>Telescope tags<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fm', '<cmd>Telescope oldfiles<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fh', '<cmd>Telescope help_tags<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fq', '<cmd>Telescope quickfix<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fc', '<cmd>Telescope colorscheme<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fv', '<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>', { noremap = true, silent = true })
-                vim.api.nvim_set_keymap('n', '<Space>fd', '<cmd>Telescope find_files search_dirs=~/dotfiles<CR>', { noremap = true, silent = true })
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>ff",
+					"<cmd>Telescope find_files<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>f<Leader>",
+					"<cmd>Telescope<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fb",
+					"<cmd>Telescope buffers<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fg",
+					"<cmd>Telescope live_grep<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap("n", "<Leader>ft", "<cmd>Telescope tags<CR>", { noremap = true, silent = true })
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fm",
+					"<cmd>Telescope oldfiles<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fh",
+					"<cmd>Telescope help_tags<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fq",
+					"<cmd>Telescope quickfix<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fc",
+					"<cmd>Telescope colorscheme<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fv",
+					"<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>",
+					{ noremap = true, silent = true }
+				)
+				vim.api.nvim_set_keymap(
+					"n",
+					"<Leader>fd",
+					"<cmd>Telescope find_files search_dirs=~/dotfiles<CR>",
+					{ noremap = true, silent = true }
+				)
 			end,
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
@@ -350,7 +410,7 @@ return require("packer").startup({
 		---------------
 		use({
 			"nvim-treesitter/nvim-treesitter",
-            event = "CursorHold",
+			event = "CursorHold",
 			--branch = "0.5-compat",
 			run = ":TSUpdate",
 			config = function()
@@ -450,7 +510,7 @@ return require("packer").startup({
 
 		use({
 			"hrsh7th/nvim-cmp",
-			 event = "InsertEnter",
+			event = "InsertEnter",
 			after = { "vim-vsnip" },
 			requires = {
 				{ "hrsh7th/cmp-nvim-lsp" },
@@ -475,8 +535,8 @@ return require("packer").startup({
 		use({
 			"windwp/nvim-autopairs",
 			--event = "InsertEnter",
-            --event = 'InsertEnter',
-            after = 'nvim-cmp',
+			--event = 'InsertEnter',
+			after = "nvim-cmp",
 			config = function()
 				require("my_plugins.nvim-autopairs")
 			end,
@@ -587,7 +647,7 @@ return require("packer").startup({
 		--	end,
 		--})
 		----}}}
-    end,
+	end,
 
 	config = {
 		compile_path = vim.fn.stdpath("config") .. "/plugin/packer_compiled.lua",
