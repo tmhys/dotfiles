@@ -64,7 +64,6 @@ return require("packer").startup({
 			requires = { "kyazdani42/nvim-web-devicons" },
 			event = "VimEnter",
 			config = function()
-				--require("alpha").setup(require("alpha.themes.dashboard").config)
 				require("my_plugins.alpha-nvim")
 			end,
 		})
@@ -557,6 +556,8 @@ return require("packer").startup({
 		use({ "tpope/vim-repeat", event = "VimEnter" })
 		use({ "jghauser/mkdir.nvim", event = "VimEnter" })
 		use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
+		use({ "MTDL9/vim-log-highlighting", event = "VimEnter" })
+		use({ "wadackel/nvim-syntax-info", opt = true })
 		use({
 			"Shatur/neovim-session-manager",
 			event = "VimEnter",

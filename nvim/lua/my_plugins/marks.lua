@@ -28,10 +28,11 @@ require'marks'.setup {
     virt_text = "bookmark by marks"
   },
   mappings = {
-    set_next = "mm",
-    next = "mn",
-    preview = "mp",
-    set_bookmark0 = "m0",
+    set_next = "<space>mm",
+    next = "<space>mn",
+    preview = "<space>mp",
+    delete_buf = "<space>md",
+    set_bookmark0 = "<space>m0",
     prev = false -- pass false to disable only this default mapping
   }
 }
