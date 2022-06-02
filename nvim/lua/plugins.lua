@@ -278,6 +278,7 @@ return require("packer").startup({
 				require("my_plugins.fugitive")
 			end,
 		})
+	    -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 		--}}}
 
 		---------------
@@ -388,9 +389,6 @@ return require("packer").startup({
 			end,
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
-
-		--use({ "nvim-telescope/telescope-packer.nvim", requires = { "nvim-telescope/telescope.nvim" } })
-
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -548,7 +546,6 @@ return require("packer").startup({
 		use({
 			"lfilho/cosco.vim",
 			event = "InsertEnter",
-			--requires = { "tpope/vim-repeat " },
 			config = function()
 				require("my_plugins.cosco")
 			end,
