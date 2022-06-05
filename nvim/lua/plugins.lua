@@ -29,31 +29,31 @@ return require("packer").startup({
 		---------------
 		-- colorschemes{{{
 		---------------
-		use({ "rafi/awesome-vim-colorschemes", opt = true })
-		use({
-			"EdenEast/nightfox.nvim",
-			config = function()
-				require("my_plugins.nightfox")
-			end,
-			event = "ColorSchemePre",
-		})
-		use({ "sainnhe/gruvbox-material", event = "ColorSchemePre" })
-		use({ "Mofiqul/dracula.nvim", event = "ColorSchemePre" })
-		use({
-			"rose-pine/neovim",
-			as = "rose-pine",
-			tag = "v1.*",
-			config = function()
-				require("my_plugins.rose-pine")
-			end,
-			event = "ColorSchemePre",
-		})
-		use({ "catppuccin/nvim", as = "catppuccin", event = "ColorSchemePre" })
-		use({ "navarasu/onedark.nvim", event = "ColorSchemePre" })
-		use({ "Th3Whit3Wolf/one-nvim", event = "ColorSchemePre" })
-		use({ "folke/tokyonight.nvim", event = "ColorSchemePre" })
-		use({ "Mofiqul/vscode.nvim", event = "ColorSchemePre" })
-		use({ "rebelot/kanagawa.nvim", event = "ColorSchemePre" })
+		use({ "sainnhe/gruvbox-material" })
+		-- use({ "rafi/awesome-vim-colorschemes", opt = true })
+		-- use({
+		-- 	"EdenEast/nightfox.nvim",
+		-- 	config = function()
+		-- 		require("my_plugins.nightfox")
+		-- 	end,
+		-- 	event = "ColorSchemePre",
+		-- })
+		-- use({ "Mofiqul/dracula.nvim", event = "ColorSchemePre" })
+		-- use({
+		-- 	"rose-pine/neovim",
+		-- 	as = "rose-pine",
+		-- 	tag = "v1.*",
+		-- 	config = function()
+		-- 		require("my_plugins.rose-pine")
+		-- 	end,
+		-- 	event = "ColorSchemePre",
+		-- })
+		-- use({ "catppuccin/nvim", as = "catppuccin", event = "ColorSchemePre" })
+		-- use({ "navarasu/onedark.nvim", event = "ColorSchemePre" })
+		-- use({ "Th3Whit3Wolf/one-nvim", event = "ColorSchemePre" })
+		-- use({ "folke/tokyonight.nvim", event = "ColorSchemePre" })
+		-- use({ "Mofiqul/vscode.nvim", event = "ColorSchemePre" })
+		-- use({ "rebelot/kanagawa.nvim", event = "ColorSchemePre" })
 		--}}}
 
 		---------------
@@ -278,7 +278,7 @@ return require("packer").startup({
 				require("my_plugins.fugitive")
 			end,
 		})
-	    -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+		-- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 		--}}}
 
 		---------------
