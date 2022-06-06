@@ -104,10 +104,8 @@ vnoremap # :s///gc<Left><Left><Left><Left>
 "1行挿入する
 nnoremap <silent><Space>o :<C-u>call append(expand('.'), '')<Cr>j
 "改行する
-if !has('nvim')
-	"ESCで確実にIMEオフ
-	inoremap <silent><ESC> <ESC>:set iminsert=0<CR>
-endif
+" ESCで確実にIMEオフ
+inoremap <silent><ESC> <ESC>:set iminsert=0<CR>
 "コマンドモード{{{
 cnoremap <expr> j getcmdline()[getcmdpos()-2] ==# 'j' ? "\<BS>\<C-c>" : 'j'
 " 一文字戻る

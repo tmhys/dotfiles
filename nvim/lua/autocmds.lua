@@ -49,6 +49,15 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	once = false,
 })
 
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	group = groupname,
+	pattern = "*",
+	callback = function()
+		vim.cmd([[delmarks!]])
+	end,
+	once = false,
+})
+
 --Quickfixウィンドウグレップで自動で開く
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
 	group = groupname,

@@ -31,10 +31,12 @@ augroup my_autocmd
 	autocmd VimLeave * mks! ~/.vim/session/$DATE.vim
 	"qfウィンドウを常に最下部で開く
 	autocmd FileType qf wincmd J
+	autocmd FileType qf setlocal nowrap
 	"折りたたみ設定
 	autocmd FileType vim setlocal foldmethod=marker
 	autocmd FileType toml setlocal foldmethod=marker
     autocmd FileType gitcommit setlocal spell
+    autocmd FileType gitcommit startinsert
     autocmd BufNewFile,BufRead *.py
         \ setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
         \ foldmethod=indent
