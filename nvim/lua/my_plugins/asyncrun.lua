@@ -4,7 +4,7 @@ let g:asyncrun_encs='cp932'
 "let g:asyncrun_program.nice = { opts -> 'nice -5' . opts.cmd }
 augroup MyGroup
     autocmd!
-    "autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
     autocmd BufNewFile,BufRead *.py noremap <silent><buffer> <Space>r :AsyncRun python -u %<CR>
     autocmd BufNewFile,BufRead *.seq,*.s noremap <silent><buffer> <Space>r :AsyncRun -silent -strip SeqCnv_V340 -l 00_Main<CR>
     autocmd BufWritePost *.seq,*.s AsyncRun -silent -strip SeqCnv_V340 -l 00_Main

@@ -615,6 +615,7 @@ return require("packer").startup({
 
 		---- others{{{
 		use({ "~/vimfiles/localplugins/seq.vim" })
+		-- use({ "~/vimfiles/localplugins/seq-calc.vim" })
 		----}}}
 
 		---------------
