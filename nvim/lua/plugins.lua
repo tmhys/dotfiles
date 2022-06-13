@@ -26,6 +26,13 @@ return require("packer").startup({
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 		use({ "vim-jp/vimdoc-ja", event = "VimEnter" })
 		--}}}
+
+		---------------
+		-- memo{{{
+		---------------
+		use({ "renerocksai/telekasten.nvim", event = "VimEnter" })
+		--}}}
+
 		---------------
 		-- colorschemes{{{
 		---------------

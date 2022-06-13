@@ -176,6 +176,8 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 })
 --}}}
 
+-- alpha nvimで起動時間を表示するように変更
+-- このautocmd自体は残しておかないとalpha nvimに表示できない
 if vim.fn.has("vim_starting") == 1 then
 	vim.g.startuptime = vim.fn.reltime()
 	vim.api.nvim_create_autocmd({ "VimEnter" }, {
@@ -185,7 +187,7 @@ if vim.fn.has("vim_starting") == 1 then
 			vim.cmd([[
             let g:startuptime = reltime(g:startuptime)
             redraw
-            echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+            " echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
         ]])
 		end,
 		once = true,
