@@ -30,7 +30,16 @@ return require("packer").startup({
 		---------------
 		-- memo{{{
 		---------------
-		use({ "renerocksai/telekasten.nvim", event = "VimEnter" })
+		use({
+			"renerocksai/telekasten.nvim",
+			after = { "telescope.nvim" },
+			requires = { "renerocksai/calendar-vim" },
+			config = function()
+				require("my_plugins.telekasten")
+			end,
+			cmd = "Telekasten",
+			-- setup = function()
+		})
 		--}}}
 
 		---------------
@@ -311,12 +320,25 @@ return require("packer").startup({
 		--filetype specific{{{
 		---------------
 		use({
-			"skanehira/preview-markdown.vim",
+			"iamcco/markdown-preview.nvim",
 			ft = { "markdown" },
-			config = function()
-				require("my_plugins.preview-markdown")
+			run = ":call mkdp#util#install()",
+		})
+		use({
+			"SidOfc/mkdx",
+			ft = { "markdown" },
+			setup = function()
+				require("my_plugins.mkdx")
+				-- vim.cmd("source ~/.config/nvim/rc/pluginsetup/mkdx.vim")
 			end,
 		})
+		-- use({
+		-- 	"skanehira/preview-markdown.vim",
+		-- 	ft = { "markdown" },
+		-- 	config = function()
+		-- 		require("my_plugins.preview-markdown")
+		-- 	end,
+		-- })
 		use({ "mechatroner/rainbow_csv", ft = { "csv" } })
 		use({ "lark-parser/vim-lark-syntax", ft = { "lark" } })
 		use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim", ft = { "lua", "toml" } })
@@ -396,6 +418,7 @@ return require("packer").startup({
 			end,
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
+		use({ "nvim-telescope/telescope-symbols.nvim", after = { "telescope.nvim" } })
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
