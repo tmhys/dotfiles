@@ -58,7 +58,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("e", "  New file", ":enew<CR>"),
 	dashboard.button("b", "  Jump to bookmarks", ":Telescope marks<CR>"),
 	dashboard.button("r", "  Plugin setting", ":e $HOME/dotfiles/nvim/lua/plugins.lua<CR>"),
-	dashboard.button("n", "  Memo New", ":Telekasten new_note<CR>"),
+	-- dashboard.button("n", "  Memo New", ":Telekasten new_note<CR>"),
 	dashboard.button("t", "  Memo Today", ":Telekasten goto_today<CR>"),
 	dashboard.button("w", "  Memo Week", ":Telekasten goto_thisweek<CR>"),
 	dashboard.button("m", "  Memo List", ":Telekasten find_notes<CR>"),
