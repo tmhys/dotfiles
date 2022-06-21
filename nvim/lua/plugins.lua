@@ -75,6 +75,12 @@ return require("packer").startup({
 		---------------
 		-- interface{{{
 		---------------
+        use({"xiyaowong/nvim-transparent",
+			config = function()
+				require("my_plugins.nvim-transparent")
+			end,
+            -- cmd = "TransparentToggle"
+        })
 		use({
 			"goolord/alpha-nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },

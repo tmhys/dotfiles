@@ -13,3 +13,8 @@ require("transparent").setup({
   },
  xclude = {}, -- table: groups you don't want to clear
 })
+
+-- vim.g.transparent_enabled  = 1
+-- vim.cmd([[
+-- let g:transparent_enabled = v:true
+-- ]])

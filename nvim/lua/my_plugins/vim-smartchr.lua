@@ -10,7 +10,8 @@ inoremap <expr> / smartchr#one_of(' / ', '// ', '/')
 inoremap <expr> & smartchr#one_of(' & ', ' && ', '&')
 inoremap <expr> % smartchr#one_of(' % ', '%')
 inoremap <expr> <Bar> smartchr#one_of(' <Bar> ', ' <Bar><Bar> ', '<Bar>')
-inoremap <expr> , smartchr#one_of(', ', ',')
+" inoremap <expr> , smartchr#one_of(', ', ',')
+inoremap <expr> , smartchr#one_of(',', ';', '')
 " 3項演算子の場合は、後ろのみ空白を入れる
 inoremap <expr> ? smartchr#one_of('? ', '?')
 inoremap <expr> : smartchr#one_of(': ', '::', ':')
@@ -23,7 +24,9 @@ inoremap <expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%
 
 " 下記の文字は連続して現れることがまれなので、二回続けて入力したら改行する
 "inoremap <expr> } smartchr#one_of('}', '}<cr>')
-inoremap <expr> ; smartchr#one_of(';', ';<cr>')
+" inoremap <expr> ; smartchr#one_of(';', ';<cr>')
+" cosco vimがよくわからないので代用
+inoremap <expr> ; smartchr#one_of(';', ',', '')
 " 「->」は入力しづらいので、..で置換え
 inoremap <expr> . smartchr#loop('.', '->', '...')
 " 行先頭での@入力で、プリプロセス命令文を入力
