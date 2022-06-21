@@ -76,6 +76,7 @@ return require("packer").startup({
 		-- interface{{{
 		---------------
         use({"xiyaowong/nvim-transparent",
+			event = "VimEnter",
 			config = function()
 				require("my_plugins.nvim-transparent")
 			end,
