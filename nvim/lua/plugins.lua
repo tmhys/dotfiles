@@ -75,13 +75,14 @@ return require("packer").startup({
 		---------------
 		-- interface{{{
 		---------------
-        use({"xiyaowong/nvim-transparent",
+		use({
+			"xiyaowong/nvim-transparent",
 			event = "VimEnter",
 			config = function()
 				require("my_plugins.nvim-transparent")
 			end,
-            -- cmd = "TransparentToggle"
-        })
+			-- cmd = "TransparentToggle"
+		})
 		use({
 			"goolord/alpha-nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
@@ -244,11 +245,20 @@ return require("packer").startup({
 			end,
 		})
 		--ユニーク文字ハイライト
+		-- use({
+		-- 	"unblevable/quick-scope",
+		-- 	event = "VimEnter",
+		-- 	config = function()
+		-- 		require("my_plugins.quick-scope")
+		-- 	end,
+		-- })
 		use({
-			"unblevable/quick-scope",
+			"jinh0/eyeliner.nvim",
 			event = "VimEnter",
 			config = function()
-				require("my_plugins.quick-scope")
+				require("eyeliner").setup({
+					bold = true,
+				})
 			end,
 		})
 		use({
@@ -347,6 +357,7 @@ return require("packer").startup({
 		-- 	end,
 		-- })
 		use({ "mechatroner/rainbow_csv", ft = { "csv" } })
+		-- use({ "vim-scripts/dbext.vim " })
 		use({ "lark-parser/vim-lark-syntax", ft = { "lark" } })
 		use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim", ft = { "lua", "toml" } })
 		--}}}
@@ -359,7 +370,9 @@ return require("packer").startup({
 			config = function()
 				require("my_plugins.telescope").setup()
 			end,
-			cmd = "Telescope",
+			event = "CursorHold",
+			-- opt = true,
+			-- cmd = "Telescope",
 			setup = function()
 				vim.api.nvim_set_keymap(
 					"n",
@@ -426,6 +439,18 @@ return require("packer").startup({
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
 		use({ "nvim-telescope/telescope-symbols.nvim", after = { "telescope.nvim" } })
+
+		-- use({ "ctrlpvim/ctrlp.vim",
+		-- 	requires = { "kyazdani42/nvim-web-devicons" },
+		-- 	config = function()
+		-- 		require("my_plugins.ctrlp")
+		-- 	end,
+		--       })
+		-- use({ "mattn/ctrlp-matchfuzzy"})
+		-- use({ "mattn/ctrlp-mark"})
+		-- use({ "hara/ctrlp-colorscheme"})
+		-- use({ "mattn/vim-ctrlp-syntax-highlight"})
+
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
