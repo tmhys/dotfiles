@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = groupname,
-	pattern = { "vim", "toml" },
+	pattern = { "lua","vim", "toml" },
 	callback = function()
 		vim.cmd([[setlocal foldmethod=marker]])
 	end,

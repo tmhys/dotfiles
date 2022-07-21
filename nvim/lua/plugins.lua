@@ -30,16 +30,16 @@ return require("packer").startup({
 		---------------
 		-- memo{{{
 		---------------
-		use({
-			"renerocksai/telekasten.nvim",
-			after = { "telescope.nvim" },
-			requires = { "renerocksai/calendar-vim" },
-			config = function()
-				require("my_plugins.telekasten")
-			end,
-			cmd = "Telekasten",
-			-- setup = function()
-		})
+		-- use({
+		-- 	"renerocksai/telekasten.nvim",
+		-- 	after = { "telescope.nvim" },
+		-- 	requires = { "renerocksai/calendar-vim" },
+		-- 	config = function()
+		-- 		require("my_plugins.telekasten")
+		-- 	end,
+		-- 	cmd = "Telekasten",
+		-- 	-- setup = function()
+		-- })
 		--}}}
 
 		---------------
@@ -213,8 +213,21 @@ return require("packer").startup({
 			end,
 		})
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
-		use({ "tpope/vim-surround", event = "InsertEnter" })
+		-- use({ "tpope/vim-surround", event = "InsertEnter" })
+		use({
+			"kylechui/nvim-surround",
+			event = "VimEnter",
+			config = function()
+				require("my_plugins.nvim-surround")
+			end,
+		})
 		--use({ "thinca/vim-qfreplace", ft = "qf" })
+		use({
+			"rapan931/lasterisk.nvim",
+			config = function()
+				require("my_plugins.lasterisk")
+			end,
+		})
 		use({
 			"gabrielpoca/replacer.nvim",
 			ft = "qf",
