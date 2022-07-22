@@ -81,7 +81,6 @@ return require("packer").startup({
 			config = function()
 				require("my_plugins.nvim-transparent")
 			end,
-			-- cmd = "TransparentToggle"
 		})
 		use({
 			"goolord/alpha-nvim",
@@ -114,6 +113,7 @@ return require("packer").startup({
 			end,
 		})
 		-- タブを閉じたりするとエラーが出る
+        -- カーソルがあったウィンドウのみ明るくするやつ
 		-- use({
 		-- 	"sunjon/Shade.nvim",
 		-- 	event = "WinNew",
@@ -145,7 +145,13 @@ return require("packer").startup({
 			end,
 		})
 		use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
-		use({ "xiyaowong/nvim-cursorword", event = "CursorHold" })
+        -- colorschemesによっては表示がうまくいかない
+		use({ "xiyaowong/nvim-cursorword",
+            event = "CursorHold",
+			config = function()
+				require("my_plugins.nvim-cursorword")
+			end,
+        })
 		use({
 			"lukas-reineke/indent-blankline.nvim",
 			event = "BufRead",
@@ -214,6 +220,7 @@ return require("packer").startup({
 		})
 		use({ "kraxli/vim-renamer", cmd = "Renamer" })
 		-- use({ "tpope/vim-surround", event = "InsertEnter" })
+        -- 使い方学ぶべし
 		use({
 			"kylechui/nvim-surround",
 			event = "VimEnter",
@@ -222,12 +229,14 @@ return require("packer").startup({
 			end,
 		})
 		--use({ "thinca/vim-qfreplace", ft = "qf" })
+        -- 使い方学ぶべし
 		use({
 			"rapan931/lasterisk.nvim",
 			config = function()
 				require("my_plugins.lasterisk")
 			end,
 		})
+        -- 使い方学ぶべし
 		use({
 			"gabrielpoca/replacer.nvim",
 			ft = "qf",
@@ -688,10 +697,10 @@ return require("packer").startup({
 
 		--}}}
 
-		---- others{{{
+		-- others{{{
 		use({ "~/vimfiles/localplugins/seq.vim" })
 		-- use({ "~/vimfiles/localplugins/seq-calc.vim" })
-		----}}}
+		--}}}
 
 		---------------
 		--Comment {{{
