@@ -1,6 +1,7 @@
-" Last Change: 24-Apr-2022.
+" Last Change: 02-Aug-2022.
 
 set guifont=Cica:h13,Consolas:h12
+"set guifont=PlemolJP\ Console\ NF:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
 if !has('win32')
