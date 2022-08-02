@@ -574,12 +574,13 @@ return require("packer").startup({
                 require("my_plugins.fidget")
             end,
         })
-        -- use({
-        --     "jose-elias-alvarez/null-ls.nvim",
-        --     config = function()
-        --         require("my_plugins.null-ls")
-        --     end,
-        -- })
+        use({
+            "jose-elias-alvarez/null-ls.nvim",
+            config = function()
+                require("my_plugins.null-ls")
+            end,
+        })
+
         -- }}}
 
         ---------------

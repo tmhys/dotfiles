@@ -40,7 +40,7 @@ local on_attach = function(client, bufnr)
 
     --buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     --buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    --buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     --buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     --buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     --buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
@@ -63,15 +63,19 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     -- buf_set_keymap("n", "[lsp]q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
     -- buf_set_keymap("n", "[lsp]f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    if client.name == "sumneko_lua" then
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end
 
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        group = groupname,
-        pattern = "*",
-        callback = function()
-            vim.cmd([[lua vim.diagnostic.open_float()]])
-        end,
-        once = false,
-    })
+    -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --     group = groupname,
+    --     pattern = "*",
+    --     callback = function()
+    --         vim.cmd([[lua vim.diagnostic.open_float()]])
+    --     end,
+    --     once = false,
+    -- })
 
     require("lsp_signature").on_attach()
     -- require("illuminate").on_attach(client)
@@ -108,7 +112,7 @@ require("mason-lspconfig").setup_handlers({
                 settings = {
                     Lua = {
                         diagnostics = {
-                            globals = { "vim" },
+                            globals = { "vim", "use" },
                         },
                     },
                 },
@@ -121,17 +125,17 @@ require("mason-lspconfig").setup_handlers({
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
-    severity_sort = true,
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    float = {
-        focusable = false,
-        style = "minimal",
-        border = "single",
-        --source = "always",
-        --header = "",
-        --prefix = "",
-    },
+--    severity_sort = true,
+--    signs = true,
+--    underline = true,
+--    update_in_insert = false,
+--    float = {
+--        focusable = false,
+--        style = "minimal",
+--        border = "single",
+--        --source = "always",
+--        --header = "",
+--        --prefix = "",
+--    },
 }
 )
