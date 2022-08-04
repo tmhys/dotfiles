@@ -561,7 +561,7 @@ return require("packer").startup({
 
         use({
             "ray-x/lsp_signature.nvim",
-            after = "nvim-lspconfig",
+            after = "mason.nvim",
             config = function()
                 require("my_plugins.lsp-signature")
             end,
@@ -569,13 +569,14 @@ return require("packer").startup({
         use({ "weilbith/nvim-lsp-smag", after = "nvim-lspconfig" })
         use({
             "j-hui/fidget.nvim",
-            after = "nvim-lspconfig",
+            after = "mason.nvim",
             config = function()
                 require("my_plugins.fidget")
             end,
         })
         use({
             "jose-elias-alvarez/null-ls.nvim",
+            after = "mason.nvim",
             config = function()
                 require("my_plugins.null-ls")
             end,

@@ -1,5 +1,4 @@
 require("mason-lspconfig").setup()
-local groupname = "vimrc_vimrc"
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -63,19 +62,12 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     -- buf_set_keymap("n", "[lsp]q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
     -- buf_set_keymap("n", "[lsp]f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
     if client.name == "sumneko_lua" then
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
     end
 
-    -- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    --     group = groupname,
-    --     pattern = "*",
-    --     callback = function()
-    --         vim.cmd([[lua vim.diagnostic.open_float()]])
-    --     end,
-    --     once = false,
-    -- })
 
     require("lsp_signature").on_attach()
     -- require("illuminate").on_attach(client)
@@ -125,17 +117,4 @@ require("mason-lspconfig").setup_handlers({
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
---    severity_sort = true,
---    signs = true,
---    underline = true,
---    update_in_insert = false,
---    float = {
---        focusable = false,
---        style = "minimal",
---        border = "single",
---        --source = "always",
---        --header = "",
---        --prefix = "",
---    },
-}
-)
+})
