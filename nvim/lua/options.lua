@@ -90,7 +90,12 @@ opt.virtualedit      = 'block'
 opt.wildmenu         = true
 opt.wildmode         = 'full'
 opt.writebackup      = true
-opt.wrap             = false -- display lines as one long line only init.lua option
+-- opt.wrap             = false -- display lines as one long line only init.lua option
+opt.wrap             = true -- display lines as one long line only init.lua option
+opt.breakindent      = true
+opt.linebreak        = true
+opt.showbreak        = "++"
+
 opt.timeoutlen       = 400 --only init.lua option
 opt.smartindent      = true              -- Insert indents automatically only init.lua option
 opt.sidescrolloff    = 8               -- Columns of context only init.lua optionj

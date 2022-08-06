@@ -118,3 +118,29 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
 })
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics, {
+--     virtual_text = false,
+--     severity_sort = true,
+--     signs = true,
+--     underline = true,
+--     update_in_insert = false,
+--     float = {
+--         focusable = false,
+--         style = "minimal",
+--         border = "rounded",
+--         --source = "always",
+--         --header = "",
+--         --prefix = "",
+--     },
+-- }
+-- )
+
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+    group = groupname,
+    pattern = "*",
+    callback = function()
+        vim.cmd([[lua vim.diagnostic.open_float()]])
+    end,
+    once = false,
+})

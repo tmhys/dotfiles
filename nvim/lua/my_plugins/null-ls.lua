@@ -144,7 +144,8 @@ local sources = {
         end,
     -- 起動時に設定ファイル読み込み
     -- 読み込むとうまくいかなくなる
-        extra_args = { '--config', cspell_files.config }
+        -- extra_args = { '--config', cspell_files.config }
+        extra_args = { '--config','~/.config/cspell/cspell.json'}
     }),
     null_ls.builtins.formatting.markdownlint.with({
         condition = function()
