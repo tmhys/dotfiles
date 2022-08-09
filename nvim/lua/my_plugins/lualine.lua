@@ -12,13 +12,14 @@ local sections_1 = {
 	lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
     --lualine_c = { { gps.get_location, cond = gps.is_available } },
 	lualine_x = { "require'lsp-status'.status()", "diagnostics" ,
---	--lualine_x = { "diagnostics" ,
+-- lualine_x = { "diagnostics" ,
+--         sources = {'nvim_diagnostic'},
 --    symbols = {
 --  error = "E",
 --  hint = "H",
 --  info = "I",
 --  warn = "W"
---},
+-- },
         --symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}
 	--lualine_x = {
     --    "diagnostics",

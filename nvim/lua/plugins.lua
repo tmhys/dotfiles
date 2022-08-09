@@ -329,13 +329,19 @@ return require("packer").startup({
         ---------------
         --git{{{
         ---------------
-        use({
-            "tpope/vim-fugitive",
+        use({"dinhhuy258/git.nvim",
             event = "VimEnter",
             config = function()
-                require("my_plugins.fugitive")
+                require("my_plugins.git")
             end,
         })
+        -- use({
+        --     "tpope/vim-fugitive",
+        --     event = "VimEnter",
+        --     config = function()
+        --         require("my_plugins.fugitive")
+        --     end,
+        -- })
         -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
         --}}}
 
@@ -464,6 +470,7 @@ return require("packer").startup({
             requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
         })
         use({ "nvim-telescope/telescope-symbols.nvim", after = { "telescope.nvim" } })
+        use({ "nvim-telescope/telescope-file-browser.nvim", after = { "telescope.nvim" } })
 
         -- use({ "ctrlpvim/ctrlp.vim",
         -- 	requires = { "kyazdani42/nvim-web-devicons" },
