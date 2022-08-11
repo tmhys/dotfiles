@@ -49,6 +49,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	once = false,
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	group = groupname,
+	pattern = "*",
+	callback = function()
+		vim.cmd([[set et]])
+		vim.cmd([[ret]])
+	end,
+	once = false,
+})
+
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	group = groupname,
 	pattern = "*",
@@ -85,6 +95,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	once = false,
 })
 
+-- fold関連設定
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = groupname,
 	pattern = { "lua","vim", "toml" },
@@ -99,23 +110,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "python",
 	callback = function()
 		vim.cmd([[
-            setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-            setlocal foldmethod=indent
-        ]])
+		setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+		setlocal foldmethod=indent
+	]])
 	end,
 	once = false,
 })
 
---{{{filetype関連　いる？
---vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
---	group = groupname,
---	pattern = { "*.py" },
---	callback = function()
---        vim.cmd([[ setfiletype python ]])
---	end,
---	once = false,
---})
---
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	group = groupname,
 	pattern = { "*.seq", "*.s", "*.h", "*.tbl" },
@@ -124,34 +125,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	end,
 	once = false,
 })
---
---vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
---	group = groupname,
---	pattern = { "*.vim" },
---	callback = function()
---        vim.cmd([[ setfiletype vim ]])
---	end,
---	once = false,
---})
---
---vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
---	group = groupname,
---	pattern = { "*.lua" },
---	callback = function()
---        vim.cmd([[ setfiletype lua ]])
---	end,
---	once = false,
---})
---
---vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
---	group = groupname,
---	pattern = { "*.toml" },
---	callback = function()
---        vim.cmd([[ setfiletype toml ]])
---	end,
---	once = false,
---})
---}}}
 
 --人の設定からコピペ{{{
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
@@ -185,10 +158,10 @@ if vim.fn.has("vim_starting") == 1 then
 		pattern = { "*" },
 		callback = function()
 			vim.cmd([[
-            let g:startuptime = reltime(g:startuptime)
-            redraw
-            " echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
-        ]])
+		let g:startuptime = reltime(g:startuptime)
+		redraw
+		" echomsg printf('startuptime: %fms', reltimefloat(g:startuptime) * 1000)
+	]])
 		end,
 		once = true,
 	})

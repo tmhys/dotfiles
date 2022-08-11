@@ -124,11 +124,11 @@ vim.o.visualbell     = false-- ビープ音除去
 vim.opt.shortmess    = "aItToOF"
 --vim.opt.autochdir    = true --ディレクトリ自動で移動
 
---opt.shortmess 	   = vim.o.shortmess
---                		.. "I"
---                		.. "c" -- silence insert mode completion messages
---                		--.. "F" -- Don't print a message when opening a file
---                		--.. "c" -- silence insert mode completion messages
+--opt.shortmess        = vim.o.shortmess
+--                      .. "I"
+--                      .. "c" -- silence insert mode completion messages
+--                      --.. "F" -- Don't print a message when opening a file
+--                      --.. "c" -- silence insert mode completion messages
 --vim.opt.shortmess = {
 --  A = true, -- ignore annoying swap file messages
 ----F = true, -- Don't give file info when editing a file, NOTE: this breaks autocommand messages
@@ -143,13 +143,13 @@ vim.opt.shortmess    = "aItToOF"
 --  t = true, -- truncate file messages at start
 --}
 vim.opt.fillchars = {
-	horiz     = "━",
-	horizup   = "┻",
-	horizdown = "┳",
-	vert      = "┃",
-	vertleft  = "┫",
-	vertright = "┣",
-	verthoriz = "╋",
+    horiz     = "━",
+    horizup   = "┻",
+    horizdown = "┳",
+    vert      = "┃",
+    vertleft  = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
 }
 
 opt.wildignore = {

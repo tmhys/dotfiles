@@ -1,4 +1,4 @@
-" Last Change: 24-Apr-2022.
+" Last Change: 12-Aug-2022.
 
 source $HOME/vimfiles/init/useroptions.vim
 source $HOME/vimfiles/init/usermaps.vim
@@ -6,7 +6,7 @@ source $HOME/vimfiles/init/userautocmds.vim
 source $HOME/vimfiles/init/userdein.vim
 
 if !has("gui_running")
-	colorscheme ayu
+    colorscheme atom
 endif
 
 filetype plugin indent on

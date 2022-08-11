@@ -5,8 +5,8 @@
 repo = 'wsdjeg/dein-ui.vim'
 on_cmd    = ['DeinUpdate']
 hook_add = '''"{{{
-	"nnoremap <F12> :DeinUpdate<CR>
-	nnoremap <F12> :call dein#check_update(v:true)<CR>
+    "nnoremap <F12> :DeinUpdate<CR>
+    nnoremap <F12> :call dein#check_update(v:true)<CR>
 "}}}'''
 
 [[plugins]]
@@ -27,8 +27,8 @@ on_event = ['ColorSchemePre']
 repo = 'preservim/nerdtree'
 on_event = ['BufRead']
 # depends  = [# {{{
-# 	'tiagofumo/vim-nerdtree-syntax-highlight',
-# 	'Xuyuanp/nerdtree-git-plugin'
+#   'tiagofumo/vim-nerdtree-syntax-highlight',
+#   'Xuyuanp/nerdtree-git-plugin'
 #     ]# }}}
 hook_add = '''"{{{
     "curren directoryに合わせて NERDTreeToggle
@@ -37,10 +37,10 @@ hook_add = '''"{{{
     """bookmark初期表示
     let g:NERDTreeShowBookmarks=1
 
-	"vim-nerdtree-syntax-highlight
+    "vim-nerdtree-syntax-highlight
     "lag対策
     let g:NERDTreeLimitedSyntax = 1
-	let g:NERDTreeHighlightCursorline = 0
+    let g:NERDTreeHighlightCursorline = 0
 
     let g:NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
@@ -49,8 +49,8 @@ hook_add = '''"{{{
     let g:NERDTreeDirArrowCollapsible = '▼'
     "}}}
 
-	let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-	let g:WebDevIconsNerdTreeAfterGlyphPadding = ""
+    let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+    let g:WebDevIconsNerdTreeAfterGlyphPadding = ""
 
     " NERDTreeでルートを変更したらchdirする
     let g:NERDTreeChDirMode = 2
@@ -69,17 +69,17 @@ hook_add = '''"{{{
 
 
     augroup NERDTree_CLOSE
-    	autocmd!
-    	"NERDTree以外を閉じたらNERDTreeも閉じる
-    	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+        autocmd!
+        "NERDTree以外を閉じたらNERDTreeも閉じる
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     augroup END
 
 "}}}'''
 hook_post_source = '''"{{{
-	" after a re-source, fix syntax matching issues (concealing brackets):
-	if exists('g:loaded_webdevicons')
-	  call webdevicons#refresh()
-	endif
+    " after a re-source, fix syntax matching issues (concealing brackets):
+    if exists('g:loaded_webdevicons')
+      call webdevicons#refresh()
+    endif
 "}}}'''
 
 [[plugins]]
@@ -114,12 +114,12 @@ hook_add = '''"{{{
 
     nmap <F8> :TagbarToggle<CR>
     let g:tagbar_type_seq = {
-    	\ 'ctagstype' : 'seq',
-    	\ 'kinds' : [
-    		\ 'm:method',
-    		\ 's:svport'
-    	\ ],
-    	\ 'sort' : 0
+        \ 'ctagstype' : 'seq',
+        \ 'kinds' : [
+            \ 'm:method',
+            \ 's:svport'
+        \ ],
+        \ 'sort' : 0
     \ }
     " ctagsの設定ファイルと整合が取れていること
     let g:tagbar_type_toml = {
@@ -135,19 +135,30 @@ hook_add = '''"{{{
 # interface
 ###########
 [[plugins]]
-repo = 'Yggdroot/indentLine'
+repo = 'nathanaelkane/vim-indent-guides'
 on_event = ['BufEnter']
 hook_add = '''"{{{
-    set list listchars=tab:\¦\ "spaceが必要
-	let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar', 'dashboard']
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_start_level = 1
+    let g:indent_guides_guide_size = 1
 "}}}'''
 
-[[plugins]]
-repo = 'blueyed/vim-diminactive'
-on_event = ['FocusLost']
-hook_add = '''"{{{
-"let g:diminactive_use_syntax = 1
-"}}}'''
+# [[plugins]]
+# repo = 'Yggdroot/indentLine'
+# on_event = ['BufEnter']
+# hook_add = '''"{{{
+#     set list listchars=tab:\¦\ "spaceが必要
+#     let g:indentLine_fileTypeExclude = ['help', 'nerdtree','denite','startify','taskpaper','unite','tagbar', 'dashboard']
+#     let g:indentLine_conceallevel = 0
+#     let g:indentLine_char  =  '|'
+# "}}}'''
+
+# [[plugins]]
+# repo = 'blueyed/vim-diminactive'
+# on_event = ['FocusLost']
+# hook_add = '''"{{{
+# let g:diminactive_use_syntax = 1
+# "}}}'''
 
 [[plugins]]
 repo = 'kshenoy/vim-signature'
@@ -199,6 +210,11 @@ on_cmd = ['Qfreplace']
 # tool
 ###########
 [[plugins]]
+repo = 'tpope/vim-commentary'
+on_event = ['BufRead']
+
+
+[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_cmd = ['EasyAlign']
 hook_add = '''"{{{
@@ -231,7 +247,7 @@ on_cmd = ['Renamer']
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 hook_add = '''"{{{
-	nnoremap <F2> :StartupTime<CR>
+    nnoremap <F2> :StartupTime<CR>
 "}}}'''
 
 [[plugins]]
@@ -280,7 +296,7 @@ hook_add = '''"{{{
 repo = 'mh21/errormarker.vim'
 on_source = ['asyncrun.vim']
 hook_add = '''"{{{
-	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:RemoveErrorMarkers<CR>
+    nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:RemoveErrorMarkers<CR>
     let g:asyncrun_auto = "make"
     let g:errormarker_errortext="❌"
     let g:errormarker_warningtext="⚠️"
@@ -342,9 +358,9 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'rhysd/accelerated-jK'
 on_map = [ # {{{
-	'<Plug>(accelerated_jk_gj)',
-	'<Plug>(accelerated_jk_gk)'
-		]# }}}
+    '<Plug>(accelerated_jk_gj)',
+    '<Plug>(accelerated_jk_gk)'
+        ]# }}}
 hook_add = '''"{{{
     nmap j <Plug>(accelerated_jk_gj)
     nmap k <Plug>(accelerated_jk_gk)
@@ -414,8 +430,8 @@ inoremap <expr> : smartchr#one_of(': ', '::', ':')
 " =の場合、単純な代入や比較演算子として入力する場合は前後にスペースをいれる。
 " 複合演算代入としての入力の場合は、直前のスペースを削除して=を入力
 inoremap <expr> = search('\(&\<bar><bar>\<bar>+\<bar>-\<bar>/\<bar>>\<bar><\) \%#', 'bcn')? '<bs>= '
-				\ : search('\(*\<bar>!\)\%#', 'bcn') ? '= '
-				\ : smartchr#one_of(' = ', ' == ', '=')
+                \ : search('\(*\<bar>!\)\%#', 'bcn') ? '= '
+                \ : smartchr#one_of(' = ', ' == ', '=')
 
 " 下記の文字は連続して現れることがまれなので、二回続けて入力したら改行する
 "inoremap <expr> } smartchr#one_of('}', '}<cr>')
@@ -469,19 +485,19 @@ repo = 'osyo-manga/vim-precious'
 on_ft = ['toml','lua']
 hook_add = '''"{{{
 let g:precious_enable_switchers = {
-	\	"*" : {
-	\		"setfiletype" : 0
-	\	},
-	\	"vim" : {
-	\		"setfiletype" : 1
-	\	},
-	\	"lua" : {
-	\		"setfiletype" : 1
-	\	},
-	\	"toml" : {
-	\		"setfiletype" : 1
-	\	},
-	\}
+    \   "*" : {
+    \       "setfiletype" : 0
+    \   },
+    \   "vim" : {
+    \       "setfiletype" : 1
+    \   },
+    \   "lua" : {
+    \       "setfiletype" : 1
+    \   },
+    \   "toml" : {
+    \       "setfiletype" : 1
+    \   },
+    \}
 "}}}'''
 
 [[plugins]]

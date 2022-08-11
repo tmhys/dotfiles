@@ -1,4 +1,6 @@
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {"sumneko_lua","black","isort","cspell","pyright","vim-language-server"}
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer

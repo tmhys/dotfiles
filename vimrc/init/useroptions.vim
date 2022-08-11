@@ -9,34 +9,34 @@
 "vimrc_example.vimの中身の以下もコメントアウトしてます
 "	source $VIMRUNTIME/defaults.vim
 
-let g:loaded_getscript          = v:true
-let g:loaded_getscriptPlugin    = v:true
-let g:loaded_gzip               = v:true
-let g:loaded_logiPat            = v:true
-let g:loaded_matchit            = v:true
-let g:loaded_matchparen         = v:true
-let g:loaded_netrw              = v:true
-let g:loaded_netrwPlugin        = v:true
-let g:loaded_netrwFileHandlers  = v:true
-let g:loaded_netrwSettings      = v:true
-let g:loaded_rrhelper           = v:true
-let g:loaded_ruby_provider      = v:true
-let g:loaded_shada_plugin       = v:true
-let g:loaded_spellfile_plugin   = v:true
-let g:loaded_tar                = v:true
-let g:loaded_tarPlugin          = v:true
-let g:loaded_tutor_mode_plugin  = v:true
-let g:loaded_2html_plugin       = v:true
-let g:loaded_vimball            = v:true
-let g:loaded_vimballPlugin      = v:true
-let g:loaded_zip                = v:true
-let g:loaded_zipPlugin          = v:true
-let g:no_vimrc_example          = v:true
-let g:loaded_gtags              = v:true
+let g:loaded_getscript			= v:true
+let g:loaded_getscriptPlugin	= v:true
+let g:loaded_gzip				= v:true
+let g:loaded_logiPat			= v:true
+let g:loaded_matchit			= v:true
+let g:loaded_matchparen			= v:true
+let g:loaded_netrw				= v:true
+let g:loaded_netrwPlugin		= v:true
+let g:loaded_netrwFileHandlers	= v:true
+let g:loaded_netrwSettings		= v:true
+let g:loaded_rrhelper			= v:true
+let g:loaded_ruby_provider		= v:true
+let g:loaded_shada_plugin		= v:true
+let g:loaded_spellfile_plugin	= v:true
+let g:loaded_tar				= v:true
+let g:loaded_tarPlugin			= v:true
+let g:loaded_tutor_mode_plugin	= v:true
+let g:loaded_2html_plugin		= v:true
+let g:loaded_vimball			= v:true
+let g:loaded_vimballPlugin		= v:true
+let g:loaded_zip				= v:true
+let g:loaded_zipPlugin			= v:true
+let g:no_vimrc_example			= v:true
+let g:loaded_gtags				= v:true
 let g:did_install_default_menus = v:true
-let g:loaded_gtags_cscope       = v:true
-let g:loaded_man                = v:true
-let g:skip_defaults_vim         = v:true
+let g:loaded_gtags_cscope		= v:true
+let g:loaded_man				= v:true
+let g:skip_defaults_vim			= v:true
 
 """"""""""""""""""""""""""""""""""""""""
 " 文字コード
@@ -130,10 +130,10 @@ set backup
 set writebackup
 " backupdirなどなければ作る{
 function! s:mkdir(dir)
-    if !isdirectory(a:dir)
-       " "p" を渡すことでネストしたディレクトリ全てが作成される
-        call mkdir(a:dir, "p")
-    endif
+	if !isdirectory(a:dir)
+	   " "p" を渡すことでネストしたディレクトリ全てが作成される
+		call mkdir(a:dir, "p")
+	endif
 endfunction
 let $DATE = strftime("%Y%m%d_%H%M%S")
 set backupdir=$HOME/.vimbackup

@@ -33,14 +33,14 @@ return require("packer").startup({
         -- memo{{{
         ---------------
         -- use({
-        -- 	"renerocksai/telekasten.nvim",
-        -- 	after = { "telescope.nvim" },
-        -- 	requires = { "renerocksai/calendar-vim" },
-        -- 	config = function()
-        -- 		require("my_plugins.telekasten")
-        -- 	end,
-        -- 	cmd = "Telekasten",
-        -- 	-- setup = function()
+        --      "renerocksai/telekasten.nvim",
+        --      after = { "telescope.nvim" },
+        --      requires = { "renerocksai/calendar-vim" },
+        --      config = function()
+        --              require("my_plugins.telekasten")
+        --      end,
+        --      cmd = "Telekasten",
+        --      -- setup = function()
         -- })
         --}}}
 
@@ -58,13 +58,13 @@ return require("packer").startup({
         })
         -- use({ "Mofiqul/dracula.nvim", event = "ColorSchemePre" })
         -- use({
-        -- 	"rose-pine/neovim",
-        -- 	as = "rose-pine",
-        -- 	tag = "v1.*",
-        -- 	config = function()
-        -- 		require("my_plugins.rose-pine")
-        -- 	end,
-        -- 	event = "ColorSchemePre",
+        --      "rose-pine/neovim",
+        --      as = "rose-pine",
+        --      tag = "v1.*",
+        --      config = function()
+        --              require("my_plugins.rose-pine")
+        --      end,
+        --      event = "ColorSchemePre",
         -- })
         -- use({ "catppuccin/nvim", as = "catppuccin", event = "ColorSchemePre" })
         -- use({ "navarasu/onedark.nvim", event = "ColorSchemePre" })
@@ -117,11 +117,11 @@ return require("packer").startup({
         -- タブを閉じたりするとエラーが出る
         -- カーソルがあったウィンドウのみ明るくするやつ
         -- use({
-        -- 	"sunjon/Shade.nvim",
-        -- 	event = "WinNew",
-        -- 	config = function()
-        -- 		require("my_plugins.Shade")
-        -- 	end,
+        --      "sunjon/Shade.nvim",
+        --      event = "WinNew",
+        --      config = function()
+        --              require("my_plugins.Shade")
+        --      end,
         -- })
         use({
             "mvllow/modes.nvim",
@@ -271,11 +271,11 @@ return require("packer").startup({
         })
         --ユニーク文字ハイライト
         -- use({
-        -- 	"unblevable/quick-scope",
-        -- 	event = "VimEnter",
-        -- 	config = function()
-        -- 		require("my_plugins.quick-scope")
-        -- 	end,
+        --      "unblevable/quick-scope",
+        --      event = "VimEnter",
+        --      config = function()
+        --              require("my_plugins.quick-scope")
+        --      end,
         -- })
         use({
             "jinh0/eyeliner.nvim",
@@ -381,11 +381,11 @@ return require("packer").startup({
             end,
         })
         -- use({
-        -- 	"skanehira/preview-markdown.vim",
-        -- 	ft = { "markdown" },
-        -- 	config = function()
-        -- 		require("my_plugins.preview-markdown")
-        -- 	end,
+        --      "skanehira/preview-markdown.vim",
+        --      ft = { "markdown" },
+        --      config = function()
+        --              require("my_plugins.preview-markdown")
+        --      end,
         -- })
         use({ "mechatroner/rainbow_csv", ft = { "csv" } })
         -- use({ "vim-scripts/dbext.vim " })
@@ -473,10 +473,10 @@ return require("packer").startup({
         use({ "nvim-telescope/telescope-file-browser.nvim", after = { "telescope.nvim" } })
 
         -- use({ "ctrlpvim/ctrlp.vim",
-        -- 	requires = { "kyazdani42/nvim-web-devicons" },
-        -- 	config = function()
-        -- 		require("my_plugins.ctrlp")
-        -- 	end,
+        --      requires = { "kyazdani42/nvim-web-devicons" },
+        --      config = function()
+        --              require("my_plugins.ctrlp")
+        --      end,
         --       })
         -- use({ "mattn/ctrlp-matchfuzzy"})
         -- use({ "mattn/ctrlp-mark"})
@@ -518,19 +518,19 @@ return require("packer").startup({
         })
         ----いる？
         --use({
-        --	"nvim-treesitter/playground",
-        --	config = function()
-        --		require("my_plugins.playground")
-        --	end,
-        --	requires = "nvim-treesitter/nvim-treesitter",
+        --      "nvim-treesitter/playground",
+        --      config = function()
+        --              require("my_plugins.playground")
+        --      end,
+        --      requires = "nvim-treesitter/nvim-treesitter",
         --})
         ----いる？
         --use({
-        --	"theHamsta/nvim-dap-virtual-text",
-        --	requires = { "mfussenegger/nvim-dap" },
-        --	config = function()
-        --		require("my_plugins.nvim-dap-virtual-text")
-        --	end,
+        --      "theHamsta/nvim-dap-virtual-text",
+        --      requires = { "mfussenegger/nvim-dap" },
+        --      config = function()
+        --              require("my_plugins.nvim-dap-virtual-text")
+        --      end,
         --})
         --}}}
 
@@ -545,11 +545,11 @@ return require("packer").startup({
             end,
         })
         -- use({
-        -- 	"williamboman/nvim-lsp-installer",
-        -- 	after = { "nvim-lspconfig", "lsp_signature.nvim" },
-        -- 	config = function()
-        -- 		require("my_plugins.lsp-installer")
-        -- 	end,
+        --      "williamboman/nvim-lsp-installer",
+        --      after = { "nvim-lspconfig", "lsp_signature.nvim" },
+        --      config = function()
+        --              require("my_plugins.lsp-installer")
+        --      end,
         -- })
         use({
             "williamboman/mason.nvim",
@@ -652,7 +652,11 @@ return require("packer").startup({
         ---------------
         --??? {{{
         ---------------
-        use({ "folke/lua-dev.nvim", module = "lua-dev" })
+        use({ "folke/lua-dev.nvim", module = "lua-dev",
+            config = function()
+                require("my_plugins.lua-dev")
+            end,
+        })
         use({
             "lfilho/cosco.vim",
             event = "InsertEnter",
@@ -686,39 +690,39 @@ return require("packer").startup({
 
         --use({ "gbprod/yanky.nvim ", event = "VimEnter" })
         --use({
-        --	"rmagatti/auto-session", --event = "VimEnter",
-        --	config = function()
-        --		require("my_plugins.auto-session")
-        --	end,
+        --      "rmagatti/auto-session", --event = "VimEnter",
+        --      config = function()
+        --              require("my_plugins.auto-session")
+        --      end,
         --})
         --use({ "nvim-telescope/telescope-frecency.nvim" })
 
         --便利さがわからんのでコメントアウト
         ----カーソル下の単語ハイライトしまくれるやつ
         --use({
-        --	"t9md/vim-quickhl",
-        --	event = "BufReadPost",
-        --	--event = "VimEnter",
-        --	config = function()
-        --		require("my_plugins.vim-quickhl")
-        --	end,
+        --      "t9md/vim-quickhl",
+        --      event = "BufReadPost",
+        --      --event = "VimEnter",
+        --      config = function()
+        --              require("my_plugins.vim-quickhl")
+        --      end,
         --})
         --use({ "mhinz/vim-sayonara", cmd = "Sayonara" })
 
         --use({
-        --	"voldikss/vim-translator",
-        --	event = "VimEnter",
-        --	config = function()
-        --		require("my_plugins.vim-translator")
-        --	end,
+        --      "voldikss/vim-translator",
+        --      event = "VimEnter",
+        --      config = function()
+        --              require("my_plugins.vim-translator")
+        --      end,
         --})
 
         --use({
-        --	"andymass/vim-matchup",
-        --	event = "VimEnter",
-        --	config = function()
-        --		require("my_plugins.vim-matchup")
-        --	end,
+        --      "andymass/vim-matchup",
+        --      event = "VimEnter",
+        --      config = function()
+        --              require("my_plugins.vim-matchup")
+        --      end,
         --})
 
         --}}}
@@ -749,11 +753,11 @@ return require("packer").startup({
             end,
         })
         --use({
-        --	"b3nj5m1n/kommentary",
-        --	event = "VimEnter",
-        --	config = function()
-        --		require("my_plugins.kommentary")
-        --	end,
+        --      "b3nj5m1n/kommentary",
+        --      event = "VimEnter",
+        --      config = function()
+        --              require("my_plugins.kommentary")
+        --      end,
         --})
         ----}}}
     end,

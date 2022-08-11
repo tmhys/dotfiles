@@ -5,18 +5,18 @@
 repo = 'itchyny/lightline.vim'
 depends  = [# {{{
     'delphinus/lightline-delphinus',
-	'tpope/vim-fugitive',
-	'majutsushi/tagbar',
+    'tpope/vim-fugitive',
+    'majutsushi/tagbar',
     'ryanoasis/vim-devicons'
     ]# }}}
 hook_add = '''"{{{
     function! s:lightline_update()
       if !exists('g:loaded_lightline')
-    	    return
+            return
       endif
-    	  try
+          try
        if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
-    	  let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
+          let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
               \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
           call lightline#init()
           call lightline#colorscheme()
@@ -35,10 +35,10 @@ hook_add = '''"{{{
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             ['fugitive', 'dir', 'filename'],
-    	\			  ['currenttag']],
-    	\   'right': [['lineinfo'],
-		\			  ['filetype','qfstatusline', 'fileformat','fileencoding','percent'],
-		\			  ['asyncrun_e','asyncrun_s', 'lsp_errors', 'lsp_warnings', 'lsp_ok']]
+        \             ['currenttag']],
+        \   'right': [['lineinfo'],
+        \             ['filetype','qfstatusline', 'fileformat','fileencoding','percent'],
+        \             ['asyncrun_e','asyncrun_s', 'lsp_errors', 'lsp_warnings', 'lsp_ok']]
         \ },
         \ 'component_function': {
         \   'mode': 'LightLinemode',
@@ -49,45 +49,45 @@ hook_add = '''"{{{
         \   'filetype': 'LightLineFiletype',
         \   'fileicon': 'LightLineFileicon',
         \   'fileformat': 'LightLineFileformat',
-		\	'fileencoding': 'LightlineFileencoding',
-    	\	'currenttag': 'LightLineCurrentTag',
-    	\   'percent': 'MyLightLinePercent',
-    	\   'lineinfo': 'MyLightLineLineInfo'
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'currenttag': 'LightLineCurrentTag',
+        \   'percent': 'MyLightLinePercent',
+        \   'lineinfo': 'MyLightLineLineInfo'
         \ },
-    	\ 'component_expand': {
-	    \ 'asyncrun_e': 'LightLineAsyncrun_e',
-	    \ 'asyncrun_s': 'LightLineAsyncrun_s',
-	    \ 'lsp_warnings': 'LightlineLSPWarnings',
-      	\ 'lsp_errors':   'LightlineLSPErrors',
-      	\ 'lsp_ok':       'LightlineLSPOk',
-		\ 'qfstatusline': 'qfstatusline#Update'
-		\ },
-    	\ 'component_type':   {
-	    \ 'asyncrun_e': 'error',
-	    \ 'asyncrun_s': 'middle',
-		\ 'lsp_warnings': 'warning',
-      	\ 'lsp_errors':   'error',
-      	\ 'lsp_ok':       'middle',
-		\ 'qfstatusline': 'error'
-		\ },
+        \ 'component_expand': {
+        \ 'asyncrun_e': 'LightLineAsyncrun_e',
+        \ 'asyncrun_s': 'LightLineAsyncrun_s',
+        \ 'lsp_warnings': 'LightlineLSPWarnings',
+        \ 'lsp_errors':   'LightlineLSPErrors',
+        \ 'lsp_ok':       'LightlineLSPOk',
+        \ 'qfstatusline': 'qfstatusline#Update'
+        \ },
+        \ 'component_type':   {
+        \ 'asyncrun_e': 'error',
+        \ 'asyncrun_s': 'middle',
+        \ 'lsp_warnings': 'warning',
+        \ 'lsp_errors':   'error',
+        \ 'lsp_ok':       'middle',
+        \ 'qfstatusline': 'error'
+        \ },
         \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-    	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
         \ }
 
         "   'dir': 'LightLineDir',
         "   'mode': 'raw',
         "   'fugitive': 'raw',
-        "   'dir'	  : 'raw',
+        "   'dir'     : 'raw',
         "   'readonly': 'raw',
         "   'modified': 'raw',
         "   'filename': 'raw',
         "   'filetype': 'raw',
         "   'fileicon': 'raw',
         "   'fileformat': 'raw',
-		"	'fileencoding': 'raw',
-    	"	'currenttag': 'raw',
-    	"   'percent': 'raw',
-    	"   'lineinfo': 'raw',
+        "   'fileencoding': 'raw',
+        "   'currenttag': 'raw',
+        "   'percent': 'raw',
+        "   'lineinfo': 'raw',
 
     let g:Qfstatusline#UpdateCmd = function('lightline#update')
 
@@ -104,16 +104,16 @@ hook_add = '''"{{{
     endfunction
 
     function! LightLinemode() abort
-	  if &ft == 'nerdtree'
+      if &ft == 'nerdtree'
         return 'NERDTREE'
-	elseif &ft == 'tagbar'
+    elseif &ft == 'tagbar'
         return 'TAGBAR'
       else
-		return lightline#mode()
+        return lightline#mode()
     endfunction
 
     function! LightLineDir() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
         return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
@@ -121,39 +121,39 @@ hook_add = '''"{{{
     endfunction
 
     function! LightLineAsyncrun_e() abort
-	  if &ft == 'seq'&&g:asyncrun_status=='failure'
+      if &ft == 'seq'&&g:asyncrun_status=='failure'
         return '%{g:asyncrun_status}'
       else
         return ''
     endfunction
     function! LightLineAsyncrun_s() abort
-	  if &ft == 'seq'&&g:asyncrun_status!='failure'
+      if &ft == 'seq'&&g:asyncrun_status!='failure'
         return '%{g:asyncrun_status}'
       else
         return ''
     endfunction
 
-	function! LightlineFileencoding() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+    function! LightlineFileencoding() abort
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
-	    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-	endfunction
+        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endfunction
 
     function! LightLineReadonly() abort
-	  	if &filetype == "help"
+        if &filetype == "help"
             return ""
         elseif &readonly
             return ""
-		elseif &ft == 'nerdtree' || &ft == 'tagbar'
+        elseif &ft == 'nerdtree' || &ft == 'tagbar'
             return ""
         endif
     endfunction
 
     function! LightLineFugitive() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
-	    return ''
-	  else
+      if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      else
         let s:branch = FugitiveHead()
         if len(s:branch) > 0
           return "" . s:branch " powerline branch glyph prepended when on actual branch
@@ -164,31 +164,31 @@ hook_add = '''"{{{
     endfun
 
     function! LightLineFilename() abort
-	    if &ft == 'nerdtree' || &ft == 'tagbar'
+        if &ft == 'nerdtree' || &ft == 'tagbar'
           return ''
-	    else
+        else
           return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-            	\ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-            	\ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+                \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
     endfunction
-            	" ('' != LightLineFileicon() ? ' ' . LightLineFileicon() : '').
+                " ('' != LightLineFileicon() ? ' ' . LightLineFileicon() : '').
 
     function! LightLineFiletype() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
       return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
     endfunction
 
     function! LightLineFileicon() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
       return winwidth(0) > 70 ? (strlen(&filetype) ?   WebDevIconsGetFileTypeSymbol(): '') : ''
     endfunction
 
     function! LightLineFileformat() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
       return winwidth(0) > 70 ? (WebDevIconsGetFileFormatSymbol()): ''
@@ -199,41 +199,41 @@ hook_add = '''"{{{
     "endfunction
 
     function! LightLineCurrentTag() abort
-	  if !empty(globpath(&rtp, 'autoload/tagbar.vim'))
-    	return tagbar#currenttag('%s', '')
-	  else
-	  	return ''
+      if !empty(globpath(&rtp, 'autoload/tagbar.vim'))
+        return tagbar#currenttag('%s', '')
+      else
+        return ''
     endfunction
 
-	function! LightlineLSPWarnings() abort
-	  if &ft != 'seq' || &ft != 'nerdtree' || &ft != 'tagbar'
-	  	let l:counts = lsp#get_buffer_diagnostics_counts()
-	  	return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
-	  else
-		return ''
-	  endif
-	endfunction
+    function! LightlineLSPWarnings() abort
+      if &ft != 'seq' || &ft != 'nerdtree' || &ft != 'tagbar'
+        let l:counts = lsp#get_buffer_diagnostics_counts()
+        return l:counts.warning == 0 ? '' : printf('W:%d', l:counts.warning)
+      else
+        return ''
+      endif
+    endfunction
 
-	function! LightlineLSPErrors() abort
-	  if &ft != 'seq'|| &ft != 'nerdtree' || &ft != 'tagbar'
-	    let l:counts = lsp#get_buffer_diagnostics_counts()
-	    return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
-	  else
-		return ''
-	  endif
-	endfunction
+    function! LightlineLSPErrors() abort
+      if &ft != 'seq'|| &ft != 'nerdtree' || &ft != 'tagbar'
+        let l:counts = lsp#get_buffer_diagnostics_counts()
+        return l:counts.error == 0 ? '' : printf('E:%d', l:counts.error)
+      else
+        return ''
+      endif
+    endfunction
 
-	function! LightlineLSPOk() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
-		return ''
-	  elseif &ft !=? 'seq'
-	    let l:counts =  lsp#get_buffer_diagnostics_counts()
-	    let l:total = l:counts.error + l:counts.warning
-	    return l:total == 0 ? 'OK' : ''
-	  else
-		return ''
-	  endif
-	endfunction
+    function! LightlineLSPOk() abort
+      if &ft == 'nerdtree' || &ft == 'tagbar'
+        return ''
+      elseif &ft !=? 'seq'
+        let l:counts =  lsp#get_buffer_diagnostics_counts()
+        let l:total = l:counts.error + l:counts.warning
+        return l:total == 0 ? 'OK' : ''
+      else
+        return ''
+      endif
+    endfunction
 
     "右上にworking directory
     let g:lightline.tabline = {'right': [['cd']]}
@@ -241,25 +241,25 @@ hook_add = '''"{{{
 
     "NERDTreeで表示省略
     function! MyLightLinePercent() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
         return line('.') * 100 / line('$') . '%'
     endfunction
 
     function! MyLightLineLineInfo() abort
-	  if &ft == 'nerdtree' || &ft == 'tagbar'
+      if &ft == 'nerdtree' || &ft == 'tagbar'
         return ''
       else
         return line('.').':'. col('.')
     endfunction
 
-	augroup MyLightline
-		autocmd!
-		""autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
-		autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update() | LightlineUpdate
-	  	autocmd User lsp_diagnostics_updated call lightline#update()
-	augroup END
+    augroup MyLightline
+        autocmd!
+        ""autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update()
+        autocmd CursorHold,CursorHoldI,ColorScheme * silent call s:lightline_update() | LightlineUpdate
+        autocmd User lsp_diagnostics_updated call lightline#update()
+    augroup END
 "}}}'''
 
 [[plugins]]
@@ -285,16 +285,16 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 depends  = [# {{{
-	'mattn/ctrlp-matchfuzzy',
-	'mattn/ctrlp-mark',
-	'hara/ctrlp-colorscheme'
+    'mattn/ctrlp-matchfuzzy',
+    'mattn/ctrlp-mark',
+    'hara/ctrlp-colorscheme'
     ]# }}}
 hook_add = '''"{{{
     " The prefix key.
     nnoremap    [ctrlp]   <Nop>
     nmap    <Space>f [ctrlp]
     "
-	""let g:ctrlp_line_prefix= '> '
+    ""let g:ctrlp_line_prefix= '> '
     nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurFile<CR>
     nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
     nnoremap <silent> [ctrlp]m :<C-u>CtrlPMRUFiles<CR>
@@ -306,7 +306,7 @@ hook_add = '''"{{{
     " 遅延再描画
     let g:ctrlp_lazy_update = 1
     if v:version  == 802  && has("patch1665")
-    	let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+        let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
     endif
     " CtrlPのウィンドウ最大高さ
     autocmd VimEnter,VimResized *  let g:ctrlp_match_window = 'max:' . string(min([(&lines/3), 20]) - 1)
@@ -318,23 +318,23 @@ hook_add = '''"{{{
       \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
       \ }
 
-  	let g:ctrlp_reuse_window = 'quickfix'
+    let g:ctrlp_reuse_window = 'quickfix'
     " # lightline.vimで表示しているステータスラインとの衝突を避けるため
     let g:ctrlp_buffer_func = {
-    	\ 'enter': 'CtrlPEnter',
-    	\ 'exit': 'CtrlPLeave',
+        \ 'enter': 'CtrlPEnter',
+        \ 'exit': 'CtrlPLeave',
     \ }
 
     " # ctrlpに入るとき，ステータスラインの表示をoffに
     function! CtrlPEnter()
-    	set laststatus=0
-		let b:qs_local_disable=1
+        set laststatus=0
+        let b:qs_local_disable=1
     endfunction
 
     " # ctrlpから出るとき，ステータスラインの表示をonに
     function! CtrlPLeave()
-    	set laststatus=2
-		let b:qs_local_disable=0
+        set laststatus=2
+        let b:qs_local_disable=0
     endfunction
 "}}}'''
 
@@ -360,18 +360,18 @@ repo = 'ryanoasis/vim-devicons'
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''"{{{
     function! s:on_lsp_buffer_enabled() abort
-    	setlocal omnifunc=lsp#complete
-    	setlocal signcolumn=yes
-    	nmap <buffer> gd <plug>(lsp-definition)
-    	nmap <buffer> <f2> <plug>(lsp-rename)
-    	nnoremap <buffer> <F5> :LspDocumentFormat<CR>
-    	autocmd BufWritePre *.py LspDocumentFormatSync
-    	"inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+        setlocal omnifunc=lsp#complete
+        setlocal signcolumn=yes
+        nmap <buffer> gd <plug>(lsp-definition)
+        nmap <buffer> <M-r> <plug>(lsp-rename)
+        nnoremap <buffer> <space>F :LspDocumentFormat<CR>
+        autocmd BufWritePre *.py LspDocumentFormatSync
+        "inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
     endfunction
 
     augroup lsp_install
-      au!
-      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+        au!
+        autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
     augroup END
     command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
 
@@ -393,6 +393,11 @@ hook_add = '''"{{{
     let g:lsp_diagnostics_signs_warning      = {'text': '⚠️'}
     let g:lsp_diagnostics_signs_information  = {'text': '❓'}
     let g:lsp_diagnostics_signs_hint         = {'text': '💡'}
+"🅴",
+"🆆",
+"🅷",
+"🅸",
+
 "}}}'''
 
 ###########
@@ -401,9 +406,9 @@ hook_add = '''"{{{
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
 depends  = [# {{{
-	'prabirshrestha/asyncomplete-buffer.vim',
-	'hrsh7th/vim-vsnip',
-	'hrsh7th/vim-vsnip-integ'
+    'prabirshrestha/asyncomplete-buffer.vim',
+    'hrsh7th/vim-vsnip',
+    'hrsh7th/vim-vsnip-integ'
     ]# }}}
 
 [[plugins]]
@@ -444,26 +449,26 @@ repo = 'hrsh7th/vim-vsnip'
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
 hook_add = '''"{{{
-	"imapでマッピングしないとsnippet展開後のtabキーの挙動が変、いまいちよくわ
-	"からん
+    "imapでマッピングしないとsnippet展開後のtabキーの挙動が変、いまいちよくわ
+    "からん
     imap <expr> <Tab>  pumvisible() ? "\<C-n>" :
-				\vsnip#available(1)   ? '<Plug>(vsnip-expand-or-jump)':
-				\"\<Tab>"
+                \vsnip#available(1)   ? '<Plug>(vsnip-expand-or-jump)':
+                \"\<Tab>"
 
     imap <expr> <S-Tab> pumvisible() ? "\<C-p>" :
-				\vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      :
-				\"\<S-Tab>"
+                \vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      :
+                \"\<S-Tab>"
 
     smap <expr> <Tab> pumvisible() ? "\<C-n>" :
-				\vsnip#available(1)   ? '<Plug>(vsnip-expand-or-jump)':
-				\"\<Tab>"
+                \vsnip#available(1)   ? '<Plug>(vsnip-expand-or-jump)':
+                \"\<Tab>"
 
     smap <expr> <S-Tab> pumvisible() ? "\<C-p>" :
-				\vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      :
-				\"\<S-Tab>"
+                \vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      :
+                \"\<S-Tab>"
 
     imap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-	imap <c-space> <Plug>(asyncomplete_force_refresh)
+    imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 "}}}'''
 
