@@ -6,7 +6,8 @@ repo = 'wsdjeg/dein-ui.vim'
 on_cmd    = ['DeinUpdate']
 hook_add = '''"{{{
     "nnoremap <F12> :DeinUpdate<CR>
-    nnoremap <F12> :call dein#check_update(v:true)<CR>
+    " nnoremap <F12> :call dein#check_update(v:true)<CR>
+    nnoremap <F12> :Dein update<CR>
 "}}}'''
 
 [[plugins]]
@@ -45,9 +46,11 @@ hook_add = '''"{{{
     let g:NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
     ""NERDTree矢印変更{{{
-    let g:NERDTreeDirArrowExpandable  = '▶'
-    let g:NERDTreeDirArrowCollapsible = '▼'
+    let g:NERDTreeDirArrowCollapsible = ''
+    let g:NERDTreeDirArrowExpandable = ''
     "}}}
+    let g:NERDTreeMinimalUI = 1
+    let g:NERDTreeDirArrows = 1
 
     let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
     let g:WebDevIconsNerdTreeAfterGlyphPadding = ""
@@ -72,6 +75,7 @@ hook_add = '''"{{{
         autocmd!
         "NERDTree以外を閉じたらNERDTreeも閉じる
         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+        autocmd FileType nerdtree setlocal signcolumn=no
     augroup END
 
 "}}}'''
@@ -141,6 +145,7 @@ hook_add = '''"{{{
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_start_level = 1
     let g:indent_guides_guide_size = 1
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 "}}}'''
 
 # [[plugins]]

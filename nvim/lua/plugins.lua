@@ -352,6 +352,11 @@ return require("packer").startup({
             "ludovicchabant/vim-gutentags",
             event = "VimEnter",
         })
+        -- use ( { 'simrat39/symbols-outline.nvim',
+        --     config = function()
+        --         require("my_plugins.symbol")
+        --     end
+        -- } )
         use({
             "majutsushi/tagbar",
             config = function()
@@ -362,7 +367,7 @@ return require("packer").startup({
                 vim.api.nvim_set_keymap("n", "<F8>", "<Cmd>TagbarToggle<CR>", { noremap = true })
             end,
         })
-        --}}}
+        -- }}}
 
         ---------------
         --filetype specific{{{

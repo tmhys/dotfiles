@@ -7,36 +7,36 @@
 "適当にオフにしてます、困ったらオンにしてね
 "本当にオフになっているんだろうか
 "vimrc_example.vimの中身の以下もコメントアウトしてます
-"	source $VIMRUNTIME/defaults.vim
+"   source $VIMRUNTIME/defaults.vim
 
-let g:loaded_getscript			= v:true
-let g:loaded_getscriptPlugin	= v:true
-let g:loaded_gzip				= v:true
-let g:loaded_logiPat			= v:true
-let g:loaded_matchit			= v:true
-let g:loaded_matchparen			= v:true
-let g:loaded_netrw				= v:true
-let g:loaded_netrwPlugin		= v:true
-let g:loaded_netrwFileHandlers	= v:true
-let g:loaded_netrwSettings		= v:true
-let g:loaded_rrhelper			= v:true
-let g:loaded_ruby_provider		= v:true
-let g:loaded_shada_plugin		= v:true
-let g:loaded_spellfile_plugin	= v:true
-let g:loaded_tar				= v:true
-let g:loaded_tarPlugin			= v:true
-let g:loaded_tutor_mode_plugin	= v:true
-let g:loaded_2html_plugin		= v:true
-let g:loaded_vimball			= v:true
-let g:loaded_vimballPlugin		= v:true
-let g:loaded_zip				= v:true
-let g:loaded_zipPlugin			= v:true
-let g:no_vimrc_example			= v:true
-let g:loaded_gtags				= v:true
+let g:loaded_getscript          = v:true
+let g:loaded_getscriptPlugin    = v:true
+let g:loaded_gzip               = v:true
+let g:loaded_logiPat            = v:true
+let g:loaded_matchit            = v:true
+let g:loaded_matchparen         = v:true
+let g:loaded_netrw              = v:true
+let g:loaded_netrwPlugin        = v:true
+let g:loaded_netrwFileHandlers  = v:true
+let g:loaded_netrwSettings      = v:true
+let g:loaded_rrhelper           = v:true
+let g:loaded_ruby_provider      = v:true
+let g:loaded_shada_plugin       = v:true
+let g:loaded_spellfile_plugin   = v:true
+let g:loaded_tar                = v:true
+let g:loaded_tarPlugin          = v:true
+let g:loaded_tutor_mode_plugin  = v:true
+let g:loaded_2html_plugin       = v:true
+let g:loaded_vimball            = v:true
+let g:loaded_vimballPlugin      = v:true
+let g:loaded_zip                = v:true
+let g:loaded_zipPlugin          = v:true
+let g:no_vimrc_example          = v:true
+let g:loaded_gtags              = v:true
 let g:did_install_default_menus = v:true
-let g:loaded_gtags_cscope		= v:true
-let g:loaded_man				= v:true
-let g:skip_defaults_vim			= v:true
+let g:loaded_gtags_cscope       = v:true
+let g:loaded_man                = v:true
+let g:skip_defaults_vim         = v:true
 
 """"""""""""""""""""""""""""""""""""""""
 " 文字コード
@@ -65,6 +65,10 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 set nowrap
+" set wrap
+" set breakindent
+" set linebreak
+
 set number
 set pumheight=20
 set scrolloff=10
@@ -73,9 +77,9 @@ set signcolumn=yes
 set tabstop=4
 set termguicolors
 if has('kaoriya')
-	set ambiwidth=auto
+    set ambiwidth=auto
 else
-	set ambiwidth=double
+    set ambiwidth=double
 endif
 
 """"""""""""""""""""""""""""""""""""""""
@@ -107,17 +111,17 @@ set matchpairs& matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:
 " GUI
 """"""""""""""""""""""""""""""""""""""""
 if has("gui_running")
-	set guioptions&
-	set guioptions+=C
-	set guioptions-=T
-	set guioptions+=C
-	set guioptions-=m
-	set guioptions-=r
-	set guioptions-=R
-	set guioptions-=l
-	set guioptions-=L
-	set guioptions-=b
-	set guioptions-=e
+    set guioptions&
+    set guioptions+=C
+    set guioptions-=T
+    set guioptions+=C
+    set guioptions-=m
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=b
+    set guioptions-=e
 endif
 
 """"""""""""""""""""""""""""""""""""""""
@@ -130,10 +134,10 @@ set backup
 set writebackup
 " backupdirなどなければ作る{
 function! s:mkdir(dir)
-	if !isdirectory(a:dir)
-	   " "p" を渡すことでネストしたディレクトリ全てが作成される
-		call mkdir(a:dir, "p")
-	endif
+    if !isdirectory(a:dir)
+       " "p" を渡すことでネストしたディレクトリ全てが作成される
+        call mkdir(a:dir, "p")
+    endif
 endfunction
 let $DATE = strftime("%Y%m%d_%H%M%S")
 set backupdir=$HOME/.vimbackup
@@ -156,6 +160,6 @@ set ignorecase
 set smartcase
 set wildignore& wildignore+=*.so,*.swp,*.zip,*.jpg,*.png,*.exe,*.dll
 if executable('pt')
-	set grepprg=pt\ --nogroup\
-	set grepformat=%f:%l:%c:%m
+    set grepprg=pt\ --nogroup\
+    set grepformat=%f:%l:%c:%m
 endif

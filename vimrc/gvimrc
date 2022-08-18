@@ -5,7 +5,7 @@ set guifont=Cica:h13,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
 if !has('win32')
-	set linespace=1
+    set linespace=1
 endif
 
 colorscheme atom
