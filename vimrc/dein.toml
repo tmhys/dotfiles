@@ -15,13 +15,15 @@ hook_add = '''"{{{
             return
       endif
           try
-       if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
-          let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
-              \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
+       "if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
+       "   let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
+       "       \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
+       if g:colors_name =~# 'wombat\|landscape\|jellybeans\|Tomorrow\|molokai\|tender\|papercolor\|one\|ayu'"seoul256
+          let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '')
           call lightline#init()
           call lightline#colorscheme()
           call lightline#update()
-        endif
+       endif
       catch
       endtry
     endfunction
@@ -264,6 +266,14 @@ hook_add = '''"{{{
 
 [[plugins]]
 repo = 'delphinus/lightline-delphinus'
+hook_ad = '''{{{
+       if g:colors_name =~# 'solarized'
+          let g:lightline_delphinus_colorscheme = solarized_improved
+          call lightline#init()
+          call lightline#colorscheme()
+          call lightline#update()
+       endif
+}}}'''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'

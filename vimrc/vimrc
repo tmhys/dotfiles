@@ -6,7 +6,7 @@ source $HOME/vimfiles/init/userautocmds.vim
 source $HOME/vimfiles/init/userdein.vim
 
 if !has("gui_running")
-    colorscheme atom
+    colorscheme solarized8
 endif
 
 filetype plugin indent on
