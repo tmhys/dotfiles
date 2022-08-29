@@ -48,7 +48,7 @@ end
 
 -- dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins   in " .. math.floor(vim.fn.reltimefloat(vim.g.startuptime)*1000)  .. " msec"
 -- dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins  in " .. vim.fn.reltimefloat(vim.g.startuptime)  .. " msec"
--- dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins  "
+dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins  "
 --dashboard.section.footer.val = "Total plugins ': " .. vim.g.packages
 dashboard.section.header.opts.hl = "Question"
 dashboard.section.buttons.val = {

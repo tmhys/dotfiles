@@ -55,7 +55,7 @@ return require("packer").startup({
             config = function()
                 require("my_plugins.nightfox")
             end,
-            event = { "VimEnter", "ColorSchemePre" },
+            event = {  "ColorSchemePre" },
         })
         -- use({ "Mofiqul/dracula.nvim", event = "ColorSchemePre" })
         -- use({
@@ -80,7 +80,8 @@ return require("packer").startup({
         ---------------
         use({
             "xiyaowong/nvim-transparent",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            opt = true,
             config = function()
                 require("my_plugins.nvim-transparent")
             end,
@@ -163,7 +164,7 @@ return require("packer").startup({
                 require("my_plugins.indent-blankline")
             end,
         })
-        use({ "mhinz/vim-signify", event = "VimEnter" })
+        use({ "mhinz/vim-signify", event = "BufEnter" })
         use({
             "chentoast/marks.nvim",
             event = "CursorHold",
@@ -313,7 +314,7 @@ return require("packer").startup({
         ---------------
         use({
             "skywind3000/asyncrun.vim",
-            event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.asyncrun")
             end,
@@ -378,6 +379,7 @@ return require("packer").startup({
             ft = { "markdown" },
             run = ":call mkdp#util#install()",
         })
+        use({ "MTDL9/vim-log-highlighting", ft = "log" })
         use({
             "SidOfc/mkdx",
             ft = { "markdown" },
@@ -674,9 +676,9 @@ return require("packer").startup({
         })
         use({ "tpope/vim-repeat", event = "VimEnter" })
         use({ "jghauser/mkdir.nvim", event = "VimEnter" })
-        use({ "stevearc/stickybuf.nvim", event = "VimEnter" })
-        use({ "MTDL9/vim-log-highlighting", event = "VimEnter" })
-        use({ "wadackel/nvim-syntax-info", opt = true })
+        -- quickfixなどでファイルを開かないようにする
+        use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
+        -- use({ "wadackel/nvim-syntax-info", opt = true })
         use({
             "Shatur/neovim-session-manager",
             event = "VimEnter",
