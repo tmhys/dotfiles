@@ -89,7 +89,7 @@ return require("packer").startup({
         use({
             "goolord/alpha-nvim",
             requires = { "kyazdani42/nvim-web-devicons" },
-            -- event = "VimEnter",
+            event = "VimEnter",
             config = function()
                 require("my_plugins.alpha-nvim")
             end,
@@ -404,93 +404,95 @@ return require("packer").startup({
         ---------------
         -- fuzzy finder{{{
         ---------------
-        -- use({
-        --     "nvim-telescope/telescope.nvim",
-        --     config = function()
-        --         require("my_plugins.telescope").setup()
-        --     end,
-        --     event = "CursorHold",
-        --     -- opt = true,
-        --     -- cmd = "Telescope",
-        --     setup = function()
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>ff",
-        --             "<cmd>Telescope find_files<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>f<Leader>",
-        --             "<cmd>Telescope<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fb",
-        --             "<cmd>Telescope buffers<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fg",
-        --             "<cmd>Telescope live_grep<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap("n", "<Leader>ft", "<cmd>Telescope tags<CR>", { noremap = true, silent = true })
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fm",
-        --             "<cmd>Telescope oldfiles<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fh",
-        --             "<cmd>Telescope help_tags<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fq",
-        --             "<cmd>Telescope quickfix<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fc",
-        --             "<cmd>Telescope colorscheme<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fv",
-        --             "<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --         vim.api.nvim_set_keymap(
-        --             "n",
-        --             "<Leader>fd",
-        --             "<cmd>Telescope find_files search_dirs=~/dotfiles<CR>",
-        --             { noremap = true, silent = true }
-        --         )
-        --     end,
-        --     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-        -- })
-        -- use({ "nvim-telescope/telescope-symbols.nvim", after = { "telescope.nvim" } })
-        -- use({ "nvim-telescope/telescope-file-browser.nvim", after = { "telescope.nvim" } })
+        use({
+            "nvim-telescope/telescope.nvim",
+            config = function()
+                require("my_plugins.telescope").setup()
+            end,
+            event = "CursorHold",
+            -- opt = true,
+            -- cmd = "Telescope",
+            setup = function()
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>ff",
+                    "<cmd>Telescope find_files<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>f<Leader>",
+                    "<cmd>Telescope<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fb",
+                    "<cmd>Telescope buffers<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fg",
+                    "<cmd>Telescope live_grep<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap("n", "<Leader>ft", "<cmd>Telescope tags<CR>", { noremap = true, silent = true })
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fm",
+                    "<cmd>Telescope oldfiles<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fh",
+                    "<cmd>Telescope help_tags<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fq",
+                    "<cmd>Telescope quickfix<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fc",
+                    "<cmd>Telescope colorscheme<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fv",
+                    "<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>",
+                    { noremap = true, silent = true }
+                )
+                vim.api.nvim_set_keymap(
+                    "n",
+                    "<Leader>fd",
+                    "<cmd>Telescope find_files search_dirs=~/dotfiles<CR>",
+                    { noremap = true, silent = true }
+                )
+            end,
+            requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+        })
+        use({ "nvim-telescope/telescope-symbols.nvim", after = { "telescope.nvim" } })
+        use({ "nvim-telescope/telescope-file-browser.nvim", after = { "telescope.nvim" } })
 
-        use({ "ctrlpvim/ctrlp.vim",
-             requires = { "kyazdani42/nvim-web-devicons" },
-             config = function()
-                     require("my_plugins.ctrlp")
-             end,
-            requires = { { "mattn/ctrlp-matchfuzzy" },
-            { "mattn/ctrlp-mark" } ,
-            { "hara/ctrlp-colorscheme"},
-            -- { "mattn/vim-ctrlp-syntax-highlight"}
-        },
-              })
+        -- use({ "ctrlpvim/ctrlp.vim",
+        --      requires = { "kyazdani42/nvim-web-devicons" },
+        --      config = function()
+        --              require("my_plugins.ctrlp")
+        --      end,
+        --     requires = { { "mattn/ctrlp-matchfuzzy" },
+        --     { "mattn/ctrlp-mark" } ,
+        --     { "hara/ctrlp-colorscheme"},
+        --     -- { "mattn/vim-ctrlp-syntax-highlight"}
+        --     -- { "mattn/vim-ctrlp-syntax-highlight"}
+        --     { "~/vimfiles/localplugins/vim-ctrlp-syntax-highlight" }
+        -- },
+        --       })
 
         use({
             "kyazdani42/nvim-tree.lua",

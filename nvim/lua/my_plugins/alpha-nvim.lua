@@ -46,15 +46,15 @@ end
 -- [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝]],
 -- }
 
--- dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins   in " .. math.floor(vim.fn.reltimefloat(vim.g.startuptime)*1000)  .. " msec"
+dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins   in " .. math.floor(vim.fn.reltimefloat(vim.g.startuptime)*1000)  .. " msec"
 -- dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins  in " .. vim.fn.reltimefloat(vim.g.startuptime)  .. " msec"
-dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins  "
+-- dashboard.section.footer.val = "Loaded " .. vim.g.packages .. " plugins  "
 --dashboard.section.footer.val = "Total plugins ': " .. vim.g.packages
 dashboard.section.header.opts.hl = "Question"
 dashboard.section.buttons.val = {
     dashboard.button("s", "  Open last session", ":SessionManager load_current_dir_session<CR>"),
-    -- dashboard.button("h", "  Recently opened files", ":Telescope oldfiles<CR>"),
-    -- dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
+    dashboard.button("h", "  Recently opened files", ":Telescope oldfiles<CR>"),
+    dashboard.button("f", "  Find file", ":Telescope find_files<CR>"),
     dashboard.button("e", "  New file", ":enew<CR>"),
     -- dashboard.button("b", "  Jump to bookmarks", ":Telescope marks<CR>"),
     dashboard.button("r", "  Plugin setting", ":e $HOME/dotfiles/nvim/lua/plugins.lua<CR>"),
