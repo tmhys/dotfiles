@@ -26,7 +26,9 @@ return require("packer").startup({
         use({ "antoinemadec/FixCursorHold.nvim" })
         use({ "lewis6991/impatient.nvim" })
         use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
-        use({ "vim-jp/vimdoc-ja", event = "VimEnter" })
+        use({ "vim-jp/vimdoc-ja",
+        -- event = "VimEnter",
+        opt = true})
         use({ "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } )
         --}}}
 
@@ -80,20 +82,19 @@ return require("packer").startup({
         ---------------
         use({
             "xiyaowong/nvim-transparent",
-            -- event = "VimEnter",
             opt = true,
             config = function()
                 require("my_plugins.nvim-transparent")
             end,
         })
-        use({
-            "goolord/alpha-nvim",
-            requires = { "kyazdani42/nvim-web-devicons" },
-            event = "VimEnter",
-            config = function()
-                require("my_plugins.alpha-nvim")
-            end,
-        })
+        -- use({
+        --     "goolord/alpha-nvim",
+        --     requires = { "kyazdani42/nvim-web-devicons" },
+        --     event = "VimEnter",
+        --     config = function()
+        --         require("my_plugins.alpha-nvim")
+        --     end,
+        -- })
         use({
             "folke/which-key.nvim",
             event = "VimEnter",
@@ -198,7 +199,8 @@ return require("packer").startup({
         })
         use({
             "kevinhwang91/nvim-hlslens",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.hlslens")
             end,
@@ -228,19 +230,20 @@ return require("packer").startup({
         -- 使い方学ぶべし
         use({
             "kylechui/nvim-surround",
-            event = "VimEnter",
+            event = "BufRead",
+            -- event = "VimEnter",
             config = function()
                 require("my_plugins.nvim-surround")
             end,
         })
         --use({ "thinca/vim-qfreplace", ft = "qf" })
         -- 使い方学ぶべし
-        use({
-            "rapan931/lasterisk.nvim",
-            config = function()
-                require("my_plugins.lasterisk")
-            end,
-        })
+        -- use({
+        --     "rapan931/lasterisk.nvim",
+        --     config = function()
+        --         require("my_plugins.lasterisk")
+        --     end,
+        -- })
         -- 使い方学ぶべし
         use({
             "gabrielpoca/replacer.nvim",
@@ -266,7 +269,8 @@ return require("packer").startup({
         --acceralate jk
         use({
             "PHSix/faster.nvim",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.faster")
             end,
@@ -281,7 +285,8 @@ return require("packer").startup({
         -- })
         use({
             "jinh0/eyeliner.nvim",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("eyeliner").setup({
                     bold = true,
@@ -290,7 +295,8 @@ return require("packer").startup({
         })
         use({
             "rhysd/clever-f.vim",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.clever-f")
             end,
@@ -332,7 +338,8 @@ return require("packer").startup({
         --git{{{
         ---------------
         use({"dinhhuy258/git.nvim",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.git")
             end,
@@ -352,7 +359,8 @@ return require("packer").startup({
         ---------------
         use({
             "ludovicchabant/vim-gutentags",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
         })
         -- use ( { 'simrat39/symbols-outline.nvim',
         --     config = function()
@@ -409,9 +417,9 @@ return require("packer").startup({
             config = function()
                 require("my_plugins.telescope").setup()
             end,
-            event = "CursorHold",
+            -- event = "CursorHold",
             -- opt = true,
-            -- cmd = "Telescope",
+            cmd = "Telescope",
             setup = function()
                 vim.api.nvim_set_keymap(
                     "n",
@@ -676,8 +684,14 @@ return require("packer").startup({
                 require("my_plugins.cosco")
             end,
         })
-        use({ "tpope/vim-repeat", event = "VimEnter" })
-        use({ "jghauser/mkdir.nvim", event = "VimEnter" })
+        use({ "tpope/vim-repeat",
+            event = "BufRead",
+       event = "VimEnter"
+    })
+        use({ "jghauser/mkdir.nvim",
+        -- event = "VimEnter"
+            event = "BufRead",
+    })
         -- quickfixなどでファイルを開かないようにする
         use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
         -- use({ "wadackel/nvim-syntax-info", opt = true })
@@ -690,7 +704,8 @@ return require("packer").startup({
         })
         use({
             "sentriz/vim-print-debug",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.vim-print-debug")
             end,
@@ -749,14 +764,16 @@ return require("packer").startup({
         ---------------
         use({
             "numToStr/Comment.nvim",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             config = function()
                 require("my_plugins.Comment")
             end,
         })
         use({
             "s1n7ax/nvim-comment-frame",
-            event = "VimEnter",
+            -- event = "VimEnter",
+            event = "BufRead",
             requires = {
                 { "nvim-treesitter" },
             },
