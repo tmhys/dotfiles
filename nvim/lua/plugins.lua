@@ -97,7 +97,8 @@ return require("packer").startup({
         -- })
         use({
             "folke/which-key.nvim",
-            event = "VimEnter",
+            opt = true,
+            -- event = "VimEnter",
             config = function()
                 require("my_plugins.which-key")
             end,
@@ -142,13 +143,13 @@ return require("packer").startup({
             end,
         })
         -- カーソル移動が見やすくなるやつ
-        use({
-            "edluffy/specs.nvim",
-            event = "CursorMoved",
-            config = function()
-                require("my_plugins.specs")
-            end,
-        })
+        -- use({
+        --     "edluffy/specs.nvim",
+        --     event = "CursorMoved",
+        --     config = function()
+        --         require("my_plugins.specs")
+        --     end,
+        -- })
         use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
         -- colorschemesによっては表示がうまくいかない
         use({
@@ -293,18 +294,35 @@ return require("packer").startup({
                 })
             end,
         })
+        -- hopとlightingこれ一つにしたいが
+        -- use({
+        --     "ggandor/leap.nvim",
+        --     -- event = "VimEnter",
+        --     -- event = "BufRead",
+        --     config = function()
+        --         require("my_plugins.leap")
+        --     end,
+        -- })
         use({
-            "rhysd/clever-f.vim",
+            "ggandor/lightspeed.nvim",
             -- event = "VimEnter",
             event = "BufRead",
             config = function()
-                require("my_plugins.clever-f")
+                require("my_plugins.lightspeed")
             end,
         })
+        -- use({
+        --     "rhysd/clever-f.vim",
+        --     -- event = "VimEnter",
+        --     event = "BufRead",
+        --     config = function()
+        --         require("my_plugins.clever-f")
+        --     end,
+        -- })
         use({
             "phaazon/hop.nvim",
             event = "BufRead",
-            branch = "v1",
+            branch = "v2",
             -- cmd = "zz",
             -- setup = function()
             --              vim.api.nvim_set_keymap('n', 'zz', "<cmd>lua require'hop'.hint_words()<CR>", {})
@@ -320,7 +338,7 @@ return require("packer").startup({
         ---------------
         use({
             "skywind3000/asyncrun.vim",
-            event = "BufRead",
+            ft = { "seq","python" },
             config = function()
                 require("my_plugins.asyncrun")
             end,
@@ -563,13 +581,6 @@ return require("packer").startup({
                 require("my_plugins.lspconfig")
             end,
         })
-        -- use({
-        --      "williamboman/nvim-lsp-installer",
-        --      after = { "nvim-lspconfig", "lsp_signature.nvim" },
-        --      config = function()
-        --              require("my_plugins.lsp-installer")
-        --      end,
-        -- })
         use({
             "williamboman/mason.nvim",
             event = "VimEnter",

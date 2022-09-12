@@ -19,6 +19,9 @@ require('telescope').setup{
       '--column',
       '--smart-case'
     },
+    preview = {
+        hide_on_startup = true
+    },
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
@@ -40,7 +43,7 @@ require('telescope').setup{
     winblend = 0,
     border = {},
     --borderchars = {
-	--  --style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    --  --style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     --  { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     --  prompt = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     --  results = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
@@ -65,7 +68,33 @@ require('telescope').setup{
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  }
+  },
+  pickers ={
+      find_files = {
+          theme = 'dropdown',
+      },
+      buffers = {
+          theme = 'dropdown',
+      },
+      live_grep = {
+          theme = 'dropdown',
+      },
+      tags = {
+          theme = 'dropdown',
+      },
+      oldfiles = {
+          theme = 'dropdown',
+      },
+      help_tags = {
+          theme = 'dropdown',
+      },
+      quickfix = {
+          theme = 'dropdown',
+      },
+      colorscheme = {
+          theme = 'dropdown',
+      }
+  },
   }
 
 --vim.api.nvim_set_keymap('n', '<Leader>f', '<telescope>', {})
