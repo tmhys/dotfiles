@@ -30,6 +30,23 @@ return require("packer").startup({
         -- event = "VimEnter",
         opt = true})
         use({ "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } )
+        -- for packer.nvim
+        use {
+          "delphinus/cellwidths.nvim",
+              opt = true,
+          config = function()
+            -- 'listchars' ã¨ 'fillchars' ã‚’äº‹å‰ã«è¨­å®šã—ã¦ãŠãã®ãŒãŠå‹§ã‚ã§ã™ã€‚
+            -- vim.opt.listchars = { eol = "â" }
+            -- vim.opt.fillchars = { eob = "â€£" }
+            require("cellwidths").setup {
+              -- name = "default",
+              -- name = "empty",          -- ç©ºã®è¨­å®šã§ã™ã€‚
+              name = "default",        -- vim-ambiwidth ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã™ã€‚
+              -- name = "cica",           -- vim-ambiwidth ã® Cica ç”¨è¨­å®šã§ã™ã€‚
+              -- name = "sfmono_square",  -- SF Mono Square ç”¨è¨­å®šã§ã™ã€‚
+            }
+        end,
+        }
         --}}}
 
         ---------------
@@ -50,8 +67,10 @@ return require("packer").startup({
         ---------------
         -- colorschemes{{{
         ---------------
-        use({ "sainnhe/gruvbox-material" })
-        -- use({ "rafi/awesome-vim-colorschemes", opt = true })
+        use({ "sainnhe/gruvbox-material",
+         opt = true
+        })
+        use({ "rafi/awesome-vim-colorschemes", opt = true })
         use({
             "EdenEast/nightfox.nvim",
             config = function()
@@ -87,14 +106,15 @@ return require("packer").startup({
                 require("my_plugins.nvim-transparent")
             end,
         })
-        -- use({
-        --     "goolord/alpha-nvim",
-        --     requires = { "kyazdani42/nvim-web-devicons" },
-        --     event = "VimEnter",
-        --     config = function()
-        --         require("my_plugins.alpha-nvim")
-        --     end,
-        -- })
+        use({
+            "goolord/alpha-nvim",
+            requires = { "kyazdani42/nvim-web-devicons" },
+            opt = true,
+            -- event = "VimEnter",
+            config = function()
+                require("my_plugins.alpha-nvim")
+            end,
+        })
         use({
             "folke/which-key.nvim",
             opt = true,
@@ -118,8 +138,8 @@ return require("packer").startup({
                 require("my_plugins.vim-toggle-quickfix")
             end,
         })
-        -- ƒ^ƒu‚ğ•Â‚¶‚½‚è‚·‚é‚ÆƒGƒ‰[‚ªo‚é
-        -- ƒJ[ƒ\ƒ‹‚ª‚ ‚Á‚½ƒEƒBƒ“ƒhƒE‚Ì‚İ–¾‚é‚­‚·‚é‚â‚Â
+        -- ã‚¿ãƒ–ã‚’é–‰ã˜ãŸã‚Šã™ã‚‹ã¨ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹
+        -- ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã¿æ˜ã‚‹ãã™ã‚‹ã‚„ã¤
         -- use({
         --      "sunjon/Shade.nvim",
         --      event = "WinNew",
@@ -142,7 +162,7 @@ return require("packer").startup({
                 require("my_plugins.nvim-notify")
             end,
         })
-        -- ƒJ[ƒ\ƒ‹ˆÚ“®‚ªŒ©‚â‚·‚­‚È‚é‚â‚Â
+        -- ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãŒè¦‹ã‚„ã™ããªã‚‹ã‚„ã¤
         -- use({
         --     "edluffy/specs.nvim",
         --     event = "CursorMoved",
@@ -151,7 +171,7 @@ return require("packer").startup({
         --     end,
         -- })
         use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
-        -- colorschemes‚É‚æ‚Á‚Ä‚Í•\¦‚ª‚¤‚Ü‚­‚¢‚©‚È‚¢
+        -- colorschemesã«ã‚ˆã£ã¦ã¯è¡¨ç¤ºãŒã†ã¾ãã„ã‹ãªã„
         use({
             "xiyaowong/nvim-cursorword",
             event = "CursorHold",
@@ -228,7 +248,7 @@ return require("packer").startup({
         })
         use({ "kraxli/vim-renamer", cmd = "Renamer" })
         -- use({ "tpope/vim-surround", event = "InsertEnter" })
-        -- g‚¢•ûŠw‚Ô‚×‚µ
+        -- ä½¿ã„æ–¹å­¦ã¶ã¹ã—
         use({
             "kylechui/nvim-surround",
             event = "BufRead",
@@ -238,14 +258,14 @@ return require("packer").startup({
             end,
         })
         --use({ "thinca/vim-qfreplace", ft = "qf" })
-        -- g‚¢•ûŠw‚Ô‚×‚µ
+        -- ä½¿ã„æ–¹å­¦ã¶ã¹ã—
         -- use({
         --     "rapan931/lasterisk.nvim",
         --     config = function()
         --         require("my_plugins.lasterisk")
         --     end,
         -- })
-        -- g‚¢•ûŠw‚Ô‚×‚µ
+        -- ä½¿ã„æ–¹å­¦ã¶ã¹ã—
         use({
             "gabrielpoca/replacer.nvim",
             ft = "qf",
@@ -276,7 +296,7 @@ return require("packer").startup({
                 require("my_plugins.faster")
             end,
         })
-        --ƒ†ƒj[ƒN•¶šƒnƒCƒ‰ƒCƒg
+        --ãƒ¦ãƒ‹ãƒ¼ã‚¯æ–‡å­—ãƒã‚¤ãƒ©ã‚¤ãƒˆ
         -- use({
         --      "unblevable/quick-scope",
         --      event = "VimEnter",
@@ -294,7 +314,7 @@ return require("packer").startup({
                 })
             end,
         })
-        -- hop‚Ælighting‚±‚êˆê‚Â‚É‚µ‚½‚¢‚ª
+        -- hopã¨lightingã“ã‚Œä¸€ã¤ã«ã—ãŸã„ãŒ
         -- use({
         --     "ggandor/leap.nvim",
         --     -- event = "VimEnter",
@@ -553,7 +573,7 @@ return require("packer").startup({
             requires = "nvim-treesitter/nvim-treesitter",
             -- after = "nvim-treesitter/nvim-treesitter",
         })
-        ----‚¢‚éH
+        ----ã„ã‚‹ï¼Ÿ
         --use({
         --      "nvim-treesitter/playground",
         --      config = function()
@@ -561,7 +581,7 @@ return require("packer").startup({
         --      end,
         --      requires = "nvim-treesitter/nvim-treesitter",
         --})
-        ----‚¢‚éH
+        ----ã„ã‚‹ï¼Ÿ
         --use({
         --      "theHamsta/nvim-dap-virtual-text",
         --      requires = { "mfussenegger/nvim-dap" },
@@ -670,7 +690,7 @@ return require("packer").startup({
             end,
         })
 
-        --cmp‚Ìrequires‚Å‹LÚ‚µ‚Ä‚¢‚é‚ªŒÂ•Ê‚Åİ’è•K—v
+        --cmpã®requiresã§è¨˜è¼‰ã—ã¦ã„ã‚‹ãŒå€‹åˆ¥ã§è¨­å®šå¿…è¦
         use({
             "windwp/nvim-autopairs",
             after = "nvim-cmp",
@@ -697,18 +717,18 @@ return require("packer").startup({
         })
         use({ "tpope/vim-repeat",
             event = "BufRead",
-       event = "VimEnter"
     })
         use({ "jghauser/mkdir.nvim",
         -- event = "VimEnter"
             event = "BufRead",
     })
-        -- quickfix‚È‚Ç‚Åƒtƒ@ƒCƒ‹‚ğŠJ‚©‚È‚¢‚æ‚¤‚É‚·‚é
+        -- quickfixãªã©ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‹ãªã„ã‚ˆã†ã«ã™ã‚‹
         use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
         -- use({ "wadackel/nvim-syntax-info", opt = true })
         use({
             "Shatur/neovim-session-manager",
-            event = "VimEnter",
+            opt = true,
+            -- event = "VimEnter",
             config = function()
                 require("my_plugins.neovim-session-manager")
             end,
@@ -722,7 +742,7 @@ return require("packer").startup({
             end,
         })
 
-        --{{{textobjectŠÖ˜A
+        --{{{textobjecté–¢é€£
         --use({ "mfussenegger/nvim-treehopper", event = "VimEnter" })
         --}}}
 
@@ -735,8 +755,8 @@ return require("packer").startup({
         --})
         --use({ "nvim-telescope/telescope-frecency.nvim" })
 
-        --•Ö—˜‚³‚ª‚í‚©‚ç‚ñ‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
-        ----ƒJ[ƒ\ƒ‹‰º‚Ì’PŒêƒnƒCƒ‰ƒCƒg‚µ‚Ü‚­‚ê‚é‚â‚Â
+        --ä¾¿åˆ©ã•ãŒã‚ã‹ã‚‰ã‚“ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
+        ----ã‚«ãƒ¼ã‚½ãƒ«ä¸‹ã®å˜èªãƒã‚¤ãƒ©ã‚¤ãƒˆã—ã¾ãã‚Œã‚‹ã‚„ã¤
         --use({
         --      "t9md/vim-quickhl",
         --      event = "BufReadPost",
