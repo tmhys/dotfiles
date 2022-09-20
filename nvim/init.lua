@@ -6,7 +6,7 @@ require("options")
 require("maps")
 require("autocmds")
 require("plugins")
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme ayu")
 
 -- gui‚²‚Æ‚Ìİ’è
 if vim.g.nvy then

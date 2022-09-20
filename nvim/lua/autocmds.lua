@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     callback = function()
         vim.highlight.on_yank({
             higroup = (vim.fn.hlexists("HighlightedyankRegion") > 0 and "HighlightedyankRegion" or "Visual"),
-            timeout = 500,
+            timeout = 600,
         })
     end,
     once = false,
@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 --Quickfixウィンドウグレップで自動で開く
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
     group = groupname,
-    pattern = { "lmake", "lgrep", "lgrepadd", "lvimgrep", "lvimgrepadd" },
+    pattern = { "make", "grep", "grepadd", "vimgrep", "vimgrepadd" },
     callback = function()
         vim.cmd([[cwindow]])
     end,
