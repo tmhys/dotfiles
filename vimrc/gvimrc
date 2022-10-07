@@ -1,4 +1,4 @@
-" Last Change: 02-Aug-2022.
+" Last Change: 26-Sep-2022.
 
 set guifont=Cica:h13,Consolas:h12
 "set guifont=PlemolJP\ Console\ NF:h12,Consolas:h12
@@ -8,7 +8,7 @@ if !has('win32')
     set linespace=1
 endif
 
-colorscheme solarized8
+colorscheme ayu
 
 let g:save_window_file = expand('~/.vimwinpos')
 augroup SaveWindow
