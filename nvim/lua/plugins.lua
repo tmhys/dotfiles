@@ -48,6 +48,20 @@ return require("packer").startup({
 				})
 			end,
 		})
+		-- Packer
+		use({
+			"folke/noice.nvim",
+			opt = true,
+			event = "VimEnter",
+			config = function()
+				require("noice").setup()
+			end,
+			requires = {
+				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+				"MunifTanjim/nui.nvim",
+				"rcarriga/nvim-notify",
+			},
+		})
 		--}}}
 
 		---------------
@@ -170,7 +184,7 @@ return require("packer").startup({
 		use({
 			"rcarriga/nvim-notify",
 			--event = "VimEnter",
-			opt = true,
+			-- opt = true,
 			config = function()
 				require("my_plugins.nvim-notify")
 			end,
