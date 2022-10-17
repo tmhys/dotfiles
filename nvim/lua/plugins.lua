@@ -52,7 +52,8 @@ return require("packer").startup({
 		use({
 			"folke/noice.nvim",
 			opt = true,
-			event = "VimEnter",
+			-- cond = [[vim.fn.has'gui' != 1]],
+			-- event = "VimEnter",
 			config = function()
 				require("noice").setup()
 			end,
@@ -725,10 +726,10 @@ return require("packer").startup({
 		--??? {{{
 		---------------
 		use({
-			"folke/lua-dev.nvim",
-			module = "lua-dev",
+			"folke/neodev.nvim",
+			-- module = "lua-dev",
 			config = function()
-				require("my_plugins.lua-dev")
+				require("my_plugins.neodev")
 			end,
 		})
 		use({
