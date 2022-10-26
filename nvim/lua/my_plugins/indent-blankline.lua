@@ -1,7 +1,7 @@
 vim.g.indent_blankline_enabled = true
 
 require("indent_blankline").setup({
-	show_current_context = false,
+	show_current_context = true,
 	--use_treesitter = true,
 	buftype_exclude = { "terminal" },
 	filetype_exclude = {

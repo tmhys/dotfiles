@@ -1,6 +1,6 @@
-require("mason-lspconfig").setup({
-	ensure_installed = { "sumneko_lua", "black", "isort", "cspell", "pyright", "vim-language-server" },
-})
+-- require("mason-lspconfig").setup({
+--  ensure_installed = { "sumneko_lua", "black", "isort", "cspell", "pyright", "vim-language-server" },
+-- })
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -86,7 +86,7 @@ require("mason-lspconfig").setup_handlers({
 		lspconfig[server_name].setup(opts)
 	end,
 	["sumneko_lua"] = function()
-		local has_lua_dev, lua_dev = pcall(require, "lua-dev")
+		local has_lua_dev, lua_dev = pcall(require, "neodev")
 		if has_lua_dev then
 			local l = lua_dev.setup({
 				library = {
