@@ -31,6 +31,13 @@ return require("packer").startup({
             -- event = "VimEnter",
             opt = true,
         })
+        use({
+            "nvim-zh/colorful-winsep.nvim",
+            event = "WinEnter",
+            config = function()
+                require("my_plugins.colorful-winsep")
+            end,
+        })
         use({ "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" })
         -- for packer.nvim
         use({
@@ -185,8 +192,6 @@ return require("packer").startup({
         })
         use({
             "rcarriga/nvim-notify",
-            --event = "VimEnter",
-            -- opt = true,
             config = function()
                 require("my_plugins.nvim-notify")
             end,
@@ -326,7 +331,7 @@ return require("packer").startup({
         -- })
         use({
             "PHSix/faster.nvim",
-            -- opt = true,
+            opt = true,
             -- event = "VimEnter",
             event = "BufRead",
             config = function()
@@ -589,7 +594,7 @@ return require("packer").startup({
         ---------------
         use({
             "nvim-treesitter/nvim-treesitter",
-            event = "CursorHold",
+            -- event = "CursorHold",
             --branch = "0.5-compat",
             run = ":TSUpdate",
             config = function()
