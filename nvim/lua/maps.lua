@@ -76,7 +76,12 @@ vim.api.nvim_set_keymap("o", "{", "i{", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<CR>", "<C-g>u<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<ESC><ESC>", ":<C-u>nohlsearch<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<space><space>", "*N", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "#", ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>", { noremap = true, silent = false })
+vim.api.nvim_set_keymap(
+    "v",
+    "#",
+    ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>",
+    { noremap = true, silent = false }
+)
 vim.api.nvim_set_keymap("v", ";", ":", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-Down>", '"zx"zp`[V`]', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-Up>", '"zx<Up>"zP`[V`]', { noremap = true, silent = true })

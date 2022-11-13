@@ -5,3 +5,9 @@
 --langdef=toml
 --langmap=toml:.toml
 --regex-seq=/repo='.*'/\1/p,plugin/
+
+--sort=yes
+--input-encoding=sjis
+--input-encoding-c=sjis
+--input-encoding-vim=utf-8
+--input-encoding-go=utf-8
