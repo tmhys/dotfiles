@@ -26,10 +26,6 @@ return require("packer").startup({
 		use({ "lewis6991/impatient.nvim" })
 		use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 		use({
-			"vim-jp/vimdoc-ja",
-			opt = true,
-		})
-		use({
 			"nvim-zh/colorful-winsep.nvim",
 			event = "WinEnter",
 			config = function()
@@ -38,24 +34,8 @@ return require("packer").startup({
 		})
 		use({ "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" })
 		use({
-			"delphinus/cellwidths.nvim",
-			opt = true,
-			config = function()
-				-- 'listchars' と 'fillchars' を事前に設定しておくのがお勧めです。
-				-- vim.opt.listchars = { eol = "⏎" }
-				-- vim.opt.fillchars = { eob = "‣" }
-				require("cellwidths").setup({
-					-- name = "default",
-					-- name = "empty",          -- 空の設定です。
-					-- name = "default",        -- vim-ambiwidth のデフォルトです。
-					name = "cica", -- vim-ambiwidth の Cica 用設定です。
-					-- name = "sfmono_square",  -- SF Mono Square 用設定です。
-				})
-			end,
-		})
-		use({
 			"folke/noice.nvim",
-			opt = true,
+			-- opt = true,
 			-- cond = [[vim.fn.has'gui' != 1]],
 			-- event = "VimEnter",
 			config = function()
@@ -115,30 +95,6 @@ return require("packer").startup({
 		---------------
 		-- interface{{{
 		---------------
-		use({
-			"xiyaowong/nvim-transparent",
-			opt = true,
-			config = function()
-				require("my_plugins.nvim-transparent")
-			end,
-		})
-		use({
-			"goolord/alpha-nvim",
-			requires = { "kyazdani42/nvim-web-devicons" },
-			opt = true,
-			-- event = "VimEnter",
-			config = function()
-				require("my_plugins.alpha-nvim")
-			end,
-		})
-		use({
-			"folke/which-key.nvim",
-			opt = true,
-			-- event = "VimEnter",
-			config = function()
-				require("my_plugins.which-key")
-			end,
-		})
 		use({
 			"kevinhwang91/nvim-bqf",
 			ft = "qf",
@@ -606,6 +562,7 @@ return require("packer").startup({
 		use({
 			"neovim/nvim-lspconfig",
 			after = "cmp-nvim-lsp",
+			requires = { "folke/neodev.nvim" },
 			config = function()
 				require("my_plugins.lspconfig")
 			end,
@@ -779,6 +736,50 @@ return require("packer").startup({
 		---------------
 		-- disabled plugins {{{
 		---------------
+		-- use({
+		--  "delphinus/cellwidths.nvim",
+		--  opt = true,
+		--  config = function()
+		--      -- 'listchars' と 'fillchars' を事前に設定しておくのがお勧めです。
+		--      -- vim.opt.listchars = { eol = "⏎" }
+		--      -- vim.opt.fillchars = { eob = "‣" }
+		--      require("cellwidths").setup({
+		--          -- name = "default",
+		--          -- name = "empty",          -- 空の設定です。
+		--          -- name = "default",        -- vim-ambiwidth のデフォルトです。
+		--          name = "cica", -- vim-ambiwidth の Cica 用設定です。
+		--          -- name = "sfmono_square",  -- SF Mono Square 用設定です。
+		--      })
+		--  end,
+		-- })
+		-- use({
+		--  "vim-jp/vimdoc-ja",
+		--  opt = true,
+		-- })
+		-- use({
+		--  "xiyaowong/nvim-transparent",
+		--  opt = true,
+		--  config = function()
+		--      require("my_plugins.nvim-transparent")
+		--  end,
+		-- })
+		-- use({
+		--  "goolord/alpha-nvim",
+		--  requires = { "kyazdani42/nvim-web-devicons" },
+		--  opt = true,
+		--  -- event = "VimEnter",
+		--  config = function()
+		--      require("my_plugins.alpha-nvim")
+		--  end,
+		-- })
+		-- use({
+		--  "folke/which-key.nvim",
+		--  opt = true,
+		--  -- event = "VimEnter",
+		--  config = function()
+		--      require("my_plugins.which-key")
+		--  end,
+		-- })
 		--{{{textobject関連
 		--use({ "mfussenegger/nvim-treehopper", event = "VimEnter" })
 		--}}}
