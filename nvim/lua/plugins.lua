@@ -39,7 +39,7 @@ return require("packer").startup({
 			-- cond = [[vim.fn.has'gui' != 1]],
 			-- event = "VimEnter",
 			config = function()
-				require("noice").setup()
+				require("my_plugins.noice")
 			end,
 			requires = {
 				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
