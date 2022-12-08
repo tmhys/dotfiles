@@ -1,19 +1,17 @@
 local impatient_ok, impatient = pcall(require, "impatient")
 if impatient_ok then
-    impatient.enable_profile()
+	impatient.enable_profile()
 else
-    vim.notify(impatient)
+	vim.notify(impatient)
 end
 
--- require("reload")
 require("options")
 require("maps")
 require("autocmds")
 require("plugins")
--- vim.cmd("colorscheme nightfox")
 
-if vim.g.nvy then
-    -- vim.opt.guifont = "JetBrains Mono:h10"
-    vim.opt.guifont = "PlemolJP Console NF:h12"
-    -- vim.opt.guifont = "Cica:h12"
-end
+-- if vim.g.nvy then
+--     -- vim.opt.guifont = "JetBrains Mono:h10"
+--     vim.opt.guifont = "PlemolJP Console NF:h12"
+--     -- vim.opt.guifont = "Cica:h12"
+-- end

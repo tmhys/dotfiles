@@ -13,3 +13,5 @@ require('luatab').setup{
 --    devicon = function() return '' end,
 --    separator = function() return '' end,
 }
+
+vim.opt.showtabline = 2

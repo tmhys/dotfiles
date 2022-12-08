@@ -22,7 +22,6 @@ return require("packer").startup({
         -- utility{{{
         ---------------
         use({ "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" })
-        use({ "antoinemadec/FixCursorHold.nvim" })
         use({ "lewis6991/impatient.nvim" })
         use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
         use({
@@ -239,7 +238,7 @@ return require("packer").startup({
         })
         use({
             "PHSix/faster.nvim",
-            -- opt = true,
+            opt = true,
             -- event = "VimEnter",
             keys = { "j", "k" },
             -- event = "BufRead",
@@ -459,26 +458,34 @@ return require("packer").startup({
             "nvim-treesitter/nvim-treesitter",
             --branch = "0.5-compat",
             -- ft = { "python" },
-            event = { "BufRead", "BufNewFile", "InsertEnter" },
+            opt = true,
+            event = { "BufReadPost" },
             run = ":TSUpdate",
             config = function()
                 require("my_plugins.treesitter")
             end,
         })
         use({
+        "SmiteshP/nvim-navic",
+        module = "nvim-navic",
+        setup = function()
+            require("my_plugins.nvim-navic")
+        end,
+        })
+        --[[ use({
             "SmiteshP/nvim-gps",
             module = {"nvim-gps"},
             config = function()
                 require("my_plugins.gps")
             end,
             wants = "nvim-treesitter",
-        })
+        }) ]]
         use({
             "p00f/nvim-ts-rainbow",
+            wants = "nvim-treesitter",
             config = function()
                 require("my_plugins.nvim-ts-rainbow")
             end,
-            wants = "nvim-treesitter",
         })
         use({
             "s1n7ax/nvim-comment-frame",
@@ -546,10 +553,10 @@ return require("packer").startup({
         use({
             "jose-elias-alvarez/null-ls.nvim",
             wants = "mason.nvim",
+            event = {"FocusLost","CursorHold"},
             config = function()
                 require("my_plugins.null-ls")
             end,
-            requires = { { "nvim-lua/plenary.nvim" } },
         })
 
         -- }}}
@@ -557,21 +564,21 @@ return require("packer").startup({
         ---------------
         --lsp ui{{{
         ---------------
-        use({
-            "tami5/lspsaga.nvim",
-            wants = "mason.nvim",
-            config = function()
-                require("my_plugins.lspsaga")
-            end,
-        })
-        use({
-            "folke/trouble.nvim",
-            requires = { "folke/lsp-colors.nvim" },
-            wants = "mason.nvim",
-            config = function()
-                require("my_plugins.trouble")
-            end,
-        })
+        -- use({
+        --     "tami5/lspsaga.nvim",
+        --     wants = "mason.nvim",
+        --     config = function()
+        --         require("my_plugins.lspsaga")
+        --     end,
+        -- })
+        -- use({
+        --     "folke/trouble.nvim",
+        --     requires = { "folke/lsp-colors.nvim" },
+        --     wants = "mason.nvim",
+        --     config = function()
+        --         require("my_plugins.trouble")
+        --     end,
+        -- })
         --}}}
 
         ---------------
@@ -580,7 +587,7 @@ return require("packer").startup({
         use({ "hrsh7th/vim-vsnip", event = "InsertEnter" })
         use({
             "hrsh7th/nvim-cmp",
-            module = "cmp",
+            -- module = "cmp",
             event = "InsertEnter",
             wants = { "vim-vsnip" },
             requires = {
@@ -595,7 +602,7 @@ return require("packer").startup({
                 { "hrsh7th/cmp-cmdline", wants = "nvim-cmp" },
                 { "ray-x/cmp-treesitter", wants = "nvim-cmp" },
                 { "tzachar/cmp-tabnine", wants = "nvim-cmp", run = "powershell ./install.ps1" },
-                { "quangnguyen30192/cmp-nvim-tags", wants = "nvim-cmp" },
+                -- { "quangnguyen30192/cmp-nvim-tags", wants = "nvim-cmp" },
                 {
                     "windwp/nvim-autopairs",
                     wants = "nvim-cmp",
@@ -609,26 +616,11 @@ return require("packer").startup({
             end,
         })
 
-        --cmpのrequiresで記載しているが個別で設定必要
-        --[[ use({
-            "windwp/nvim-autopairs",
-            wants = "nvim-cmp",
-            config = function()
-                require("my_plugins.nvim-autopairs")
-            end,
-        }) ]]
         --}}}
 
         ---------------
         --??? {{{
         ---------------
-        use({
-            "folke/neodev.nvim",
-            module = "neodev",
-            config = function()
-                require("my_plugins.neodev")
-            end,
-        })
         use({
             "lfilho/cosco.vim",
             event = "InsertEnter",
@@ -645,14 +637,14 @@ return require("packer").startup({
         -- quickfixなどでファイルを開かないようにする
         use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
         -- use({ "wadackel/nvim-syntax-info", opt = true })
-        use({
-            "Shatur/neovim-session-manager",
-            opt = true,
-            -- event = "VimEnter",
-            config = function()
-                require("my_plugins.neovim-session-manager")
-            end,
-        })
+        -- use({
+        --     "Shatur/neovim-session-manager",
+        --     opt = true,
+        --     -- event = "VimEnter",
+        --     config = function()
+        --         require("my_plugins.neovim-session-manager")
+        --     end,
+        -- })
         use({
             "sentriz/vim-print-debug",
             -- event = "VimEnter",
