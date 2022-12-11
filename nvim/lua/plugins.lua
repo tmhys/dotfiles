@@ -1,4 +1,4 @@
----------------
+--------------
 -- packer comand & keymap
 ---------------
 vim.api.nvim_create_user_command("PackerInstall", "packadd packer.nvim | require'packers'.install()", { force = true })
@@ -6,7 +6,8 @@ vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'
 vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", { force = true })
 vim.api.nvim_create_user_command(
     "PackerClean",
-    "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()",
+    "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()"
+    ,
     { force = true }
 )
 vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>", { noremap = true, silent = true })
@@ -35,6 +36,7 @@ return require("packer").startup({
         use({ "nvim-lua/popup.nvim" })
         use({
             "folke/noice.nvim",
+            -- module = "noice",
             -- opt = true,
             -- cond = [[vim.fn.has'gui' != 1]],
             -- event = "VimEnter",
@@ -43,8 +45,8 @@ return require("packer").startup({
             end,
             requires = {
                 -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-                { "MunifTanjim/nui.nvim", opt = true },
-                { "rcarriga/nvim-notify", opt = true },
+                { "MunifTanjim/nui.nvim" },
+                { "rcarriga/nvim-notify", module = "notify" },
             },
             wants = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
         })
@@ -53,15 +55,6 @@ return require("packer").startup({
         ---------------
         -- colorschemes{{{
         ---------------
-        use({ "sainnhe/gruvbox-material", opt = true })
-        use({ "rafi/awesome-vim-colorschemes", opt = true })
-        use({
-            "EdenEast/nightfox.nvim",
-            opt = true,
-            config = function()
-                require("my_plugins.nightfox")
-            end,
-        })
         use({
             "catppuccin/nvim",
             as = "catppuccin",
@@ -71,26 +64,31 @@ return require("packer").startup({
                 require("catppuccin").setup()
                 vim.api.nvim_command("colorscheme catppuccin")
             end,
-            -- config = function()
-            --  require("my_plugins.catppuccin")
-            -- end,
         })
-        -- use({ "Mofiqul/dracula.nvim", event = "ColorSchemePre" })
-        -- use({
-        --      "rose-pine/neovim",
-        --      as = "rose-pine",
-        --      tag = "v1.*",
-        --      config = function()
-        --              require("my_plugins.rose-pine")
-        --      end,
-        --      event = "ColorSchemePre",
-        -- })
-        -- use({ "catppuccin/nvim", as = "catppuccin", event = "ColorSchemePre" })
-        -- use({ "navarasu/onedark.nvim", event = "ColorSchemePre" })
-        -- use({ "Th3Whit3Wolf/one-nvim", event = "ColorSchemePre" })
-        -- use({ "folke/tokyonight.nvim", event = "ColorSchemePre" })
-        -- use({ "Mofiqul/vscode.nvim", event = "ColorSchemePre" })
-        -- use({ "rebelot/kanagawa.nvim", event = "ColorSchemePre" })
+        use({ "sainnhe/gruvbox-material", opt = true })
+        use({ "rafi/awesome-vim-colorschemes", opt = true })
+        use({
+            "EdenEast/nightfox.nvim",
+            opt = true,
+            config = function()
+                require("my_plugins.nightfox")
+            end,
+        })
+        use({ "Mofiqul/dracula.nvim", opt = true })
+        use({
+            "rose-pine/neovim",
+            opt = true,
+            as = "rose-pine",
+            tag = "v1.*",
+            config = function()
+                require("my_plugins.rose-pine")
+            end,
+        })
+        use({ "navarasu/onedark.nvim", opt = true })
+        use({ "Th3Whit3Wolf/one-nvim", opt = true })
+        use({ "folke/tokyonight.nvim", opt = true })
+        use({ "Mofiqul/vscode.nvim", opt = true })
+        use({ "rebelot/kanagawa.nvim", opt = true })
         --}}}
 
         ---------------
@@ -105,7 +103,6 @@ return require("packer").startup({
         })
         use({
             "drmingdrmer/vim-toggle-quickfix",
-            --ft = "qf",
             event = "QuickFixCmdPre",
             config = function()
                 require("my_plugins.vim-toggle-quickfix")
@@ -118,12 +115,6 @@ return require("packer").startup({
                 require("my_plugins.modes")
             end,
         })
-        --[[ use({
-            "rcarriga/nvim-notify",
-            config = function()
-                require("my_plugins.nvim-notify")
-            end,
-        }) ]]
         use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
         -- colorschemesによっては表示がうまくいかない
         use({
@@ -144,8 +135,6 @@ return require("packer").startup({
         use({
             "lewis6991/gitsigns.nvim",
             event = { "FocusLost", "CursorHold" },
-            -- requires = { "nvim-lua/plenary.nvim", opt = true },
-            -- wants = { "nvim-lua/plenary.nvim" },
             config = function()
                 require("my_plugins.gitsigns")
             end,
@@ -186,7 +175,7 @@ return require("packer").startup({
         })
         use({
             "petertriho/nvim-scrollbar",
-            event = "BufWinEnter",
+            event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
             requires = { "kevinhwang91/nvim-hlslens", opt = true },
             wants = "nvim-hlslens",
             config = function()
@@ -210,7 +199,6 @@ return require("packer").startup({
         use({
             "kylechui/nvim-surround",
             event = "BufRead",
-            -- event = "VimEnter",
             config = function()
                 require("my_plugins.nvim-surround")
             end,
@@ -239,24 +227,14 @@ return require("packer").startup({
         use({
             "PHSix/faster.nvim",
             opt = true,
-            -- event = "VimEnter",
             keys = { "j", "k" },
-            -- event = "BufRead",
             config = function()
                 require("my_plugins.faster")
             end,
         })
         --ユニーク文字ハイライト
-        -- use({
-        --      "unblevable/quick-scope",
-        --      event = "VimEnter",
-        --      config = function()
-        --              require("my_plugins.quick-scope")
-        --      end,
-        -- })
         use({
             "jinh0/eyeliner.nvim",
-            -- event = "VimEnter",
             event = "BufRead",
             config = function()
                 require("eyeliner").setup({
@@ -275,20 +253,11 @@ return require("packer").startup({
         -- })
         use({
             "ggandor/lightspeed.nvim",
-            -- event = "VimEnter",
             event = "BufRead",
             config = function()
                 require("my_plugins.lightspeed")
             end,
         })
-        -- use({
-        --     "rhysd/clever-f.vim",
-        --     -- event = "VimEnter",
-        --     event = "BufRead",
-        --     config = function()
-        --         require("my_plugins.clever-f")
-        --     end,
-        -- })
         use({
             "phaazon/hop.nvim",
             -- event = "BufRead",
@@ -341,22 +310,11 @@ return require("packer").startup({
         ---------------
         use({
             "soramugi/auto-ctags.vim",
-            -- event = "VimEnter",
             event = "BufRead",
             config = function()
                 require("my_plugins.auto-ctags")
             end,
         })
-        -- use({
-        --     "ludovicchabant/vim-gutentags",
-        --     -- event = "VimEnter",
-        --     event = "BufRead",
-        -- })
-        -- use ( { 'simrat39/symbols-outline.nvim',
-        --     config = function()
-        --         require("my_plugins.symbol")
-        --     end
-        -- } )
         use({
             "majutsushi/tagbar",
             config = function()
@@ -372,29 +330,20 @@ return require("packer").startup({
         ---------------
         --filetype specific{{{
         ---------------
-        use({
-            "iamcco/markdown-preview.nvim",
-            ft = { "markdown" },
-            run = ":call mkdp#util#install()",
-        })
-        use({ "MTDL9/vim-log-highlighting", ft = "log" })
-        use({
-            "SidOfc/mkdx",
-            ft = { "markdown" },
-            setup = function()
-                require("my_plugins.mkdx")
-                -- vim.cmd("source ~/.config/nvim/rc/pluginsetup/mkdx.vim")
-            end,
-        })
         -- use({
-        --      "skanehira/preview-markdown.vim",
-        --      ft = { "markdown" },
-        --      config = function()
-        --              require("my_plugins.preview-markdown")
-        --      end,
+        --     "iamcco/markdown-preview.nvim",
+        --     ft = { "markdown" },
+        --     run = ":call mkdp#util#install()",
         -- })
+        -- use({
+        --     "SidOfc/mkdx",
+        --     ft = { "markdown" },
+        --     setup = function()
+        --         require("my_plugins.mkdx")
+        --     end,
+        -- })
+        use({ "MTDL9/vim-log-highlighting", ft = "log" })
         use({ "mechatroner/rainbow_csv", ft = { "csv" } })
-        -- use({ "vim-scripts/dbext.vim " })
         use({ "lark-parser/vim-lark-syntax", ft = { "lark" } })
         use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim", ft = { "lua", "toml" } })
         --}}}
@@ -407,7 +356,6 @@ return require("packer").startup({
             module = { "telescope" },
             cmd = "Telescope",
             requires = { { "nvim-lua/plenary.nvim", opt = true }, { "nvim-lua/popup.nvim", opt = true } },
-            -- wants = { "nvim-lua/plenary.nvim","nvim-lua/popup.nvim","nvim-telescope/telescope-file-browser.nvim" },
             setup = function()
                 require("my_plugins.telescope_setup")
             end,
@@ -418,9 +366,6 @@ return require("packer").startup({
         use({
             "nvim-telescope/telescope-file-browser.nvim",
             opt = true,
-            -- config = function()
-            --  require("telescope").load_extension("file_browser")
-            -- end,
             wants = { "telescope.nvim" },
         })
 
@@ -466,20 +411,12 @@ return require("packer").startup({
             end,
         })
         use({
-        "SmiteshP/nvim-navic",
-        module = "nvim-navic",
-        setup = function()
-            require("my_plugins.nvim-navic")
-        end,
-        })
-        --[[ use({
-            "SmiteshP/nvim-gps",
-            module = {"nvim-gps"},
-            config = function()
-                require("my_plugins.gps")
+            "SmiteshP/nvim-navic",
+            module = "nvim-navic",
+            setup = function()
+                require("my_plugins.nvim-navic")
             end,
-            wants = "nvim-treesitter",
-        }) ]]
+        })
         use({
             "p00f/nvim-ts-rainbow",
             wants = "nvim-treesitter",
@@ -500,42 +437,33 @@ return require("packer").startup({
         ---------------
         use({
             "neovim/nvim-lspconfig",
-            event = {"BufReadPre"},
-            requires = { { "folke/neodev.nvim" ,module = {"neodev"}},
-                        {
-                                "WhoIsSethDaniel/mason-tool-installer.nvim",
-                                event = { "FocusLost", "CursorHold" },
-                                config = function()
-                                    require("my_plugins.mason_tool_installer")
-                                end,
-                              },
-                        { "williamboman/mason-lspconfig.nvim", module = { "mason-lspconfig" } },
-                        { "williamboman/mason.nvim", module = { "mason" } },
-                        },
+            event = { "BufReadPre" },
+            requires = { { "folke/neodev.nvim", module = { "neodev" } },
+                {
+                    "WhoIsSethDaniel/mason-tool-installer.nvim",
+                    event = { "FocusLost", "CursorHold" },
+                    config = function()
+                        require("my_plugins.mason_tool_installer")
+                    end,
+                },
+                { "williamboman/mason-lspconfig.nvim", module = { "mason-lspconfig" } },
+                { "williamboman/mason.nvim", module = { "mason" } },
+            },
             wants = {
-              "neodev.nvim",
-              "mason.nvim",
-              "mason-lspconfig.nvim",
-              -- needs these plugins to setup capabilities
-              "cmp-nvim-lsp",
+                "neodev.nvim",
+                "mason.nvim",
+                "mason-lspconfig.nvim",
+                -- needs these plugins to setup capabilities
+                "cmp-nvim-lsp",
             },
             config = function()
                 require("my_plugins.lspconfig")
             end,
+            setup = function()
+                require("my_plugins.lspconfig_setup")
+            end,
+
         })
-        --use({
-        --    "williamboman/mason.nvim",
-        --    module = { "mason" },
-        --    requires = {
-        --        {
-        --            "williamboman/mason-lspconfig.nvim",
-        --            module = { "mason-lspconfig" },
-        --            config = function()
-        --                require("my_plugins.mason-lspconfig")
-        --            end,
-        --        },
-        --    },
-        --})
         use({
             "ray-x/lsp_signature.nvim",
             wants = "mason.nvim",
@@ -553,7 +481,7 @@ return require("packer").startup({
         use({
             "jose-elias-alvarez/null-ls.nvim",
             wants = "mason.nvim",
-            event = {"FocusLost","CursorHold"},
+            event = { "FocusLost", "CursorHold" },
             config = function()
                 require("my_plugins.null-ls")
             end,
@@ -564,22 +492,23 @@ return require("packer").startup({
         ---------------
         --lsp ui{{{
         ---------------
-        -- use({
-        --     "tami5/lspsaga.nvim",
-        --     wants = "mason.nvim",
-        --     config = function()
-        --         require("my_plugins.lspsaga")
-        --     end,
-        -- })
-        -- use({
-        --     "folke/trouble.nvim",
-        --     requires = { "folke/lsp-colors.nvim" },
-        --     wants = "mason.nvim",
-        --     config = function()
-        --         require("my_plugins.trouble")
-        --     end,
-        -- })
-        --}}}
+        use({
+            "tami5/lspsaga.nvim",
+            branch = "main",
+            wants = "mason.nvim",
+            config = function()
+                require("my_plugins.lspsaga")
+            end,
+        })
+        use({
+            "folke/trouble.nvim",
+            requires = { "folke/lsp-colors.nvim" },
+            wants = "mason.nvim",
+            config = function()
+                require("my_plugins.trouble")
+            end,
+        })
+        -- }}}
 
         ---------------
         -- completion{{{
@@ -587,7 +516,6 @@ return require("packer").startup({
         use({ "hrsh7th/vim-vsnip", event = "InsertEnter" })
         use({
             "hrsh7th/nvim-cmp",
-            -- module = "cmp",
             event = "InsertEnter",
             wants = { "vim-vsnip" },
             requires = {
@@ -631,7 +559,6 @@ return require("packer").startup({
         use({ "tpope/vim-repeat", event = "BufRead" })
         use({
             "jghauser/mkdir.nvim",
-            -- event = "VimEnter"
             event = "BufRead",
         })
         -- quickfixなどでファイルを開かないようにする
@@ -647,7 +574,6 @@ return require("packer").startup({
         -- })
         use({
             "sentriz/vim-print-debug",
-            -- event = "VimEnter",
             event = "BufRead",
             config = function()
                 require("my_plugins.vim-print-debug")
@@ -665,7 +591,6 @@ return require("packer").startup({
         ---------------
         use({
             "numToStr/Comment.nvim",
-            -- event = "VimEnter",
             event = "BufRead",
             config = function()
                 require("my_plugins.Comment")

@@ -78,7 +78,8 @@ require("lualine").setup({
         disabled_filetypes = {},
         always_divide_middle = true,
     },
-    sections = sections_1,
+    -- sections = sections_1,
+    winbar = sections_1,
     inactive_sections = {
         lualine_a = { "mode" },
         lualine_b = {},
@@ -91,3 +92,5 @@ require("lualine").setup({
     --extensions = { "quickfix", my_toggleterm, "symbols-outline", my_extension },
     extensions = { "quickfix", my_toggleterm, "symbols-outline", my_extension },
 })
+
+vim.opt.laststatus = 0

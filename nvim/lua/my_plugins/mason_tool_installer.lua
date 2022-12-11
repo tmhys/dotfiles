@@ -11,16 +11,15 @@ require('mason-tool-installer').setup {
     -- you can turn off/on auto_update per tool
     -- { 'bash-language-server', auto_update = true },
 
+    'stylua',
     'lua-language-server',
     'vim-language-server',
+    'autopep8',
     'isort',
     'black',
-    -- 'gopls',
     'pyright',
+    -- 'gopls',
     -- 'vimls',
-    'stylua',
-    'shellcheck',
-    'editorconfig-checker',
     --[[ 'gofumpt',
     'golines',
     'gomodifytags',
@@ -52,4 +51,14 @@ require('mason-tool-installer').setup {
   -- effective if run_on_start is set to true.
   -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
   -- Default: 0 start_delay = 3000, -- 3 second delay
+  start_delay = 3000, -- 3 second delay
 }
+
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'MasonToolsUpdateCompleted',
+    callback = function()
+      vim.schedule(function()
+        print 'mason-tool-installer has finished'
+      end)
+    end,
+  })

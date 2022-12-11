@@ -1,141 +1,102 @@
--- local sqlite_path = forward_slash( .. "/sqlite3.dll")
--- if filereadable(sqlite_path) then
---  vim.g.sqlite_clib_path = sqlite_path
---  return true
--- end
 vim.api.nvim_command([[packadd telescope-file-browser.nvim]])
 require("telescope").load_extension("file_browser")
 
---[[ local M = {}
-M.setup = function() ]]
--- require("telescope").setup{
 local actions = require("telescope.actions")
 require("telescope").setup({
-	defaults = {
-		mappings = {
-			n = {
-				["q"] = actions.close,
-				["<esc>"] = actions.close,
-				--["jj"] = actions.close
-			},
-		},
-		vimgrep_arguments = {
-			"rg",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
-		},
-		preview = {
-			hide_on_startup = true,
-		},
-		prompt_prefix = "> ",
-		selection_caret = "> ",
-		entry_prefix = "  ",
-		initial_mode = "insert",
-		selection_strategy = "reset",
-		sorting_strategy = "descending",
-		layout_strategy = "horizontal",
-		layout_config = {
-			horizontal = {
-				mirror = false,
-			},
-			vertical = {
-				mirror = false,
-			},
-		},
-		file_sorter = require("telescope.sorters").get_fuzzy_file,
-		file_ignore_patterns = { "%.dll", "%.exe", "%.qm", "%.dat" },
-		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		winblend = 0,
-		border = {},
-		--borderchars = {
-		--  --style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		--  { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		--  prompt = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		--  results = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		-- review = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-		--},
-		--    borderchars = {
-		--    prompt = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
-		--    results = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
-		-- review = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
-		--  },
-		--borderchars = { '═', '║', "=", "║", "╔", "╗", "╝", "╚" },
-		--borderchars = { '─', '│', '─', '│', '+', '+', '+', '+' },
-		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-		-- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-		color_devicons = true,
-		use_less = true,
-		path_display = {},
-		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    defaults = {
+        mappings = {
+            n = {
+                ["q"] = actions.close,
+                ["<esc>"] = actions.close,
+                --["jj"] = actions.close
+            },
+        },
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+        },
+        preview = {
+            hide_on_startup = true,
+        },
+        prompt_prefix = "> ",
+        selection_caret = "> ",
+        entry_prefix = "  ",
+        initial_mode = "insert",
+        selection_strategy = "reset",
+        sorting_strategy = "descending",
+        layout_strategy = "horizontal",
+        layout_config = {
+            horizontal = {
+                mirror = false,
+            },
+            vertical = {
+                mirror = false,
+            },
+        },
+        file_sorter = require("telescope.sorters").get_fuzzy_file,
+        file_ignore_patterns = { "%.dll", "%.exe", "%.qm", "%.dat" },
+        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        winblend = 0,
+        border = {},
+        --borderchars = {
+        --  --style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        --  { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+        --  prompt = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+        --  results = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+        -- review = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+        --},
+        --    borderchars = {
+        --    prompt = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+        --    results = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+        -- review = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' },
+        --  },
+        --borderchars = { '═', '║', "=", "║", "╔", "╗", "╝", "╚" },
+        --borderchars = { '─', '│', '─', '│', '+', '+', '+', '+' },
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+        color_devicons = true,
+        use_less = true,
+        path_display = {},
+        set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
-		-- Developer configurations: Not meant for general override
-		buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-	},
-	pickers = {
-		find_files = {
-			theme = "dropdown",
-		},
-		buffers = {
-			theme = "dropdown",
-		},
-		live_grep = {
-			theme = "dropdown",
-		},
-		tags = {
-			theme = "dropdown",
-		},
-		oldfiles = {
-			theme = "dropdown",
-		},
-		help_tags = {
-			theme = "dropdown",
-		},
-		quickfix = {
-			theme = "dropdown",
-		},
-		colorscheme = {
-			theme = "dropdown",
-		},
-	},
+        -- Developer configurations: Not meant for general override
+        buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+    },
+    pickers = {
+        find_files = {
+            theme = "dropdown",
+        },
+        buffers = {
+            theme = "dropdown",
+        },
+        live_grep = {
+            theme = "dropdown",
+        },
+        tags = {
+            theme = "dropdown",
+        },
+        oldfiles = {
+            theme = "dropdown",
+        },
+        help_tags = {
+            theme = "dropdown",
+        },
+        quickfix = {
+            theme = "dropdown",
+        },
+        colorscheme = {
+            theme = "dropdown",
+        },
+        -- file_browser = {
+        --     theme = "dropdown",
+        -- },
+    },
 })
--- }
-
---vim.api.nvim_set_keymap('n', '<Leader>f', '<telescope>', {})
--- vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Telescope find_files<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>fb", "<cmd>Telescope buffers<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>fg", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>ft", "<cmd>Telescope tags<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>fm", "<cmd>Telescope oldfiles<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>fq", "<cmd>Telescope quickfix<CR>", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("n", "<Leader>fc", "<cmd>Telescope colorscheme<CR>", { noremap = true, silent = true })
---[[ vim.keymap.set("n", "<Leader>ff", builtin "find_files" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>fb", builtin "buffers" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>fg", builtin "live_grep" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>ft", builtin "tags" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>fm", builtin "oldfiles" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>fh", builtin "help_tags" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>fq", builtin "quickfix" { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>fc", builtin "colorscheme" { noremap = true, silent = true })
-    vim.api.nvim_set_keymap("n", "<Leader>f<Leader>", "<cmd>Telescope<CR>", { noremap = true, silent = true })
-    vim.api.nvim_set_keymap(
-        "n",
-        "<Leader>fv",
-        "<cmd>Telescope find_files search_dirs=~/AppData/Local/nvim<CR>",
-        { noremap = true, silent = true }
-    )
-    vim.api.nvim_set_keymap(
-        "n",
-        "<Leader>fd",
-        "<cmd>Telescope find_files search_dirs=~/dotfiles<CR>",
-        { noremap = true, silent = true }
-    ) ]]
---[[ end
-return M ]]
