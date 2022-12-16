@@ -11,10 +11,10 @@ vim.api.nvim_set_keymap("c", "<C-k>", "<Down>", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("c", "<C-l>", "<Del>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("c", "<C-l>", "<End>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
-    "i",
-    "<M-Insert>",
-    "<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa",
-    { noremap = true, silent = true }
+	"i",
+	"<M-Insert>",
+	"<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa",
+	{ noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap("i", "<c-h>", "<left>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<c-j>", "<down>", { noremap = true, silent = true })
@@ -40,10 +40,10 @@ vim.api.nvim_set_keymap("n", "<F3>", ":<C-u>setlocal relativenumber!<CR>", { nor
 vim.api.nvim_set_keymap("n", "<F4>", ":<C-u>set scrollbind!<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-3>", ':%s/<C-r>"///g<Left><Left>', { noremap = true, silent = false })
 vim.api.nvim_set_keymap(
-    "n",
-    "<M-g>",
-    ":vim //jg **<Left><Left><Left><Left><Left><Left>",
-    { noremap = true, silent = false }
+	"n",
+	"<M-g>",
+	":vim //jg **<Left><Left><Left><Left><Left><Left>",
+	{ noremap = true, silent = false }
 )
 vim.api.nvim_set_keymap("n", "<M-h>", "<C-w>hdo", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<M-j>", ":cn<CR>", { noremap = true, silent = true })
@@ -77,10 +77,10 @@ vim.api.nvim_set_keymap("i", "<CR>", "<C-g>u<CR>", { noremap = true, silent = tr
 vim.api.nvim_set_keymap("n", "<ESC><ESC>", ":<C-u>nohlsearch<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<space><space>", "*N", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
-    "v",
-    "#",
-    ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>",
-    { noremap = true, silent = false }
+	"v",
+	"#",
+	":s///gc<Left><Left><Left><Left><C-r><C-w><Right>",
+	{ noremap = true, silent = false }
 )
 vim.api.nvim_set_keymap("v", ";", ":", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-Down>", '"zx"zp`[V`]', { noremap = true, silent = true })
@@ -90,12 +90,15 @@ vim.api.nvim_set_keymap("v", "<TAB>", "%", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "v", "$h", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "za", "zf", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
-    "i",
-    "<S-Insert>",
-    "<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>",
-    { noremap = true, silent = true }
+	"i",
+	"<S-Insert>",
+	"<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>",
+	{ noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap("n", "<Space>cd", ":cd  %:h | pwd<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_create_user_command("Evimrc", ":e $HOME/AppData/Local/nvim/init.lua", { force = true })
 vim.api.nvim_create_user_command("Egvimrc", ":e $HOME/AppData/Local/nvim/ginit.vim", { force = true })
+vim.keymap.set("n", "q:", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "q/", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "q?", "<Nop>", { noremap = true, silent = true })
