@@ -6,8 +6,7 @@ vim.api.nvim_create_user_command("PackerUpdate", "packadd packer.nvim | require'
 vim.api.nvim_create_user_command("PackerSync", "packadd packer.nvim | require'packers'.sync()", { force = true })
 vim.api.nvim_create_user_command(
     "PackerClean",
-    "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()"
-    ,
+    "packadd packer.nvim | lua require'packers'.clean()]vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packers'.compile()",
     { force = true }
 )
 vim.api.nvim_set_keymap("n", "<F12>", ":PackerSync<CR>", { noremap = true, silent = true })
@@ -36,10 +35,6 @@ return require("packer").startup({
         use({ "nvim-lua/popup.nvim" })
         use({
             "folke/noice.nvim",
-            -- module = "noice",
-            -- opt = true,
-            -- cond = [[vim.fn.has'gui' != 1]],
-            -- event = "VimEnter",
             config = function()
                 require("my_plugins.noice")
             end,
@@ -260,7 +255,6 @@ return require("packer").startup({
         })
         use({
             "phaazon/hop.nvim",
-            -- event = "BufRead",
             branch = "v2",
             module = "hop",
             -- kesy = "zz",
@@ -297,7 +291,6 @@ return require("packer").startup({
         ---------------
         use({
             "dinhhuy258/git.nvim",
-            -- event = "VimEnter",
             event = "BufRead",
             config = function()
                 require("my_plugins.git")
@@ -330,18 +323,6 @@ return require("packer").startup({
         ---------------
         --filetype specific{{{
         ---------------
-        -- use({
-        --     "iamcco/markdown-preview.nvim",
-        --     ft = { "markdown" },
-        --     run = ":call mkdp#util#install()",
-        -- })
-        -- use({
-        --     "SidOfc/mkdx",
-        --     ft = { "markdown" },
-        --     setup = function()
-        --         require("my_plugins.mkdx")
-        --     end,
-        -- })
         use({ "MTDL9/vim-log-highlighting", ft = "log" })
         use({ "mechatroner/rainbow_csv", ft = { "csv" } })
         use({ "lark-parser/vim-lark-syntax", ft = { "lark" } })
@@ -438,7 +419,8 @@ return require("packer").startup({
         use({
             "neovim/nvim-lspconfig",
             event = { "BufReadPre" },
-            requires = { { "folke/neodev.nvim", module = { "neodev" } },
+            requires = {
+                { "folke/neodev.nvim", module = { "neodev" } },
                 {
                     "WhoIsSethDaniel/mason-tool-installer.nvim",
                     event = { "FocusLost", "CursorHold" },
@@ -456,13 +438,14 @@ return require("packer").startup({
                 -- needs these plugins to setup capabilities
                 "cmp-nvim-lsp",
             },
-            config = function()
-                require("my_plugins.lspconfig")
-            end,
             setup = function()
                 require("my_plugins.lspconfig_setup")
+                -- require("my_plugins.lsp_config").setup()
             end,
-
+            config = function()
+                require("my_plugins.lspconfig")
+                -- require("my_plugins.lsp_config").config()
+            end,
         })
         use({
             "ray-x/lsp_signature.nvim",
@@ -471,13 +454,13 @@ return require("packer").startup({
                 require("my_plugins.lsp-signature")
             end,
         })
-        use({
-            "j-hui/fidget.nvim",
-            wants = "mason.nvim",
-            config = function()
-                require("my_plugins.fidget")
-            end,
-        })
+        -- use({
+        --     "j-hui/fidget.nvim",
+        --     wants = "mason.nvim",
+        --     config = function()
+        --         require("my_plugins.fidget")
+        --     end,
+        -- })
         use({
             "jose-elias-alvarez/null-ls.nvim",
             wants = "mason.nvim",
@@ -492,28 +475,27 @@ return require("packer").startup({
         ---------------
         --lsp ui{{{
         ---------------
-        use({
-            "tami5/lspsaga.nvim",
-            branch = "main",
-            wants = "mason.nvim",
-            config = function()
-                require("my_plugins.lspsaga")
-            end,
-        })
-        use({
-            "folke/trouble.nvim",
-            requires = { "folke/lsp-colors.nvim" },
-            wants = "mason.nvim",
-            config = function()
-                require("my_plugins.trouble")
-            end,
-        })
+        -- use({
+        --  "tami5/lspsaga.nvim",
+        --  branch = "main",
+        --  wants = "mason.nvim",
+        --  config = function()
+        --      require("my_plugins.lspsaga")
+        --  end,
+        -- })
+        -- use({
+        --  "folke/trouble.nvim",
+        --  requires = { "folke/lsp-colors.nvim" },
+        --  wants = "mason.nvim",
+        --  config = function()
+        --      require("my_plugins.trouble")
+        --  end,
+        -- })
         -- }}}
 
         ---------------
         -- completion{{{
         ---------------
-        use({ "hrsh7th/vim-vsnip", event = "InsertEnter" })
         use({
             "hrsh7th/nvim-cmp",
             event = "InsertEnter",
@@ -521,6 +503,7 @@ return require("packer").startup({
             requires = {
                 { "hrsh7th/cmp-nvim-lsp" },
                 { "onsails/lspkind-nvim" },
+                { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
                 { "hrsh7th/cmp-omni", wants = "nvim-cmp" },
                 { "f3fora/cmp-spell", wants = "nvim-cmp" },
                 { "hrsh7th/cmp-vsnip", wants = "nvim-cmp" },
@@ -529,7 +512,7 @@ return require("packer").startup({
                 { "hrsh7th/cmp-path", wants = "nvim-cmp" },
                 { "hrsh7th/cmp-cmdline", wants = "nvim-cmp" },
                 { "ray-x/cmp-treesitter", wants = "nvim-cmp" },
-                { "tzachar/cmp-tabnine", wants = "nvim-cmp", run = "powershell ./install.ps1" },
+                -- { "tzachar/cmp-tabnine", wants = "nvim-cmp", run = "powershell ./install.ps1" },
                 -- { "quangnguyen30192/cmp-nvim-tags", wants = "nvim-cmp" },
                 {
                     "windwp/nvim-autopairs",
@@ -549,13 +532,6 @@ return require("packer").startup({
         ---------------
         --??? {{{
         ---------------
-        use({
-            "lfilho/cosco.vim",
-            event = "InsertEnter",
-            config = function()
-                require("my_plugins.cosco")
-            end,
-        })
         use({ "tpope/vim-repeat", event = "BufRead" })
         use({
             "jghauser/mkdir.nvim",
@@ -563,15 +539,6 @@ return require("packer").startup({
         })
         -- quickfixなどでファイルを開かないようにする
         use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
-        -- use({ "wadackel/nvim-syntax-info", opt = true })
-        -- use({
-        --     "Shatur/neovim-session-manager",
-        --     opt = true,
-        --     -- event = "VimEnter",
-        --     config = function()
-        --         require("my_plugins.neovim-session-manager")
-        --     end,
-        -- })
         use({
             "sentriz/vim-print-debug",
             event = "BufRead",
@@ -608,6 +575,34 @@ return require("packer").startup({
         ---------------
         -- disabled plugins {{{
         ---------------
+        -- use({
+        --     "lfilho/cosco.vim",
+        --     event = "InsertEnter",
+        --     config = function()
+        --         require("my_plugins.cosco")
+        --     end,
+        -- })
+        -- use({ "wadackel/nvim-syntax-info", opt = true })
+        -- use({
+        --     "Shatur/neovim-session-manager",
+        --     opt = true,
+        --     -- event = "VimEnter",
+        --     config = function()
+        --         require("my_plugins.neovim-session-manager")
+        --     end,
+        -- })
+        -- use({
+        --     "iamcco/markdown-preview.nvim",
+        --     ft = { "markdown" },
+        --     run = ":call mkdp#util#install()",
+        -- })
+        -- use({
+        --     "SidOfc/mkdx",
+        --     ft = { "markdown" },
+        --     setup = function()
+        --         require("my_plugins.mkdx")
+        --     end,
+        -- })
         -- use({
         --  "delphinus/cellwidths.nvim",
         --  opt = true,
