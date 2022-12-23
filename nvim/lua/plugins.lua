@@ -35,6 +35,7 @@ return require("packer").startup({
         use({ "nvim-lua/popup.nvim" })
         use({
             "folke/noice.nvim",
+            opt = true,
             config = function()
                 require("my_plugins.noice")
             end,
@@ -457,13 +458,13 @@ return require("packer").startup({
                 require("my_plugins.lsp-signature")
             end,
         })
-        -- use({
-        --     "j-hui/fidget.nvim",
-        --     wants = "mason.nvim",
-        --     config = function()
-        --         require("my_plugins.fidget")
-        --     end,
-        -- })
+        use({
+            "j-hui/fidget.nvim",
+            wants = "mason.nvim",
+            config = function()
+                require("my_plugins.fidget")
+            end,
+        })
         use({
             "jose-elias-alvarez/null-ls.nvim",
             wants = "mason.nvim",
@@ -502,23 +503,25 @@ return require("packer").startup({
         use({
             "hrsh7th/nvim-cmp",
             event = "InsertEnter",
-            wants = { "vim-vsnip" },
+            -- wants = { "vim-vsnip" },
             requires = {
                 { "hrsh7th/cmp-nvim-lsp" },
                 { "onsails/lspkind-nvim" },
                 { "saadparwaiz1/cmp_luasnip",
-        requires = {
-          {
-            "L3MON4D3/LuaSnip",
-            module = { "luasnip" },
-            requires = {
-              { "rafamadriz/friendly-snippets" },
-            },
-            -- config = config.luasnip,
-          },
-      }},
-                { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
-                { "hrsh7th/cmp-vsnip", wants = "nvim-cmp" },
+                  requires = {
+                    {
+                      "L3MON4D3/LuaSnip",
+                      module = { "luasnip" },
+                      requires = {
+                        { "rafamadriz/friendly-snippets" },
+                      },
+                              config = function()
+                                  require("my_plugins.luasnip")
+                              end,
+                    },
+                }},
+                -- { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
+                -- { "hrsh7th/cmp-vsnip", wants = "nvim-cmp" },
                 { "hrsh7th/cmp-omni", wants = "nvim-cmp" },
                 { "f3fora/cmp-spell", wants = "nvim-cmp" },
                 { "hrsh7th/cmp-nvim-lua", wants = "nvim-cmp" },
