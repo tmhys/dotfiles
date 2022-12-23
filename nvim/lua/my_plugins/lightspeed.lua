@@ -1,5 +1,4 @@
 vim.g.lightspeed_no_default_keymaps = true
-
 require("lightspeed").setup({
     ignore_case = false,
     -- exit_after_idle_msecs = { unlabeled = 2000, labeled = nil },
@@ -29,3 +28,6 @@ nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "
 nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
 nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
 ]])
+
+vim.cmd('unmap s')
+vim.cmd('unmap S')
