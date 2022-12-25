@@ -112,7 +112,7 @@ cmp.setup({
     sorting = {},
     sources = cmp.config.sources({
         { name = "nvim_lsp" ,priority = 100 },
-        { name = "luasnip",priority = 30}, -- For vsnip users.
+        { name = "luasnip",priority = 50}, -- For vsnip users.
         -- { name = "vsnip",priority = 30}, -- For vsnip users.
         { name = "buffer" ,priority = 80},
         { name = "path"  ,priority = 70},
