@@ -273,12 +273,14 @@ return require("packer").startup({
         use({
             "skywind3000/asyncrun.vim",
             ft = { "seq", "python" },
-            requires = { "mh21/errormarker.vim",opt = true ,
-            config = function()
-                require("my_plugins.errormarker")
-            end,
-        },
-            wants = {"mh21/errormarker.vim"},
+            requires = {
+                "mh21/errormarker.vim",
+                opt = true,
+                config = function()
+                    require("my_plugins.errormarker")
+                end,
+            },
+            wants = { "mh21/errormarker.vim" },
             config = function()
                 require("my_plugins.asyncrun")
             end,
@@ -389,7 +391,8 @@ return require("packer").startup({
         use({
             "nvim-treesitter/nvim-treesitter",
             opt = true,
-            event = { "BufReadPost" },
+            -- module = "nvim-treesitter",
+            event = { "BufRead", "BufNewFile", "InsertEnter" },
             run = ":TSUpdate",
             config = function()
                 require("my_plugins.treesitter")
@@ -404,6 +407,7 @@ return require("packer").startup({
         })
         use({
             "p00f/nvim-ts-rainbow",
+            event = { "BufRead", "BufNewFile", "InsertEnter" },
             wants = "nvim-treesitter",
             config = function()
                 require("my_plugins.nvim-ts-rainbow")
@@ -411,6 +415,7 @@ return require("packer").startup({
         })
         use({
             "s1n7ax/nvim-comment-frame",
+            event = { "BufRead", "BufNewFile", "InsertEnter" },
             config = function()
                 require("my_plugins.nvim-comment-frame")
             end,
@@ -502,57 +507,133 @@ return require("packer").startup({
         ---------------
         use({
             "hrsh7th/nvim-cmp",
-            event = "InsertEnter",
+            module = "cmp",
+            -- event = "InsertEnter",
             -- wants = { "vim-vsnip" },
             requires = {
-                { "hrsh7th/cmp-nvim-lsp" },
-                { "onsails/lspkind-nvim" },
-                { "saadparwaiz1/cmp_luasnip",
-                  requires = {
-                    {
-                      "L3MON4D3/LuaSnip",
-                      module = { "luasnip" },
-                      requires = {
-                        { "rafamadriz/friendly-snippets" },
-                      },
-                              config = function()
-                                  require("my_plugins.luasnip")
-                              end,
+                { "onsails/lspkind-nvim" ,module="lspkind"},
+                { "hrsh7th/cmp-nvim-lua", ft = "lua" },
+                { "hrsh7th/cmp-path",event="CmdlineEnter"},
+                { "hrsh7th/cmp-cmdline",event="CmdlineEnter"},
+                { "hrsh7th/cmp-nvim-lsp" ,event="InsertEnter"},
+                {
+                    "saadparwaiz1/cmp_luasnip",
+                    event="InsertEnter",
+                    requires = {
+                        {
+                            "L3MON4D3/LuaSnip",
+                            module = { "luasnip" },
+                            requires = {
+                                { "rafamadriz/friendly-snippets" },
+                            },
+                            config = function()
+                                require("my_plugins.luasnip")
+                            end,
+                        },
                     },
-                }},
-                -- { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
-                -- { "hrsh7th/cmp-vsnip", wants = "nvim-cmp" },
-                { "hrsh7th/cmp-omni", wants = "nvim-cmp" },
-                { "f3fora/cmp-spell", wants = "nvim-cmp" },
-                { "hrsh7th/cmp-nvim-lua", wants = "nvim-cmp" },
-                { "hrsh7th/cmp-buffer", wants = "nvim-cmp" },
-                { "hrsh7th/cmp-path", wants = "nvim-cmp" },
-                { "hrsh7th/cmp-cmdline", wants = "nvim-cmp" },
-                { "ray-x/cmp-treesitter", wants = "nvim-cmp" },
-                -- { "tzachar/cmp-tabnine", wants = "nvim-cmp", run = "powershell ./install.ps1" },
-                -- { "quangnguyen30192/cmp-nvim-tags", wants = "nvim-cmp" },
+                },
+                { "hrsh7th/cmp-omni",event="InsertEnter"},
+                { "f3fora/cmp-spell",event="InsertEnter"},
+                { "hrsh7th/cmp-buffer",event="InsertEnter"},
+                { "ray-x/cmp-treesitter",event="InsertEnter"},
                 {
                     "windwp/nvim-autopairs",
-                    wants = "nvim-cmp",
+                    module = "nvim-autopairs",
+                    -- event="InsertEnter",
                     config = function()
                         require("my_plugins.nvim-autopairs")
                     end,
                 },
+                -- { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
+                -- { "hrsh7th/cmp-vsnip", wants = "nvim-cmp" },
+                -- { "tzachar/cmp-tabnine", wants = "nvim-cmp", run = "powershell ./install.ps1" },
+                -- { "quangnguyen30192/cmp-nvim-tags", wants = "nvim-cmp" },
             },
             config = function()
                 require("my_plugins.nvim-cmp")
             end,
         })
+        -- use({
+        --  "hrsh7th/cmp-nvim-lsp",
+        --  event = "InsertEnter",
+        --  module = "cmp_nvim_lsp",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-nvim-lsp" },
+        --  },
+        -- })
+        -- use({
+        --  "hrsh7th/cmp-buffer",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-buffer" },
+        --  },
+        -- })
+        -- use({
+        --  "hrsh7th/cmp-cmdline",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-cmdline" },
+        --  },
+        -- })
+        -- use({
+        --  "hrsh7th/cmp-nvim-lua",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-nvim-lua" },
+        --  },
+        -- })
+        -- use({
+        --  "hrsh7th/cmp-path",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-path" },
+        --  },
+        -- })
+        -- use({
+        --  "hrsh7th/cmp-omni",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-omni" },
+        --  },
+        -- })
+        -- use({
+        --  "f3fora/cmp-spell",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-spell" },
+        --  },
+        -- })
+        -- use({
+        --  "ray-x/cmp-treesitter",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp-treesitter" },
+        --  },
+        -- })
+        -- use({
+        --  "saadparwaiz1/cmp_luasnip",
+        --  event = "InsertEnter",
+        --  requires = {
+        --      { "hrsh7th/nvim-cmp", wants = "cmp_luasnip" },
+        --      {
+        --          "L3MON4D3/LuaSnip",
+        --          module = { "luasnip" },
+        --          requires = {
+        --              { "rafamadriz/friendly-snippets" },
+        --          },
+        --          config = function()
+        --              require("my_plugins.luasnip")
+        --          end,
+        --      },
+        --  },
+        -- })
 
         --}}}
 
         ---------------
         --??? {{{
         ---------------
-        use({ "tpope/vim-repeat",
-        opt = true,
-        keys = {"."},
-         })
+        use({ "tpope/vim-repeat", opt = true, keys = { "." } })
         use({
             "jghauser/mkdir.nvim",
             event = "BufWritePre",

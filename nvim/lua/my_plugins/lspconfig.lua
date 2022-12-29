@@ -70,7 +70,13 @@ local on_attach = function(client, bufnr)
 end
 
 local lspconfig = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local capabilities
+if ok then
+  local orig = vim.lsp.protocol.make_client_capabilities()
+  capabilities = cmp_nvim_lsp.default_capabilities(orig)
+end
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 local opts = { capabilities = capabilities, on_attach = on_attach }

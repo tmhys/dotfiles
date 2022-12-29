@@ -111,12 +111,12 @@ cmp.setup({
     },
     sorting = {},
     sources = cmp.config.sources({
-        { name = "nvim_lsp" ,priority = 100 },
+        { name = "nvim_lsp" ,priority = 90 },
         { name = "luasnip",priority = 50}, -- For vsnip users.
         -- { name = "vsnip",priority = 30}, -- For vsnip users.
         { name = "buffer" ,priority = 80},
         { name = "path"  ,priority = 70},
-        -- { name = "nvim_lua"},
+        { name = "nvim_lua",priority = 60},
         -- { name = "tags", max_item_count = 5 },
         -- { name = "cmp_tabnine", max_item_count = 5 },
     },{
@@ -167,7 +167,13 @@ cmp.setup.cmdline(":", {
 
 -- Setup lspconfig.
 -- require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local capabilities
+if ok then
+  local orig = vim.lsp.protocol.make_client_capabilities()
+  capabilities = cmp_nvim_lsp.default_capabilities(orig)
+end
+-- require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Auto pairs
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
