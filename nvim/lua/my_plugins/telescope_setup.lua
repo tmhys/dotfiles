@@ -24,8 +24,16 @@ vim.keymap.set("n", "<Leader>fm", builtin("oldfiles")())
 vim.keymap.set("n", "<Leader>fh", builtin("help_tags")())
 vim.keymap.set("n", "<Leader>fq", builtin("quickfix")())
 vim.keymap.set("n", "<Leader>fc", builtin("colorscheme")())
+vim.keymap.set("n", "<Leader>fn", extensions("file_browser", "file_browser")())
+-- vim.keymap.set("n", "<Leader>fs", extensions("session-lens", "find_files")())
 -- vim.keymap.set("n", "<Leader>fn", builtin("file_browser")())
-vim.keymap.set("n", "<Leader>fv", builtin("find_files")({search_dirs = { "~/AppData/Local/nvim" }}))
-vim.keymap.set("n", "<Leader>fd", builtin("find_files")({search_dirs = { "~/dotfiles" }}))
-vim.api.nvim_set_keymap("n", "<Leader>fn", "<cmd>Telescope file_browser<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>f<Leader>", "<cmd>Telescope<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>fv", builtin("find_files")({ search_dirs = { "~/AppData/Local/nvim" } }))
+vim.keymap.set("n", "<Leader>fd", builtin("find_files")({ search_dirs = { "~/dotfiles" } }))
+-- vim.api.nvim_set_keymap("n", "<Leader>fn", "<cmd>Telescope file_browser<CR>", { noremap = true, silent = true })
+--[[ vim.api.nvim_set_keymap(
+    "n",
+    "<Leader>fs",
+    "<cmd>Telescope session-lens search_session<CR>",
+    { noremap = true, silent = true }
+) ]]
+vim.keymap.set("n", "<Leader>f<Leader>", "<cmd>Telescope<CR>", { noremap = true, silent = true })

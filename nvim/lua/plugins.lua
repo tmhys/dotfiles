@@ -242,13 +242,16 @@ return require("packer").startup({
         --     "ggandor/leap.nvim",
         --     -- event = "VimEnter",
         --     -- event = "BufRead",
+        --     -- opt = true,
+        --     -- module = "leap",
         --     config = function()
         --         require("my_plugins.leap")
         --     end,
         -- })
         use({
             "ggandor/lightspeed.nvim",
-            event = "BufRead",
+            keys = { "f", "F","t","T" },
+            -- event = "BufRead",
             config = function()
                 require("my_plugins.lightspeed")
             end,
@@ -342,6 +345,7 @@ return require("packer").startup({
         ---------------
         use({
             "nvim-telescope/telescope.nvim",
+            opt = true,
             module = { "telescope" },
             cmd = "Telescope",
             requires = { { "nvim-lua/plenary.nvim", opt = true }, { "nvim-lua/popup.nvim", opt = true } },
@@ -482,6 +486,38 @@ return require("packer").startup({
         -- }}}
 
         ---------------
+        --session{{{
+        ---------------
+        --[[ use({
+            "rmagatti/session-lens",
+            -- opt = true,
+            -- requires = {
+            -- -- {
+            -- --  "rmagatti/auto-session",
+            -- --  -- event = "BufRead",
+            -- -- -- event = "VimEnter",
+            -- --  config = function()
+            -- --          require("my_plugins.auto-session")
+            -- --  end,
+            -- -- },
+            -- {'nvim-telescope/telescope.nvim',opt = true},
+            -- },
+            wants = { "auto-session", "telescope.nvim" },
+            config = function()
+                require("my_plugins.session-lens")
+            end,
+        })
+
+        use({
+            "rmagatti/auto-session",
+            -- event = { "FocusLost", "CursorHold" },
+            config = function()
+                require("my_plugins.auto-session")
+            end,
+        }) ]]
+        --}}}
+
+        ---------------
         --lsp ui{{{
         ---------------
         -- use({
@@ -511,14 +547,14 @@ return require("packer").startup({
             -- event = "InsertEnter",
             -- wants = { "vim-vsnip" },
             requires = {
-                { "onsails/lspkind-nvim" ,module="lspkind"},
+                { "onsails/lspkind-nvim", module = "lspkind" },
                 { "hrsh7th/cmp-nvim-lua", ft = "lua" },
-                { "hrsh7th/cmp-path",event="CmdlineEnter"},
-                { "hrsh7th/cmp-cmdline",event="CmdlineEnter"},
-                { "hrsh7th/cmp-nvim-lsp" ,event="InsertEnter"},
+                { "hrsh7th/cmp-path", event = "CmdlineEnter" },
+                { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
+                { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
                 {
                     "saadparwaiz1/cmp_luasnip",
-                    event="InsertEnter",
+                    event = "InsertEnter",
                     requires = {
                         {
                             "L3MON4D3/LuaSnip",
@@ -532,10 +568,10 @@ return require("packer").startup({
                         },
                     },
                 },
-                { "hrsh7th/cmp-omni",event="InsertEnter"},
-                { "f3fora/cmp-spell",event="InsertEnter"},
-                { "hrsh7th/cmp-buffer",event="InsertEnter"},
-                { "ray-x/cmp-treesitter",event="InsertEnter"},
+                { "hrsh7th/cmp-omni", event = "InsertEnter" },
+                { "f3fora/cmp-spell", event = "InsertEnter" },
+                { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+                { "ray-x/cmp-treesitter", event = "InsertEnter" },
                 {
                     "windwp/nvim-autopairs",
                     module = "nvim-autopairs",
@@ -553,80 +589,6 @@ return require("packer").startup({
                 require("my_plugins.nvim-cmp")
             end,
         })
-        -- use({
-        --  "hrsh7th/cmp-nvim-lsp",
-        --  event = "InsertEnter",
-        --  module = "cmp_nvim_lsp",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-nvim-lsp" },
-        --  },
-        -- })
-        -- use({
-        --  "hrsh7th/cmp-buffer",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-buffer" },
-        --  },
-        -- })
-        -- use({
-        --  "hrsh7th/cmp-cmdline",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-cmdline" },
-        --  },
-        -- })
-        -- use({
-        --  "hrsh7th/cmp-nvim-lua",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-nvim-lua" },
-        --  },
-        -- })
-        -- use({
-        --  "hrsh7th/cmp-path",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-path" },
-        --  },
-        -- })
-        -- use({
-        --  "hrsh7th/cmp-omni",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-omni" },
-        --  },
-        -- })
-        -- use({
-        --  "f3fora/cmp-spell",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-spell" },
-        --  },
-        -- })
-        -- use({
-        --  "ray-x/cmp-treesitter",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp-treesitter" },
-        --  },
-        -- })
-        -- use({
-        --  "saadparwaiz1/cmp_luasnip",
-        --  event = "InsertEnter",
-        --  requires = {
-        --      { "hrsh7th/nvim-cmp", wants = "cmp_luasnip" },
-        --      {
-        --          "L3MON4D3/LuaSnip",
-        --          module = { "luasnip" },
-        --          requires = {
-        --              { "rafamadriz/friendly-snippets" },
-        --          },
-        --          config = function()
-        --              require("my_plugins.luasnip")
-        --          end,
-        --      },
-        --  },
-        -- })
 
         --}}}
 
@@ -639,10 +601,16 @@ return require("packer").startup({
             event = "BufWritePre",
         })
         -- quickfixなどでファイルを開かないようにする
-        use({ "stevearc/stickybuf.nvim", event = "BufEnter" })
+        use({ "stevearc/stickybuf.nvim",
+            event = "WinNew",
+            config = function()
+                require("my_plugins.stickybuf")
+            end,
+        })
         use({
             "sentriz/vim-print-debug",
-            event = "BufRead",
+            event = { "FocusLost", "CursorHold","InsertEnter" },
+            -- event = "BufRead",
             config = function()
                 require("my_plugins.vim-print-debug")
             end,
@@ -657,18 +625,12 @@ return require("packer").startup({
         ---------------
         --Comment {{{
         ---------------
+        --gccでコメントアウト
         use({
             "numToStr/Comment.nvim",
             event = "BufRead",
             config = function()
                 require("my_plugins.Comment")
-            end,
-        })
-        use({
-            "b3nj5m1n/kommentary",
-            event = "VimEnter",
-            config = function()
-                require("my_plugins.kommentary")
             end,
         })
         --}}}
@@ -753,12 +715,6 @@ return require("packer").startup({
         --}}}
 
         --use({ "gbprod/yanky.nvim ", event = "VimEnter" })
-        --use({
-        --      "rmagatti/auto-session", --event = "VimEnter",
-        --      config = function()
-        --              require("my_plugins.auto-session")
-        --      end,
-        --})
 
         --便利さがわからんのでコメントアウト
         ----カーソル下の単語ハイライトしまくれるやつ
@@ -818,7 +774,6 @@ return require("packer").startup({
         -- use({
         --     "edluffy/specs.nvim",
         --     event = "CursorMoved",
-        --     config = function()
         --         require("my_plugins.specs")
         --     end,
         -- })

@@ -9,12 +9,20 @@ leap = require('leap').setup {
   -- safe_labels = {},
 }
 
-vim.api.nvim_set_keymap('n', 's', '<plug>(leap-forward)', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'S', '<plug>(leap-backward)', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x', 'z', '<plug>(leap-forward)', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x', 'Z', '<plug>(leap-backward)', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('o', 'z', '<plug>(leap-forward)', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('o', 'Z', '<plug>(leap-backward)', { noremap = true, silent = true })
+vim.keymap.set('n', 'f', '<plug>(leap-forward)', { noremap = true, silent = true })
+vim.keymap.set('n', 'F', '<plug>(leap-backward)', { noremap = true, silent = true })
+-- The same caveats as above about bidirectional search apply here.
+
+-- vim.keymap.set('n', 'zz',
+-- 'require('leap').leap { target_windows = vim.tbl_filter(
+--   function (win) return vim.api.nvim_win_get_config(win).focusable end,
+--   vim.api.nvim_tabpage_list_wins(0)
+-- )}',
+--  { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('x', 'zz', '<plug>(leap-forward)', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('x', 'ZZ', '<plug>(leap-backward)', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('o', 'zz', '<plug>(leap-forward)', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('o', 'ZZ', '<plug>(leap-backward)', { noremap = true, silent = true })
 
 -- local function get_line_starts(winid)
 --   local wininfo =  vim.fn.getwininfo(winid)[1]

@@ -14,8 +14,8 @@ require("lightspeed").setup({
     -- and forces auto-jump to be on or off.
     -- These keys are captured directly by the plugin at runtime.
     special_keys = {
-        next_match_group = "<space>",
-        prev_match_group = "<tab>",
+        next_match_group = "<tab>",
+        prev_match_group = "<s-tab>",
     },
     --- f/t ---
     limit_ft_matches = 4,
@@ -27,6 +27,15 @@ nmap <expr> f reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_f" : "
 nmap <expr> F reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_F" : "F"
 nmap <expr> t reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_t" : "t"
 nmap <expr> T reg_recording() . reg_executing() == "" ? "<Plug>Lightspeed_T" : "T"
+
+" augroup lightspeed_active
+"     au!
+"     au user LightspeedFtEnter let g:lightspeed_active = 1
+"     au user LightspeedFtLeave unlet g:lightspeed_active
+" augroup END
+
+" nmap <expr> zz exists('g:lightspeed_active') ? '<plug>Lightspeed_;_ft' : '<plug>Lightspeed_s'
+" nmap <expr> ZZ exists('g:lightspeed_active') ? '<plug>Lightspeed_,_ft' : '<plug>Lightspeed_S'
 ]])
 
 vim.cmd('unmap s')

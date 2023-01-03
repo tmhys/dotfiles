@@ -18,6 +18,7 @@ require('mason-tool-installer').setup {
     'isort',
     'black',
     'pyright',
+    -- 'python-lsp-server',
     -- 'gopls',
     -- 'vimls',
     --[[ 'gofumpt',

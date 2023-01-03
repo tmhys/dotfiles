@@ -1,3 +1,1 @@
-require("session-lens").setup({
-
-				})
+require("session-lens").setup({})
