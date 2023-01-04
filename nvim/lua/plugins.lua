@@ -35,15 +35,31 @@ return require("packer").startup({
         use({ "nvim-lua/popup.nvim" })
         use({
             "folke/noice.nvim",
+            -- event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
             opt = true,
             config = function()
                 require("my_plugins.noice")
             end,
+            setup = function()
+                require("my_plugins.noice_setup")
+            end,
             requires = {
                 { "MunifTanjim/nui.nvim" },
-                { "rcarriga/nvim-notify", module = "notify" },
+                -- { "rcarriga/nvim-notify", module = "notify" },
+                {
+                    "rcarriga/nvim-notify",
+                    module = { "notify" },
+                    -- config = lazy_require("notify").setup {
+                    -- render = "minimal",
+                    -- -- background_colour = require "core.utils.palette"("nord").black,
+                    -- level = "trace",
+                    -- on_open = function(win)
+                    -- api.win_set_config(win, { focusable = false })
+                    -- end,
+                    -- },
+                },
             },
-            wants = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+            wants = { "nvim-treesitter" },
         })
         --}}}
 
@@ -250,7 +266,7 @@ return require("packer").startup({
         -- })
         use({
             "ggandor/lightspeed.nvim",
-            keys = { "f", "F","t","T" },
+            keys = { "f", "F", "t", "T" },
             -- event = "BufRead",
             config = function()
                 require("my_plugins.lightspeed")
@@ -469,6 +485,7 @@ return require("packer").startup({
         })
         use({
             "j-hui/fidget.nvim",
+            event = "VimEnter",
             wants = "mason.nvim",
             config = function()
                 require("my_plugins.fidget")
@@ -601,7 +618,8 @@ return require("packer").startup({
             event = "BufWritePre",
         })
         -- quickfixなどでファイルを開かないようにする
-        use({ "stevearc/stickybuf.nvim",
+        use({
+            "stevearc/stickybuf.nvim",
             event = "WinNew",
             config = function()
                 require("my_plugins.stickybuf")
@@ -609,7 +627,7 @@ return require("packer").startup({
         })
         use({
             "sentriz/vim-print-debug",
-            event = { "FocusLost", "CursorHold","InsertEnter" },
+            event = { "FocusLost", "CursorHold", "InsertEnter" },
             -- event = "BufRead",
             config = function()
                 require("my_plugins.vim-print-debug")

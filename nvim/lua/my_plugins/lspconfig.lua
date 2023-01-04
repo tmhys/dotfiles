@@ -65,7 +65,7 @@ local on_attach = function(client, bufnr)
     --     client.server_capabilities.document_range_formatting = false
     -- end
 
-    require("lsp_signature").on_attach()
+    -- require("lsp_signature").on_attach()
     require("nvim-navic").attach(client, bufnr)
 end
 
