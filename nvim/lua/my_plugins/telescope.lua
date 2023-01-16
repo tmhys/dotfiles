@@ -71,6 +71,9 @@ require("telescope").setup({
         buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
     pickers = {
+        colorscheme = {
+            enable_preview = true,
+        },
         find_files = {
             theme = "dropdown",
         },

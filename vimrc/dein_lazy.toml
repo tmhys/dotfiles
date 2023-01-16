@@ -173,11 +173,11 @@ on_event = ['BuhEnter']
 repo = 'mhinz/vim-signify'
 on_event = ['BufReadPost']
 
-[[plugins]]
-# カーソルジャンプ時の描画
-repo = 'DanilaMihailov/beacon.nvim'
-on_event = ['BufEnter']
-if   = ''' has('gui_running')'''
+# [[plugins]]
+# # カーソルジャンプ時の描画
+# repo = 'DanilaMihailov/beacon.nvim'
+# on_event = ['BufEnter']
+# if   = ''' has('gui_running')'''
 
 [[plugins]]
 repo = 'machakann/vim-highlightedyank'

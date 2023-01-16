@@ -40,9 +40,9 @@ return require("packer").startup({
             config = function()
                 require("my_plugins.noice")
             end,
-            setup = function()
-                require("my_plugins.noice_setup")
-            end,
+            -- setup = function()
+            --     require("my_plugins.noice_setup")
+            -- end,
             requires = {
                 { "MunifTanjim/nui.nvim" },
                 -- { "rcarriga/nvim-notify", module = "notify" },
@@ -174,6 +174,16 @@ return require("packer").startup({
             event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
             config = function()
                 require("my_plugins.luatab")
+            end,
+            requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        })
+        use({
+            "akinsho/bufferline.nvim",
+            tag = "v3.*",
+            event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+            disable = true,
+            config = function()
+                require("my_plugins.bufferline")
             end,
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         })
@@ -426,7 +436,8 @@ return require("packer").startup({
             end,
         })
         use({
-            "p00f/nvim-ts-rainbow",
+            -- "p00f/nvim-ts-rainbow",
+            "mrjones2014/nvim-ts-rainbow",
             event = { "BufRead", "BufNewFile", "InsertEnter" },
             wants = "nvim-treesitter",
             config = function()

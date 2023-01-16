@@ -1,3 +1,4 @@
+local icons = require("icons")
 require("mason-lspconfig").setup()
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
@@ -6,6 +7,9 @@ local on_attach = function(client, bufnr)
 
     local function buf_set_option(...)
         vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
     end
 
     -- Enable completion triggered by <c-x><c-o>
@@ -200,12 +204,63 @@ sumneko_lua = {
     },
 }
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    signs = true,
-    -- Use lsp_lines instead
-    virtual_text = false,
-})
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--     underline = true,
+--     signs = true,
+--     -- Use lsp_lines instead
+--     virtual_text = false,
+-- })
+
+local d_config = { -- your config
+    virtual_text = true,
+    signs = {
+      active = true,
+      values = {
+        { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+        { name = "DiagnosticSignWarn", text =  icons.diagnostics.Warning },
+        { name = "DiagnosticSignHint", text =  icons.diagnostics.Hint },
+        { name = "DiagnosticSignInfo", text =  icons.diagnostics.Info },
+      },
+    },
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+    float = {
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+      format = function(d)
+        local code = d.code or (d.user_data and d.user_data.lsp.code)
+        if code then
+          return string.format("%s [%s]", d.message, code):gsub("1. ", "")
+        end
+        return d.message
+      end,
+    },
+}
+
+local f_config = { -- your config
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+      format = function(d)
+        local code = d.code or (d.user_data and d.user_data.lsp.code)
+        if code then
+          return string.format("%s [%s]", d.message, code):gsub("1. ", "")
+        end
+        return d.message
+      end,
+}
+
+vim.diagnostic.config(d_config)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, f_config)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, f_config)
 
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({
