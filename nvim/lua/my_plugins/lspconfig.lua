@@ -1,4 +1,5 @@
 local icons = require("icons")
+local navic = require("nvim-navic")
 require("mason-lspconfig").setup()
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)

@@ -177,16 +177,16 @@ return require("packer").startup({
             end,
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         })
-        use({
-            "akinsho/bufferline.nvim",
-            tag = "v3.*",
-            event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
-            disable = true,
-            config = function()
-                require("my_plugins.bufferline")
-            end,
-            requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-        })
+        -- use({
+        --     "akinsho/bufferline.nvim",
+        --     tag = "v3.*",
+        --     event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        --     -- disable = true,
+        --     config = function()
+        --         require("my_plugins.bufferline")
+        --     end,
+        --     requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        -- })
         use({
             "kevinhwang91/nvim-hlslens",
             event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
@@ -247,6 +247,7 @@ return require("packer").startup({
         })
         use({
             "PHSix/faster.nvim",
+            disable = true,
             opt = true,
             keys = { "j", "k" },
             config = function()
@@ -432,7 +433,7 @@ return require("packer").startup({
             "SmiteshP/nvim-navic",
             module = "nvim-navic",
             setup = function()
-                require("my_plugins.nvim-navic")
+                require("my_plugins.nvim-navic").setup()
             end,
         })
         use({

@@ -1,3 +1,4 @@
+local icons = require("icons")
 local function is_available_navic()
     local ok, _ = pcall(require, "nvim-navic")
     if not ok then
@@ -9,7 +10,8 @@ local navic = require("nvim-navic")
 local sections_1 = {
     lualine_a = { "mode" },
     lualine_b = { { "filetype", icon_only = true }, { "filename" } },
-    lualine_c = { { navic.get_location,cond = navic.is_available} },
+    lualine_c = {  },
+    -- lualine_c = { { navic.get_location,cond = navic.is_available} },
     -- lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
     -- lualine_x = { "diagnostics"  },
     lualine_x = {
@@ -23,8 +25,14 @@ local sections_1 = {
       sources = { 'nvim_diagnostic'},
 
 
-      symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+      -- symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
       -- symbols = {error = '🅴 ', warn = '🆆"', info = '🅸 ', hint = '🅷 '},
+    symbols = {
+      error = icons.diagnostics.BoldError .. " ",
+      warn = icons.diagnostics.BoldWarning .. " ",
+      info = icons.diagnostics.BoldInformation .. " ",
+      hint = icons.diagnostics.BoldHint .. " ",
+    },
     }
   },
     lualine_y = { "branch", "diff", "g:asyncrun_status" },
@@ -65,6 +73,7 @@ local my_extension = {
 require("lualine").setup({
     options = {
         icons_enabled = true,
+        globalstatus = true,
         --theme = "nightfox",
         theme = "auto",
         --component_separators = { left = '', right = ''},
@@ -79,7 +88,10 @@ require("lualine").setup({
         always_divide_middle = true,
     },
     sections = sections_1,
-    -- winbar = sections_1,
+    winbar = {
+        -- lualine_a = {"filename"},
+        -- lualine_c = {{ "filename",cond = navic.is_available}, { navic.get_location,cond = navic.is_available} },
+    },
     inactive_sections = {
         lualine_a = { "mode" },
         lualine_b = {},
