@@ -303,14 +303,14 @@ return require("packer").startup({
         use({
             "skywind3000/asyncrun.vim",
             ft = { "seq", "python" },
-            requires = {
-                "mh21/errormarker.vim",
-                opt = true,
-                config = function()
-                    require("my_plugins.errormarker")
-                end,
-            },
-            wants = { "mh21/errormarker.vim" },
+            -- requires = {
+            --     "mh21/errormarker.vim",
+            --     opt = true,
+            --     config = function()
+            --         require("my_plugins.errormarker")
+            --     end,
+            -- },
+            -- wants = { "mh21/errormarker.vim" },
             config = function()
                 require("my_plugins.asyncrun")
             end,
@@ -432,12 +432,12 @@ return require("packer").startup({
         use({
             "SmiteshP/nvim-navic",
             module = "nvim-navic",
-            setup = function()
-                require("my_plugins.nvim-navic").setup()
-            end,
+            event = { "FocusLost", "CursorHold" },
+            -- config = function()
+            --     require("my_plugins.nvim-navic").setup()
+            -- end,
         })
         use({
-            -- "p00f/nvim-ts-rainbow",
             "mrjones2014/nvim-ts-rainbow",
             event = { "BufRead", "BufNewFile", "InsertEnter" },
             wants = "nvim-treesitter",
@@ -490,6 +490,7 @@ return require("packer").startup({
         })
         use({
             "ray-x/lsp_signature.nvim",
+            disable = true,
             wants = "mason.nvim",
             config = function()
                 require("my_plugins.lsp-signature")

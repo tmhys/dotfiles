@@ -10,31 +10,30 @@ local navic = require("nvim-navic")
 local sections_1 = {
     lualine_a = { "mode" },
     lualine_b = { { "filetype", icon_only = true }, { "filename" } },
-    lualine_c = {  },
+    lualine_c = {},
     -- lualine_c = { { navic.get_location,cond = navic.is_available} },
     -- lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
     -- lualine_x = { "diagnostics"  },
     lualine_x = {
-    {
-      'diagnostics',
+        {
+            "diagnostics",
 
-      -- Table of diagnostic sources, available sources are:
-      --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-      -- or a function that returns a table as such:
-      --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-      sources = { 'nvim_diagnostic'},
+            -- Table of diagnostic sources, available sources are:
+            --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
+            -- or a function that returns a table as such:
+            --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
+            sources = { "nvim_diagnostic" },
 
-
-      -- symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
-      -- symbols = {error = '🅴 ', warn = '🆆"', info = '🅸 ', hint = '🅷 '},
-    symbols = {
-      error = icons.diagnostics.BoldError .. " ",
-      warn = icons.diagnostics.BoldWarning .. " ",
-      info = icons.diagnostics.BoldInformation .. " ",
-      hint = icons.diagnostics.BoldHint .. " ",
+            -- symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
+            -- symbols = {error = '🅴 ', warn = '🆆"', info = '🅸 ', hint = '🅷 '},
+            symbols = {
+                error = icons.diagnostics.BoldError .. " ",
+                warn = icons.diagnostics.BoldWarning .. " ",
+                info = icons.diagnostics.BoldInformation .. " ",
+                hint = icons.diagnostics.BoldHint .. " ",
+            },
+        },
     },
-    }
-  },
     lualine_y = { "branch", "diff", "g:asyncrun_status" },
     lualine_z = { "location" },
 }
@@ -64,7 +63,6 @@ end
 
 vim.api.nvim_set_keymap("n", "!", "<Cmd>lua LualineToggle()<CR>", { noremap = true, silent = true })
 
-
 local my_extension = {
     sections = { lualine_b = { "filetype" } },
     filetypes = { "packager", "vista", "NvimTree", "coc-explorer", "tagbar" },
@@ -90,7 +88,8 @@ require("lualine").setup({
     sections = sections_1,
     winbar = {
         -- lualine_a = {"filename"},
-        -- lualine_c = {{ "filename",cond = navic.is_available}, { navic.get_location,cond = navic.is_available} },
+        lualine_c = { { "filename", cond = navic.is_available }, { navic.get_location, cond = navic.is_available } },
+        -- lualine_b = { { navic.get_location, cond = navic.is_available } },
     },
     inactive_sections = {
         lualine_a = { "mode" },

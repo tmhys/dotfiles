@@ -1,6 +1,9 @@
 local icons = require("icons")
 local navic = require("nvim-navic")
 require("mason-lspconfig").setup()
+vim.g.navic_silence = false -- can be set to true to suppress error
+
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -9,9 +12,9 @@ local on_attach = function(client, bufnr)
     local function buf_set_option(...)
         vim.api.nvim_buf_set_option(bufnr, ...)
     end
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-    end
+    -- if client.server_capabilities.documentSymbolProvider then
+    --     navic.attach(client, bufnr)
+    -- end
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -71,22 +74,24 @@ local on_attach = function(client, bufnr)
     -- end
 
     -- require("lsp_signature").on_attach()
-    require("nvim-navic").attach(client, bufnr)
+    local symbols_supported = client.supports_method "textDocument/documentSymbol"
+    if not symbols_supported then
+      Log:debug("skipping setup for document_symbols, method not supported by " .. client.name)
+      return
+    end
+    local status_ok, navic = pcall(require, "nvim-navic")
+    if status_ok then
+      navic.attach(client, bufnr)
+    end
 end
 
-local lspconfig = require("lspconfig")
--- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 local capabilities
 if ok then
   local orig = vim.lsp.protocol.make_client_capabilities()
   capabilities = cmp_nvim_lsp.default_capabilities(orig)
 end
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-local opts = { capabilities = capabilities, on_attach = on_attach }
 
-require("neodev").setup()
 
 local lua_globals = {
     "vim",
@@ -143,53 +148,22 @@ local server_configs = {
     vuels = {},
     yamlls = {},
 
-    -- pyright = {
-    --   settings = {
-    --     python = {
-    --       analysis = {
-    --         extraPaths = {
-    --           -- home_dir(),
-    --           -- iterm2_dir "python38.zip",
-    --           -- iterm2_dir "python3.8",
-    --           -- iterm2_dir "python3.8/lib-dynload",
-    --           -- iterm2_dir "python3.8/site-packages",
-    --         },
-    --       },
-    --     },
-    --   },
-    -- },
-
-    --[[
-sumneko_lua = {
-  settings = {
-    Lua = {
-      runtime = {
-        version = "LuaJIT",
-      },
-      completion = {
-        keywordSnippet = "Disable",
-      },
-      diagnostics = {
-        enable = true,
-        globals = require("core.utils.lsp").lua_globals,
-      },
-      workspace = {
-        library = {
-          fn.expand "$VIMRUNTIME/lua",
-          fn.expand "$VIMRUNTIME/lua/vim",
-          unpack(api.list_runtime_paths()),
+    pyright = {
+      settings = {
+        python = {
+          analysis = {
+            extraPaths = {
+              -- home_dir(),
+              -- iterm2_dir "python38.zip",
+              -- iterm2_dir "python3.8",
+              -- iterm2_dir "python3.8/lib-dynload",
+              -- iterm2_dir "python3.8/site-packages",
+            },
+          },
         },
       },
-      telemetry = {
-        enable = false,
-      },
     },
-  },
-  on_new_config = function(config, _)
-    config.settings.Lua.workspace.library = api.get_runtime_file("", true)
-  end,
-},
-]]
+
 
     sumneko_lua = {
         settings = {
@@ -205,12 +179,19 @@ sumneko_lua = {
     },
 }
 
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---     underline = true,
---     signs = true,
---     -- Use lsp_lines instead
---     virtual_text = false,
--- })
+
+require("neodev").setup()
+require("mason").setup()
+require("mason-lspconfig").setup_handlers({
+    function(name)
+        local config = server_configs[name] or {}
+        if capabilities then
+            config.capabilities = capabilities
+        end
+        config.on_attach = on_attach
+        require("lspconfig")[name].setup(config)
+    end,
+})
 
 local d_config = { -- your config
     virtual_text = true,
@@ -257,29 +238,31 @@ local f_config = { -- your config
         end
         return d.message
       end,
+
+
 }
 
 vim.diagnostic.config(d_config)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, f_config)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, f_config)
 
-require("mason").setup()
-require("mason-lspconfig").setup_handlers({
-    function(name)
-        local config = server_configs[name] or {}
-        if capabilities then
-            config.capabilities = capabilities
-        end
-        config.on_attach = on_attach
-        require("lspconfig")[name].setup(config)
-    end,
-})
+local signs = {
+                Error = icons.diagnostics.BoldError .. " ",
+                Warn= icons.diagnostics.BoldWarning .. " ",
+                Info= icons.diagnostics.BoldInformation .. " ",
+                Hint = icons.diagnostics.BoldHint .. " ",
+            }
 
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-    group = groupname,
-    pattern = "*",
-    callback = function()
-        vim.cmd([[lua vim.diagnostic.open_float(nil,{focus=false})]])
-    end,
-    once = false,
-})
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+--     group = groupname,
+--     pattern = "*",
+--     callback = function()
+--         vim.cmd([[lua vim.diagnostic.open_float(nil,{focus=false})]])
+--     end,
+--     once = false,
+-- })
