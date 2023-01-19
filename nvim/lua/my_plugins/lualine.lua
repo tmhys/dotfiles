@@ -9,6 +9,7 @@ end
 local navic = require("nvim-navic")
 local sections_1 = {
     lualine_a = { "mode" },
+    -- lualine_b = { { "filetype", icon_only = true }, { "filename" } },
     lualine_b = { { "filetype", icon_only = true }, { "filename" } },
     lualine_c = {},
     -- lualine_c = { { navic.get_location,cond = navic.is_available} },

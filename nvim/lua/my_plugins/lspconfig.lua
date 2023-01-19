@@ -129,24 +129,24 @@ local lua_globals = {
 }
 
 local server_configs = {
-    clangd = {},
-    cssls = {},
-    dockerls = {},
-    golangci_lint_ls = {},
+    -- clangd = {},
+    -- cssls = {},
+    -- dockerls = {},
+    -- golangci_lint_ls = {},
     html = {},
-    intelephense = {},
+    -- intelephense = {},
     jsonls = {},
     jsonnet_ls = {},
-    marksman = {},
-    metals = {},
-    solargraph = {},
-    sourcekit = {},
-    teal_ls = {},
-    terraformls = {},
+    -- marksman = {},
+    -- metals = {},
+    -- solargraph = {},
+    -- sourcekit = {},
+    -- teal_ls = {},
+    -- terraformls = {},
     tsserver = {},
     vimls = {},
-    vuels = {},
-    yamlls = {},
+    -- vuels = {},
+    -- yamlls = {},
 
     pyright = {
       settings = {
@@ -194,7 +194,8 @@ require("mason-lspconfig").setup_handlers({
 })
 
 local d_config = { -- your config
-    virtual_text = true,
+    -- virtual_text = true,
+    virtual_text = false,
     signs = {
       active = true,
       values = {
@@ -258,11 +259,11 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- vim.api.nvim_create_autocmd({ "CursorHold" }, {
---     group = groupname,
---     pattern = "*",
---     callback = function()
---         vim.cmd([[lua vim.diagnostic.open_float(nil,{focus=false})]])
---     end,
---     once = false,
--- })
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+    group = groupname,
+    pattern = "*",
+    callback = function()
+        vim.cmd([[lua vim.diagnostic.open_float(nil,{focus=false})]])
+    end,
+    once = false,
+})
