@@ -35,6 +35,7 @@ g.loaded_spec = 1
 g.loaded_tar = 1
 g.loaded_vimball = 1
 g.loaded_vimballPlugin = 1
+g.loaded_netrw = 1
 g.loaded_zip = 1
 g.load_black = 1
 g.loaded_fzf = 1
@@ -49,9 +50,6 @@ g.loaded_ruby_provider = 0
 if fn.has "gui_running" ~= 1 then
   g.plugin_scrnmode_disable = true
 end
--- nvim0.8から以下不要？
---g.do_filetype_lua           = 1
---g.did_load_filetypes        = 0
 
 ---------------
 --
