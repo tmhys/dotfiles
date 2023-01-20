@@ -174,19 +174,17 @@ return require("packer").startup({
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         })
         use({
-            "kevinhwang91/nvim-hlslens",
-            event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
-            config = function()
-                require("my_plugins.hlslens")
-            end,
-        })
-        use({
             "petertriho/nvim-scrollbar",
             event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
-            requires = { "kevinhwang91/nvim-hlslens", opt = true },
+            requires = { "kevinhwang91/nvim-hlslens",
+                event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+                config = function()
+                    require("my_plugins.hlslens")
+                end,
+            },
             wants = "nvim-hlslens",
             config = function()
-                require("scrollbar.handlers.search").setup()
+                require("my_plugins.nvim-scrollbar")
             end,
         })
         --}}}
