@@ -12,7 +12,7 @@
 --         },
 --     },
 -- })
-require("noice").setup {
+require("noice").setup({
   cmdline = {
     -- format = {
     --   cmdline = { icon = "" },
@@ -22,14 +22,17 @@ require("noice").setup {
     -- },
   },
   popupmenu = {
-    --backend = "cmp",
-    backend = "nui",
+    backend = "cmp",
+    -- backend = "nui",
   },
   lsp = {
     hover = {
-      enabled = true,
+      enabled = false,
     },
     signature = {
+      enabled = false,
+    },
+    progress = {
       enabled = true,
     },
   },
@@ -39,4 +42,7 @@ require("noice").setup {
       --name = "sand",
     },
   },
-  }
+  messages = {
+      view_search = false,
+  },
+  })

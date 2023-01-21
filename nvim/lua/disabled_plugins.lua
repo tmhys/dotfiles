@@ -259,3 +259,13 @@
                 require("my_plugins.lsp-signature")
             end,
         })
+
+        use({
+            "j-hui/fidget.nvim",
+            disable = true,
+            event = "VimEnter",
+            wants = "mason.nvim",
+            config = function()
+                require("my_plugins.fidget")
+            end,
+        })

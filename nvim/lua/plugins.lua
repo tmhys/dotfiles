@@ -36,7 +36,7 @@ return require("packer").startup({
         use({
             "folke/noice.nvim",
             -- event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
-            opt = true,
+            -- opt = true,
             config = function()
                 require("my_plugins.noice")
             end,
@@ -166,13 +166,23 @@ return require("packer").startup({
             end,
         })
         use({
-            "alvarosevilla95/luatab.nvim",
+            "akinsho/bufferline.nvim",
+            tag = "v3.*",
             event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+            -- disable = true,
             config = function()
-                require("my_plugins.luatab")
+                require("my_plugins.bufferline")
             end,
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         })
+        -- use({
+        --     "alvarosevilla95/luatab.nvim",
+        --     event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        --     config = function()
+        --         require("my_plugins.luatab")
+        --     end,
+        --     requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        -- })
         use({
             "petertriho/nvim-scrollbar",
             event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
@@ -390,6 +400,9 @@ return require("packer").startup({
             "SmiteshP/nvim-navic",
             module = "nvim-navic",
             event = { "FocusLost", "CursorHold" },
+            config = function()
+                require("my_plugins.nvim-navic").setup()
+            end,
         })
         use({
             "mrjones2014/nvim-ts-rainbow",
@@ -440,14 +453,6 @@ return require("packer").startup({
             config = function()
                 require("my_plugins.lspconfig")
                 -- require("my_plugins.lsp_config").config()
-            end,
-        })
-        use({
-            "j-hui/fidget.nvim",
-            event = "VimEnter",
-            wants = "mason.nvim",
-            config = function()
-                require("my_plugins.fidget")
             end,
         })
         use({

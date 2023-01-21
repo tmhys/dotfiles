@@ -89,7 +89,7 @@ require("lualine").setup({
     sections = sections_1,
     winbar = {
         -- lualine_a = {"filename"},
-        lualine_c = { { "filename", cond = navic.is_available }, { navic.get_location, cond = navic.is_available } },
+        -- lualine_c = { { "filename", cond = navic.is_available }, { navic.get_location, cond = navic.is_available } },
         -- lualine_b = { { navic.get_location, cond = navic.is_available } },
     },
     inactive_sections = {
