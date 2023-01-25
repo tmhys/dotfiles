@@ -6,7 +6,7 @@ require("nvim-treesitter.configs").setup({
             --'ruby',
             --'toml',
             --'c_sharp',
-            "seq",
+            -- "seq",
         },
     },
     indent = {
@@ -16,7 +16,7 @@ require("nvim-treesitter.configs").setup({
     },
     rainbow = {
         disable = {
-            "seq",
+            -- "seq",
         },
     },
     incremental_selection = {
@@ -30,6 +30,6 @@ require("nvim-treesitter.configs").setup({
     --     },
     -- },
     --ensure_installed = { "vim", "lua", "python", "toml" },
-    ensure_installed = { "vim", "python", "toml", "lua" },
+    ensure_installed = { "vim", "python", "toml", "lua" ,"seq"},
     -- ensure_installed = 'all',
 })

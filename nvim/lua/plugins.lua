@@ -35,7 +35,7 @@ return require("packer").startup({
         use({ "nvim-lua/popup.nvim" })
         use({
             "folke/noice.nvim",
-            -- event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
+            event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
             -- opt = true,
             config = function()
                 require("my_plugins.noice")
@@ -394,6 +394,15 @@ return require("packer").startup({
             run = ":TSUpdate",
             config = function()
                 require("my_plugins.treesitter")
+            end,
+        })
+        use({
+            "nvim-treesitter/playground",
+            -- opt = true,
+            event = { "BufRead", "BufNewFile", "InsertEnter" },
+            wants = "nvim-treesitter",
+            config = function()
+                require("my_plugins.playground")
             end,
         })
         use({

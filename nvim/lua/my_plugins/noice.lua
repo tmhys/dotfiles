@@ -14,6 +14,7 @@
 -- })
 require("noice").setup({
   cmdline = {
+      enabled = false,
     -- format = {
     --   cmdline = { icon = "" },
     --   search_down = { icon = "" },
@@ -22,6 +23,7 @@ require("noice").setup({
     -- },
   },
   popupmenu = {
+      enabled = false,
     backend = "cmp",
     -- backend = "nui",
   },
@@ -43,6 +45,7 @@ require("noice").setup({
     },
   },
   messages = {
+      enabled = false,
       view_search = false,
   },
   })
