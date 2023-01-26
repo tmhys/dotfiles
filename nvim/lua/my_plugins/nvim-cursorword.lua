@@ -1,14 +1,28 @@
-vim.cmd([[
-" disable highlighting for some filetypes
-let g:cursorword_disable_filetypes = []
+ -- vim.cmd([[
+ -- " disable highlighting for some filetypes
+ -- let g:cursorword_disable_filetypes = []
+ --
+ -- " disable highlighting at startup.
+ -- " run :CursorWordEnable or :CursorWordToggle to activate highlighting
+ -- let g:cursorword_disable_at_startup = v:false
+ --
+ -- " min width of word
+ -- let g:cursorword_min_width = 3
+ --
+ -- " max width of word
+ -- let g:cursorword_max_width = 50
+ -- ]])
 
-" disable highlighting at startup.
-" run :CursorWordEnable or :CursorWordToggle to activate highlighting
-let g:cursorword_disable_at_startup = v:false
+local g = vim.g -- a table to access global variables
 
-" min width of word
-let g:cursorword_min_width = 3
+-- g.cursorword_disable_filetypes = ""
 
-" max width of word
-let g:cursorword_max_width = 50
-]])
+-- " disable highlighting at startup.
+-- " run :CursorWordEnable or :CursorWordToggle to activate highlighting
+g.cursorword_disable_at_startup = false
+
+-- " min width of word
+g.cursorword_min_width = 3
+
+-- " max width of word
+g.cursorword_max_width = 50

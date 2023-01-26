@@ -30,6 +30,7 @@ require("nvim-treesitter.configs").setup({
     --     },
     -- },
     --ensure_installed = { "vim", "lua", "python", "toml" },
-    ensure_installed = { "vim", "python", "toml", "lua" ,"seq"},
+    --ensure_installed = { "vim", "python", "toml", "lua" ,"seq"},
+    ensure_installed = { "vim", "python", "toml", "lua" },
     -- ensure_installed = 'all',
 })

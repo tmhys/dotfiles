@@ -284,25 +284,18 @@ return require("packer").startup({
         use({
             "skywind3000/asyncrun.vim",
             ft = { "seq", "python" },
-            -- requires = {
-            --     "mh21/errormarker.vim",
-            --     opt = true,
-            --     config = function()
-            --         require("my_plugins.errormarker")
-            --     end,
-            -- },
-            -- wants = { "mh21/errormarker.vim" },
+            requires = {
+                "mh21/errormarker.vim",
+                --opt = true,
+                config = function()
+                    require("my_plugins.errormarker")
+                end,
+            },
+            --wants = { "mh21/errormarker.vim" },
             config = function()
                 require("my_plugins.asyncrun")
             end,
         })
-        -- use({
-        --     "mh21/errormarker.vim",
-        --     wants = "asyncrun.vim",
-        --     config = function()
-        --         require("my_plugins.errormarker")
-        --     end,
-        -- })
         --}}}
 
         ---------------
