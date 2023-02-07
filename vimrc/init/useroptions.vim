@@ -75,7 +75,7 @@ set scrolloff=10
 set sidescrolloff=8
 set signcolumn=yes
 set tabstop=4
-set termguicolors
+    set termguicolors
 if has('kaoriya')
     set ambiwidth=auto
 else

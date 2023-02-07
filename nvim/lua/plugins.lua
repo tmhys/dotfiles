@@ -508,7 +508,8 @@ return require("packer").startup({
                     module = "nvim-autopairs",
                     -- event="InsertEnter",
                     config = function()
-                        require("my_plugins.nvim-autopairs")
+                        -- require("my_plugins.nvim-autopairs")
+                        require('nvim-autopairs').setup()
                     end,
                 },
                 -- { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
