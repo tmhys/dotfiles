@@ -269,3 +269,12 @@
                 require("my_plugins.fidget")
             end,
         })
+
+        -- use({
+        --     "alvarosevilla95/luatab.nvim",
+        --     event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        --     config = function()
+        --         require("my_plugins.luatab")
+        --     end,
+        --     requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+        -- })

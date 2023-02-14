@@ -10,6 +10,7 @@ local choice = ls.choice_node
 local dynamic = ls.dynamic_node
 
 
+--TODO add snippets for seq
 -- ls.add_snippets(nil, {
 --   all = {
 --     snip({
