@@ -278,3 +278,5 @@
         --     end,
         --     requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         -- })
+
+          -- use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim", ft = { "lua", "toml" } })

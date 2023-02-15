@@ -516,9 +516,8 @@ return require("packer").startup({
           --filetype specific{{{
           ---------------
           use({ "MTDL9/vim-log-highlighting", ft = "log" })
-          use({ "mechatroner/rainbow_csv", ft = { "csv" } })
-          use({ "lark-parser/vim-lark-syntax", ft = { "lark" } })
-          use({ "osyo-manga/vim-precious", requires = "Shougo/context_filetype.vim", ft = { "lua", "toml" } })
+          use({ "mechatroner/rainbow_csv", ft =  "csv"  })
+          use({ "lark-parser/vim-lark-syntax", ft =  "lark"  })
           use({ "~/vimfiles/localplugins/seq.vim", ft = "seq" })
           --}}}
 
