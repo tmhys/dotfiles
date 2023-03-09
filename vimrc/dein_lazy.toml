@@ -27,6 +27,7 @@ on_event = ['ColorSchemePre']
 [[plugins]]
 repo = 'preservim/nerdtree'
 on_event = ['VimEnter']
+# on_map = []
 # depends  = [# {{{
 #   'tiagofumo/vim-nerdtree-syntax-highlight',
 #   'Xuyuanp/nerdtree-git-plugin'
