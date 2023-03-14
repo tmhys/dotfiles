@@ -21,3 +21,96 @@ local dynamic = ls.dynamic_node
 --     }),
 --   },
 -- })
+ls.add_snippets(nil, {
+  seq = {
+    snip({
+      trig = 'std',
+      }, {
+      text({'#include <bits/stdc++.h>', 'using namespace std;', ''}),
+      insert(0),
+    }),
+  },
+})
+
+ls.add_snippets(nil, {
+  seq = {
+    snip({
+      trig = 'std',
+      }, {
+      text({'#include <bits/stdc++.h>', 'using namespace std;', ''}),
+      insert(0),
+    }),
+    snip({
+      trig = 'wt',
+      }, {
+      text({'wait(t('}),
+      insert(1),
+      text({'))'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'wu',
+      }, {
+      text({'wait(u('}),
+      insert(1),
+      text({'))'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'wm',
+      }, {
+      text({'wait(m('}),
+      insert(1),
+      text({'))'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'on',
+      }, {
+      text({'on('}),
+      insert(1),
+      text({')'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'off',
+      }, {
+      text({'off('}),
+      insert(1),
+      text({')'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'con',
+      }, {
+      text({'const('}),
+      insert(1),
+      text({')'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'eve',
+      }, {
+      text({'ever('}),
+      insert(1),
+      text({')'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'chksm',
+      }, {
+      text({'chksm('}),
+      insert(1),
+      text({')'}),
+      insert(0),
+    }),
+    snip({
+      trig = 'chksmp',
+      }, {
+      text({'chksmp('}),
+      insert(1),
+      text({')'}),
+      insert(0),
+    }),
+  },
+})

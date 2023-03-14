@@ -301,7 +301,8 @@ return require("packer").startup({
          })
          use({
              "nvim-lualine/lualine.nvim",
-             event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+             -- event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+             event = { "UIEnter" },
              requires = { { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
              {
                  "SmiteshP/nvim-navic",
