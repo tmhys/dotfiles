@@ -6,12 +6,18 @@ local function is_available_navic()
     end
     return require("nvim-navic").is_available()
 end
+
+local function tagname()
+  local p = vim.fn['tagbar#currenttag']('%s', '')
+  return p
+end
+
 local navic = require("nvim-navic")
 local sections_1 = {
     lualine_a = { "mode" },
     -- lualine_b = { { "filetype", icon_only = true }, { "filename" } },
     lualine_b = { { "filetype", icon_only = true }, { "filename" } },
-    lualine_c = {},
+    lualine_c = {tagname},
     -- lualine_c = { { navic.get_location,cond = navic.is_available} },
     -- lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
     -- lualine_x = { "diagnostics"  },

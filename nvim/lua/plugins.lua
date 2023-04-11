@@ -42,17 +42,17 @@ return require("packer").startup({
              wants = { "telescope.nvim" },
          })
 
-         use({
-             "kyazdani42/nvim-tree.lua",
-             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-             config = function()
-                 require("my_plugins.nvim-tree")
-             end,
-             cmd = "NvimTreeFindFileToggle",
-             setup = function()
-                 vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
-             end,
-         })
+         -- use({
+         --     "kyazdani42/nvim-tree.lua",
+         --     requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+         --     config = function()
+         --         require("my_plugins.nvim-tree")
+         --     end,
+         --     cmd = "NvimTreeFindFileToggle",
+         --     setup = function()
+         --         vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
+         --     end,
+         -- })
          --}}}
 
          ---------------
