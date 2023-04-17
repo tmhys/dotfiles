@@ -117,6 +117,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     once = false,
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    group = groupname,
+    pattern = "json",
+    callback = function()
+        vim.cmd([[
+        setlocal foldmethod=syntax
+    ]])
+    end,
+    once = false,
+})
+
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     group = groupname,
     pattern = { "*.seq", "*.s", "*.h", "*.tbl" },

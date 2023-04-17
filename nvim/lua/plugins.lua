@@ -179,7 +179,7 @@ return require("packer").startup({
                      -- event="InsertEnter",
                      config = function()
                          -- require("my_plugins.nvim-autopairs")
-                         require('nvim-autopairs').setup()
+                         require("nvim-autopairs").setup()
                      end,
                  },
                  -- { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
@@ -266,7 +266,7 @@ return require("packer").startup({
              "mvllow/modes.nvim",
              event = "ModeChanged",
              config = function()
-                 require('modes').setup()
+                 require("modes").setup()
              end,
          })
          use({ "rinx/nvim-minimap", cmd = { "MinimapOpen" } })
@@ -333,7 +333,8 @@ return require("packer").startup({
          use({
              "petertriho/nvim-scrollbar",
              event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
-             requires = { "kevinhwang91/nvim-hlslens",
+             requires = {
+                 "kevinhwang91/nvim-hlslens",
                  event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
                  config = function()
                      require("my_plugins.hlslens")
@@ -385,13 +386,13 @@ return require("packer").startup({
             end,
         })--ちらつく
         --# not lua
-          -- use({
-          --     "kana/vim-smartchr",
-          --     event = "InsertEnter",
-          --     config = function()
-          --         require("my_plugins.vim-smartchr")
-          --     end,
-          -- })
+          use({
+              "kana/vim-smartchr",
+              event = "InsertEnter",
+              config = function()
+                  require("my_plugins.vim-smartchr")
+              end,
+          })
         --# not lua
           use({ "kraxli/vim-renamer", cmd = "Renamer" })
           use({
@@ -408,22 +409,18 @@ return require("packer").startup({
                   require("my_plugins.replacer")
               end,
           })
-        --# not lua
           use({
-              "junegunn/vim-easy-align",
-              cmd = "EasyAlign",
-              config = function()
-                  require("my_plugins.vim-easy-align")
-              end,
+              "RRethy/nvim-align",
+              cmd = "Align",
           })
         --# not lua
-          use({
-              "simeji/winresizer",
-              cmd = "WinResizerStartResize",
-              setup = function()
-                  vim.api.nvim_set_keymap("n", "<M-w>", "<Cmd>WinResizerStartResize<CR>", { noremap = true })
-              end,
-          })
+          -- use({
+          --     "simeji/winresizer",
+          --     cmd = "WinResizerStartResize",
+          --     setup = function()
+          --         vim.api.nvim_set_keymap("n", "<M-w>", "<Cmd>WinResizerStartResize<CR>", { noremap = true })
+          --     end,
+          -- })
           --ユニーク文字ハイライト
           use({
               "jinh0/eyeliner.nvim",
@@ -539,7 +536,7 @@ return require("packer").startup({
           --??? {{{
           ---------------
         --# not lua
-          -- use({ "tpope/vim-repeat", opt = true, keys = { "." } })
+          use({ "tpope/vim-repeat", opt = true, keys = { "." } })
           use({
               "jghauser/mkdir.nvim",
               event = "BufWritePre",

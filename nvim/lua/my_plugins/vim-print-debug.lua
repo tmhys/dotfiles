@@ -7,6 +7,7 @@ vim.cmd([[
         \   'python':     'print(f"+++ {}")',
         \   'javascript': 'console.log(`+++ {}`);',
         \   'c':          'printf("+++ {}\n");',
+        \   'seq':          'buzzer_single,',
         \ }
 ]])
 
