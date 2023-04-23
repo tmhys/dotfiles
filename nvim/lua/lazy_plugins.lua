@@ -149,7 +149,6 @@ require("lazy").setup({
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		run = ":CatppuccinCompile",
 		config = function()
 			vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 			require("catppuccin").setup()
