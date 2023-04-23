@@ -158,6 +158,18 @@
         --  end,
         -- })
         --}}}
+        --# not lua
+          -- use({
+          --     "simeji/winresizer",
+          --     cmd = "WinResizerStartResize",
+          --     setup = function()
+          --         vim.api.nvim_set_keymap("n", "<M-w>", "<Cmd>WinResizerStartResize<CR>", { noremap = true })
+          --     end,
+          -- })
+                 -- { "hrsh7th/vim-vsnip", wants = "nvim-cmp" },
+                 -- { "hrsh7th/cmp-vsnip", wants = "nvim-cmp" },
+                 -- { "tzachar/cmp-tabnine", wants = "nvim-cmp", run = "powershell ./install.ps1" },
+                 -- { "quangnguyen30192/cmp-nvim-tags", wants = "nvim-cmp" }, --ctagsと相性悪い
 
         ---------------
         --session{{{

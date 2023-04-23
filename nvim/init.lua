@@ -8,4 +8,5 @@ end
 require("options")
 require("maps")
 require("autocmds")
-require("plugins")
+-- require("plugins")
+require("lazy_plugins")
