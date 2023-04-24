@@ -12,13 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ "wbthomason/packer.nvim", lazy = true },
 	{ "lewis6991/impatient.nvim" },
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
 		cmd = "Telescope",
-		dependencies = { { "nvim-lua/plenary.nvim", lazy = true }, { "nvim-lua/popup.nvim", lazy = true } },
+		dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-lua/popup.nvim" } },
 		init = function()
 			require("my_plugins.telescope_setup")
 		end,
@@ -72,7 +71,6 @@ require("lazy").setup({
 			{ "folke/neodev.nvim" },
 			{
 				"WhoIsSethDaniel/mason-tool-installer.nvim",
-				event = { "FocusLost", "CursorHold" },
 				config = function()
 					require("my_plugins.mason_tool_installer")
 				end,
@@ -83,12 +81,11 @@ require("lazy").setup({
 		},
 		config = function()
 			require("my_plugins.lspconfig")
-			-- require("my_plugins.lsp_config").config()
 		end,
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		dependencies = "mason.nvim",
+		dependencies = "williamboman/mason.nvim",
 		event = { "FocusLost", "CursorHold" },
 		config = function()
 			require("my_plugins.null-ls")
@@ -102,10 +99,9 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lua", ft = "lua" },
 			{ "hrsh7th/cmp-path", event = "CmdlineEnter" },
 			{ "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
-			{ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
+			{ "hrsh7th/cmp-nvim-lsp" },
 			{
 				"saadparwaiz1/cmp_luasnip",
-				event = "InsertEnter",
 				dependencies = {
 					{
 						"L3MON4D3/LuaSnip",
@@ -118,15 +114,13 @@ require("lazy").setup({
 					},
 				},
 			},
-			{ "hrsh7th/cmp-omni", event = "InsertEnter" },
-			{ "f3fora/cmp-spell", event = "InsertEnter" },
-			{ "hrsh7th/cmp-buffer", event = "InsertEnter" },
-			{ "ray-x/cmp-treesitter", event = "InsertEnter" },
+			{ "hrsh7th/cmp-omni" },
+			{ "f3fora/cmp-spell" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "ray-x/cmp-treesitter" },
 			{
 				"windwp/nvim-autopairs",
-				-- event="InsertEnter",
 				config = function()
-					-- require("my_plugins.nvim-autopairs")
 					require("nvim-autopairs").setup()
 				end,
 			},
@@ -136,7 +130,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "kyazdani42/nvim-web-devicons", lazy = true },
-	{ "dstein64/vim-startuptime", cmd = "StartupTime" }, --# not lua,({
+	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	{
 		"nvim-zh/colorful-winsep.nvim",
 		event = "WinEnter",
@@ -228,7 +222,6 @@ require("lazy").setup({
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		-- event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
 		event = { "UIEnter" },
 		dependencies = {
 			{ "kyazdani42/nvim-web-devicons" },
@@ -262,12 +255,10 @@ require("lazy").setup({
 		event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
 		dependencies = {
 			"kevinhwang91/nvim-hlslens",
-			event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
 			config = function()
 				require("my_plugins.hlslens")
 			end,
 		},
-		dependencies = "nvim-hlslens",
 		config = function()
 			require("my_plugins.nvim-scrollbar")
 		end,
@@ -276,29 +267,16 @@ require("lazy").setup({
 	{
 		"folke/noice.nvim",
 		event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
-		-- lazy = true,
 		config = function()
 			require("my_plugins.noice")
 		end,
-		-- init = function()
-		--     require("my_plugins.noice_init")
-		-- end,
 		dependencies = {
 			{ "MunifTanjim/nui.nvim" },
-			-- { "rcarriga/nvim-notify", module = "notify" },
 			{
 				"rcarriga/nvim-notify",
-				-- config = lazy_require("notify").init {
-				-- render = "minimal",
-				-- -- background_colour = require "core.utils.palette"("nord").black,
-				-- level = "trace",
-				-- on_open = function(win)
-				-- api.win_set_config(win, { focusable = false })
-				-- end,
-				-- },
 			},
+			{ "nvim-treesitter" },
 		},
-		dependencies = { "nvim-treesitter" },
 	},
 	{
 		"PHSix/faster.nvim",
@@ -371,7 +349,6 @@ require("lazy").setup({
 				require("my_plugins.errormarker")
 			end,
 		},
-		--dependencies = { "mh21/errormarker.vim" },
 		config = function()
 			require("my_plugins.asyncrun")
 		end,
@@ -430,4 +407,18 @@ require("lazy").setup({
 			require("my_plugins.vim-print-debug")
 		end,
 	},
+	-- {
+	--  "epwalsh/obsidian.nvim",
+	--  event = { "BufReadPre G:/Dropbox/Dropbox/DropsyncFiles/**.md" },
+	--  -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
+	--  -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+	--  dependencies = {
+	--      "nvim-lua/plenary.nvim",
+	--      "hrsh7th/nvim-cmp",
+	--      "nvim-telescope/telescope.nvim",
+	--  },
+	--  config = function()
+	--      require("my_plugins.obsidian")
+	--  end,
+	-- },
 })
