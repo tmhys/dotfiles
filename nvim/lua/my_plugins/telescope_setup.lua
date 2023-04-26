@@ -1,19 +1,19 @@
 local function builtin(name)
-    return function(opt)
-        return function()
-            return require("telescope.builtin")[name](opt or {})
-        end
-    end
+	return function(opt)
+		return function()
+			return require("telescope.builtin")[name](opt or {})
+		end
+	end
 end
 
 local function extensions(name, prop)
-    return function(opt)
-        return function()
-            local telescope = require("telescope")
-            telescope.load_extension(name)
-            return telescope.extensions[name][prop](opt or {})
-        end
-    end
+	return function(opt)
+		return function()
+			local telescope = require("telescope")
+			telescope.load_extension(name)
+			return telescope.extensions[name][prop](opt or {})
+		end
+	end
 end
 
 vim.keymap.set("n", "<Leader>ff", builtin("find_files")())
@@ -26,7 +26,7 @@ vim.keymap.set("n", "<Leader>fq", builtin("quickfix")())
 -- vim.keymap.set("n", "<Leader>fc", builtin("colorscheme")({enable_preview = true}))
 vim.keymap.set("n", "<Leader>fc", builtin("colorscheme"))
 vim.keymap.set("n", "<Leader>fn", extensions("file_browser", "file_browser")())
-vim.keymap.set("n", "<C-n>", extensions("file_browser", "file_browser")())
+-- vim.keymap.set("n", "<C-n>", extensions("file_browser", "file_browser")())
 -- vim.keymap.set("n", "<Leader>fs", extensions("session-lens", "find_files")())
 -- vim.keymap.set("n", "<Leader>fn", builtin("file_browser")())
 vim.keymap.set("n", "<Leader>fv", builtin("find_files")({ search_dirs = { "~/AppData/Local/nvim" } }))

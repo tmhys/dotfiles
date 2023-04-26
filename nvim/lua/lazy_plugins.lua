@@ -57,6 +57,17 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"kyazdani42/nvim-tree.lua",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("my_plugins.nvim-tree")
+		end,
+		cmd = "NvimTreeFindFileToggle",
+		init = function()
+			vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
+		end,
+	},
+	{
 		"s1n7ax/nvim-comment-frame",
 		event = { "BufRead", "BufNewFile", "InsertEnter" },
 		config = function()
@@ -139,7 +150,7 @@ require("lazy").setup({
 		end,
 	},
 	{ "nvim-lua/plenary.nvim", lazy = true },
-	{ "nvim-lua/popup.nvim" },
+	{ "nvim-lua/popup.nvim", lazy = true },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
