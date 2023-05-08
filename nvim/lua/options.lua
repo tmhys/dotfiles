@@ -47,8 +47,8 @@ g.loaded_python3_provider = 0
 g.loaded_python_provider = 0
 g.loaded_pythonx_provider = 0
 g.loaded_ruby_provider = 0
-if fn.has "gui_running" ~= 1 then
-  g.plugin_scrnmode_disable = true
+if fn.has("gui_running") ~= 1 then
+	g.plugin_scrnmode_disable = true
 end
 
 ---------------
@@ -77,7 +77,7 @@ opt.laststatus = 3
 -- opt.lazyredraw = true
 opt.matchtime = 1
 opt.matchpairs = vim.bo.matchpairs
-    .. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
+	.. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
 opt.number = true -- Show line numbers
 opt.scrolloff = 10 -- Lines of context
 opt.shiftwidth = 4
@@ -147,60 +147,60 @@ vim.opt.shortmess = "aItToOF"
 --  t = true, -- truncate file messages at start
 --}
 vim.opt.fillchars = {
-    horiz = "━",
-    horizup = "┻",
-    horizdown = "┳",
-    vert = "┃",
-    vertleft = "┫",
-    vertright = "┣",
-    verthoriz = "╋",
+	horiz = "━",
+	horizup = "┻",
+	horizdown = "┳",
+	vert = "┃",
+	vertleft = "┫",
+	vertright = "┣",
+	verthoriz = "╋",
 }
 
 opt.wildignore = {
-    ".DS_Store",
-    ".git",
-    ".svn",
-    ".hg",
-    "*.a",
-    "*.o",
-    "*.obj",
-    "*.out",
-    "*.so",
-    "*.dll",
-    "*.exe",
-    "*.bin",
-    "*~",
-    "*.swp",
-    "*.tmp",
-    "*.bmp",
-    "*.gif",
-    "*.ico",
-    "*.jpg",
-    "*.jpeg",
-    "*.png",
-    "__pycache__",
-    "*.pyc",
-    "*pycache*",
-    "*.tar",
-    "*.gz",
-    "*.bz2",
-    "*.zstd",
-    "*.xz",
-    "*.zip",
-    "*.ttf",
-    "*.otf",
-    "*.woff",
-    "*.woff2",
-    "*.eot",
+	".DS_Store",
+	".git",
+	".svn",
+	".hg",
+	"*.a",
+	"*.o",
+	"*.obj",
+	"*.out",
+	"*.so",
+	"*.dll",
+	"*.exe",
+	"*.bin",
+	"*~",
+	"*.swp",
+	"*.tmp",
+	"*.bmp",
+	"*.gif",
+	"*.ico",
+	"*.jpg",
+	"*.jpeg",
+	"*.png",
+	"__pycache__",
+	"*.pyc",
+	"*pycache*",
+	"*.tar",
+	"*.gz",
+	"*.bz2",
+	"*.zstd",
+	"*.xz",
+	"*.zip",
+	"*.ttf",
+	"*.otf",
+	"*.woff",
+	"*.woff2",
+	"*.eot",
 }
 
 opt.sessionoptions = opt.sessionoptions
-    - "blank" -- Don't save empty windows in the session
-    - "buffers" -- Don't save hidden buffers into the session
-    - "help" -- Ignore the help buffer for sessions
-    - "options" -- Don't save any vim options (this list)
-    - "globals" -- Ignore any g:-variables
-    + "localoptions" -- Include buffer local overrides             + "tabpages"     -- This session is for all tabs, not individual ones
+	- "blank" -- Don't save empty windows in the session
+	- "buffers" -- Don't save hidden buffers into the session
+	- "help" -- Ignore the help buffer for sessions
+	- "options" -- Don't save any vim options (this list)
+	- "globals" -- Ignore any g:-variables
+	+ "localoptions" -- Include buffer local overrides             + "tabpages"     -- This session is for all tabs, not individual ones
 opt.hidden = true -- Enable background buffers only init.lua option
 
 ---------------
