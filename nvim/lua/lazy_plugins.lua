@@ -65,7 +65,8 @@ local plugins = {
 	},
 	{
 		"s1n7ax/nvim-comment-frame",
-		event = { "BufRead", "BufNewFile", "InsertEnter" },
+		-- event = { "BufRead", "BufNewFile", "InsertEnter" },
+		keys = { "<Space>c" },
 		config = function()
 			require("my_plugins.nvim-comment-frame")
 		end,
@@ -164,7 +165,7 @@ local plugins = {
 		config = function()
 			vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 			require("catppuccin").setup()
-			vim.api.nvim_command("colorscheme catppuccin")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{ "sainnhe/gruvbox-material", lazy = true },
@@ -199,7 +200,8 @@ local plugins = {
 		"drmingdrmer/vim-toggle-quickfix",
 		event = "QuickFixCmdPre",
 		config = function()
-			require("my_plugins.vim-toggle-quickfix")
+			vim.api.nvim_set_keymap("n", "<M-q>", "<Plug>window:quickfix:toggle", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("n", "<M-l>", "<Plug>window:location:toggle", { noremap = true, silent = true })
 		end,
 	},
 	{
@@ -232,7 +234,8 @@ local plugins = {
 	},
 	{
 		"chentoast/marks.nvim",
-		event = "CursorHold",
+		-- event = "CursorHold",
+		keys = { "<Space>m" },
 		config = function()
 			require("my_plugins.marks")
 		end,
