@@ -5,6 +5,7 @@ local opt = vim.opt -- to set options
 
 ---------------
 --disable
+--lazy.nvimと重複？
 ---------------
 g.did_install_default_menus = 1
 g.did_install_syntax_menu = 1

@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	{ "lewis6991/impatient.nvim" },
+	-- { "lewis6991/impatient.nvim" },
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = true,
