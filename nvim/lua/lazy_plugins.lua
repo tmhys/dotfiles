@@ -60,7 +60,7 @@ local plugins = {
 		end,
 		cmd = "NvimTreeFindFileToggle",
 		init = function()
-			vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
+			vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
 		end,
 	},
 	{
@@ -302,7 +302,8 @@ local plugins = {
 		"PHSix/faster.nvim",
 		keys = { "j", "k" },
 		config = function()
-			require("my_plugins.faster")
+			vim.api.nvim_set_keymap("n", "j", "<Plug>(faster_move_j)", { noremap = false, silent = true })
+			vim.api.nvim_set_keymap("n", "k", "<Plug>(faster_move_k)", { noremap = false, silent = true })
 		end,
 	},
 	{
