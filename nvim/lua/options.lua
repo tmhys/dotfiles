@@ -11,43 +11,48 @@ g.did_install_default_menus = 1
 g.did_install_syntax_menu = 1
 g.did_indent_on = 1
 g.did_load_ftplugin = 1
-g.loaded_2html_plugin = 1
-g.loaded_gzip = 1
-g.loaded_man = 1
-g.loaded_matchit = 1
-g.loaded_matchparen = 1
-g.loaded_netrwPlugin = 1
-g.loaded_remote_plugins = 1
-g.loaded_shada_plugin = 1
-g.loaded_spellfile_plugin = 1
-g.loaded_tarPlugin = 1
-g.loaded_tutor_mode_plugin = 1
-g.loaded_zipPlugin = 1
 g.skip_loading_mswin = 1
+
+g.loaded_2html_plugin = 1
 g.loaded_clipboard_provider = 1 --checkhealthでエラーが出るようになる
 g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1
 g.loaded_logiPat = 1
+g.loaded_man = 1
+g.loaded_netrw = 1
 g.loaded_netrwFileHandlers = 1
 g.loaded_netrwSettings = 1
+g.loaded_remote_plugins = 1
 g.loaded_rplugin = 1
 g.loaded_rrhelper = 1
+g.loaded_shada_plugin = 1
 g.loaded_spec = 1
+g.loaded_spellfile_plugin = 1
 g.loaded_tar = 1
 g.loaded_vimball = 1
 g.loaded_vimballPlugin = 1
-g.loaded_netrw = 1
 g.loaded_zip = 1
+
+g.loaded_gzip = 1
+g.loaded_matchit = 1
+g.loaded_matchparen = 1
+g.loaded_netrwPlugin = 1
+g.loaded_tarPlugin = 1
+g.loaded_tutor_mode_plugin = 1
+g.loaded_zipPlugin = 1
+
 g.load_black = 1
 g.loaded_fzf = 1
 g.loaded_gtags = 1
 g.loaded_gtags_cscope = 1
+-- 言語サポート無効化
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_python3_provider = 0
 g.loaded_python_provider = 0
 g.loaded_pythonx_provider = 0
 g.loaded_ruby_provider = 0
+-- ?
 if fn.has("gui_running") ~= 1 then
 	g.plugin_scrnmode_disable = true
 end
@@ -204,8 +209,5 @@ opt.sessionoptions = opt.sessionoptions
 	+ "localoptions" -- Include buffer local overrides             + "tabpages"     -- This session is for all tabs, not individual ones
 opt.hidden = true -- Enable background buffers only init.lua option
 
----------------
--- nvim only
----------------
 opt.inccommand = "split"
 opt.pumblend = 10
