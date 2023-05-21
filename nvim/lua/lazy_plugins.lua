@@ -335,6 +335,12 @@ local plugins = {
 			require("my_plugins.hop")
 		end,
 	},
+	-- {
+	--  "CRAG666/code_runner.nvim",
+	--  config = function()
+	--      require("my_plugins.code_runner")
+	--  end,
+	-- },
 	{
 		"skywind3000/asyncrun.vim",
 		ft = { "seq", "python" },
@@ -362,17 +368,21 @@ local plugins = {
 			require("my_plugins.auto-ctags")
 		end,
 	},
-	{
-		"stevearc/aerial.nvim",
-		lazy = true,
-		config = function()
-			require("my_plugins.aerial")
-		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
+	-- {
+	--  "stevearc/aerial.nvim",
+	--  -- lazy = true,
+	--  config = function()
+	--      require("my_plugins.aerial")
+	--  end,
+	--  cmd = "AerialToggle",
+	--  init = function()
+	--      vim.keymap.set("n", "<F9>", "<cmd>AerialToggle!<CR>")
+	--  end,
+	--  dependencies = {
+	--      "nvim-treesitter/nvim-treesitter",
+	--      "nvim-tree/nvim-web-devicons",
+	--  },
+	-- },
 	{
 		"majutsushi/tagbar",
 		ft = "seq",
@@ -381,7 +391,7 @@ local plugins = {
 			require("my_plugins.tagbar")
 		end,
 		init = function()
-			vim.api.nvim_set_keymap("n", "<F8>", "<Cmd>TagbarToggle<CR>", { noremap = true })
+			vim.keymap.set("n", "<F8>", "<Cmd>TagbarToggle<CR>", { noremap = true })
 		end,
 	},
 	{ "MTDL9/vim-log-highlighting", ft = "log" },
