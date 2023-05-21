@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<F12>", "<cmd>Lazy sync<CR>")
+
 local plugins = {
 	-- { "lewis6991/impatient.nvim" },
 	{
