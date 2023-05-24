@@ -5,7 +5,6 @@ require("options")
 require("maps")
 require("autocmds")
 require("lazy_plugins")
-
 if vim.fn.has("clipboard") == 1 then
 	vim.cmd("call GuiClipboard()")
 end
