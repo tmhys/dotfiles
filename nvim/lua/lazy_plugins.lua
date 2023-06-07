@@ -5,7 +5,8 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable",
+        -- latest stable release
         lazypath,
     })
 end
@@ -31,6 +32,7 @@ local plugins = {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        commit = "6847ce4f8c93a0c8fd5a3d4df08975ab185187eb",
         lazy = true,
         event = { "BufRead", "BufNewFile", "InsertEnter" },
         run = ":TSUpdate",
@@ -166,7 +168,7 @@ local plugins = {
         lazy = true,
         name = "catppuccin",
         config = function()
-            vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+            vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
             require("catppuccin").setup()
         end,
     },
@@ -356,7 +358,7 @@ local plugins = {
         branch = "v2",
         keys = { "zz" },
         init = function()
-            vim.api.nvim_set_keymap("n", "zz", "<cmd>lua require'hop'.hint_words()<CR>", {})
+            vim.keymap.set("n", "zz", "<cmd>lua require'hop'.hint_words()<CR>", {})
         end,
         config = function()
             require("my_plugins.hop")
@@ -373,8 +375,17 @@ local plugins = {
         ft = { "seq", "python" },
         dependencies = {
             "mh21/errormarker.vim",
+            ft = { "seq", "python" },
             init = function()
                 require("my_plugins.errormarker")
+            end,
+            config = function()
+                vim.keymap.set(
+                    "n",
+                    "<ESC><ESC>",
+                    ":<C-u>nohlsearch<CR>:RemoveErrorMarkers<CR>",
+                    { noremap = true, silent = true }
+                )
             end,
         },
         config = function()
@@ -472,3 +483,28 @@ require("lazy").setup(plugins, {
         },
     },
 })
+
+-- vim.api.nvim_create_autocmd("User", {
+--  pattern = "LazyVimStarted",
+--  -- desc = "Add Alpha dashboard footer",
+--  once = true,
+--  callback = function()
+--      vim.cmd.colorscheme("gruvbox-material")
+--      -- local stats = require("lazy").stats()
+--      -- local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+--      -- opts.section.footer.val =
+--      --     { " ", " ", " ", "AstroNvim loaded " .. stats.count .. " plugins  in " .. ms .. "ms" }
+--      -- opts.section.footer.opts.hl = "DashboardFooter"
+--      -- pcall(vim.cmd.AlphaRedraw)
+--  end,
+-- })
+-- vim.api.nvim_create_autocmd("User", {
+--     pattern = "LazyVimStarted",
+--     callback = function()
+--         local stats = require("lazy").stats()
+--         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+--         vim.g.starttime = ("Neovim loaded " .. stats.count .. " plugins  in " .. ms .. "ms")
+--         vim.cmd([[ echomsg printf(starttime) ]])
+--     end,
+--     once = true,
+-- })

@@ -5,7 +5,7 @@ require("options")
 require("maps")
 require("autocmds")
 require("lazy_plugins")
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme("catppuccin")
 if vim.fn.has("clipboard") == 1 then
 	vim.cmd("call GuiClipboard()")
 end
