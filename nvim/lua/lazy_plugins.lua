@@ -268,7 +268,7 @@ local plugins = {
     {
         "akinsho/bufferline.nvim",
         version = "v3.*",
-        event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        event = { "InsertEnter", "FocusLost", "BufRead", "BufNewFile" },
         config = function()
             require("my_plugins.bufferline")
         end,
@@ -479,6 +479,13 @@ require("lazy").setup(plugins, {
                 "tohtml",
                 "tutor",
                 "zipPlugin",
+                "editorconfig",
+                "health",
+                "man",
+                "nvim",
+                "rplugin",
+                "shada",
+                "spellfile",
             },
         },
     },
