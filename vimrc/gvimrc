@@ -4,6 +4,7 @@ set guifont=Cica:h13,Consolas:h12
 "set guifont=PlemolJP\ Console\ NF:h12,Consolas:h12
 set renderoptions=type:directx,renmode:5
 set antialias
+set visualbell t_vb=
 if !has('win32')
     set linespace=1
 endif

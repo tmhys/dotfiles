@@ -65,6 +65,7 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 set nowrap
+set visualbell t_vb=
 " set wrap
 " set breakindent
 " set linebreak
@@ -75,7 +76,7 @@ set scrolloff=10
 set sidescrolloff=8
 set signcolumn=yes
 set tabstop=4
-    set termguicolors
+" set termguicolors
 if has('kaoriya')
     set ambiwidth=auto
 else

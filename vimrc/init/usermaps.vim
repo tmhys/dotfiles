@@ -33,9 +33,9 @@ nnoremap s "_s
 nnoremap S "_S
 "undiffはkaoriya限定
 if has('kaoriya')
-	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>
+    nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>:Undiff<CR>
 else
-	nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
+    nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 endif
 "連打でesc
 inoremap jj <Esc>
@@ -81,14 +81,14 @@ nnoremap <Space>p "0p
 "<Space>cd で編集ファイルのカレントディレクトリへと移動{{{
 command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
 function! s:ChangeCurrentDir(directory, bang)
-	if a:directory == ''
-		lcd %:p:h
-	else
-		execute 'lcd' . a:directory
-	endif
-	if a:bang == ''
-		pwd
-	endif
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+    if a:bang == ''
+        pwd
+    endif
 endfunction
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
@@ -154,20 +154,20 @@ nnoremap [Mark] <Nop>
 nmap m [Mark]
 " 現在位置をマーク
 if !exists('g:markrement_char')
-	let g:markrement_char = [
-	\	  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-	\	  'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-	\ ]
+    let g:markrement_char = [
+    \     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    \     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    \ ]
 endif
 nnoremap <silent>[Mark]m :<C-u>call <SID>AutoMarkrement()<CR>
 function! s:AutoMarkrement()
-	if !exists('b:markrement_pos')
-		let b:markrement_pos = 0
-	else
-		let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
-	endif
-	execute 'mark' g:markrement_char[b:markrement_pos]
-	echo 'marked' g:markrement_char[b:markrement_pos]
+    if !exists('b:markrement_pos')
+        let b:markrement_pos = 0
+    else
+        let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+    endif
+    execute 'mark' g:markrement_char[b:markrement_pos]
+    echo 'marked' g:markrement_char[b:markrement_pos]
 endfunction
 " 次/前のマーク
 nnoremap [Mark]n ]`
@@ -198,9 +198,9 @@ tnoremap <silent> <ESC> <C-\><C-n>
 "カレントウィンドウを新規タブで開き直す{{{
 nnoremap <M-n> :call OpenNewTab()<CR>
 function! OpenNewTab()
-	let f = expand("%:p")
-	execute ":q"
-	execute ":tabnew ".f
+    let f = expand("%:p")
+    execute ":q"
+    execute ":tabnew ".f
 endfunction
 "}}}
 
