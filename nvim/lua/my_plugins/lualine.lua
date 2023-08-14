@@ -15,33 +15,12 @@ end
 local navic = require("nvim-navic")
 local sections_1 = {
 	lualine_a = { "mode" },
-	-- lualine_a = {
-	--  {
-	--      "mode",
-	--      fmt = function(str)
-	--          return str:sub(1, 1)
-	--      end,
-	--      -- use_mode_colors = false,
-	--  },
-	-- },
-	-- lualine_b = { { "filetype", icon_only = true }, { "filename" } },
 	lualine_b = { { "filetype", icon_only = true }, { "filename" } },
 	lualine_c = { tagname },
-	-- lualine_c = { { navic.get_location,cond = navic.is_available} },
-	-- lualine_c = { { 'require("nvim-gps").get_location()', cond = is_available_gps } },
-	-- lualine_x = { "diagnostics"  },
 	lualine_x = {
 		{
 			"diagnostics",
-
-			-- Table of diagnostic sources, available sources are:
-			--   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-			-- or a function that returns a table as such:
-			--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
 			sources = { "nvim_diagnostic" },
-
-			-- symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
-			-- symbols = {error = '🅴 ', warn = '🆆"', info = '🅸 ', hint = '🅷 '},
 			symbols = {
 				error = icons.diagnostics.BoldError .. " ",
 				warn = icons.diagnostics.BoldWarning .. " ",
@@ -90,14 +69,6 @@ require("lualine").setup({
 		globalstatus = true,
 		--theme = "nightfox",
 		theme = "auto",
-		--component_separators = { left = '', right = ''},
-		--section_separators = { left = '', right = ''},
-		--component_separators = { left = '薰ｱ', right = '薰ｳ'},
-		--section_separators = { left = '薰ｰ', right = '薰ｲ'},
-		----component_separators = { left = "\ue0b0", right = "\ue0b2" },
-		----section_separators = { left = "\ue0b1", right = "\ue0b3" },
-		--component_separators = { left = "", right = "" },
-		--section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
 		always_divide_middle = true,
 		refresh = { -- sets how often lualine should refresh it's contents (in ms)
@@ -107,11 +78,7 @@ require("lualine").setup({
 		},
 	},
 	sections = sections_1,
-	winbar = {
-		-- lualine_a = {"filename"},
-		-- lualine_c = { { "filename", cond = navic.is_available }, { navic.get_location, cond = navic.is_available } },
-		-- lualine_b = { { navic.get_location, cond = navic.is_available } },
-	},
+	winbar = {},
 	inactive_sections = {
 		lualine_a = { "mode" },
 		lualine_b = {},
@@ -121,6 +88,5 @@ require("lualine").setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	--extensions = { "quickfix", my_toggleterm, "symbols-outline", my_extension },
 	extensions = { "quickfix", my_toggleterm, "symbols-outline", my_extension },
 })

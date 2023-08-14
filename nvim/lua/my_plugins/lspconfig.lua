@@ -1,4 +1,4 @@
-local icons = require("icons") -- iconƒtƒ@ƒCƒ‹lspkind‚Éæ‚èŠ·‚¦ŒŸ“¢
+local icons = require("icons")
 
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)

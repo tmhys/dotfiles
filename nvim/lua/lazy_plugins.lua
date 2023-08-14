@@ -121,7 +121,6 @@ local plugins = {
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
         dependencies = {
-            { "onsails/lspkind-nvim" },
             { "hrsh7th/cmp-nvim-lua", ft = "lua" },
             { "hrsh7th/cmp-path", event = "CmdlineEnter" },
             { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
@@ -148,6 +147,9 @@ local plugins = {
             --  "zbirenbaum/copilot-cmp",
             --  dependencies = {
             --      "zbirenbaum/copilot.lua",
+            --      config = function()
+            --          require("copilot").setup()
+            --      end,
             --  },
             --  config = function()
             --      require("copilot_cmp").setup()
