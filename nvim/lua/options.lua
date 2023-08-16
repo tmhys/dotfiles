@@ -135,11 +135,10 @@ vim.opt.shortmess = "aItToOF"
 --vim.opt.autochdir    = true --ディレクトリ自動で移動
 
 --opt.shortmess        = vim.o.shortmess
---                      .. "I"
---                      .. "c" -- silence insert mode completion messages
---                      --.. "F" -- Don't print a message when opening a file
---                      --.. "c" -- silence insert mode completion messages
 --vim.opt.shortmess = {
+-- "I"
+--.. "c" -- silence insert mode completion messages
+----.. "c" -- silence insert mode completion messages
 --  A = true, -- ignore annoying swap file messages
 ----F = true, -- Don't give file info when editing a file, NOTE: this breaks autocommand messages
 --  I = true,

@@ -24,13 +24,6 @@ require("nvim-treesitter.configs").setup({
 			-- "seq",
 		},
 	},
-	-- nvimGPS = {
-	--     disable = {
-	--         "seq",
-	--     },
-	-- },
-	--ensure_installed = { "vim", "lua", "python", "toml" },
-	--ensure_installed = { "vim", "python", "toml", "lua" ,"seq"},
 	-- ensure_installed = { "vim", "python", "toml", "lua","javascript" },
 	ensure_installed = "all",
 })
