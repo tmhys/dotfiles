@@ -25,7 +25,7 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 	-- ensure_installed = { "vim", "python", "toml", "lua","javascript" },
-	ensure_installed = "all",
+	-- ensure_installed = "all",
 })
 
 -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
