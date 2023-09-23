@@ -17,6 +17,9 @@ vim.keymap.set("n", "<F12>", "<cmd>Lazy sync<CR>")
 local plugins = {
     {
         "nvim-telescope/telescope.nvim",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         lazy = true,
         keys = { "<Space>" },
         dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-lua/popup.nvim" } },
@@ -31,6 +34,9 @@ local plugins = {
     },
     {
         "nvim-treesitter/nvim-treesitter",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         lazy = true,
         event = { "BufRead", "BufNewFile", "InsertEnter" },
         run = ":TSUpdate",
@@ -48,6 +54,9 @@ local plugins = {
     },
     {
         "mrjones2014/nvim-ts-rainbow",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         event = { "BufRead", "BufNewFile", "InsertEnter" },
         dependencies = "nvim-treesitter",
         config = function()
@@ -56,6 +65,9 @@ local plugins = {
     },
     {
         "kyazdani42/nvim-tree.lua",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("my_plugins.nvim-tree")
@@ -216,6 +228,9 @@ local plugins = {
     },
     {
         "drmingdrmer/vim-toggle-quickfix",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         event = "QuickFixCmdPre",
         config = function()
             vim.api.nvim_set_keymap("n", "<M-q>", "<Plug>window:quickfix:toggle", { noremap = true, silent = true })
@@ -231,6 +246,9 @@ local plugins = {
     },
     {
         "xiyaowong/nvim-cursorword",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         event = "CursorHold",
         config = function()
             require("my_plugins.nvim-cursorword")
@@ -260,6 +278,9 @@ local plugins = {
     },
     {
         "nvim-lualine/lualine.nvim",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
@@ -281,6 +302,9 @@ local plugins = {
     },
     {
         "akinsho/bufferline.nvim",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         version = "v3.*",
         event = { "InsertEnter", "FocusLost", "BufRead", "BufNewFile" },
         config = function()
@@ -304,6 +328,9 @@ local plugins = {
     { "MunifTanjim/nui.nvim", lazy = true },
     {
         "folke/noice.nvim",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
         config = function()
             require("my_plugins.noice")
@@ -312,6 +339,9 @@ local plugins = {
             { "MunifTanjim/nui.nvim" },
             {
                 "rcarriga/nvim-notify",
+                enabled = function()
+                    return not vim.g.vscode
+                end,
             },
             { "nvim-treesitter" },
         },
@@ -386,6 +416,9 @@ local plugins = {
     -- },
     {
         "skywind3000/asyncrun.vim",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         ft = { "seq", "python" },
         dependencies = {
             "mh21/errormarker.vim",
@@ -437,6 +470,9 @@ local plugins = {
     -- },
     {
         "majutsushi/tagbar",
+        enabled = function()
+            return not vim.g.vscode
+        end,
         ft = "seq",
         cmd = "TagbarToggle",
         config = function()
