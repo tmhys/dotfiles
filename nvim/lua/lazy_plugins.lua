@@ -179,6 +179,7 @@ local plugins = {
 		end,
 	},
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
+	-- vim
 	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	{
 		"nvim-zh/colorful-winsep.nvim",
@@ -355,6 +356,7 @@ local plugins = {
 			vim.api.nvim_set_keymap("n", "k", "<Plug>(faster_move_k)", { noremap = false, silent = true })
 		end,
 	},
+	-- vim
 	{
 		"kana/vim-smartchr",
 		event = "InsertEnter",
@@ -362,6 +364,7 @@ local plugins = {
 			require("my_plugins.vim-smartchr")
 		end,
 	},
+	-- vim
 	{ "kraxli/vim-renamer", cmd = "Renamer" },
 	{
 		"kylechui/nvim-surround",
@@ -421,6 +424,7 @@ local plugins = {
 			require("my_plugins.overseer")
 		end,
 	},
+	-- vim
 	{
 		"skywind3000/asyncrun.vim",
 		enabled = function()
@@ -453,6 +457,7 @@ local plugins = {
 			require("my_plugins.git")
 		end,
 	},
+	-- vim
 	{
 		"soramugi/auto-ctags.vim",
 		event = "BufRead",
@@ -475,6 +480,7 @@ local plugins = {
 	--      "nvim-tree/nvim-web-devicons",
 	--  },
 	-- },
+	-- vim
 	{
 		"majutsushi/tagbar",
 		enabled = function()
@@ -499,6 +505,7 @@ local plugins = {
 			require("Comment").setup()
 		end,
 	},
+	-- vim
 	{ "tpope/vim-repeat", lazy = true, keys = { "." } },
 	-- {
 	--  "jghar/mkdir.nvim",

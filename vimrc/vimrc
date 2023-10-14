@@ -1,9 +1,10 @@
-" Last Change: 26-Sep-2022.
+" Last Change: 29-Sep-2023.
 
 source $HOME/vimfiles/init/useroptions.vim
 source $HOME/vimfiles/init/usermaps.vim
 source $HOME/vimfiles/init/userautocmds.vim
-source $HOME/vimfiles/init/userdein.vim
+" source $HOME/vimfiles/init/userdein.vim
+source $HOME/vimfiles/init/userjetpack.vim
 
 if !has("gui_running")
     colorscheme ayu
