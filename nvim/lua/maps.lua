@@ -10,12 +10,7 @@ vim.keymap.set("c", "<C-j>", "<Right>", { noremap = true, silent = true })
 vim.keymap.set("c", "<C-k>", "<Down>", { noremap = true, silent = true })
 vim.keymap.set("c", "<C-l>", "<Del>", { noremap = true, silent = true })
 vim.keymap.set("c", "<C-l>", "<End>", { noremap = true, silent = true })
-vim.keymap.set(
-    "i",
-    "<M-Insert>",
-    "<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa",
-    { noremap = true, silent = true }
-)
+vim.keymap.set("i", "<M-Insert>", "<C-R><C-O>*<esc>ka<del><esc>i<BS><esc>eEa", { noremap = true, silent = true })
 vim.keymap.set("i", "<c-h>", "<left>", { noremap = true, silent = true })
 vim.keymap.set("i", "<c-j>", "<down>", { noremap = true, silent = true })
 vim.keymap.set("i", "<c-k>", "<up>", { noremap = true, silent = true })
@@ -27,7 +22,7 @@ vim.keymap.set("i", "kkk", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("i", "lll", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("i", "qq", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "#", "<Space><Space>:%s/<C-r>///g<Left><Left>", { noremap = true, silent = false })
-vim.keymap.set({ "n","v" }, ";", ":", { noremap = true, silent = false })
+vim.keymap.set({ "n", "v" }, ";", ":", { noremap = true, silent = false })
 vim.keymap.set("n", "<C-Down>", '"zdd"zp', { noremap = true, silent = true })
 vim.keymap.set("n", "<C-Tab>", "gt", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-Up>", '"zdd<Up>"zP', { noremap = true, silent = true })
@@ -39,12 +34,7 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 vim.keymap.set("n", "<F3>", ":<C-u>setlocal relativenumber!<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F4>", ":<C-u>set scrollbind!<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-3>", ':%s/<C-r>"///g<Left><Left>', { noremap = true, silent = false })
-vim.keymap.set(
-    "n",
-    "<M-g>",
-    ":vim //jg **<Left><Left><Left><Left><Left><Left>",
-    { noremap = true, silent = false }
-)
+vim.keymap.set("n", "<M-g>", ":vim //jg **<Left><Left><Left><Left><Left><Left>", { noremap = true, silent = false })
 vim.keymap.set("n", "<M-h>", "<C-w>hdo", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-j>", ":cn<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-j>", "]c", { noremap = true, silent = true })
@@ -76,23 +66,19 @@ vim.keymap.set("o", "{", "i{", { noremap = true, silent = true })
 vim.keymap.set("i", "<CR>", "<C-g>u<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<ESC><ESC>", ":<C-u>nohlsearch<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<space><space>", "*N", { noremap = true, silent = true })
-vim.keymap.set(
-    "v",
-    "#",
-    ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>",
-    { noremap = true, silent = false }
-)
+vim.keymap.set("v", "#", ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>", { noremap = true, silent = false })
 vim.keymap.set("v", "<C-Down>", '"zx"zp`[V`]', { noremap = true, silent = true })
+vim.keymap.set("v", "<C-c>", ":w !clip<CR><CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "<C-Up>", '"zx<Up>"zP`[V`]', { noremap = true, silent = true })
 vim.keymap.set("v", "<S-l>", "$  ", { noremap = true, silent = true })
 vim.keymap.set("v", "<TAB>", "%", { noremap = true, silent = true })
 vim.keymap.set("v", "v", "$h", { noremap = true, silent = true })
 vim.keymap.set("v", "za", "zf", { noremap = true, silent = true })
 vim.keymap.set(
-    "i",
-    "<S-Insert>",
-    "<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>",
-    { noremap = true, silent = true }
+	"i",
+	"<S-Insert>",
+	"<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>",
+	{ noremap = true, silent = true }
 )
 vim.keymap.set("n", "<Space>cd", ":cd  %:h | pwd<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "q:", "<Nop>", { noremap = true, silent = true })
