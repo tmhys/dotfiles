@@ -85,7 +85,7 @@ opt.matchtime = 1
 opt.matchpairs = vim.bo.matchpairs
 	.. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
 opt.number = true -- Show line numbers
-opt.scrolloff = 10 -- Lines of context
+opt.scrolloff = 0 -- Lines of context
 opt.shiftwidth = 4
 opt.showmatch = true
 opt.showtabline = 2
