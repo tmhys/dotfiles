@@ -138,7 +138,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	once = false,
 })
 
---人の設定からコピペ{{{
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
 	group = groupname,
 	pattern = "*",
@@ -160,24 +159,6 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 	end,
 	once = false,
 })
-
--- vim.api.nvim_create_autocmd({ "CursorMoved" }, {
---  group = groupname,
---  pattern = "*",
---  callback = function()
---      vim.o.laststatus = 0
---  end,
---  once = false,
--- })
--- vim.api.nvim_create_autocmd({ "CursorHold" }, {
---  group = groupname,
---  pattern = "*",
---  callback = function()
---      vim.o.laststatus = 3
---  end,
---  once = false,
--- })
---}}}
 
 ---- alpha nvimで起動時間を表示するように変更
 ---- このautocmd自体は残しておかないとalpha nvimに表示できない
