@@ -14,7 +14,8 @@ end
 
 local navic = require("nvim-navic")
 local sections_1 = {
-	lualine_a = { "mode" },
+	-- lualine_a = { "mode" },
+	lualine_a = {},
 	lualine_b = { { "filetype", icon_only = true }, { "filename" } },
 	lualine_c = { tagname },
 	lualine_x = {
@@ -29,8 +30,9 @@ local sections_1 = {
 			},
 		},
 	},
-	lualine_y = { "branch", "diff", "g:asyncrun_status" },
-	lualine_z = { "location" },
+	lualine_y = { { "branch", "diff", "g:asyncrun_status" }, { "location" } },
+	-- lualine_z = { "location" },
+	lualine_z = {},
 }
 
 local sections_2 = {
@@ -65,10 +67,12 @@ local my_extension = {
 
 require("lualine").setup({
 	options = {
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		icons_enabled = true,
 		globalstatus = true,
 		--theme = "nightfox",
-		theme = "auto",
+		theme = "16color",
 		disabled_filetypes = {},
 		always_divide_middle = true,
 		refresh = { -- sets how often lualine should refresh it's contents (in ms)
