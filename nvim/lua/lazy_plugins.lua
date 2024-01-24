@@ -109,14 +109,16 @@ local plugins = {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "williamboman/mason.nvim",
-            "jose-elias-alvarez/null-ls.nvim",
+            "nvimtools/none-ls.nvim",
+            -- "jose-elias-alvarez/null-ls.nvim",
         },
         config = function()
             require("my_plugins.mason-null-ls")
         end,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
+        -- "jose-elias-alvarez/null-ls.nvim",
         dependencies = "williamboman/mason.nvim",
         event = { "FocusLost", "CursorHold" },
         config = function()
@@ -184,39 +186,47 @@ local plugins = {
     },
     { "nvim-lua/plenary.nvim", lazy = true },
     { "nvim-lua/popup.nvim", lazy = true },
+
+    ----------------------------------------------------------------------
+    --                           Color Scheme                           --
+    ----------------------------------------------------------------------
     {
         "catppuccin/nvim",
         lazy = true,
         name = "catppuccin",
         config = function()
-            vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
+            vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
             require("catppuccin").setup()
         end,
     },
-    { "sainnhe/gruvbox-material", lazy = true },
-    { "rafi/awesome-vim-colorschemes", lazy = true },
-    {
-        "EdenEast/nightfox.nvim",
-        lazy = true,
-        config = function()
-            require("my_plugins.nightfox")
-        end,
-    },
-    { "Mofiqul/dracula.nvim", lazy = true },
-    {
-        "rose-pine/neovim",
-        lazy = true,
-        name = "rose-pine",
-        version = "v1.*",
-        config = function()
-            require("my_plugins.rose-pine")
-        end,
-    },
-    { "navarasu/onedark.nvim", lazy = true },
-    { "Th3Whit3Wolf/one-nvim", lazy = true },
-    { "folke/tokyonight.nvim", lazy = true },
-    { "Mofiqul/vscode.nvim", lazy = true },
-    { "rebelot/kanagawa.nvim", lazy = true },
+    -- { "sainnhe/gruvbox-material", lazy = true },
+    -- { "rafi/awesome-vim-colorschemes", lazy = true },
+    -- {
+    --     "EdenEast/nightfox.nvim",
+    --     lazy = true,
+    --     config = function()
+    --         require("my_plugins.nightfox")
+    --     end,
+    -- },
+    -- { "Mofiqul/dracula.nvim", lazy = true },
+    -- {
+    --     "rose-pine/neovim",
+    --     lazy = true,
+    --     name = "rose-pine",
+    --     version = "v1.*",
+    --     config = function()
+    --         require("my_plugins.rose-pine")
+    --     end,
+    -- },
+    -- { "navarasu/onedark.nvim", lazy = true },
+    -- { "Th3Whit3Wolf/one-nvim", lazy = true },
+    -- { "folke/tokyonight.nvim", lazy = true },
+    -- { "Mofiqul/vscode.nvim", lazy = true },
+    -- { "rebelot/kanagawa.nvim", lazy = true },
+    ----------------------------------------------------------------------
+    --                               ---                                --
+    ----------------------------------------------------------------------
+
     {
         "kevinhwang91/nvim-bqf",
         ft = "qf",
@@ -419,16 +429,28 @@ local plugins = {
             require("my_plugins.hop")
         end,
     },
-    {
-        "stevearc/overseer.nvim",
-        lazy = true,
-        config = function()
-            require("my_plugins.overseer")
-        end,
-    },
+    -- {
+    --     "stevearc/overseer.nvim",
+    --     lazy = true,
+    --     config = function()
+    --         require("my_plugins.overseer")
+    --     end,
+    -- },
+    -- {
+    --     -- ó«Ç≥ÇªÇ§ÇæÇØÇ«SEQÇ≈ï∂éöâªÇØÇ∑ÇÈÅH
+    --     "is0n/jaq-nvim",
+    --     enabled = function()
+    --         return not vim.g.vscode
+    --     end,
+    --     ft = { "seq", "python" },
+    --     config = function()
+    --         require("my_plugins.jaq-nvim")
+    --     end,
+    -- },
     -- NOTE: vim
     {
         "skywind3000/asyncrun.vim",
+        lazy = true,
         enabled = function()
             return not vim.g.vscode
         end,
