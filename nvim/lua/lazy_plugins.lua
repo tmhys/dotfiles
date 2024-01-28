@@ -64,19 +64,40 @@ local plugins = {
         end,
     },
     {
-        "kyazdani42/nvim-tree.lua",
+        "nvim-neo-tree/neo-tree.nvim",
         enabled = function()
             return not vim.g.vscode
         end,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        },
         config = function()
-            require("my_plugins.nvim-tree")
+            require("my_plugins.neo-tree")
         end,
-        cmd = "NvimTreeFindFileToggle",
-        init = function()
-            vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
-        end,
+        cmd = "Neotree",
+        keys="<C-n>"
+        -- init = function()
+        --  vim.keymap.set("n", "<C-n>", "<Cmd>Neotree toggle<cr>", { noremap = true })
+        -- end,
     },
+    -- {
+    --  "kyazdani42/nvim-tree.lua",
+    --  enabled = function()
+    --      return not vim.g.vscode
+    --  end,
+    --  dependencies = { "nvim-tree/nvim-web-devicons" },
+    --  config = function()
+    --      require("my_plugins.nvim-tree")
+    --  end,
+    --  cmd = "NvimTreeFindFileToggle",
+    --  init = function()
+    --      vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
+    --  end,
+    -- },
     {
         "s1n7ax/nvim-comment-frame",
         keys = { "<Space>cf" },
@@ -195,7 +216,7 @@ local plugins = {
         lazy = true,
         name = "catppuccin",
         config = function()
-            vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+            vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
             require("catppuccin").setup()
         end,
     },

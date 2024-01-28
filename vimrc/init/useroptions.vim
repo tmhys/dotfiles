@@ -133,19 +133,19 @@ set undofile
 set noswapfile
 set backup
 set writebackup
-" backupdirなどなければ作る{
-function! s:mkdir(dir)
-    if !isdirectory(a:dir)
-       " "p" を渡すことでネストしたディレクトリ全てが作成される
-        call mkdir(a:dir, "p")
-    endif
-endfunction
-let $DATE = strftime("%Y%m%d_%H%M%S")
-set backupdir=$HOME/.vimbackup
-set undodir=$HOME/.vimbackup
-call s:mkdir(&backupdir)
-call s:mkdir(&undodir)
-"}
+"" backupdirなどなければ作る{
+"function! s:mkdir(dir)
+"    if !isdirectory(a:dir)
+"       " "p" を渡すことでネストしたディレクトリ全てが作成される
+"        call mkdir(a:dir, "p")
+"    endif
+"endfunction
+"let $DATE = strftime("%Y%m%d_%H%M%S")
+"set backupdir=$HOME/.vimbackup
+"set undodir=$HOME/.vimbackup
+"call s:mkdir(&backupdir)
+"call s:mkdir(&undodir)
+""}
 
 """"""""""""""""""""""""""""""""""""""""
 " その他

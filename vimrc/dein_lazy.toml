@@ -24,76 +24,76 @@ on_event = ['ColorSchemePre']
 ###########
 # filer
 ###########
-[[plugins]]
-repo = 'preservim/nerdtree'
-on_event = ['VimEnter']
-# on_map = []
-# depends  = [# {{{
-#   'tiagofumo/vim-nerdtree-syntax-highlight',
-#   'Xuyuanp/nerdtree-git-plugin'
-#     ]# }}}
-hook_add = '''"{{{
-    "curren directoryに合わせて NERDTreeToggle
-    nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+# [[plugins]]
+# repo = 'preservim/nerdtree'
+# on_event = ['VimEnter']
+# # on_map = []
+# # depends  = [# {{{
+# #   'tiagofumo/vim-nerdtree-syntax-highlight',
+# #   'Xuyuanp/nerdtree-git-plugin'
+# #     ]# }}}
+# hook_add = '''"{{{
+#     "curren directoryに合わせて NERDTreeToggle
+#     nnoremap <silent> <expr> <C-n> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
-    """bookmark初期表示
-    let g:NERDTreeShowBookmarks=1
+#     """bookmark初期表示
+#     let g:NERDTreeShowBookmarks=1
 
-    "vim-nerdtree-syntax-highlight
-    "lag対策
-    let g:NERDTreeLimitedSyntax = 1
-    let g:NERDTreeHighlightCursorline = 0
+#     "vim-nerdtree-syntax-highlight
+#     "lag対策
+#     let g:NERDTreeLimitedSyntax = 1
+#     let g:NERDTreeHighlightCursorline = 0
 
-    let g:NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
+#     let g:NERDTreeIgnore = ['.dat$','.exe$','.dbg$','.bak$','.dll$']
 
-    ""NERDTree矢印変更{{{
-    let g:NERDTreeDirArrowCollapsible = ''
-    let g:NERDTreeDirArrowExpandable = ''
-    "}}}
-    let g:NERDTreeMinimalUI = 1
-    let g:NERDTreeDirArrows = 1
+#     ""NERDTree矢印変更{{{
+#     let g:NERDTreeDirArrowCollapsible = ''
+#     let g:NERDTreeDirArrowExpandable = ''
+#     "}}}
+#     let g:NERDTreeMinimalUI = 1
+#     let g:NERDTreeDirArrows = 1
 
-    let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-    let g:WebDevIconsNerdTreeAfterGlyphPadding = ""
+#     let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+#     let g:WebDevIconsNerdTreeAfterGlyphPadding = ""
 
-    " NERDTreeでルートを変更したらchdirする
-    let g:NERDTreeChDirMode = 2
+#     " NERDTreeでルートを変更したらchdirする
+#     let g:NERDTreeChDirMode = 2
 
-    let g:NERDTreeGitStatusIndicatorMapCustom = {
-        \ "Modified"  : "✹ ",
-        \ "Staged"    : "✚ ",
-        \ "Untracked" : "✭ ",
-        \ "Renamed"   : "➜ ",
-        \ "Unmerged"  : "═",
-        \ "Deleted"   : "✖ ",
-        \ "Dirty"     : "✗ ",
-        \ "Clean"     : "✔︎ ",
-        \ "Unknown"   : "? "
-        \ }
+#     let g:NERDTreeGitStatusIndicatorMapCustom = {
+#         \ "Modified"  : "✹ ",
+#         \ "Staged"    : "✚ ",
+#         \ "Untracked" : "✭ ",
+#         \ "Renamed"   : "➜ ",
+#         \ "Unmerged"  : "═",
+#         \ "Deleted"   : "✖ ",
+#         \ "Dirty"     : "✗ ",
+#         \ "Clean"     : "✔︎ ",
+#         \ "Unknown"   : "? "
+#         \ }
 
 
-    augroup NERDTree_CLOSE
-        autocmd!
-        "NERDTree以外を閉じたらNERDTreeも閉じる
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-        autocmd FileType nerdtree setlocal signcolumn=no
-    augroup END
+#     augroup NERDTree_CLOSE
+#         autocmd!
+#         "NERDTree以外を閉じたらNERDTreeも閉じる
+#         autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+#         autocmd FileType nerdtree setlocal signcolumn=no
+#     augroup END
 
-"}}}'''
-hook_post_source = '''"{{{
-    " after a re-source, fix syntax matching issues (concealing brackets):
-    if exists('g:loaded_webdevicons')
-      call webdevicons#refresh()
-    endif
-"}}}'''
+# "}}}'''
+# hook_post_source = '''"{{{
+#     " after a re-source, fix syntax matching issues (concealing brackets):
+#     if exists('g:loaded_webdevicons')
+#       call webdevicons#refresh()
+#     endif
+# "}}}'''
 
-[[plugins]]
-repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
-on_source = ['nerdtree']
+# [[plugins]]
+# repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+# on_source = ['nerdtree']
 
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
-on_source = ['nerdtree']
+# [[plugins]]
+# repo = 'Xuyuanp/nerdtree-git-plugin'
+# on_source = ['nerdtree']
 
 ###########
 # ctags
@@ -184,9 +184,9 @@ on_event = ['BufReadPost']
 repo = 'machakann/vim-highlightedyank'
 on_event = ['BufEnter']
 
-[[plugins]]
-repo = 'itchyny/vim-cursorword'
-on_event = ['BufEnter']
+# [[plugins]]
+# repo = 'itchyny/vim-cursorword'
+# on_event = ['BufEnter']
 
 ###########
 # quickfix
