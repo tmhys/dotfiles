@@ -75,15 +75,16 @@ vim.keymap.set("v", "<TAB>", "%", { noremap = true, silent = true })
 vim.keymap.set("v", "v", "$h", { noremap = true, silent = true })
 vim.keymap.set("v", "za", "zf", { noremap = true, silent = true })
 vim.keymap.set(
-    "i",
-    "<S-Insert>",
-    "<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>",
-    { noremap = true, silent = true }
+	"i",
+	"<S-Insert>",
+	"<ESC>:set noautoindent nosmartindent<CR>a<C-R>+<ESC>:set autoindent smartindent<CR>",
+	{ noremap = true, silent = true }
 )
 vim.keymap.set("n", "<Space>cd", ":cd  %:h | pwd<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "q:", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "q/", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "q?", "<Nop>", { noremap = true, silent = true })
+
 vim.api.nvim_create_user_command("Evimrc", ":e $HOME/AppData/Local/nvim/init.lua", { force = true })
 vim.api.nvim_create_user_command("Egvimrc", ":e $HOME/AppData/Local/nvim/ginit.vim", { force = true })
 vim.api.nvim_create_user_command("Elazy", ":e $HOME/AppData/Local/nvim/lua/lazy_plugins.lua", { force = true })
