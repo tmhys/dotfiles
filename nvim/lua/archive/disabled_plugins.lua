@@ -340,3 +340,34 @@ use({
     { "folke/tokyonight.nvim", lazy = true },
     { "Mofiqul/vscode.nvim", lazy = true },
     { "rebelot/kanagawa.nvim", lazy = true },
+    {
+        "stevearc/gkeep.nvim",
+        build = "UpdateRemotePlugins",
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    -- { "sainnhe/gruvbox-material", lazy = true },
+    -- { "rafi/awesome-vim-colorschemes", lazy = true },
+    -- {
+    --     "EdenEast/nightfox.nvim",
+    --     lazy = true,
+    --     config = function()
+    --         require("my_plugins.nightfox")
+    --     end,
+    -- },
+    -- { "Mofiqul/dracula.nvim", lazy = true },
+    -- {
+    --     "rose-pine/neovim",
+    --     lazy = true,
+    --     name = "rose-pine",
+    --     version = "v1.*",
+    --     config = function()
+    --         require("my_plugins.rose-pine")
+    --     end,
+    -- },
+    -- { "navarasu/onedark.nvim", lazy = true },
+    -- { "Th3Whit3Wolf/one-nvim", lazy = true },
+    -- { "folke/tokyonight.nvim", lazy = true },
+    -- { "Mofiqul/vscode.nvim", lazy = true },
+    -- { "rebelot/kanagawa.nvim", lazy = true },

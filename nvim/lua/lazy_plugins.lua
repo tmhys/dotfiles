@@ -79,7 +79,7 @@ local plugins = {
             require("my_plugins.neo-tree")
         end,
         cmd = "Neotree",
-        keys="<C-n>"
+        keys = "<C-n>",
         -- init = function()
         --  vim.keymap.set("n", "<C-n>", "<Cmd>Neotree toggle<cr>", { noremap = true })
         -- end,
@@ -213,37 +213,13 @@ local plugins = {
     ----------------------------------------------------------------------
     {
         "catppuccin/nvim",
-        lazy = true,
+        lazy = false,
         name = "catppuccin",
+        priority = 1000,
         config = function()
-            vim.g.catppuccin_flavour = "latte" -- latte, frappe, macchiato, mocha
-            require("catppuccin").setup()
+            vim.cmd.colorscheme("catppuccin-frappe")
         end,
     },
-    -- { "sainnhe/gruvbox-material", lazy = true },
-    -- { "rafi/awesome-vim-colorschemes", lazy = true },
-    -- {
-    --     "EdenEast/nightfox.nvim",
-    --     lazy = true,
-    --     config = function()
-    --         require("my_plugins.nightfox")
-    --     end,
-    -- },
-    -- { "Mofiqul/dracula.nvim", lazy = true },
-    -- {
-    --     "rose-pine/neovim",
-    --     lazy = true,
-    --     name = "rose-pine",
-    --     version = "v1.*",
-    --     config = function()
-    --         require("my_plugins.rose-pine")
-    --     end,
-    -- },
-    -- { "navarasu/onedark.nvim", lazy = true },
-    -- { "Th3Whit3Wolf/one-nvim", lazy = true },
-    -- { "folke/tokyonight.nvim", lazy = true },
-    -- { "Mofiqul/vscode.nvim", lazy = true },
-    -- { "rebelot/kanagawa.nvim", lazy = true },
     ----------------------------------------------------------------------
     --                               ---                                --
     ----------------------------------------------------------------------
@@ -256,7 +232,7 @@ local plugins = {
         "ten3roberts/qf.nvim",
         ft = "qf",
         config = function()
-            require("qf").setup({})
+            require("qf").setup()
         end,
         keys = {
             {

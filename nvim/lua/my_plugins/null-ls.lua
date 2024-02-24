@@ -54,15 +54,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 local sources = {
 	-- LuaFormatter off
-	null_ls.builtins.formatting.trim_whitespace.with({
-		disabled_filetypes = ignored_filetypes,
-		runtime_condition = function()
-			local count = tonumber(vim.api.nvim_exec("execute 'silent! %s/\\v\\s+$//gn'", true):match("%w+"))
-			if count then
-				return vim.fn.confirm("Whitespace found, delete it?", "&No\n&Yes", 1, "Question") == 2
-			end
-		end,
-	}),
+	-- null_ls.builtins.formatting.trim_whitespace.with({
+	--  disabled_filetypes = ignored_filetypes,
+	--  runtime_condition = function()
+	--      local count = tonumber(vim.api.nvim_exec("execute 'silent! %s/\\v\\s+$//gn'", true):match("%w+"))
+	--      if count then
+	--          return vim.fn.confirm("Whitespace found, delete it?", "&No\n&Yes", 1, "Question") == 2
+	--      end
+	--  end,
+	-- }),
 	null_ls.builtins.formatting.stylua.with({
 		condition = function()
 			return vim.fn.executable("stylua") > 0
