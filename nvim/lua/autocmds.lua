@@ -161,23 +161,23 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 })
 
 -- faster.nvim‚¿‚ç‚Â‚«‘Îô{{{
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-	group = groupname,
-	pattern = "*",
-	callback = function()
-		vim.opt.laststatus = 3
-	end,
-	once = false,
-})
-
-vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-	group = groupname,
-	pattern = "*",
-	callback = function()
-		vim.opt.laststatus = 0
-	end,
-	once = false,
-})
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+--  group = groupname,
+--  pattern = "*",
+--  callback = function()
+--      vim.opt.laststatus = 3
+--  end,
+--  once = false,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+--  group = groupname,
+--  pattern = "*",
+--  callback = function()
+--      vim.opt.laststatus = 0
+--  end,
+--  once = false,
+-- })
 --}}}
 
 ---- alpha nvim‚Å‹N“®ŠÔ‚ğ•\¦‚·‚é‚æ‚¤‚É•ÏX

@@ -371,3 +371,67 @@ use({
     -- { "folke/tokyonight.nvim", lazy = true },
     -- { "Mofiqul/vscode.nvim", lazy = true },
     -- { "rebelot/kanagawa.nvim", lazy = true },
+
+    -- {
+    --  "kyazdani42/nvim-tree.lua",
+    --  enabled = function()
+    --      return not vim.g.vscode
+    --  end,
+    --  dependencies = { "nvim-tree/nvim-web-devicons" },
+    --  config = function()
+    --      require("my_plugins.nvim-tree")
+    --  end,
+    --  cmd = "NvimTreeFindFileToggle",
+    --  init = function()
+    --      vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeFindFileToggle<CR>", { noremap = true })
+    --  end,
+    -- },
+
+    -- {
+    --  "kevinhwang91/nvim-bqf",
+    --  ft = "qf",
+    -- },
+    -- {
+    --     "ten3roberts/qf.nvim",
+    --     ft = "qf",
+    --     config = function()
+    --         require("qf").setup()
+    --     end,
+    --     keys = {
+    --         {
+    --             "<M-q>",
+    --             function()
+    --                 require("qf").toggle("c")
+    --             end,
+    --             mode = "n",
+    --             desc = "Toggle quickfix window",
+    --             silent = true,
+    --         },
+    --     },
+    -- },
+    -- NOTE: vim
+    -- {
+    --  "kana/vim-smartchr",
+    --  event = "InsertEnter",
+    --  config = function()
+    --      require("my_plugins.vim-smartchr")
+    --  end,
+    -- },
+    -- {
+    --     "stevearc/overseer.nvim",
+    --     lazy = true,
+    --     config = function()
+    --         require("my_plugins.overseer")
+    --     end,
+    -- },
+    -- {
+    --     -- 良さそうだけどSEQで文字化けする？
+    --     "is0n/jaq-nvim",
+    --     enabled = function()
+    --         return not vim.g.vscode
+    --     end,
+    --     ft = { "seq", "python" },
+    --     config = function()
+    --         require("my_plugins.jaq-nvim")
+    --     end,
+    -- },
