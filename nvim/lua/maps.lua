@@ -68,6 +68,7 @@ vim.keymap.set("n", "<ESC><ESC>", ":<C-u>nohlsearch<CR>", { noremap = true, sile
 vim.keymap.set("n", "<space><space>", "*N", { noremap = true, silent = true })
 vim.keymap.set("v", "#", ":s///gc<Left><Left><Left><Left><C-r><C-w><Right>", { noremap = true, silent = false })
 vim.keymap.set("v", "<C-Down>", '"zx"zp`[V`]', { noremap = true, silent = true })
+-- クリップボードにコピー！
 vim.keymap.set("v", "<C-c>", ":w !clip<CR><CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "<C-Up>", '"zx<Up>"zP`[V`]', { noremap = true, silent = true })
 vim.keymap.set("v", "<S-l>", "$  ", { noremap = true, silent = true })
