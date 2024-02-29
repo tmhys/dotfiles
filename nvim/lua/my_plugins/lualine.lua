@@ -67,12 +67,12 @@ local my_extension = {
 
 require("lualine").setup({
 	options = {
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		-- component_separators = { left = "", right = "" },
+		-- section_separators = { left = "", right = "" },
 		icons_enabled = true,
 		globalstatus = true,
 		--theme = "nightfox",
-		theme = "16color",
+		-- theme = "16color",
 		disabled_filetypes = {},
 		always_divide_middle = true,
 		refresh = { -- sets how often lualine should refresh it's contents (in ms)

@@ -160,6 +160,26 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave"
 	once = false,
 })
 
+-- faster.nvimちらつき対策{{{
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+	group = groupname,
+	pattern = "*",
+	callback = function()
+		vim.opt.laststatus = 3
+	end,
+	once = false,
+})
+
+vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+	group = groupname,
+	pattern = "*",
+	callback = function()
+		vim.opt.laststatus = 0
+	end,
+	once = false,
+})
+--}}}
+
 ---- alpha nvimで起動時間を表示するように変更
 ---- このautocmd自体は残しておかないとalpha nvimに表示できない
 --if vim.fn.has("vim_starting") == 1 then

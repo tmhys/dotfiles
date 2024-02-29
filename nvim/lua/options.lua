@@ -85,7 +85,7 @@ opt.matchtime = 1
 opt.matchpairs = vim.bo.matchpairs
 	.. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
 opt.number = true -- Show line numbers
-opt.scrolloff = 0 -- Lines of context
+opt.scrolloff = 3 -- Lines of context
 opt.shiftwidth = 4
 opt.showmatch = true
 opt.showtabline = 2
@@ -95,7 +95,7 @@ opt.tabstop = 4
 opt.termguicolors = true -- True color support
 opt.undodir = fn.stdpath("config") .. "/.undo"
 opt.undofile = true
-opt.updatetime = 250 -- update interval for gitsigns
+opt.updatetime = 500 -- update interval for gitsigns
 opt.virtualedit = "block"
 opt.wildmenu = true
 opt.wildmode = "full"
