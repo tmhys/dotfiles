@@ -110,8 +110,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "python",
 	callback = function()
 		vim.cmd([[
-        " setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-        " setlocal foldmethod=indent
+        setlocal errorformat=%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+        setlocal foldmethod=indent
     ]])
 	end,
 	once = false,
