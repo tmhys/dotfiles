@@ -1,4 +1,4 @@
-" Guifont! JetBrains Mono:h11
+Guifont! JetBrains Mono:h11
 " PlemolJP ‚¶‚á‚È‚¢‚Ælspkind‚¨‚©‚µ‚¢
 " Guifont! PlemolJP Console NF:h12
 "Cica‚¾‚Æstatusline‚Ìiconˆê•”•\Ž¦‚¨‚©‚µ‚­‚È‚è‚Ü‚·

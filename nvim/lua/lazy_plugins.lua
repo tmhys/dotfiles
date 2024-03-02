@@ -15,6 +15,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.keymap.set("n", "<F12>", "<cmd>Lazy sync<CR>")
 
 local plugins = {
+	----------------------------------------------------------------------
+	--                           fuzzy finder                           --
+	----------------------------------------------------------------------
+
 	{
 		"nvim-telescope/telescope.nvim",
 		enabled = function()
@@ -32,6 +36,30 @@ local plugins = {
 		lazy = true,
 		dependencies = { "telescope.nvim" },
 	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		enabled = function()
+			return not vim.g.vscode
+		end,
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+		},
+		config = function()
+			require("my_plugins.neo-tree")
+		end,
+		cmd = "Neotree",
+		keys = "<C-n>",
+		-- init = function()
+		--  vim.keymap.set("n", "<C-n>", "<Cmd>Neotree toggle<cr>", { noremap = true })
+		-- end,
+	},
+	----------------------------------------------------------------------
+	--                            treesitter                            --
+	----------------------------------------------------------------------
 	{
 		"nvim-treesitter/nvim-treesitter",
 		enabled = function()
@@ -64,27 +92,6 @@ local plugins = {
 		end,
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		enabled = function()
-			return not vim.g.vscode
-		end,
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-		},
-		config = function()
-			require("my_plugins.neo-tree")
-		end,
-		cmd = "Neotree",
-		keys = "<C-n>",
-		-- init = function()
-		--  vim.keymap.set("n", "<C-n>", "<Cmd>Neotree toggle<cr>", { noremap = true })
-		-- end,
-	},
-	{
 		"s1n7ax/nvim-comment-frame",
 		keys = { "<Space>cf" },
 		config = function()
@@ -92,6 +99,9 @@ local plugins = {
 		end,
 		dependencies = "nvim-treesitter",
 	},
+	----------------------------------------------------------------------
+	--                               LSP                                --
+	----------------------------------------------------------------------
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre" },
@@ -132,6 +142,9 @@ local plugins = {
 			require("my_plugins.null-ls")
 		end,
 	},
+	----------------------------------------------------------------------
+	--                               cmp                                --
+	----------------------------------------------------------------------
 	{
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
@@ -181,19 +194,12 @@ local plugins = {
 			require("my_plugins.nvim-cmp")
 		end,
 	},
+	----------------------------------------------------------------------
+	--                               util                               --
+	----------------------------------------------------------------------
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
-	-- vim
-	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
-	{
-		"nvim-zh/colorful-winsep.nvim",
-		event = "WinNew",
-		config = function()
-			require("colorful-winsep").setup()
-		end,
-	},
 	{ "nvim-lua/plenary.nvim", lazy = true },
 	{ "nvim-lua/popup.nvim", lazy = true },
-
 	----------------------------------------------------------------------
 	--                           Color Scheme                           --
 	----------------------------------------------------------------------
@@ -206,10 +212,18 @@ local plugins = {
 			vim.cmd.colorscheme("catppuccin-frappe")
 		end,
 	},
-	----------------------------------------------------------------------
-	--                               ---                                --
-	----------------------------------------------------------------------
+	{
+		"Shatur/neovim-ayu",
+		lazy = true,
+		priority = 1000,
+		config = function()
+			-- vim.cmd.colorscheme("ayu")
+		end,
+	},
 
+	----------------------------------------------------------------------
+	--                                qf                                --
+	----------------------------------------------------------------------
 	{
 		"stevearc/qf_helper.nvim",
 		ft = "qf",
@@ -235,11 +249,21 @@ local plugins = {
 				},
 			})
 			-- use <C-N> and <C-P> for next/prev.
-			vim.keymap.set("n", "<C-N>", "<CMD>QNext<CR>")
-			vim.keymap.set("n", "<C-P>", "<CMD>QPrev<CR>")
+			vim.keymap.set("n", "<M-N>", "<CMD>QNext<CR>")
+			vim.keymap.set("n", "<M-P>", "<CMD>QPrev<CR>")
 			-- toggle the quickfix open/closed without jumping to it
 			vim.keymap.set("n", "<M-q>", "<CMD>QFToggle!<CR>")
 			vim.keymap.set("n", "<M-l>", "<CMD>LLToggle!<CR>")
+		end,
+	},
+	----------------------------------------------------------------------
+	--                                UI                                --
+	----------------------------------------------------------------------
+	{
+		"nvim-zh/colorful-winsep.nvim",
+		event = "WinNew",
+		config = function()
+			require("colorful-winsep").setup()
 		end,
 	},
 	{
@@ -357,16 +381,9 @@ local plugins = {
 			{ "nvim-treesitter" },
 		},
 	},
-	{
-		"PHSix/faster.nvim",
-		-- コマンドラインのちらつきが気になる、、
-		keys = { "j", "k" },
-		-- lazy = true,
-		config = function()
-			vim.api.nvim_set_keymap("n", "j", "<Plug>(faster_move_j)", { noremap = false, silent = true })
-			vim.api.nvim_set_keymap("n", "k", "<Plug>(faster_move_k)", { noremap = false, silent = true })
-		end,
-	},
+	----------------------------------------------------------------------
+	--                               tool                               --
+	----------------------------------------------------------------------
 	-- NOTE: vim
 	{ "kraxli/vim-renamer", cmd = "Renamer" },
 	{
@@ -388,30 +405,50 @@ local plugins = {
 		cmd = "Align",
 	},
 	{
-		"jinh0/eyeliner.nvim",
-		keys = { "f", "F", "t", "T" },
+		"dinhhuy258/git.nvim",
+		event = "BufRead",
 		config = function()
-			require("eyeliner").setup({
-				bold = true,
-			})
+			require("my_plugins.git")
+		end,
+	},
+	-- NOTE: vim
+	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
+	{
+		"numToStr/Comment.nvim",
+		event = "BufRead",
+		config = function()
+			require("Comment").setup()
 		end,
 	},
 	{
-		"ggandor/lightspeed.nvim",
-		keys = { "f", "F", "t", "T" },
+		"stevearc/stickybuf.nvim",
+		event = "WinNew",
 		config = function()
-			require("my_plugins.lightspeed")
+			require("stickybuf").setup()
 		end,
 	},
+	-- NOTE:  vim
 	{
-		"phaazon/hop.nvim",
-		branch = "v2",
-		keys = { "zz" },
+		"soramugi/auto-ctags.vim",
+		ft = "seq",
+		-- event = "BufRead",
+		config = function()
+			require("my_plugins.auto-ctags")
+		end,
+	},
+	-- NOTE:  vim
+	{
+		"majutsushi/tagbar",
+		enabled = function()
+			return not vim.g.vscode
+		end,
+		ft = "seq",
+		cmd = "TagbarToggle",
+		config = function()
+			require("my_plugins.tagbar")
+		end,
 		init = function()
-			vim.keymap.set("n", "zz", "<cmd>lua require'hop'.hint_words()<CR>", {})
-		end,
-		config = function()
-			require("my_plugins.hop")
+			vim.keymap.set("n", "<F8>", "<Cmd>TagbarToggle<CR>", { noremap = true })
 		end,
 	},
 	-- NOTE: vim
@@ -441,54 +478,52 @@ local plugins = {
 			require("my_plugins.asyncrun")
 		end,
 	},
+	----------------------------------------------------------------------
+	--                               move                               --
+	----------------------------------------------------------------------
 	{
-		"dinhhuy258/git.nvim",
-		event = "BufRead",
+		"PHSix/faster.nvim",
+		-- コマンドラインのちらつきが気になる、、
+		keys = { "j", "k" },
+		-- lazy = true,
 		config = function()
-			require("my_plugins.git")
+			vim.api.nvim_set_keymap("n", "j", "<Plug>(faster_move_j)", { noremap = false, silent = true })
+			vim.api.nvim_set_keymap("n", "k", "<Plug>(faster_move_k)", { noremap = false, silent = true })
 		end,
 	},
-	-- NOTE:  vim
 	{
-		"soramugi/auto-ctags.vim",
-		ft = "seq",
-		-- event = "BufRead",
+		"jinh0/eyeliner.nvim",
+		keys = { "f", "F", "t", "T" },
 		config = function()
-			require("my_plugins.auto-ctags")
+			require("eyeliner").setup({
+				bold = true,
+			})
 		end,
 	},
-	-- NOTE:  vim
 	{
-		"majutsushi/tagbar",
-		enabled = function()
-			return not vim.g.vscode
-		end,
-		ft = "seq",
-		cmd = "TagbarToggle",
+		"ggandor/lightspeed.nvim",
+		keys = { "f", "F", "t", "T" },
 		config = function()
-			require("my_plugins.tagbar")
+			require("my_plugins.lightspeed")
 		end,
+	},
+	{
+		"phaazon/hop.nvim",
+		branch = "v2",
+		keys = { "zz" },
 		init = function()
-			vim.keymap.set("n", "<F8>", "<Cmd>TagbarToggle<CR>", { noremap = true })
+			vim.keymap.set("n", "zz", "<cmd>lua require'hop'.hint_words()<CR>", {})
+		end,
+		config = function()
+			require("my_plugins.hop")
 		end,
 	},
+	----------------------------------------------------------------------
+	--                             filetype                             --
+	----------------------------------------------------------------------
+	{ dir = "~/vimfiles/localplugins/seq.vim", ft = "seq" },
 	{ "MTDL9/vim-log-highlighting", ft = "log" },
 	{ "mechatroner/rainbow_csv", ft = "csv" },
-	{ dir = "~/vimfiles/localplugins/seq.vim", ft = "seq" },
-	{
-		"numToStr/Comment.nvim",
-		event = "BufRead",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
-	{
-		"stevearc/stickybuf.nvim",
-		event = "WinNew",
-		config = function()
-			require("stickybuf").setup()
-		end,
-	},
 }
 
 require("lazy").setup(plugins, {
