@@ -435,3 +435,15 @@ use({
     --         require("my_plugins.jaq-nvim")
     --     end,
     -- },
+    -- { "MTDL9/vim-log-highlighting", ft = "log" },
+    -- { "mechatroner/rainbow_csv", ft = "csv" },
+    -- NOTE: vim
+    -- { "dstein64/vim-startuptime", cmd = "StartupTime" },
+    -- {
+    --  "nvim-treesitter/playground",
+    --  cmd = "TSPlaygroundToggle",
+    --  dependencies = "nvim-treesitter",
+    --  config = function()
+    --      require("my_plugins.playground")
+    --  end,
+    -- },

@@ -75,14 +75,6 @@ local plugins = {
         end,
     },
     {
-        "nvim-treesitter/playground",
-        cmd = "TSPlaygroundToggle",
-        dependencies = "nvim-treesitter",
-        config = function()
-            require("my_plugins.playground")
-        end,
-    },
-    {
         "mrjones2014/nvim-ts-rainbow",
         enabled = function()
             return not vim.g.vscode
@@ -426,8 +418,6 @@ local plugins = {
             require("my_plugins.git")
         end,
     },
-    -- NOTE: vim
-    { "dstein64/vim-startuptime", cmd = "StartupTime" },
     {
         "numToStr/Comment.nvim",
         event = "BufRead",
@@ -541,8 +531,6 @@ local plugins = {
     ----------------------------------------------------------------------
     --{{{
     { dir = "~/vimfiles/localplugins/seq.vim", ft = "seq" },
-    { "MTDL9/vim-log-highlighting", ft = "log" },
-    { "mechatroner/rainbow_csv", ft = "csv" },
     --}}}
 }
 
