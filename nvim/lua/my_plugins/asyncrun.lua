@@ -10,18 +10,18 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	once = false,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	group = groupname,
-	pattern = { "python" },
+	pattern = { "*.py" },
 	callback = function()
 		vim.keymap.set("n", "<Space>r", ":AsyncRun python -u %<CR>", { noremap = true, silent = true })
 	end,
 	once = false,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	group = groupname,
-	pattern = { "seq" },
+	pattern = { "*.seq", "*.s" },
 	callback = function()
 		vim.keymap.set(
 			"n",
