@@ -113,8 +113,9 @@ set matchpairs& matchpairs+=「:」,『:』,（:）,【:】,《:》,〈:〉,［:
 """"""""""""""""""""""""""""""""""""""""
 if has("gui_running")
     set guioptions&
+    set guioptions+=C
     set guioptions-=T
-    " set guioptions+=C
+    set guioptions+=C
     set guioptions-=m
     set guioptions-=r
     set guioptions-=R
