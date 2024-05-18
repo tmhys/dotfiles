@@ -294,12 +294,22 @@ local plugins = {
 			require("my_plugins.nvim-cursorword")
 		end,
 	},
+	-- {
+	--     "lukas-reineke/indent-blankline.nvim",
+	--     event = "BufRead",
+	--     config = function()
+	--         require("my_plugins.indent-blankline")
+	--     end,
+	-- },
 	{
-		"lukas-reineke/indent-blankline.nvim",
+		"shellRaining/hlchunk.nvim",
 		event = "BufRead",
 		config = function()
-			require("my_plugins.indent-blankline")
+			require("hlchunk").setup({})
 		end,
+		-- config = function()
+		--  require("my_plugins.hlchunk")
+		-- end,
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -534,6 +544,7 @@ local plugins = {
 	--}}}
 }
 
+-- lazy setup {{{
 require("lazy").setup(plugins, {
 	performance = {
 		checker = {
@@ -568,3 +579,4 @@ require("lazy").setup(plugins, {
 		},
 	},
 })
+-- }}}
