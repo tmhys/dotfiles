@@ -73,6 +73,7 @@ require("lualine").setup({
 		globalstatus = true,
 		--theme = "nightfox",
 		-- theme = "16color",
+		theme = require("neofusion.lualine"),
 		disabled_filetypes = {},
 		always_divide_middle = true,
 		refresh = { -- sets how often lualine should refresh it's contents (in ms)

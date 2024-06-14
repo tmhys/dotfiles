@@ -206,13 +206,20 @@ local plugins = {
     ----------------------------------------------------------------------
     --{{{
     {
+        "diegoulloao/neofusion.nvim",
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("neofusion")
+        end,
+    },
+    {
         "catppuccin/nvim",
         lazy = false,
         name = "catppuccin",
         priority = 1000,
-        config = function()
-            vim.cmd.colorscheme("catppuccin-frappe")
-        end,
+        -- config = function()
+        --  vim.cmd.colorscheme("catppuccin-frappe")
+        -- end,
     },
     {
         "Shatur/neovim-ayu",
@@ -401,6 +408,7 @@ local plugins = {
     --                               tool                               --
     ----------------------------------------------------------------------
     --{{{
+    { "dstein64/vim-startuptime", cmd = "StartupTime" },
     -- NOTE: vim
     { "kraxli/vim-renamer", cmd = "Renamer" },
     {
