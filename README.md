@@ -1,12 +1,16 @@
 # dotfiles
+
 各種設定ファイル集です。
 
-# Contents
+## フォルダ構成
 
-- nvim init.lua
-- vimrc
-- ctags config
-- scoop install list
+- `.vscode`: Visual Studio Codeの設定
+- `autohotkey`: AutoHotkeyスクリプト
+- `ctags.d`: Ctagsの設定
+- `nvim`: Neovimの設定
+- `scoop`: Scoopパッケージマネージャーの設定
+- `vimrc`: Vimの設定
+- `Windows Terminal`: Windows Terminalの設定
 
 # Requirement
 
@@ -27,19 +31,6 @@ windowsユーザーです
 
 で環境構築が一瞬で終わるようにしたい
 
-
 # Note
 
 自分用です。
-
-
-# TODO
-- keyboardのマッピングファイルもこのリポジトリにアップする
-- nvim
-    - [ ] tabキーの挙動がまだよろしくない、普通にタブを入力したいのに補完される
-    - [ ] null-lsの設定、改行コードeol
-
-# MEMO
-nvimは極力luaプラグインを使う。
-設定もlua化する。
-起動時間は頑張って短くする。
