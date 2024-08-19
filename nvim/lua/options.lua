@@ -80,7 +80,7 @@ opt.makeencoding = "cp932"
 opt.expandtab = true -- Use spaces instead of tabs
 opt.ignorecase = true -- Ignore case
 opt.laststatus = 3
--- opt.lazyredraw = true
+opt.lazyredraw = true
 opt.matchtime = 1
 opt.matchpairs = vim.bo.matchpairs
 	.. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
