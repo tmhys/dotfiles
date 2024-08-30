@@ -208,19 +208,20 @@ local plugins = {
 	--{{{
 	{
 		"diegoulloao/neofusion.nvim",
+		lazy = true,
 		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("neofusion")
-		end,
+		-- config = function()
+		--  vim.cmd.colorscheme("neofusion")
+		-- end,
 	},
 	{
 		"catppuccin/nvim",
 		lazy = false,
 		name = "catppuccin",
 		priority = 1000,
-		-- config = function()
-		--  vim.cmd.colorscheme("catppuccin-frappe")
-		-- end,
+		config = function()
+			vim.cmd.colorscheme("catppuccin-frappe")
+		end,
 	},
 	{
 		"Shatur/neovim-ayu",
@@ -272,14 +273,14 @@ local plugins = {
 	--                                UI                                --
 	----------------------------------------------------------------------
 	--{{{
-	{
-		"b0o/incline.nvim",
-		config = function()
-			require("incline").setup()
-		end,
-		-- Optional: Lazy load Incline
-		event = "VeryLazy",
-	},
+	-- {
+	--  "b0o/incline.nvim",
+	--  config = function()
+	--      require("incline").setup()
+	--  end,
+	--  -- Optional: Lazy load Incline
+	--  event = "VeryLazy",
+	-- },
 	{
 		"nvim-zh/colorful-winsep.nvim",
 		event = "WinNew",

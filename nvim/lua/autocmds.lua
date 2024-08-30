@@ -8,6 +8,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()
 		vim.wo.wrap = true
 		vim.cmd([[wincmd J]])
+		-- windows terminal & nvimでは以下のマッピング不可
+		-- vim.keymap.set("n", "<S-CR>", "<C-w><CR><C-w>L", { noremap = true, silent = true })
+		vim.keymap.set("n", "<Space><CR>", "<C-w><CR><C-w>L", { noremap = true, silent = true })
 	end,
 	once = false,
 })
