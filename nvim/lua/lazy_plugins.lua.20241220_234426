@@ -521,7 +521,7 @@ local plugins = {
         config = function()
             require("quicker").setup()
         end,
-    },
+    }
     -- {
     --  "gabrielpoca/replacer.nvim",
     --  ft = "qf",
