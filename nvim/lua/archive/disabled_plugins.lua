@@ -1,6 +1,13 @@
 --------------
 -- disabled plugins {{{
 ---------------
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     event = "BufRead",
+    --     config = function()
+    --         require("my_plugins.indent-blankline")
+    --     end,
+    -- },
  use({
      "lfilho/cosco.vim",
      event = "InsertEnter",

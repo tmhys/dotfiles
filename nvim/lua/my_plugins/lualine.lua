@@ -1,18 +1,18 @@
 local icons = require("icons")
-local function is_available_navic()
-	local ok, _ = pcall(require, "nvim-navic")
-	if not ok then
-		return false
-	end
-	return require("nvim-navic").is_available()
-end
+-- local function is_available_navic()
+--  local ok, _ = pcall(require, "nvim-navic")
+--  if not ok then
+--      return false
+--  end
+--  return require("nvim-navic").is_available()
+-- end
 
 local function tagname()
 	local p = vim.fn["tagbar#currenttag"]("%s", "")
 	return p
 end
 
-local navic = require("nvim-navic")
+-- local navic = require("nvim-navic")
 local sections_1 = {
 	-- lualine_a = { "mode" },
 	lualine_a = {},
