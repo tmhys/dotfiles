@@ -37,7 +37,7 @@ local plugins = {
     { "folke/neodev.nvim", lazy = true },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        event = "VeryLazy",
+        lazy = true,
         config = function()
             require("my_plugins.mason_tool_installer")
         end,
@@ -126,11 +126,42 @@ local plugins = {
         end,
     },
     {
-        "HiPhish/rainbow-delimiters.nvim",
-            config = function()
-                require("my_plugins.rainbow-delimiters")
-            end,
-},
+  "HiPhish/rainbow-delimiters.nvim",
+        config = function()
+            require("my_plugins.rainbow-delimiters")
+        end,
+  -- config = function()
+  --   local rainbow_delimiters = require("rainbow-delimiters")
+  --   vim.g.rainbow_delimiters = {
+  --     strategy = {
+  --       [""] = rainbow_delimiters.strategy["global"],
+  --     },
+  --     query = {
+  --       [""] = "rainbow-delimiters",
+  --     },
+  --   }
+  -- end,
+}
+
+    -- {
+    --  "mrjones2014/nvim-ts-rainbow",
+    --  enabled = function()
+    --      return not vim.g.vscode
+    --  end,
+    --  event = { "BufRead", "BufNewFile", "InsertEnter" },
+    --  -- dependencies = "nvim-treesitter",
+    --  config = function()
+    --      require("my_plugins.nvim-ts-rainbow")
+    --  end,
+    -- },
+    -- {
+    --  "s1n7ax/nvim-comment-frame",
+    --  keys = { "<Space>cf" },
+    --  config = function()
+    --      require("my_plugins.nvim-comment-frame")
+    --  end,
+    --  -- dependencies = "nvim-treesitter",
+    -- },
     {
         "LudoPinelli/comment-box.nvim",
         keys = { "<Space>cb" },

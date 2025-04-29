@@ -486,3 +486,23 @@ use({
             end)
         end,
     },
+
+    -- {
+    --  "mrjones2014/nvim-ts-rainbow",
+    --  enabled = function()
+    --      return not vim.g.vscode
+    --  end,
+    --  event = { "BufRead", "BufNewFile", "InsertEnter" },
+    --  -- dependencies = "nvim-treesitter",
+    --  config = function()
+    --      require("my_plugins.nvim-ts-rainbow")
+    --  end,
+    -- },
+    -- {
+    --  "s1n7ax/nvim-comment-frame",
+    --  keys = { "<Space>cf" },
+    --  config = function()
+    --      require("my_plugins.nvim-comment-frame")
+    --  end,
+    --  -- dependencies = "nvim-treesitter",
+    -- },
