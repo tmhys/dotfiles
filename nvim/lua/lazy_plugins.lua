@@ -27,14 +27,14 @@ local plugins = {
         end,
     },
     { "nvim-lua/plenary.nvim", lazy = true },
-    { "nvim-lua/popup.nvim", lazy = true },
+    { "nvim-lua/popup.nvim",   lazy = true },
     {
         "nvim-tree/nvim-web-devicons",
         lazy = true,
     },
     { "MunifTanjim/nui.nvim", lazy = true },
-    { "nvim-treesitter", lazy = true },
-    { "folke/neodev.nvim", lazy = true },
+    { "nvim-treesitter",      lazy = true },
+    { "folke/neodev.nvim",    lazy = true },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         event = "VeryLazy",
@@ -43,12 +43,11 @@ local plugins = {
         end,
     },
     { "williamboman/mason-lspconfig.nvim", lazy = true },
-    { "williamboman/mason.nvim", lazy = true },
-    { "cmp-nvim-lsp", lazy = true },
+    { "williamboman/mason.nvim",           lazy = true },
+    { "cmp-nvim-lsp",                      lazy = true },
     {
         "nvimtools/none-ls.nvim",
         lazy = true,
-        -- "jose-elias-alvarez/null-ls.nvim",
     },
     --}}}
     ----------------------------------------------------------------------
@@ -62,7 +61,6 @@ local plugins = {
         end,
         lazy = true,
         keys = { "<Space>" },
-        -- dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-lua/popup.nvim" } },
         config = function()
             require("my_plugins.telescope")
         end,
@@ -70,16 +68,9 @@ local plugins = {
     {
         "nvim-telescope/telescope-file-browser.nvim",
         lazy = true,
-        -- dependencies = { "telescope.nvim" },
     },
     {
         "Bekaboo/dropbar.nvim",
-        -- optional, but required for fuzzy finder support
-        -- dependencies = {
-        --  "nvim-telescope/telescope-fzf-native.nvim",
-        --  build = "make",
-        -- },
-        -- event = { "BufReadPre", "BufNewFile" },
         config = function()
             local dropbar_api = require("dropbar.api")
             vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
@@ -93,20 +84,11 @@ local plugins = {
             return not vim.g.vscode
         end,
         branch = "v3.x",
-        -- dependencies = {
-        --  "nvim-lua/plenary.nvim",
-        --  "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        --  "MunifTanjim/nui.nvim",
-        --  -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-        -- },
         config = function()
             require("my_plugins.neo-tree")
         end,
         cmd = "Neotree",
         keys = "<C-n>",
-        -- init = function()
-        --  vim.keymap.set("n", "<C-n>", "<Cmd>Neotree toggle<cr>", { noremap = true })
-        -- end,
     },
     --}}}
     ----------------------------------------------------------------------
@@ -127,17 +109,16 @@ local plugins = {
     },
     {
         "HiPhish/rainbow-delimiters.nvim",
-            config = function()
-                require("my_plugins.rainbow-delimiters")
-            end,
-},
+        config = function()
+            require("my_plugins.rainbow-delimiters")
+        end,
+    },
     {
         "LudoPinelli/comment-box.nvim",
         keys = { "<Space>cb" },
         config = function()
             require("my_plugins.comment-box")
         end,
-        -- dependencies = "nvim-treesitter",
     },
     --}}}
     ----------------------------------------------------------------------
@@ -147,18 +128,6 @@ local plugins = {
     {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre" },
-        -- dependencies = {
-        --  { "folke/neodev.nvim" },
-        --  {
-        --      "WhoIsSethDaniel/mason-tool-installer.nvim",
-        --      config = function()
-        --          require("my_plugins.mason_tool_installer")
-        --      end,
-        --  },
-        --  { "williamboman/mason-lspconfig.nvim" },
-        --  { "williamboman/mason.nvim" },
-        --  "cmp-nvim-lsp",
-        -- },
         config = function()
             require("my_plugins.lspconfig")
         end,
@@ -166,19 +135,12 @@ local plugins = {
     {
         "jay-babu/mason-null-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
-        -- dependencies = {
-        --  "williamboman/mason.nvim",
-        --  "nvimtools/none-ls.nvim",
-        --  -- "jose-elias-alvarez/null-ls.nvim",
-        -- },
         config = function()
             require("my_plugins.mason-null-ls")
         end,
     },
     {
         "nvimtools/none-ls.nvim",
-        -- "jose-elias-alvarez/null-ls.nvim",
-        -- dependencies = "williamboman/mason.nvim",
         event = { "FocusLost", "CursorHold" },
         config = function()
             require("my_plugins.null-ls")
@@ -194,8 +156,8 @@ local plugins = {
         event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
         dependencies = {
             { "hrsh7th/cmp-nvim-lua", ft = "lua" },
-            { "hrsh7th/cmp-path", event = "CmdlineEnter" },
-            { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
+            { "hrsh7th/cmp-path",     event = "CmdlineEnter" },
+            { "hrsh7th/cmp-cmdline",  event = "CmdlineEnter" },
             { "hrsh7th/cmp-nvim-lsp" },
             {
                 "saadparwaiz1/cmp_luasnip",
@@ -215,18 +177,6 @@ local plugins = {
             { "f3fora/cmp-spell" },
             { "hrsh7th/cmp-buffer" },
             { "ray-x/cmp-treesitter" },
-            -- {
-            --  "zbirenbaum/copilot-cmp",
-            --  dependencies = {
-            --      "zbirenbaum/copilot.lua",
-            --      config = function()
-            --          require("copilot").setup()
-            --      end,
-            --  },
-            --  config = function()
-            --      require("copilot_cmp").setup()
-            --  end,
-            -- },
             {
                 "windwp/nvim-autopairs",
                 config = function()
@@ -243,10 +193,7 @@ local plugins = {
     --                               util                               --
     ----------------------------------------------------------------------
     --{{{
-    -- { "nvim-tree/nvim-web-devicons", lazy = true },
     -- { "kazhala/close-buffers.nvim", lazy = true }, --TODO
-    -- { "nvim-lua/plenary.nvim", lazy = true },
-    -- { "nvim-lua/popup.nvim", lazy = true },
     --}}}
     ----------------------------------------------------------------------
     --                           Color Scheme                           --
@@ -256,9 +203,6 @@ local plugins = {
         "diegoulloao/neofusion.nvim",
         lazy = true,
         priority = 1000,
-        -- config = function()
-        --  vim.cmd.colorscheme("neofusion")
-        -- end,
     },
     {
         "catppuccin/nvim",
@@ -297,7 +241,7 @@ local plugins = {
                     min_height = 1, -- Min qf height when using open() or toggle()
                     track_location = true, -- Keep qf updated with your current location
                 },
-                loclist = { -- The same options, but for the loclist
+                loclist = {      -- The same options, but for the loclist
                     autoclose = true,
                     default_bindings = true,
                     default_options = true,
@@ -319,21 +263,6 @@ local plugins = {
     --                                UI                                --
     ----------------------------------------------------------------------
     --{{{
-    -- {
-    --  "b0o/incline.nvim",
-    --  config = function()
-    -- {
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     event = "BufRead",
-    --     config = function()
-    --         require("my_plugins.indent-blankline")
-    --     end,
-    -- },
-    --      require("incline").setup()
-    --  end,
-    --  -- Optional: Lazy load Incline
-    --  event = "VeryLazy",
-    -- },
     {
         "nvim-zh/colorful-winsep.nvim",
         event = "WinNew",
@@ -351,7 +280,6 @@ local plugins = {
     {
         "folke/todo-comments.nvim",
         event = { "BufRead", "BufNewFile", "InsertEnter" },
-        -- dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
     },
     {
@@ -404,13 +332,6 @@ local plugins = {
         event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
-            -- {
-            --     "SmiteshP/nvim-navic",
-            --     event = { "FocusLost", "CursorHold" },
-            --     config = function()
-            --         require("my_plugins.nvim-navic").setup()
-            --     end,
-            -- },
         },
         init = function()
             vim.opt.laststatus = 0
@@ -430,7 +351,6 @@ local plugins = {
         config = function()
             require("my_plugins.bufferline")
         end,
-        -- dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
         "petertriho/nvim-scrollbar",
@@ -445,26 +365,6 @@ local plugins = {
             require("my_plugins.nvim-scrollbar")
         end,
     },
-    -- {
-    --     "folke/noice.nvim",
-    --     enabled = function()
-    --         return not vim.g.vscode
-    --     end,
-    --     event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
-    --     config = function()
-    --         require("my_plugins.noice")
-    --     end,
-    --     dependencies = {
-    --         { "MunifTanjim/nui.nvim" },
-    --         {
-    --             "rcarriga/nvim-notify",
-    --             enabled = function()
-    --                 return not vim.g.vscode
-    --             end,
-    --         },
-    --         { "nvim-treesitter" },
-    --     },
-    -- },
     --}}}
     ----------------------------------------------------------------------
     --                               tool                               --
@@ -472,7 +372,7 @@ local plugins = {
     --{{{
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
     -- NOTE: vim
-    { "kraxli/vim-renamer", cmd = "Renamer" },
+    { "kraxli/vim-renamer",       cmd = "Renamer" },
     {
         "kylechui/nvim-surround",
         event = "BufRead",
@@ -489,13 +389,6 @@ local plugins = {
             require("quicker").setup()
         end,
     },
-    -- {
-    --  "gabrielpoca/replacer.nvim",
-    --  ft = "qf",
-    --  config = function()
-    --      require("my_plugins.replacer")
-    --  end,
-    -- },
     {
         "RRethy/nvim-align",
         cmd = "Align",
