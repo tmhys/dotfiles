@@ -307,11 +307,11 @@ local plugins = {
         "shellRaining/hlchunk.nvim",
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require("hlchunk").setup({
-                chunk = {
-                    enable = true,
-                },
-            })
+        require("hlchunk").setup({
+            chunk = {
+                enable = true,
+            },
+        }),
         --     require("my_plugins.hlchunk")
         end,
     },
