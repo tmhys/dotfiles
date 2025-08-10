@@ -27,14 +27,14 @@ local plugins = {
         end,
     },
     { "nvim-lua/plenary.nvim", lazy = true },
-    { "nvim-lua/popup.nvim", lazy = true },
+    -- { "nvim-lua/popup.nvim",   lazy = true },
     {
         "nvim-tree/nvim-web-devicons",
         lazy = true,
     },
-    { "MunifTanjim/nui.nvim", lazy = true },
+    { "MunifTanjim/nui.nvim",  lazy = true },
     -- { "nvim-treesitter",      lazy = true },
-    { "folke/neodev.nvim", lazy = true },
+    { "folke/neodev.nvim",     lazy = true },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         event = "VeryLazy",
@@ -43,7 +43,7 @@ local plugins = {
         end,
     },
     { "williamboman/mason-lspconfig.nvim", lazy = true },
-    { "williamboman/mason.nvim", lazy = true },
+    { "williamboman/mason.nvim",           lazy = true },
     --}}}
     ----------------------------------------------------------------------
     --                           fuzzy finder                           --
@@ -97,7 +97,8 @@ local plugins = {
         -- end,
         -- Å´ê≥ÇµÇ≠ìÆÇ¢ÇƒÇ¢ÇÈÅH
         -- lazy = true,
-        event = { "BufRead", "BufNewFile", "InsertEnter" },
+        -- event = { "InsertEnter" },
+        event = "VeryLazy",
         build = ":TSUpdate",
         config = function()
             require("my_plugins.treesitter")
@@ -131,7 +132,7 @@ local plugins = {
     },
     {
         "jay-babu/mason-null-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPre" },
         config = function()
             require("my_plugins.mason-null-ls")
         end,
@@ -150,11 +151,11 @@ local plugins = {
     --{{{
     {
         "hrsh7th/nvim-cmp",
-        event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        event = { "InsertEnter" },
         dependencies = {
             { "hrsh7th/cmp-nvim-lua", ft = "lua" },
-            { "hrsh7th/cmp-path", event = "CmdlineEnter" },
-            { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
+            { "hrsh7th/cmp-path",     event = "CmdlineEnter" },
+            { "hrsh7th/cmp-cmdline",  event = "CmdlineEnter" },
             { "hrsh7th/cmp-nvim-lsp" },
             {
                 "saadparwaiz1/cmp_luasnip",
@@ -242,17 +243,17 @@ local plugins = {
         ft = "qf",
         config = function()
             require("qf_helper").setup({
-                prefer_loclist = true, -- Used for QNext/QPrev (see Commands below)
-                sort_lsp_diagnostics = true, -- Sort LSP diagnostic results
+                prefer_loclist = true,        -- Used for QNext/QPrev (see Commands below)
+                sort_lsp_diagnostics = true,  -- Sort LSP diagnostic results
                 quickfix = {
-                    autoclose = true, -- Autoclose qf if it's the only open window
+                    autoclose = true,         -- Autoclose qf if it's the only open window
                     default_bindings = false, -- Set up recommended bindings in qf window
-                    default_options = true, -- Set recommended buffer and window options
-                    max_height = 30, -- Max qf height when using open() or toggle()
-                    min_height = 1, -- Min qf height when using open() or toggle()
-                    track_location = true, -- Keep qf updated with your current location
+                    default_options = true,   -- Set recommended buffer and window options
+                    max_height = 30,          -- Max qf height when using open() or toggle()
+                    min_height = 1,           -- Min qf height when using open() or toggle()
+                    track_location = true,    -- Keep qf updated with your current location
                 },
-                loclist = { -- The same options, but for the loclist
+                loclist = {                   -- The same options, but for the loclist
                     autoclose = true,
                     default_bindings = true,
                     default_options = true,
@@ -290,7 +291,7 @@ local plugins = {
     },
     {
         "folke/todo-comments.nvim",
-        event = { "BufRead", "BufNewFile", "InsertEnter" },
+        event = { "InsertEnter" },
         -- opts = {},
     },
     {
@@ -305,14 +306,14 @@ local plugins = {
     },
     {
         "shellRaining/hlchunk.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPre" },
         config = function()
             require("hlchunk").setup({
                 chunk = {
                     enable = true,
                 },
             })
-        --     require("my_plugins.hlchunk")
+            --     require("my_plugins.hlchunk")
         end,
     },
     {
@@ -332,7 +333,7 @@ local plugins = {
     },
     {
         "kevinhwang91/nvim-ufo",
-        event = "BufRead",
+        -- event = "BufRead",
         dependencies = {
             "kevinhwang91/promise-async",
         },
@@ -345,9 +346,10 @@ local plugins = {
         -- enabled = function()
         --     return not vim.g.vscode
         -- end,
-        event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        -- event = { "InsertEnter", "CursorHold", "FocusLost" },
+        event = { "VeryLazy" },
         dependencies = {
-            { "nvim-tree/nvim-web-devicons" },
+            { "nvim-tree/nvim-web-devicons", lazy = true },
         },
         init = function()
             vim.opt.laststatus = 0
@@ -363,14 +365,16 @@ local plugins = {
         --  return not vim.g.vscode
         -- end,
         -- version = "v3.*",
-        event = { "InsertEnter", "FocusLost", "BufRead", "BufNewFile" },
+        -- event = { "InsertEnter", "FocusLost" },
+        event = { "VeryLazy" },
         config = function()
             require("my_plugins.bufferline")
         end,
     },
     {
         "petertriho/nvim-scrollbar",
-        event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+        -- event = { "InsertEnter", "CursorHold", "FocusLost" },
+        event = { "VeryLazy" },
         -- dependencies = {
         --  "kevinhwang91/nvim-hlslens",
         --  config = function()
@@ -388,10 +392,10 @@ local plugins = {
     --{{{
     { "dstein64/vim-startuptime", cmd = "StartupTime" },
     -- NOTE: vim
-    { "kraxli/vim-renamer", cmd = "Renamer" },
+    { "kraxli/vim-renamer",       cmd = "Renamer" },
     {
         "kylechui/nvim-surround",
-        event = "BufRead",
+        -- event = "BufRead",
         config = function()
             require("nvim-surround").setup()
         end,
@@ -419,7 +423,7 @@ local plugins = {
     -- },
     {
         "numToStr/Comment.nvim",
-        event = "BufRead",
+        -- event = "BufRead",
         config = function()
             require("Comment").setup()
         end,
@@ -496,26 +500,26 @@ local plugins = {
             vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", { noremap = false, silent = true })
         end,
     },
-    {
-        "jinh0/eyeliner.nvim",
-        keys = { "f", "F", "t", "T" },
-        config = function()
-            require("eyeliner").setup({
-                bold = true,
-            })
-        end,
-    },
-    -- flash.nvimÇ÷èÊÇËä∑Ç¶åüì¢
-    {
-        "ggandor/lightspeed.nvim",
-        keys = { "f", "F", "t", "T" },
-        config = function()
-            require("my_plugins.lightspeed")
-        end,
-    },
+    -- {
+    --  "jinh0/eyeliner.nvim",
+    --  keys = { "f", "F", "t", "T" },
+    --  config = function()
+    --      require("eyeliner").setup({
+    --          bold = true,
+    --      })
+    --  end,
+    -- },
+    -- -- flash.nvimÇ÷èÊÇËä∑Ç¶åüì¢
+    -- {
+    --  "ggandor/lightspeed.nvim",
+    --  keys = { "f", "F", "t", "T" },
+    --  config = function()
+    --      require("my_plugins.lightspeed")
+    --  end,
+    -- },
     {
         "phaazon/hop.nvim",
-        branch = "v2",
+        -- branch = "v2",
         keys = { "zz" },
         init = function()
             vim.keymap.set("n", "zz", "<cmd>lua require'hop'.hint_words()<CR>", {})
@@ -544,13 +548,13 @@ require("lazy").setup(plugins, {
             -- automatically check for plugin updates
             enabled = false,
             concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-            notify = true, -- get a notification when new updates are found
+            notify = true,    -- get a notification when new updates are found
             frequency = 3600, -- check for updates every hour
         },
         rtp = {
             reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
             ---@type string[]
-            paths = {}, -- add any custom paths here that you want to includes in the rtp
+            paths = {},   -- add any custom paths here that you want to includes in the rtp
             ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
                 "gzip",
