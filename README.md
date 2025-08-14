@@ -23,11 +23,16 @@ windowsユーザーです
 
 # Usage
 
-順番的には
-
 1. scoop自体のインストール
 2. scoopを使って各種インストール
-3. dotfilesをシンボリックリンク
+    scoop export > ファイル名でJsonファイル化
+    scoop import Jsonファイルでインポート
+3. シンボリックリンクは
+    nvim
+    ctags.d
+    vimfiles
+    の3点
+4.
 
 で環境構築が一瞬で終わるようにしたい
 

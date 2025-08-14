@@ -32,7 +32,7 @@
     "alwaysShowTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{fe66f4b8-350f-56bb-adb0-c2ce745f6db5}",
+    "defaultProfile": "{037a79b8-b134-4f35-bde3-bfd2ce39a436}",
     "keybindings": 
     [
         {
@@ -71,11 +71,12 @@
         "defaults": 
         {
             "colorScheme": "One Half Dark",
+            "elevate": true,
             "font": 
             {
                 "face": "PlemolJP Console NF"
             },
-            "opacity": 67,
+            "opacity": 78,
             "padding": "0",
             "scrollbarState": "hidden",
             "useAcrylic": true
@@ -90,6 +91,7 @@
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "elevate": true,
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "\u30b3\u30de\u30f3\u30c9 \u30d7\u30ed\u30f3\u30d7\u30c8"
@@ -121,12 +123,19 @@
                 "hidden": false,
                 "name": "Developer Command Prompt for VS 2017",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "commandline": "C:\\Users\\thtom\\scoop\\apps\\pwsh\\current\\pwsh.exe",
+                "elevate": true,
+                "guid": "{037a79b8-b134-4f35-bde3-bfd2ce39a436}",
+                "hidden": false,
+                "name": "pwsh(scoop)",
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
     "schemes": [],
     "showTabsInTitlebar": false,
-    "startOnUserLogin": true,
     "themes": [],
     "useAcrylicInTabRow": true
 }

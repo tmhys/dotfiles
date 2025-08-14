@@ -6,3 +6,5 @@ tags.lock
 tags.temp
 nvim/plugin/packer_compiled.lua
 vimrc/init/deinupdate.vim
+vimrc/.cache
+vimrc/localplugins
