@@ -6,18 +6,6 @@ local opt = vim.opt -- to set options
 ---------------
 --disable
 ---------------
---lazy.nvimと重複？
--- g.loaded_gzip = 1
--- g.loaded_matchit = 1
--- g.loaded_matchparen = 1
--- g.loaded_netrwPlugin = 1
--- g.loaded_tarPlugin = 1
--- g.loaded_tutor_mode_plugin = 1
--- g.loaded_zipPlugin = 1
--- g.loaded_man = 1
--- g.loaded_rplugin = 1
--- g.loaded_shada_plugin = 1
--- g.loaded_spellfile_plugin = 1
 
 g.did_install_default_menus = 1
 g.did_install_syntax_menu = 1
@@ -26,7 +14,7 @@ g.did_load_ftplugin = 1
 g.skip_loading_mswin = 1
 
 g.loaded_2html_plugin = 1
-g.loaded_clipboard_provider = 1 --checkhealthでエラーが出るようになる
+g.loaded_clipboard_provider = 0 --checkhealthでエラーが出るようになる
 g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1
 g.loaded_logiPat = 1
@@ -54,15 +42,14 @@ g.loaded_pythonx_provider = 0
 g.loaded_ruby_provider = 0
 -- ?
 if fn.has("gui_running") ~= 1 then
-	g.plugin_scrnmode_disable = true
+    g.plugin_scrnmode_disable = true
 end
 
 ---------------
 --
 ---------------
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-opt.encoding = "UTF-8"
+g.mapleader = " "
+g.maplocalleader = "\\"
 -- opt.tags = "tags;$HOME"
 opt.fileformats = "dos,unix,mac"
 opt.fileencodings = { "cp932", "sjis", "UTF-8" } -- the encoding written to a file
@@ -83,7 +70,7 @@ opt.laststatus = 3
 opt.lazyredraw = true
 opt.matchtime = 1
 opt.matchpairs = vim.bo.matchpairs
-	.. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
+    .. ",<:>,「:」,『:』,（:）,【:】,《:》,〈:〉,［:］,‘:’,“:”,｛:｝" --only vimrc option
 opt.number = true -- Show line numbers
 opt.scrolloff = 3 -- Lines of context
 opt.shiftwidth = 4
@@ -100,7 +87,6 @@ opt.virtualedit = "block"
 opt.wildmenu = true
 opt.wildmode = "full"
 opt.writebackup = true
--- opt.wrap             = false -- display lines as one long line only init.lua option
 opt.wrap = true -- display lines as one long line only init.lua option
 opt.breakindent = true
 opt.linebreak = true
@@ -129,9 +115,9 @@ opt.spelllang = "en" --only init.lua option
 opt.splitbelow = true -- Put new windows below current only init.lua option
 opt.splitright = true -- Put new windows right of current only init.lua option
 opt.title = true -- set the title of window to the value of the titlestring only init.lua option
-vim.o.errorbells = false -- ビープ音除去
-vim.o.visualbell = false -- ビープ音除去
-vim.opt.shortmess = "aItToOF"
+opt.errorbells = false -- ビープ音除去
+opt.visualbell = false -- ビープ音除去
+opt.shortmess = "aItToOF"
 --vim.opt.autochdir    = true --ディレクトリ自動で移動
 
 --opt.shortmess        = vim.o.shortmess
@@ -152,60 +138,61 @@ vim.opt.shortmess = "aItToOF"
 --  t = true, -- truncate file messages at start
 --}
 vim.opt.fillchars = {
-	horiz = "━",
-	horizup = "┻",
-	horizdown = "┳",
-	vert = "┃",
-	vertleft = "┫",
-	vertright = "┣",
-	verthoriz = "╋",
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
 }
 
 opt.wildignore = {
-	".DS_Store",
-	".git",
-	".svn",
-	".hg",
-	"*.a",
-	"*.o",
-	"*.obj",
-	"*.out",
-	"*.so",
-	"*.dll",
-	"*.exe",
-	"*.bin",
-	"*~",
-	"*.swp",
-	"*.tmp",
-	"*.bmp",
-	"*.gif",
-	"*.ico",
-	"*.jpg",
-	"*.jpeg",
-	"*.png",
-	"__pycache__",
-	"*.pyc",
-	"*pycache*",
-	"*.tar",
-	"*.gz",
-	"*.bz2",
-	"*.zstd",
-	"*.xz",
-	"*.zip",
-	"*.ttf",
-	"*.otf",
-	"*.woff",
-	"*.woff2",
-	"*.eot",
+    ".DS_Store",
+    ".git",
+    ".svn",
+    ".hg",
+    "*.a",
+    "*.o",
+    "*.obj",
+    "*.out",
+    "*.so",
+    "*.dll",
+    "*.exe",
+    "*.bin",
+    "*~",
+    "*.swp",
+    "*.tmp",
+    "*.bmp",
+    "*.gif",
+    "*.ico",
+    "*.jpg",
+    "*.jpeg",
+    "*.png",
+    "__pycache__",
+    "*.pyc",
+    "*pycache*",
+    "*.tar",
+    "*.gz",
+    "*.bz2",
+    "*.zstd",
+    "*.xz",
+    "*.zip",
+    "*.ttf",
+    "*.otf",
+    "*.woff",
+    "*.woff2",
+    "*.eot",
 }
 
-opt.sessionoptions = opt.sessionoptions
-	- "blank" -- Don't save empty windows in the session
-	- "buffers" -- Don't save hidden buffers into the session
-	- "help" -- Ignore the help buffer for sessions
-	- "options" -- Don't save any vim options (this list)
-	- "globals" -- Ignore any g:-variables
-	+ "localoptions" -- Include buffer local overrides             + "tabpages"     -- This session is for all tabs, not individual ones
+opt.sessionoptions = { "curdir", "folds", "tabpages", "winsize", "localoptions" }
+-- opt.sessionoptions = opt.sessionoptions
+--     - "blank" -- Don't save empty windows in the session
+--     - "buffers" -- Don't save hidden buffers into the session
+--     - "help" -- Ignore the help buffer for sessions
+--     - "options" -- Don't save any vim options (this list)
+--     - "globals" -- Ignore any g:-variables
+--     + "localoptions" -- Include buffer local overrides             + "tabpages"     -- This session is for all tabs, not individual ones
 opt.hidden = true -- Enable background buffers only init.lua option
 
 opt.inccommand = "split"
